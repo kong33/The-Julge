@@ -23,8 +23,8 @@
       "@/contexts/*": ["./src/libs/contexts/*"],
       "@/constants/*": ["./src/libs/constants/*"],
       "@/apis/*": ["./src/apis/*"],
-      "@/pages/*": ["pages/*"],
-      "@/public/*": ["public/*"]
+      "@/pages/*": ["./pages/*"],
+      "@/public/*": ["./public/*"]
     },
     "incremental": true
   },

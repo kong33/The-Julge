@@ -96,7 +96,7 @@
           ["@/pages", "./pages"],
           ["@/public", "./public"]
         ],
-        "extensions": [".js", ".jsx", ".json", ".tsx", ".ts"]
+        "extensions": [".js", ".jsx", ".json", ".tsx", ".ts", "scss"]
       }
     }
   }
