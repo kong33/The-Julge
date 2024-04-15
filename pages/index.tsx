@@ -1,3 +1,5 @@
+import '@/styles/globals.scss';
+
 export default function Home() {
-  return <p>home김보경 바보</p>;
+  return <p>home</p>;
 }
