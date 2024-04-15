@@ -9,7 +9,7 @@
     "postinstall": "husky install",
     "format": "prettier --cache --write .",
     "lint": "eslint --cache .",
-    "lint:fix": "eslint ./**/*.{js,jsx,ts,tsx} --cache --fix"
+    "lint:fix": "eslint ./**/*.{ts,tsx} --cache --fix"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
