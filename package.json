@@ -7,8 +7,15 @@
     "build": "next build",
     "start": "next start",
     "postinstall": "husky install",
-        "format": "prettier --cache --write .",
-        "lint": "eslint --cache ."
+    "format": "prettier --cache --write .",
+    "lint": "eslint --cache .",
+    "lint:fix": "eslint ./**/*.{js,jsx,ts,tsx} --cache --fix"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "dependencies": {
     "@tanstack/react-query-devtools": "^5.29.2",
@@ -29,6 +36,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.1.3",
+    "lint-staged": "^15.2.2",
     "sass": "^1.75.0",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5",
