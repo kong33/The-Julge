@@ -1,5 +1,5 @@
-import '@/styles/globals.scss';
+import styles from '@/pages/index.module.scss';
 
 export default function Home() {
-  return <p>home</p>;
+  return <p className={styles.text}>home</p>;
 }
