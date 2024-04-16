@@ -35,6 +35,21 @@
     "max-len": ["error", 120, 2, { "ignoreComments": true, "ignoreUrls": true }],
     "no-console": "off",
     "react/jsx-props-no-spreading": "off",
+    "comma-dangle": ["error", "never"],
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 120,
+        "tabWidth": 2,
+        "semi": true,
+        "singleQuote": true,
+        "useTabs": false,
+        "trailingComma": "none",
+        "bracketSpacing": true,
+        "arrowParens": "always",
+        "endOfLine": "auto"
+      }
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
