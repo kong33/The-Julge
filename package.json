@@ -25,6 +25,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "^20.12.7",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -48,6 +49,7 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5",
     "typescript-plugin-css-modules": "^5.1.0",
+    "url-loader": "^4.1.1",
     "webpack": "^5.91.0"
   }
 }

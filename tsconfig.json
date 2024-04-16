@@ -17,16 +17,17 @@
     "noEmit": true,
     "jsx": "preserve",
     "baseUrl": ".",
-    "paths": {"@/*" : ["./src/*"]
-      // "@/components/*": ["./src/components/*"],
-      // "@/styles/*": ["./src/styles/*"],
-      // "@/utils/*": ["./src/libs/utils/*"],
-      // "@/hooks/*": ["./src/libs/hooks/*"],
-      // "@/contexts/*": ["./src/libs/contexts/*"],
-      // "@/constants/*": ["./src/libs/constants/*"],
-      // "@/apis/*": ["./src/apis/*"],
-      // "@/pages/*": ["./pages/*"],
-      // "@/public/*": ["./public/*"]
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/styles/*": ["./src/styles/*"],
+      "@/utils/*": ["./src/libs/utils/*"],
+      "@/hooks/*": ["./src/libs/hooks/*"],
+      "@/contexts/*": ["./src/libs/contexts/*"],
+      "@/constants/*": ["./src/libs/constants/*"],
+      "@/apis/*": ["./src/apis/*"],
+      "@/pages/*": ["./pages/*"],
+      "@/public/*": ["./public/*"]
     },
     "incremental": true
   },
