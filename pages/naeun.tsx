@@ -1,24 +1,11 @@
-import { useEffect, useState } from 'react';
-
 import Pagination from '@/components/feature/pagination/pagination';
+import usePagination from '@/hooks/usePagination';
 
 const ITEMS_PER_PAGE = 6; // 페이지 당 아이템 수
 function Naeun({ data, totalItems }: { data: string[]; totalItems: number }) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+  const { currentPage, totalPages, onPageChange, startIndex, endIndex } = usePagination(totalItems, ITEMS_PER_PAGE);
 
-  const onPageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  // 현재 페이지의 데이터 계산
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentItems = data.slice(startIndex, endIndex);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, []);
 
   return (
     <div>
@@ -35,7 +22,7 @@ function Naeun({ data, totalItems }: { data: string[]; totalItems: number }) {
 
 // 목업 데이터 생성
 export async function getStaticProps() {
-  const totalItems = 6;
+  const totalItems = 100;
   const data = Array.from({ length: totalItems }, (_, i) => `Item ${i + 1}`);
 
   return {

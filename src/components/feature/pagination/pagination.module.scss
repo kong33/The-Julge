@@ -1,6 +1,42 @@
+@import '@/styles/fonts.scss';
+@import '@/styles/colors.scss';
+
 .pagination {
   width: 100%;
   display: flex;
-  gap: 2px;
-  list-style: none;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  @include sopoqa-14-400;
+}
+
+.pagination > div {
+  width: 2rem;
+  text-align: center;
+}
+.page {
+  display: flex;
+  gap: 0.2rem;
+  li > button {
+    display: flex;
+    width: 4rem;
+    height: 4rem;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+  }
+}
+
+.page > li > button:hover {
+  border-radius: 4px;
+  background: $color-red-20;
+}
+
+#select {
+  border-radius: 4px;
+  background: $color-red-30;
+}
+
+.disable {
+  display: none;
 }

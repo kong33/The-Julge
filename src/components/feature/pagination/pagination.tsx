@@ -1,3 +1,6 @@
+// import { ReactComponent as Left } from '@/public/svgs/leftChevron.svg';
+// import { ReactComponent as Right } from '@/public/svgs/rightChevron.svg';
+
 import styles from './pagination.module.scss';
 
 type PaginationType = {
@@ -7,46 +10,50 @@ type PaginationType = {
   onPageChange: (page: number) => void;
 };
 function Pagination({ currentPage, totalPages, onPageChange }: PaginationType) {
-  // 다음 페이지로 이동하는 함수
-  const nextPage = () => {
-    onPageChange(currentPage + 1);
-  };
   // 페이지 그룹 계산
   const groupStart = Math.floor((currentPage - 1) / 7) * 7 + 1;
   const groupEnd = Math.min(groupStart + 6, totalPages);
 
   return (
-    <ul className={styles.pagination}>
+    <article className={styles.pagination}>
       {/* 이전 페이지 버튼 */}
-      {currentPage > 7 && (
-        <li>
-          <button type="button" onClick={() => onPageChange(currentPage - 1)}>
-            &lt;
-          </button>
-        </li>
-      )}
-      {/* 페이지 번호 버튼 */}
-      {/* 배열 길이  groupEnd - groupStart + 1 */}
-      {Array.from({ length: groupEnd - groupStart + 1 }, (_, i) => i + groupStart).map((page) => (
-        <li key={page}>
+      {totalPages > 7 && (
+        <div>
           <button
             type="button"
-            className={currentPage === page ? styles.active : ''}
-            onClick={() => onPageChange(page)}
+            className={currentPage === 1 ? styles.disable : ''}
+            onClick={() => onPageChange(currentPage - 1)}
           >
-            {page}
+            &lt;
           </button>
-        </li>
-      ))}
+          {/* <Left /> */}
+        </div>
+      )}
+      <ul className={styles.page}>
+        {/* 페이지 번호 버튼 */}
+        {/* 배열 길이  groupEnd - groupStart + 1 */}
+        {Array.from({ length: groupEnd - groupStart + 1 }, (_, i) => i + groupStart).map((page) => (
+          <li key={page}>
+            <button type="button" id={currentPage === page ? styles.select : ''} onClick={() => onPageChange(page)}>
+              {page}
+            </button>
+          </li>
+        ))}
+      </ul>
       {/* 다음 페이지 버튼 */}
-      {currentPage > 7 && currentPage < totalPages && (
-        <li>
-          <button type="button" onClick={nextPage}>
+      {totalPages > 7 && (
+        <div>
+          <button
+            type="button"
+            className={currentPage === totalPages ? styles.disable : ''}
+            onClick={() => onPageChange(currentPage + 1)}
+          >
             &gt;
           </button>
-        </li>
+          {/* <Right /> */}
+        </div>
       )}
-    </ul>
+    </article>
   );
 }
 
