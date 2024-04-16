@@ -1,8 +1,11 @@
 /* eslint-disable */
 import styles from '@/components/feature/Filter/styles.module.scss';
 import { ReactComponent as CloseButton } from '@/public/svgs/closeButton.svg';
+import FilterBadge from '@/components/common/FilterBadge';
 
-export default function Filter() {
+export default function Filter({}) {
+  let filterBadgeList = [];
+
   return (
     <div className={styles.container}>
       <div>
@@ -13,7 +16,9 @@ export default function Filter() {
       <section>
         <p>위치</p>
         <div></div>
-        <section></section>
+        <section>
+          <FilterBadge title="rlarkdms" />
+        </section>
       </section>
 
       <hr />
