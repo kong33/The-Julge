@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -9,25 +10,26 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
+    //"moduleResolution": "bundler",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
     "baseUrl": ".",
-    "paths": {
-      "@/components/*": ["./src/components/*"],
-      "@/styles/*": ["./src/styles/*"],
-      "@/utils/*": ["./src/libs/utils/*"],
-      "@/hooks/*": ["./src/libs/hooks/*"],
-      "@/contexts/*": ["./src/libs/contexts/*"],
-      "@/constants/*": ["./src/libs/constants/*"],
-      "@/apis/*": ["./src/apis/*"],
-      "@/pages/*": ["./pages/*"],
-      "@/public/*": ["./public/*"]
+    "paths": {"@/*" : ["./src/*"]
+      // "@/components/*": ["./src/components/*"],
+      // "@/styles/*": ["./src/styles/*"],
+      // "@/utils/*": ["./src/libs/utils/*"],
+      // "@/hooks/*": ["./src/libs/hooks/*"],
+      // "@/contexts/*": ["./src/libs/contexts/*"],
+      // "@/constants/*": ["./src/libs/constants/*"],
+      // "@/apis/*": ["./src/apis/*"],
+      // "@/pages/*": ["./pages/*"],
+      // "@/public/*": ["./public/*"]
     },
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "custom.d.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "style.d.ts"],
   "exclude": ["node_modules", "build", "scripts"]
 }
