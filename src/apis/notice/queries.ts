@@ -13,11 +13,6 @@ const queryKeys = {
 };
 
 const queryOptions = {
-  // postImage: (name: string) => ({
-  //   mutationKey: queryKeys.postImage(name),
-  //   mutationFn: (postData: PostImage) => ImageService.postImage(postData)
-  // })
-
   getNotices: (params: GetNoticesParams) => ({
     queryKey: queryKeys.getNotices(params),
     queryFn: () => NoticeService.getNotices(params)
