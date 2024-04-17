@@ -31,7 +31,7 @@ type Item = {
   links: Array<Link>;
 };
 
-export type ApplicationRes = {
+export type GetApplicationsRes = {
   offset: number;
   limit: number;
   count: number;
@@ -39,3 +39,5 @@ export type ApplicationRes = {
   items: Array<Item>;
   links: Array<Link>;
 };
+
+export type PostApplicationRes = Item;

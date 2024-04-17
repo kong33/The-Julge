@@ -4,7 +4,7 @@ import queryOptions from '@/apis/application/queries';
 import { BaseQuery } from '@/apis/common.type';
 import selectData from '@/apis/utils';
 
-import { ApplicationRes } from './application.type';
+import { GetApplicationsRes } from './application.type';
 
 /**
  * 특정 가게의 특정 공고에 대한 지원 목록을 조회합니다.
@@ -27,5 +27,5 @@ import { ApplicationRes } from './application.type';
 // eslint-disable-next-line import/prefer-default-export
 export function useGetApplicationsByNoticeId(shopId: string, noticeId: string, params: BaseQuery) {
   const res = useSuspenseQuery(queryOptions.getApplicationsByNoticeId(shopId, noticeId, params));
-  return selectData<ApplicationRes>(res);
+  return selectData<GetApplicationsRes>(res);
 }
