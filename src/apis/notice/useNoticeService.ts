@@ -81,6 +81,16 @@ export function usePostNoticeByShopId(shopId: string, payload: PostNoticePayload
   return { data, ...rest };
 }
 
+/**
+ * 특정 가게의 특정 공고를 조회합니다.
+ * @param shopId required; string
+ * @param noticeId required; string
+ * @returns \{
+  item: ItemInfo;
+  links: Array<Link>;
+}
+ */
+
 export function useGetNoticeByNoticeId(shopId: string, noticeId: string) {
   const res = useSuspenseQuery(queryOptions.getNoticeByNoticeId(shopId, noticeId));
   const { data: resData, ...rest } = res;
