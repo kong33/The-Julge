@@ -97,3 +97,20 @@ export function useGetNoticeByNoticeId(shopId: string, noticeId: string) {
   const data: Item = resData?.data;
   return { data, ...rest };
 }
+
+/**
+ * 특정 가게의 특정 공고를 수정합니다.
+ * @param shopId required; string
+ * @param noticeId required; string
+ * @returns \{
+  item: ItemInfo;
+  links: Array<Link>;
+}
+ */
+
+export function usePutNoticeByNoticeId(shopId: string, noticeId: string, payload: PostNoticePayload) {
+  const res = useMutation(queryOptions.putNoticeByNoticeId(shopId, noticeId, payload));
+  const { data: resData, ...rest } = res;
+  const data: Item = resData?.data;
+  return { data, ...rest };
+}
