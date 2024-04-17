@@ -9,10 +9,14 @@ import { type InternalAxiosRequestConfig } from 'axios';
 const requestInterceptor = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
   if (typeof window === 'undefined') return config;
 
-  const token = localStorage.getItem('accessToken') ?? '';
-  if (token) config.headers.set('Authorization', `Bearer ${token}`);
+  const modefiedConfig = config;
+  const token = localStorage.getItem('token') ?? '';
 
-  return config;
+  if (token) {
+    modefiedConfig.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return modefiedConfig;
 };
 
 export default requestInterceptor;
