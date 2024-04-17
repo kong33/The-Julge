@@ -14,7 +14,11 @@ type Link = {
   body: Body;
 };
 
-export type Images = {
+export type Image = {
   item: Item;
   links: Array<Link>;
+};
+
+export type PostImage = {
+  name: string;
 };

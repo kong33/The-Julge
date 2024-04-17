@@ -1,13 +1,15 @@
 import ImageService from '@/apis/image/Image.service';
 
+import { PostImage } from './image.type';
+
 const queryKeys = {
-  postImages: (name: string) => ['postImages', name] as const
+  postImage: (name: string) => ['postImages', name] as const
 };
 
 const queryOptions = {
-  postImages: (name: string) => ({
-    mutationKey: queryKeys.postImages(name),
-    mutationFn: () => ImageService.postImages({ name })
+  postImage: (name: string) => ({
+    mutationKey: queryKeys.postImage(name),
+    mutationFn: (postData: PostImage) => ImageService.postImage(postData)
   })
 };
 
