@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
-import { apiRequestor } from '@/apis/requestor';
-import { PostUserPayload } from '@/apis/user/user.type';
+import { apiRequestor, apiRequestorToken } from '@/apis/requestor';
+import { PostUserPayload, PutUserPayload } from '@/apis/user/user.type';
 
 class UserService {
   postUser(payload: PostUserPayload) {
@@ -9,6 +9,10 @@ class UserService {
 
   getUser(userId: string) {
     return apiRequestor.get(`/users/${userId}`);
+  }
+
+  putUser(userId: string, payload: PutUserPayload) {
+    return apiRequestorToken.put(`/users/${userId}`, payload);
   }
 }
 

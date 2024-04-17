@@ -1,4 +1,4 @@
-import { Link, ShopInfo, UserType } from '@/apis/common.type';
+import { Address, Link, ShopInfo, UserItem, UserType } from '@/apis/common.type';
 
 export type PostUserPayload = {
   email: string;
@@ -24,7 +24,21 @@ type Shop = {
 
 export type GetUserRes = {
   item: Item & {
-    shop: Shop;
+    shop: Shop | null;
+  };
+  links: Array<Link>;
+};
+
+export type PutUserPayload = {
+  name: string;
+  phone: string;
+  address: Address;
+  bio: string;
+};
+
+export type PutUserRes = {
+  item: UserItem & {
+    shop: { item: ShopInfo } | null;
   };
   links: Array<Link>;
 };

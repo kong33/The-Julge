@@ -1,7 +1,7 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import queryOptions from '@/apis/user/queries';
-import { PostUserPayload } from '@/apis/user/user.type';
+import { GetUserRes, PostUserPayload, PostUserRes, PutUserPayload, PutUserRes } from '@/apis/user/user.type';
 import selectData from '@/apis/utils';
 
 /**
@@ -19,7 +19,7 @@ import selectData from '@/apis/utils';
 
 export function usePostUser(payload: PostUserPayload) {
   const res = useMutation(queryOptions.postUser(payload));
-  return selectData(res);
+  return selectData<PostUserRes>(res);
 }
 
 /**
@@ -37,5 +37,26 @@ export function usePostUser(payload: PostUserPayload) {
 
 export function useGetUser(userId: string) {
   const res = useSuspenseQuery(queryOptions.getUser(userId));
-  return selectData(res);
+  return selectData<GetUserRes>(res);
+}
+
+/**
+ * 특정 사용자의 정보를 수정합니다.
+ * @param payload \{
+  name: string;
+  phone: string;
+  address: Address;
+  bio: string;
+}
+ * @returns \{
+  item: UserItem & {
+    shop: { item: ShopInfo } | null;
+  };
+  links: Array\<Link>;
+}
+ */
+
+export function usePutUser(userId: string, payload: PutUserPayload) {
+  const res = useMutation(queryOptions.putUser(userId, payload));
+  return selectData<PutUserRes>(res);
 }
