@@ -2,15 +2,16 @@
 @import '@/styles/fonts.scss';
 @import '@/styles/mixin.scss';
 
-.menu {
+.logout {
   @include sopoqa-16-700;
+
   line-height: 20px;
   color: $color-black;
   width: 100%;
 }
 
 @include mobile {
-  .menu {
+  .logout {
     @include sopoqa-14-400;
     font-weight: 700;
     height: 17px;
