@@ -9,6 +9,12 @@ type PaginationType = {
   // eslint-disable-next-line no-unused-vars
   onPageChange: (page: number) => void;
 };
+
+/* Pagination 컴포넌트
+ * @param currentPage 현재 페이지
+ * @param totalPages 전체 페이지 수
+ * @param onPageChange 현재 페이지 usestate에 저장하는 함수: onPageChange(페이지번호)
+ */
 function Pagination({ currentPage, totalPages, onPageChange }: PaginationType) {
   // 페이지 그룹 계산
   const groupStart = Math.floor((currentPage - 1) / 7) * 7 + 1;
