@@ -10,6 +10,10 @@ class ShopService {
   getShopByShopId(shopId: string) {
     return apiRequestor.get(`/shops/${shopId}`);
   }
+
+  putShop(shopId: string, payload: PostShopPayload) {
+    return apiRequestorToken.put(`/shops/${shopId}`, payload);
+  }
 }
 
 export default new ShopService();

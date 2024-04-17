@@ -39,3 +39,25 @@ export function useGetShopByShopId(shopId: string) {
   const res = useSuspenseQuery(queryOptions.getShopByShopId(shopId));
   return selectData<ShopRes>(res);
 }
+
+/**
+ * 가게를 등록합니다.
+ * @param payload \{
+  name: string;
+  category: Category;
+  address1: Address;
+  address2: string;
+  description: string;
+  imageUrl: string;
+  originalHourlyPay: number;
+}
+ * @returns \{
+  item: Item;
+  links: Array<Link>;
+}
+ */
+
+export function usePutShop(shopId: string, payload: PostShopPayload) {
+  const res = useMutation(queryOptions.putShop(shopId, payload));
+  return selectData<ShopRes>(res);
+}

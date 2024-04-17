@@ -3,7 +3,8 @@ import { PostShopPayload } from '@/apis/shop/shop.type';
 
 const queryKeys = {
   postShop: (payload: PostShopPayload) => [`postShop`, payload] as const,
-  getShopByShopId: (shopId: string) => [`getShop`, shopId] as const
+  getShopByShopId: (shopId: string) => [`getShop`, shopId] as const,
+  putShop: (shopId: string, payload: PostShopPayload) => [`putShop`, { shopId, payload }] as const
 };
 
 const queryOptions = {
@@ -14,6 +15,10 @@ const queryOptions = {
   getShopByShopId: (shopId: string) => ({
     queryKey: queryKeys.getShopByShopId(shopId),
     queryFn: () => ShopService.getShopByShopId(shopId)
+  }),
+  putShop: (shopId: string, payload: PostShopPayload) => ({
+    mutationKey: queryKeys.putShop(shopId, payload),
+    mutationFn: (putData: PostShopPayload) => ShopService.putShop(shopId, putData)
   })
 };
 
