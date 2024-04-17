@@ -1,0 +1,37 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.gnbContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 21rem;
+  align-items: center;
+}
+
+.gnbWrapper {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+.logoWrapper {
+  cursor: pointer;
+  align-items: center;
+}
+
+.gnbItem {
+  cursor: pointer;
+}
+
+.gnbMenu {
+    gap: 2rem;
+}
+
+.notification {
+  cursor: pointer;
+}
+
+.notification:hover {
+  opacity: 0.8;
+}
