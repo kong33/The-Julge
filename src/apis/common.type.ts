@@ -37,6 +37,17 @@ export type ShopInfo = {
   originalHourlyPay: number;
 };
 
+export type ShopItem = {
+  id: string;
+  name: string;
+  category: string;
+  address1: string;
+  address2: string;
+  description: string;
+  imageUrl: string;
+  originalHourlyPay: number;
+};
+
 export type BaseQuery = {
   offset?: number;
   limit?: number;

@@ -1,6 +1,6 @@
-import { Link, ShopInfo } from '@/apis/common.type';
+import { Link, ShopInfo, ShopItem } from '@/apis/common.type';
 
-type ItemInfo = {
+type UserItem = {
   id: string;
   email: string;
   type: 'employer' | 'employee';
@@ -11,17 +11,17 @@ type ItemInfo = {
 };
 
 type User = {
-  item: ItemInfo;
+  item: UserItem;
   href: string;
 };
 
 export type PostShopPayload = ShopInfo;
 
-type Item = PostShopPayload & {
+type Item = ShopItem & {
   user: User;
 };
 
-export type Shop = {
+export type ShopRes = {
   item: Item;
   links: Array<Link>;
 };

@@ -1,15 +1,4 @@
-import { BaseQuery, Link } from '@/apis/common.type';
-
-type ShopItem = {
-  id: string;
-  name: string;
-  category: string;
-  address1: string;
-  address2: string;
-  description: string;
-  imageUrl: string;
-  originalHourlyPay: number;
-};
+import { BaseQuery, Link, ShopItem } from '@/apis/common.type';
 
 type Shop = {
   item: ShopItem;

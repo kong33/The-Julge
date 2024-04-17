@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 import queryOptions from '@/apis/shop/queries';
-import { PostShopPayload, Shop } from '@/apis/shop/shop.type';
+import { PostShopPayload, ShopRes } from '@/apis/shop/shop.type';
 import selectData from '@/apis/utils';
 
 /**
@@ -24,5 +24,5 @@ import selectData from '@/apis/utils';
 // eslint-disable-next-line import/prefer-default-export
 export function usePostShop(payload: PostShopPayload) {
   const res = useMutation(queryOptions.postShop(payload));
-  return selectData<Shop>(res);
+  return selectData<ShopRes>(res);
 }
