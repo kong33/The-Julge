@@ -1,6 +1,4 @@
-import { BaseQuery, Link, NoticeItem, ShopItem } from '@/apis/common.type';
-
-type Sort = 'time' | 'pay' | 'hour' | 'shop';
+import { BaseQuery, Link, NoticeItem, ShopItem, Sort } from '@/apis/common.type';
 
 type Shop = {
   item: ShopItem;

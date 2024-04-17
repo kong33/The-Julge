@@ -1,4 +1,4 @@
-import { Link, UserItem } from '../common.type';
+import { Link, UserItem } from '@/apis/common.type';
 
 export type PostAuthenticationPayload = {
   email: string;

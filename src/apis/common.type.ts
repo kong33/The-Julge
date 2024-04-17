@@ -2,6 +2,10 @@ export type Category = '한식' | '중식' | '일식' | '양식' | '분식' | '�
 
 export type UserType = 'employer' | 'employee';
 
+export type Status = 'pending' | 'accepted' | 'rejected' | 'canceled';
+
+export type Sort = 'time' | 'pay' | 'hour' | 'shop';
+
 export type Address =
   | '서울시 종로구'
   | '서울시 중구'
@@ -82,6 +86,6 @@ export type Link = {
   description: string;
   method: string;
   href: string;
-  body?: ShopInfo;
+  body?: unknown;
   query?: BaseQuery;
 };

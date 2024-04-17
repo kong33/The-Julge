@@ -1,6 +1,4 @@
-import { Link, NoticeItem, ShopItem, UserItem } from '@/apis/common.type';
-
-type Status = 'pending' | 'accepted' | 'rejected' | 'canceled';
+import { Link, NoticeItem, ShopItem, Status, UserItem } from '@/apis/common.type';
 
 type User = {
   item: UserItem;
