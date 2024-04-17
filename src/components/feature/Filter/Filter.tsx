@@ -1,13 +1,13 @@
 import { useState, MouseEventHandler } from 'react';
 
-import FilterBadge from '@/components/common/FilterBadge/FilterBadge';
+import Badge from '@/components/common/Badge/Badge';
 import ScrollMenu from '@/components/common/ScrollMenu/ScrollMenu';
 import styles from '@/components/feature/Filter/Filter.module.scss';
 import { ReactComponent as CloseButton } from '@/public/svgs/closeButton.svg';
 
 export default function Filter() {
   const [clickedAddress, setClickedAddress] = useState<string[]>([]);
-  console.log(clickedAddress);
+
   const handleAddressClicked: MouseEventHandler<HTMLElement> = (e) => {
     const clickedAddressText = e.currentTarget.textContent;
     if (clickedAddressText) {
@@ -26,7 +26,11 @@ export default function Filter() {
         <p>위치</p>
         <ScrollMenu handleClick={handleAddressClicked} />
         <section className={styles.dragMenu}>
-          <FilterBadge title="rlarkdms" />
+          {clickedAddress.map((item) => (
+            <div key={item}>
+              <Badge title={item} color="red" closeBtn />
+            </div>
+          ))}
         </section>
       </section>
 
@@ -34,7 +38,7 @@ export default function Filter() {
 
       <section>
         <p>시작일</p>
-        <input />
+        <input placeholder="입력" />
       </section>
 
       <hr />
@@ -42,7 +46,7 @@ export default function Filter() {
       <section>
         <p>금액</p>
         <section>
-          <input />
+          <input placeholder="입력" />
           <p>이상부터</p>
         </section>
       </section>
