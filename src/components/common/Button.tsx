@@ -4,7 +4,7 @@ import React from 'react';
 import styles from '@/components/common/Button.module.scss';
 
 interface ButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  className: string;
+  className?: string;
   solid?: boolean;
   size: 'large' | 'medium' | 'small';
   active: boolean;
@@ -23,7 +23,7 @@ interface ButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export default function Button({ children, className, solid, size, active, submit = false, onClick }: ButtonType) {
   const buttonClasses = classNames(
-    styles.button,
+    styles.defaultButton,
     styles[size],
     solid && styles.solid,
     !active && styles.inactive,
@@ -31,7 +31,7 @@ export default function Button({ children, className, solid, size, active, submi
   );
 
   return (
-    <button className={buttonClasses} type={submit ? 'submit' : 'button'} onClick={onClick}>
+    <button className={buttonClasses} type={submit ? 'submit' : 'button'} onClick={active ? onClick : () => {}}>
       {children}
     </button>
   );
