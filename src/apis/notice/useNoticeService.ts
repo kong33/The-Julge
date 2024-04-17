@@ -5,7 +5,7 @@ import queryOptions from '@/apis/notice/queries';
 import { GetNoticesParams, Notices } from './notice.type';
 
 /**
- * Presigned URL을 생성합니다.
+ * 공고 목록을 조회합니다.
  * @param params \{
   offset?: number;
   limit?: number;
