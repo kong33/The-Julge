@@ -20,6 +20,10 @@ class NoticeService {
   postNoticeByShopId(shopId: string, payload: PostNoticePayload) {
     return apiRequestorToken.post(`/shops/${shopId}/notices`, payload);
   }
+
+  getNoticeByNoticeId(shopId: string, noticeId: string) {
+    return apiRequestor.get(`/shops/${shopId}/notices/${noticeId}`);
+  }
 }
 
 export default new NoticeService();

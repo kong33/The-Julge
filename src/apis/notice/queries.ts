@@ -7,7 +7,8 @@ const queryKeys = {
   getNotices: (params: GetNoticesParams) => ['getNotices', params] as const,
   getNoticesByShopId: (shopId: string, params: BaseParams) => ['getNoticesByShopId', { shopId, params }] as const,
   postNoticeByShopId: (shopId: string, payload: PostNoticePayload) =>
-    ['postNoticeByShopId', { shopId, payload }] as const
+    ['postNoticeByShopId', { shopId, payload }] as const,
+  getNoticeByNoticeId: (shopId: string, noticeId: string) => ['getNoticeByNoticeId', { shopId, noticeId }] as const
 };
 
 const queryOptions = {
@@ -28,6 +29,10 @@ const queryOptions = {
   postNoticeByShopId: (shopId: string, payload: PostNoticePayload) => ({
     mutationKey: queryKeys.postNoticeByShopId(shopId, payload),
     mutationFn: (postData: PostNoticePayload) => NoticeService.postNoticeByShopId(shopId, postData)
+  }),
+  getNoticeByNoticeId: (shopId: string, noticeId: string) => ({
+    queryKey: queryKeys.getNoticeByNoticeId(shopId, noticeId),
+    queryFn: () => NoticeService.getNoticeByNoticeId(shopId, noticeId)
   })
 };
 

@@ -80,3 +80,10 @@ export function usePostNoticeByShopId(shopId: string, payload: PostNoticePayload
   const data: Item = resData?.data;
   return { data, ...rest };
 }
+
+export function useGetNoticeByNoticeId(shopId: string, noticeId: string) {
+  const res = useSuspenseQuery(queryOptions.getNoticeByNoticeId(shopId, noticeId));
+  const { data: resData, ...rest } = res;
+  const data: Item = resData?.data;
+  return { data, ...rest };
+}

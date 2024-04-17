@@ -24,7 +24,7 @@ type Shop = {
 type ItemInfo = {
   id: string;
   hourlyPay: number;
-  startsAt: string | Date;
+  startsAt: string;
   workhour: number;
   description: string;
   closed: boolean;
