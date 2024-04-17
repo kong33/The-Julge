@@ -32,30 +32,18 @@ function Gnb({ userType = 'guest' }: GnbProps) {
             </div>
           )}
           {userType === 'employee' && (
-            <>
-              <div className={styles.gnbMenu}>
-                <Menu id="myProfile" name="내 프로필" />
-              </div>
-              <div className={styles.gnbMenu}>
-                <LogoutMenu id="logout" name="로그아웃" />
-              </div>
-              <div className={styles.gnbMenu}>
-                <NotiButton />
-              </div>
-            </>
+            <div className={styles.gnbMenu}>
+              <Menu id="myProfile" name="내 프로필" />
+              <LogoutMenu id="logout" name="로그아웃" />
+              <NotiButton />
+            </div>
           )}
           {userType === 'employer' && (
-            <>
-              <div className={styles.gnbMenu}>
-                <Menu id="myShop" name="내 가게" />
-              </div>
-              <div className={styles.gnbMenu}>
-                <LogoutMenu id="logout" name="로그아웃" />
-              </div>
-              <div className={styles.gnbMenu}>
-                <NotiButton />
-              </div>
-            </>
+            <div className={styles.gnbMenu}>
+              <Menu id="myShop" name="내 가게" />
+              <LogoutMenu id="logout" name="로그아웃" />
+              <NotiButton />
+            </div>
           )}
         </div>
       </div>
