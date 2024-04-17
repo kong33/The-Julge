@@ -4,10 +4,8 @@
 
 .logout {
   @include sopoqa-16-700;
-
   line-height: 20px;
   color: $color-black;
-  width: 100%;
 }
 
 @include mobile {

@@ -16,8 +16,8 @@ type GnbProps = {
 /**
  * 전체적인 GNB 컴포넌트
  *
- * @param {string} [props.userType] - 사용자 유형 ('employee', 'employer', 'guest')
- * @param {boolean} [props.NotiStatus] - 알림 상태 유무를 불린 값으로 받아옴
+ * @param {'employee' | 'employer' | 'guest'} [props.userType='employee'] - 사용자의 유형
+ * @param {boolean} [props.NotiStatus=true] - 알림 상태를 나타내며, true일 경우 알림이 활성
  */
 
 function Gnb({ userType = 'employee', NotiStatus = true }: GnbProps) {
