@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { Image, PostImage } from '@/apis/image/image.type';
+import { Image, PostImagePayload } from '@/apis/image/image.type';
 import queryOptions from '@/apis/image/queries';
 
 /**
@@ -10,7 +10,7 @@ import queryOptions from '@/apis/image/queries';
  */
 
 // eslint-disable-next-line import/prefer-default-export
-export function usePostImage({ name }: PostImage) {
+export function usePostImage({ name }: PostImagePayload) {
   const { mutate, data: res } = useMutation(queryOptions.postImage(name));
   const data: Image = res?.data;
   return { mutate, data };

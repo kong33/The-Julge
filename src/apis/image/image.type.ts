@@ -19,6 +19,6 @@ export type Image = {
   links: Array<Link>;
 };
 
-export type PostImage = {
+export type PostImagePayload = {
   name: string;
 };
