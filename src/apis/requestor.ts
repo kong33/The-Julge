@@ -3,7 +3,8 @@ import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios';
 import requestInterceptor from '@/apis/interceptors';
 
 const axiosRequestConfig: AxiosRequestConfig = {
-  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}/3-18/the-julge`,
+  // 3-18로 수정할 것
+  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}/0-1/the-julge`,
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json',
