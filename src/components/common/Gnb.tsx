@@ -3,16 +3,24 @@ import Link from 'next/link';
 import React from 'react';
 
 import styles from './Gnb.module.scss';
-import LogoutMenu from '../feature/Gnb/menu/logout';
-import Menu from '../feature/Gnb/menu/menu';
-import NotiButton from '../feature/Gnb/notification/noti-button';
-import Searchbar from '../feature/Gnb/searchbar/searchbar';
+import LogoutMenu from '../feature/Gnb/Logout/Logout';
+import Menu from '../feature/Gnb/Menu/Menu';
+import NotiButton from '../feature/Gnb/Notification/Notification';
+import Searchbar from '../feature/Gnb/Searchbar/Searchbar';
 
-interface GnbProps {
+type GnbProps = {
   userType?: 'employee' | 'employer' | 'guest';
-}
+  NotiStatus?: boolean;
+};
 
-function Gnb({ userType = 'guest' }: GnbProps) {
+/**
+ * 전체적인 GNB 컴포넌트
+ *
+ * @param {string} [props.userType] - 사용자 유형 ('employee', 'employer', 'guest')
+ * @param {boolean} [props.NotiStatus] - 알림 상태 유무를 불린 값으로 받아옴
+ */
+
+function Gnb({ userType = 'employee', NotiStatus = true }: GnbProps) {
   return (
     <div className={styles.gnbContainer}>
       <div className={styles.gnbWrapper}>
@@ -33,16 +41,16 @@ function Gnb({ userType = 'guest' }: GnbProps) {
           )}
           {userType === 'employee' && (
             <div className={styles.gnbMenu}>
-              <Menu id="myProfile" name="내 프로필" />
-              <LogoutMenu id="logout" name="로그아웃" />
-              <NotiButton />
+              <Menu id="my-profile" name="내 프로필" />
+              <LogoutMenu name="로그아웃" />
+              <NotiButton NotiStatus={NotiStatus} />
             </div>
           )}
           {userType === 'employer' && (
             <div className={styles.gnbMenu}>
-              <Menu id="myShop" name="내 가게" />
-              <LogoutMenu id="logout" name="로그아웃" />
-              <NotiButton />
+              <Menu id="my-shop" name="내 가게" />
+              <LogoutMenu name="로그아웃" />
+              <NotiButton NotiStatus={NotiStatus} />
             </div>
           )}
         </div>
