@@ -87,17 +87,17 @@
     "import/resolver": {
       "alias": {
         "map": [
-          ["@/components", "./components"],
-          ["@/styles", "./styles"],
-          ["@/utils", "./utils"],
-          ["@/hooks", "./hooks"],
-          ["@/contexts", "./contexts"],
-          ["@/apis", "./apis"],
+          ["@/components", "./src/components"],
+          ["@/styles", "./src/styles"],
+          ["@/utils", "./src/libs/utils"],
+          ["@/hooks", "./src/libs/hooks"],
+          ["@/contexts", "./src/libs/contexts"],
+          ["@/apis", "./src/apis"],
           ["@/constants", "./constants"],
           ["@/pages", "./pages"],
           ["@/public", "./public"]
         ],
-        "extensions": [".js", ".jsx", ".json", ".tsx", ".ts", "scss"]
+        "extensions": [".js", ".jsx", ".json", ".tsx", ".ts"]
       }
     }
   }
