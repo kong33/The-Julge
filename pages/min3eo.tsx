@@ -1,4 +1,4 @@
-import Gnb from '../src/components/common/gnb/gnb';
+import Gnb from '../src/components/common/Gnb';
 
 export default function Page() {
   return (

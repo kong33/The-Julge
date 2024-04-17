@@ -2,11 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import styles from './gnb.module.scss';
-import LogoutMenu from './gnbFeature/menu/logout';
-import Menu from './gnbFeature/menu/menu';
-import NotiButton from './gnbFeature/notification/noti-button';
-import Searchbar from './gnbFeature/searchbar/searchbar';
+import styles from './Gnb.module.scss';
+import LogoutMenu from '../feature/Gnb/menu/logout';
+import Menu from '../feature/Gnb/menu/menu';
+import NotiButton from '../feature/Gnb/notification/noti-button';
+import Searchbar from '../feature/Gnb/searchbar/searchbar';
 
 interface GnbProps {
   userType?: 'employee' | 'employer' | 'guest';
@@ -27,7 +27,7 @@ function Gnb({ userType = 'guest' }: GnbProps) {
           </div>
           {userType === 'guest' && (
             <div className={styles.gnbMenu}>
-              <Menu name="로그인" id="login" />
+              <Menu name="로그인" id="sigin" />
               <Menu name="회원가입" id="signup" />
             </div>
           )}
