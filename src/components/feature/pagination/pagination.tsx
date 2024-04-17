@@ -1,5 +1,5 @@
-// import { ReactComponent as Left } from '@/public/svgs/leftChevron.svg';
-// import { ReactComponent as Right } from '@/public/svgs/rightChevron.svg';
+import { ReactComponent as Left } from '@/public/svgs/leftChevron.svg';
+import { ReactComponent as Right } from '@/public/svgs/rightChevron.svg';
 
 import styles from './pagination.module.scss';
 
@@ -25,14 +25,14 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationType) {
       {/* 이전 페이지 버튼 */}
       {totalPages > 7 && (
         <div>
+          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
           <button
             type="button"
             className={currentPage === 1 ? styles.disable : ''}
             onClick={() => onPageChange(currentPage - 1)}
           >
-            &lt;
+            <Left />
           </button>
-          {/* <Left /> */}
         </div>
       )}
       <ul className={styles.page}>
@@ -49,14 +49,14 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationType) {
       {/* 다음 페이지 버튼 */}
       {totalPages > 7 && (
         <div>
+          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
           <button
             type="button"
             className={currentPage === totalPages ? styles.disable : ''}
             onClick={() => onPageChange(currentPage + 1)}
           >
-            &gt;
+            <Right />
           </button>
-          {/* <Right /> */}
         </div>
       )}
     </article>

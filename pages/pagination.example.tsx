@@ -29,7 +29,7 @@ function PaginationSample({ data, totalItems }: { data: string[]; totalItems: nu
 
 // 목업 데이터 생성
 export async function getStaticProps() {
-  const totalItems = 10;
+  const totalItems = 100;
   const data = Array.from({ length: totalItems }, (_, i) => `Item ${i + 1}`);
 
   return {
