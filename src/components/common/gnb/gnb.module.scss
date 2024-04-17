@@ -3,29 +3,74 @@
 @import '@/styles/mixin.scss';
 
 .gnbContainer {
-  display: flex;
-  justify-content: space-between;
-  padding: 1.5rem 21rem;
-  align-items: center;
+  position: sticky;
+  z-index: 100;
+  top: 0;
 }
 
 .gnbWrapper {
-  display: flex;
-  gap: 4rem;
-  align-items: center;
+  width: 100%;
+  height: 7rem;
+  padding: 1.5rem 0;
+
+  @include tablet {
+    padding: 1.5rem 3.2rem;
+  }
+
+  @include mobile {
+    padding: 1.5rem 1rem;
+    height: 10.2rem;
+  }
 }
 
-.logoWrapper {
-  cursor: pointer;
+.gnbSection {
+  max-width: 964px;
+  margin: 0 auto;
+  @include flexbox($justify: flex-start);
+
+  @include mobile {
+    display: grid;
+    grid-row-gap: 1.5rem;
+    grid-template-areas:
+      'gnbLogo gnbMenu'
+      'gnbSearchbar gnbSearchbar';
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+}
+
+.gnbLogo {
+  grid-area: gnbLogo;
+  display: flex;
   align-items: center;
+  margin-right: 4rem;
+
+  @include mobile {
+    height: 3rem;
+    width: 8.4rem;
+  }
 }
 
 .gnbItem {
   cursor: pointer;
 }
 
+.gnbSearchbar {
+  margin-right: auto;
+  grid-area: gnbSearchbar;
+
+  @include mobile {
+    margin-right: 0;
+  }
+}
+
 .gnbMenu {
-    gap: 2rem;
+  grid-area: gnbMenu;
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+  margin-right: 0.3rem;
+
 }
 
 .notification {
