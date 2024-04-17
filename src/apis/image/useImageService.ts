@@ -11,7 +11,8 @@ import queryOptions from '@/apis/image/queries';
 
 // eslint-disable-next-line import/prefer-default-export
 export function usePostImage({ name }: PostImagePayload) {
-  const { mutate, data: res } = useMutation(queryOptions.postImage(name));
-  const data: Image = res?.data;
-  return { mutate, data };
+  const res = useMutation(queryOptions.postImage(name));
+  const { data: resData, ...rest } = res;
+  const data: Image = resData?.data;
+  return { data, ...rest };
 }
