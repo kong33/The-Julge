@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import queryOptions from '@/apis/application/queries';
 import { BaseQuery } from '@/apis/common.type';
@@ -24,8 +24,12 @@ import { GetApplicationsRes } from './application.type';
 }
  */
 
-// eslint-disable-next-line import/prefer-default-export
 export function useGetApplicationsByNoticeId(shopId: string, noticeId: string, params: BaseQuery) {
   const res = useSuspenseQuery(queryOptions.getApplicationsByNoticeId(shopId, noticeId, params));
   return selectData<GetApplicationsRes>(res);
+}
+
+export function usePostApplication(shopId: string, noticeId: string) {
+  const res = useMutation(queryOptions.postApplication(shopId, noticeId));
+  return selectData(res);
 }
