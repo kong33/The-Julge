@@ -1,10 +1,9 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
+import { GetApplicationsRes, PostApplicationRes } from '@/apis/application/application.type';
 import queryOptions from '@/apis/application/queries';
 import { BaseQuery } from '@/apis/common.type';
 import selectData from '@/apis/utils';
-
-import { GetApplicationsRes } from './application.type';
 
 /**
  * 특정 가게의 특정 공고에 대한 지원 목록을 조회합니다.
@@ -19,8 +18,8 @@ import { GetApplicationsRes } from './application.type';
   limit: number;
   count: number;
   hasNext: boolean;
-  items: Array<Item>;
-  links: Array<Link>;
+  items: Array\<Item>;
+  links: Array\<Link>;
 }
  */
 
@@ -29,7 +28,17 @@ export function useGetApplicationsByNoticeId(shopId: string, noticeId: string, p
   return selectData<GetApplicationsRes>(res);
 }
 
+/**
+ * 특정 가게의 특정 공고에 지원을 등록합니다.
+ * @param shopId required; string
+ * @param noticeId required; string
+ * @returns \{
+  item: ItemInfo;
+  links: Array\<Link>;
+}
+ */
+
 export function usePostApplication(shopId: string, noticeId: string) {
   const res = useMutation(queryOptions.postApplication(shopId, noticeId));
-  return selectData(res);
+  return selectData<PostApplicationRes>(res);
 }
