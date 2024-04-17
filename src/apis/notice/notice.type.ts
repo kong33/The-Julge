@@ -1,17 +1,13 @@
-import { BaseQuery, Link, ShopItem } from '@/apis/common.type';
+import { BaseQuery, Link, NoticeItem, ShopItem } from '@/apis/common.type';
+
+type Sort = 'time' | 'pay' | 'hour' | 'shop';
 
 type Shop = {
   item: ShopItem;
   href: string;
 };
 
-type ItemInfo = {
-  id: string;
-  hourlyPay: number;
-  startsAt: string;
-  workhour: number;
-  description: string;
-  closed: boolean;
+type ItemInfo = NoticeItem & {
   shop: Shop;
 };
 
@@ -39,7 +35,7 @@ export type GetNoticesParams = BaseQuery & {
   keyword?: string;
   startsAtGte?: string;
   hourlyPayGte?: number;
-  sort?: 'time' | 'pay' | 'hour' | 'shop';
+  sort?: Sort;
 };
 
 export type PostNoticePayload = {

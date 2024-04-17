@@ -1,14 +1,4 @@
-import { Link, ShopInfo, ShopItem } from '@/apis/common.type';
-
-type UserItem = {
-  id: string;
-  email: string;
-  type: 'employer' | 'employee';
-  name?: string;
-  phone?: string;
-  address?: string;
-  bio?: string;
-};
+import { Link, ShopInfo, ShopItem, UserItem } from '@/apis/common.type';
 
 type User = {
   item: UserItem;

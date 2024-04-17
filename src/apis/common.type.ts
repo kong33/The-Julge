@@ -48,6 +48,25 @@ export type ShopItem = {
   originalHourlyPay: number;
 };
 
+export type NoticeItem = {
+  id: string;
+  hourlyPay: number;
+  startsAt: string;
+  workhour: number;
+  description: string;
+  closed: boolean;
+};
+
+export type UserItem = {
+  id: string;
+  email: string;
+  type: 'employer' | 'employee';
+  name?: string;
+  phone?: string;
+  address?: string;
+  bio?: string;
+};
+
 export type BaseQuery = {
   offset?: number;
   limit?: number;
