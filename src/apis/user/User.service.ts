@@ -6,6 +6,10 @@ class UserService {
   postUser(payload: PostUserPayload) {
     return apiRequestor.post(`/users`, payload);
   }
+
+  getUser(userId: string) {
+    return apiRequestor.get(`/users/${userId}`);
+  }
 }
 
 export default new UserService();
