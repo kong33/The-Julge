@@ -1,0 +1,12 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.menu {
+    @include sopoqa-16-700;
+
+    color: $color-black;
+    font-weight: 700;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
