@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import { Image, PostImagePayload } from '@/apis/image/image.type';
 import queryOptions from '@/apis/image/queries';
+import selectData from '@/apis/utils';
 
 /**
  * Presigned URL을 생성합니다.
@@ -25,7 +26,5 @@ import queryOptions from '@/apis/image/queries';
 // eslint-disable-next-line import/prefer-default-export
 export function usePostImage({ name }: PostImagePayload) {
   const res = useMutation(queryOptions.postImage(name));
-  const { data: resData, ...rest } = res;
-  const data: Image = resData?.data;
-  return { data, ...rest };
+  return selectData<Image>(res);
 }

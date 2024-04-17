@@ -2,9 +2,8 @@
 /* eslint-disable class-methods-use-this */
 import { AxiosRequestConfig } from 'axios';
 
+import { BaseParams, GetNoticesParams, GetNotices, BaseNotices, PostNoticePayload } from '@/apis/notice/notice.type';
 import { apiRequestor, apiRequestorToken } from '@/apis/requestor';
-
-import { BaseParams, GetNoticesParams, GetNotices, BaseNotices, PostNoticePayload } from './notice.type';
 
 class NoticeService {
   getNotices(params: GetNoticesParams) {

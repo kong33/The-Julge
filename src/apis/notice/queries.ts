@@ -1,6 +1,5 @@
 import NoticeService from '@/apis/notice/Notice.service';
-
-import { BaseParams, GetNoticesParams, PostNoticePayload } from './notice.type';
+import { BaseParams, GetNoticesParams, PostNoticePayload } from '@/apis/notice/notice.type';
 
 const queryKeys = {
   // postImage: (name: string) => ['postImages', name] as const

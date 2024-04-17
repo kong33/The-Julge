@@ -1,17 +1,15 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
+import {
+  GetNoticesParams,
+  GetNotices,
+  BaseNotices,
+  BaseParams,
+  PostNoticePayload,
+  Item
+} from '@/apis/notice/notice.type';
 import queryOptions from '@/apis/notice/queries';
-
-import { GetNoticesParams, GetNotices, BaseNotices, BaseParams, PostNoticePayload, Item } from './notice.type';
-
-// res에서 data를 추출해서 반환하는 함수
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function selectData<T>(res: any) {
-  if (!res?.data) return res;
-  const { data: resData, ...rest } = res;
-  const data: T = resData?.data;
-  return { data, ...rest };
-}
+import selectData from '@/apis/utils';
 
 /**
  * 공고 목록을 조회합니다.
