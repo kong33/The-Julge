@@ -1,5 +1,7 @@
 export type Category = '한식' | '중식' | '일식' | '양식' | '분식' | '카페' | '편의점' | '기타';
 
+export type UserType = 'employer' | 'employee';
+
 export type Address =
   | '서울시 종로구'
   | '서울시 중구'
@@ -57,14 +59,17 @@ export type NoticeItem = {
   closed: boolean;
 };
 
-export type UserItem = {
-  id: string;
-  email: string;
-  type: 'employer' | 'employee';
+export type UserInfo = {
   name?: string;
   phone?: string;
   address?: string;
   bio?: string;
+};
+
+export type UserItem = UserInfo & {
+  id: string;
+  email: string;
+  type: UserType;
 };
 
 export type BaseQuery = {
