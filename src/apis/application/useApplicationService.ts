@@ -71,3 +71,25 @@ export function usePutApplication(
   const res = useMutation(queryOptions.putApplication(shopId, noticeId, applicationId, payload));
   return selectData<PutApplicationRes>(res);
 }
+
+/**
+ * 특정 사용자가 제출한 지원 목록을 조회합니다.
+ * @param userId required; string
+ * @param params optional; \{
+  offset?: number;
+  limit?: number;
+}
+ * @returns \{
+  offset: number;
+  limit: number;
+  count: number;
+  hasNext: boolean;
+  items: Array\<Item>;
+  links: Array\<Link>;
+}
+ */
+
+export function useGetApplicationsByUserId(userId: string, params: BaseQuery) {
+  const res = useSuspenseQuery(queryOptions.getApplicationsByUserId(userId, params));
+  return selectData<GetApplicationsRes>(res);
+}

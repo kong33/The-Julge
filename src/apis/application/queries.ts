@@ -7,7 +7,8 @@ const queryKeys = {
     ['applications', { shopId, noticeId, params }] as const,
   postApplication: (shopId: string, noticeId: string) => ['postApplications', { shopId, noticeId }] as const,
   putApplication: (shopId: string, noticeId: string, applicationId: string, payload: PutApplicationPayload) =>
-    ['putApplications', { shopId, noticeId, applicationId, payload }] as const
+    ['putApplications', { shopId, noticeId, applicationId, payload }] as const,
+  getApplicationsByUserId: (userId: string, params: BaseQuery) => ['applications', { userId, params }] as const
 };
 
 const queryOptions = {
@@ -22,6 +23,10 @@ const queryOptions = {
   putApplication: (shopId: string, noticeId: string, applicationId: string, payload: PutApplicationPayload) => ({
     mutationKey: queryKeys.putApplication(shopId, noticeId, applicationId, payload),
     mutationFn: () => ApplicationService.putApplication(shopId, noticeId, applicationId, payload)
+  }),
+  getApplicationsByUserId: (userId: string, params: BaseQuery) => ({
+    queryKey: queryKeys.getApplicationsByUserId(userId, params),
+    queryFn: () => ApplicationService.getApplicationsByUserId(userId, params)
   })
 };
 

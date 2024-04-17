@@ -18,6 +18,11 @@ class ApplicationService {
   putApplication(shopId: string, noticeId: string, applicationId: string, payload: PutApplicationPayload) {
     return apiRequestorToken.put(`/shops/${shopId}/notices/${noticeId}/applications/${applicationId}`, payload);
   }
+
+  getApplicationsByUserId(userId: string, params: BaseQuery) {
+    const config: AxiosRequestConfig = { params };
+    return apiRequestorToken.get<GetApplicationsRes>(`/users/${userId}/applications`, config);
+  }
 }
 
 export default new ApplicationService();
