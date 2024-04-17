@@ -1,0 +1,13 @@
+@import '@/styles/fonts.scss';
+
+.addressList {
+  @include sopoqa-14-400;
+  flex: 0 0 calc(50% - 10px);
+  list-style: none;
+  cursor: pointer;
+}
+
+.addressListWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}

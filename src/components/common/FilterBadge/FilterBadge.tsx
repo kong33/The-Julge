@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { ReactComponent as BadgeCloseButton } from '@/public/svgs/badgeCloseBtn.svg';
 
-import styles from './styles.module.scss';
+import styles from './FilterBadge.module.scss';
 
 export default function FilterBadge({ title }: { title: string }) {
   const [isShown, setIsShown] = useState(true);

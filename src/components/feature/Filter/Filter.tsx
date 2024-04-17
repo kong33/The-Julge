@@ -1,9 +1,20 @@
-import FilterBadge from '@/components/common/FilterBadge';
-import styles from '@/components/feature/Filter/styles.module.scss';
-//  import { addressList } from '@/libs/constants';
+import { useState, MouseEventHandler } from 'react';
+
+import FilterBadge from '@/components/common/FilterBadge/FilterBadge';
+import ScrollMenu from '@/components/common/ScrollMenu/ScrollMenu';
+import styles from '@/components/feature/Filter/Filter.module.scss';
 import { ReactComponent as CloseButton } from '@/public/svgs/closeButton.svg';
 
 export default function Filter() {
+  const [clickedAddress, setClickedAddress] = useState<string[]>([]);
+  console.log(clickedAddress);
+  const handleAddressClicked: MouseEventHandler<HTMLElement> = (e) => {
+    const clickedAddressText = e.currentTarget.textContent;
+    if (clickedAddressText) {
+      setClickedAddress((prev) => [...prev, clickedAddressText]);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div>
@@ -13,8 +24,8 @@ export default function Filter() {
 
       <section>
         <p>위치</p>
-        <div>{/* {addressList.map((item)=><li>item</li>)} */}</div>
-        <section>
+        <ScrollMenu handleClick={handleAddressClicked} />
+        <section className={styles.dragMenu}>
           <FilterBadge title="rlarkdms" />
         </section>
       </section>
