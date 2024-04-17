@@ -1,6 +1,5 @@
 import ImageService from '@/apis/image/Image.service';
-
-import { PostImage } from './image.type';
+import { PostImage } from '@/apis/image/image.type';
 
 const queryKeys = {
   postImage: (name: string) => ['postImages', name] as const

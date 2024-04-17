@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { Image, PostImage } from './image.type';
-import queryOptions from './queries';
+import { Image, PostImage } from '@/apis/image/image.type';
+import queryOptions from '@/apis/image/queries';
 
 /**
  * Presigned URL을 생성합니다.

@@ -1,7 +1,6 @@
 /* eslint-disable class-methods-use-this */
+import { PostImage } from '@/apis/image/image.type';
 import { apiRequestorToken } from '@/apis/requestor';
-
-import { PostImage } from './image.type';
 
 class ImageService {
   postImage(payload: PostImage) {
