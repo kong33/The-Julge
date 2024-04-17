@@ -1,11 +1,9 @@
-/* eslint-disable */
-import styles from '@/components/feature/Filter/styles.module.scss';
-import { ReactComponent as CloseButton } from '@/public/svgs/closeButton.svg';
 import FilterBadge from '@/components/common/FilterBadge';
+import styles from '@/components/feature/Filter/styles.module.scss';
+//  import { addressList } from '@/libs/constants';
+import { ReactComponent as CloseButton } from '@/public/svgs/closeButton.svg';
 
-export default function Filter({}) {
-  let filterBadgeList = [];
-
+export default function Filter() {
   return (
     <div className={styles.container}>
       <div>
@@ -15,7 +13,7 @@ export default function Filter({}) {
 
       <section>
         <p>위치</p>
-        <div></div>
+        <div>{/* {addressList.map((item)=><li>item</li>)} */}</div>
         <section>
           <FilterBadge title="rlarkdms" />
         </section>
@@ -39,8 +37,8 @@ export default function Filter({}) {
       </section>
 
       <section>
-        <button>초기화</button>
-        <button>적용하기</button>
+        <button type="button">초기화</button>
+        <button type="button">적용하기</button>
       </section>
     </div>
   );
