@@ -4,7 +4,7 @@ import { AxiosRequestConfig } from 'axios';
 
 import { apiRequestor } from '@/apis/requestor';
 
-import { GetNoticesParams, Notices } from './notice.type';
+import { BaseParams, GetNoticesParams, GetNotices, BaseNotices } from './notice.type';
 
 class NoticeService {
   // postImage(payload: PostImage) {
@@ -13,7 +13,12 @@ class NoticeService {
 
   getNotices(params: GetNoticesParams) {
     const config: AxiosRequestConfig = { params };
-    return apiRequestor.get<Notices>(`/notices`, config);
+    return apiRequestor.get<GetNotices>(`/notices`, config);
+  }
+
+  getNoticesByShopId(shopId: string, params: BaseParams) {
+    const config: AxiosRequestConfig = { params };
+    return apiRequestor.get<BaseNotices>(`/shops/${shopId}/notices`, config);
   }
 }
 

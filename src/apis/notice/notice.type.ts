@@ -36,20 +36,26 @@ type Item = {
   links: Array<Link>;
 };
 
-export type Notices = {
+export type BaseNotices = {
   offset: number;
   limit: number;
-  address: Array<string>;
   count: number;
   hasNext: boolean;
   items: Array<Item>;
-  keyword?: string;
   links: Array<Link>;
 };
 
-export type GetNoticesParams = {
+export type GetNotices = BaseNotices & {
+  address: Array<string>;
+  keyword?: string;
+};
+
+export type BaseParams = {
   offset?: number;
   limit?: number;
+};
+
+export type GetNoticesParams = BaseParams & {
   address?: string;
   keyword?: string;
   startsAtGte?: string;

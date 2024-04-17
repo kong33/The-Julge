@@ -2,7 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import queryOptions from '@/apis/notice/queries';
 
-import { GetNoticesParams, Notices } from './notice.type';
+import { GetNoticesParams, GetNotices, BaseNotices, BaseParams } from './notice.type';
 
 /**
  * 공고 목록을 조회합니다.
@@ -31,6 +31,30 @@ import { GetNoticesParams, Notices } from './notice.type';
 export function useGetNotices(params: GetNoticesParams) {
   const res = useSuspenseQuery(queryOptions.getNotices(params));
   const { data: resData, ...rest } = res;
-  const data: Notices = resData?.data;
+  const data: GetNotices = resData?.data;
+  return { data, ...rest };
+}
+
+/**
+ * 특정 가게의 공고 목록을 조회합니다.
+ * @param shopId required; string
+ * @param params \{
+  offset?: number;
+  limit?: number;
+}
+ * @returns \{
+  offset: number;
+  limit: number;
+  count: number;
+  hasNext: boolean;
+  items: Array<Item>;
+  links: Array<Link>;
+}
+ */
+
+export function useGetNoticesByShopId(shopId: string, params: BaseParams) {
+  const res = useSuspenseQuery(queryOptions.getNoticesByShopId(shopId, params));
+  const { data: resData, ...rest } = res;
+  const data: BaseNotices = resData?.data;
   return { data, ...rest };
 }
