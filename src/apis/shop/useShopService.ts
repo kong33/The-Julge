@@ -41,7 +41,7 @@ export function useGetShopByShopId(shopId: string) {
 }
 
 /**
- * 가게를 등록합니다.
+ * 특정 가게의 정보를 수정합니다.
  * @param payload \{
   name: string;
   category: Category;
