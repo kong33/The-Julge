@@ -32,7 +32,7 @@ const queryOptions = {
   }),
   putNoticeByNoticeId: (shopId: string, noticeId: string, payload: PostNoticePayload) => ({
     mutationKey: queryKeys.putNoticeByNoticeId(shopId, noticeId, payload),
-    mutationFn: (postData: PostNoticePayload) => NoticeService.putNoticeByNoticeId(shopId, noticeId, postData)
+    mutationFn: (putData: PostNoticePayload) => NoticeService.putNoticeByNoticeId(shopId, noticeId, putData)
   })
 };
 
