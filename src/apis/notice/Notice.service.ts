@@ -2,15 +2,11 @@
 /* eslint-disable class-methods-use-this */
 import { AxiosRequestConfig } from 'axios';
 
-import { apiRequestor } from '@/apis/requestor';
+import { apiRequestor, apiRequestorToken } from '@/apis/requestor';
 
-import { BaseParams, GetNoticesParams, GetNotices, BaseNotices } from './notice.type';
+import { BaseParams, GetNoticesParams, GetNotices, BaseNotices, PostNoticePayload } from './notice.type';
 
 class NoticeService {
-  // postImage(payload: PostImage) {
-  //   return apiRequestorToken.post('/images', payload);
-  // }
-
   getNotices(params: GetNoticesParams) {
     const config: AxiosRequestConfig = { params };
     return apiRequestor.get<GetNotices>(`/notices`, config);
@@ -19,6 +15,10 @@ class NoticeService {
   getNoticesByShopId(shopId: string, params: BaseParams) {
     const config: AxiosRequestConfig = { params };
     return apiRequestor.get<BaseNotices>(`/shops/${shopId}/notices`, config);
+  }
+
+  postNoticeByShopId(shopId: string, payload: PostNoticePayload) {
+    return apiRequestorToken.post(`/shops/${shopId}/notices`, payload);
   }
 }
 

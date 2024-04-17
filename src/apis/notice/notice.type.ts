@@ -31,7 +31,7 @@ type ItemInfo = {
   shop: Shop;
 };
 
-type Item = {
+export type Item = {
   item: ItemInfo;
   links: Array<Link>;
 };
@@ -61,4 +61,11 @@ export type GetNoticesParams = BaseParams & {
   startsAtGte?: string;
   hourlyPayGte?: number;
   sort?: 'time' | 'pay' | 'hour' | 'shop';
+};
+
+export type PostNoticePayload = {
+  hourlyPay: number;
+  startsAt: string;
+  workhour: number;
+  description: string;
 };

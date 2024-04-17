@@ -1,8 +1,8 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import queryOptions from '@/apis/notice/queries';
 
-import { GetNoticesParams, GetNotices, BaseNotices, BaseParams } from './notice.type';
+import { GetNoticesParams, GetNotices, BaseNotices, BaseParams, PostNoticePayload, Item } from './notice.type';
 
 /**
  * 공고 목록을 조회합니다.
@@ -56,5 +56,27 @@ export function useGetNoticesByShopId(shopId: string, params: BaseParams) {
   const res = useSuspenseQuery(queryOptions.getNoticesByShopId(shopId, params));
   const { data: resData, ...rest } = res;
   const data: BaseNotices = resData?.data;
+  return { data, ...rest };
+}
+
+/**
+ * 가게 공고를 등록합니다.
+ * @param shopId required; string
+ * @param payload \{
+  hourlyPay: number;
+  startsAt: string;
+  workhour: number;
+  description: string;
+}
+ * @returns \{
+  item: ItemInfo;
+  links: Array<Link>;
+}
+ */
+
+export function usePostNoticeByShopId(shopId: string, payload: PostNoticePayload) {
+  const res = useMutation(queryOptions.postNoticeByShopId(shopId, payload));
+  const { data: resData, ...rest } = res;
+  const data: Item = resData?.data;
   return { data, ...rest };
 }
