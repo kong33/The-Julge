@@ -52,6 +52,10 @@ export function usePostApplication(shopId: string, noticeId: string) {
  * 특정 가게의 특정 공고에 대한 지원을 승인, 거절 또는 취소합니다.
  * @param shopId required; string
  * @param noticeId required; string
+ * @param applicationId required; string
+ * @param payload \{
+  status: 'pending' | 'accepted' | 'rejected' | 'canceled';
+}
  * @returns \{
   item: ItemInfo;
   links: Array\<Link>;
