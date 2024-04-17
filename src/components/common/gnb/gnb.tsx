@@ -3,9 +3,9 @@ import Link from 'next/link';
 import React from 'react';
 
 import styles from './gnb.module.scss';
-import Menu from './gnbFeature/menu/menu/menu';
-import NotiButton from './gnbFeature/menu/notification/noti-button';
-import Searchbar from './gnbFeature/menu/searchbar/searchbar';
+import Menu from './gnbFeature/menu/menu';
+import NotiButton from './gnbFeature/notification/noti-button';
+import Searchbar from './gnbFeature/searchbar/searchbar';
 
 interface GnbProps {
   userType?: 'employee' | 'employer' | 'guest';
