@@ -1,4 +1,4 @@
-import { Link } from '@/apis/common.type';
+import { BaseQuery, Link } from '@/apis/common.type';
 
 type ShopItem = {
   id: string;
@@ -31,7 +31,7 @@ export type Item = {
   links: Array<Link>;
 };
 
-export type BaseNotices = {
+export type BaseNoticesRes = {
   offset: number;
   limit: number;
   count: number;
@@ -40,17 +40,12 @@ export type BaseNotices = {
   links: Array<Link>;
 };
 
-export type GetNotices = BaseNotices & {
+export type GetNoticesRes = BaseNoticesRes & {
   address: Array<string>;
   keyword?: string;
 };
 
-export type BaseParams = {
-  offset?: number;
-  limit?: number;
-};
-
-export type GetNoticesParams = BaseParams & {
+export type GetNoticesParams = BaseQuery & {
   address?: string;
   keyword?: string;
   startsAtGte?: string;

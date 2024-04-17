@@ -14,7 +14,7 @@ type Link = {
   body: Body;
 };
 
-export type Image = {
+export type ImageRes = {
   item: Item;
   links: Array<Link>;
 };

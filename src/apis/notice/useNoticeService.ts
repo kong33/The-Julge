@@ -1,13 +1,7 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
-import {
-  GetNoticesParams,
-  GetNotices,
-  BaseNotices,
-  BaseParams,
-  PostNoticePayload,
-  Item
-} from '@/apis/notice/notice.type';
+import { BaseQuery } from '@/apis/common.type';
+import { GetNoticesParams, GetNoticesRes, BaseNoticesRes, PostNoticePayload, Item } from '@/apis/notice/notice.type';
 import queryOptions from '@/apis/notice/queries';
 import selectData from '@/apis/utils';
 
@@ -37,7 +31,7 @@ import selectData from '@/apis/utils';
 // eslint-disable-next-line import/prefer-default-export
 export function useGetNotices(params: GetNoticesParams) {
   const res = useSuspenseQuery(queryOptions.getNotices(params));
-  return selectData<GetNotices>(res);
+  return selectData<GetNoticesRes>(res);
 }
 
 /**
@@ -57,9 +51,9 @@ export function useGetNotices(params: GetNoticesParams) {
 }
  */
 
-export function useGetNoticesByShopId(shopId: string, params: BaseParams) {
+export function useGetNoticesByShopId(shopId: string, params: BaseQuery) {
   const res = useSuspenseQuery(queryOptions.getNoticesByShopId(shopId, params));
-  return selectData<BaseNotices>(res);
+  return selectData<BaseNoticesRes>(res);
 }
 
 /**

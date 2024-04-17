@@ -10,7 +10,7 @@ import selectData from '@/apis/utils';
   name: string;
   category: Category;
   address1: Address;
-  address2: Address;
+  address2: string;
   description: string;
   imageUrl: string;
   originalHourlyPay: number;

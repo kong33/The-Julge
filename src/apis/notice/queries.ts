@@ -1,9 +1,10 @@
+import { BaseQuery } from '@/apis/common.type';
 import NoticeService from '@/apis/notice/Notice.service';
-import { BaseParams, GetNoticesParams, PostNoticePayload } from '@/apis/notice/notice.type';
+import { GetNoticesParams, PostNoticePayload } from '@/apis/notice/notice.type';
 
 const queryKeys = {
   getNotices: (params: GetNoticesParams) => ['getNotices', params] as const,
-  getNoticesByShopId: (shopId: string, params: BaseParams) => ['getNoticesByShopId', { shopId, params }] as const,
+  getNoticesByShopId: (shopId: string, params: BaseQuery) => ['getNoticesByShopId', { shopId, params }] as const,
   postNoticeByShopId: (shopId: string, payload: PostNoticePayload) =>
     ['postNoticeByShopId', { shopId, payload }] as const,
   getNoticeByNoticeId: (shopId: string, noticeId: string) => ['getNoticeByNoticeId', { shopId, noticeId }] as const,
@@ -16,7 +17,7 @@ const queryOptions = {
     queryKey: queryKeys.getNotices(params),
     queryFn: () => NoticeService.getNotices(params)
   }),
-  getNoticesByShopId: (shopId: string, params: BaseParams) => ({
+  getNoticesByShopId: (shopId: string, params: BaseQuery) => ({
     queryKey: queryKeys.getNoticesByShopId(shopId, params),
     queryFn: () => NoticeService.getNoticesByShopId(shopId, params)
   }),

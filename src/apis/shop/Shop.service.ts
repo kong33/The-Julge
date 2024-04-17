@@ -1,7 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { apiRequestorToken } from '@/apis/requestor';
-
-import { PostShopPayload } from './shop.type';
+import { PostShopPayload } from '@/apis/shop/shop.type';
 
 class ShopService {
   postShop(payload: PostShopPayload) {
