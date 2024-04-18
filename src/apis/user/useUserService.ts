@@ -5,7 +5,7 @@ import { GetUserRes, PostUserPayload, PostUserRes, PutUserPayload, PutUserRes } 
 import selectData from '@/apis/utils';
 
 /**
- * 사용자 로그인을 처리합니다.
+ * 사용자를 등록하여 회원가입을 수행합니다.
  * @param payload \{
   email: string;
   password: string;
@@ -23,14 +23,12 @@ export function usePostUser(payload: PostUserPayload) {
 }
 
 /**
- * 사용자 로그인을 처리합니다.
- * @param payload \{
-  email: string;
-  password: string;
-  type: 'employer' | 'employee';
-}
+ * 특정 사용자의 정보를 조회합니다.
+ * @param userId required; string
  * @returns \{
-  item: Item;
+  item: Item & {
+    shop: Shop | null;
+  };
   links: Array\<Link>;
 }
  */
