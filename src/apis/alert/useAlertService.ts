@@ -1,6 +1,6 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
-import { GetAlertsRes, PutAlertRes } from '@/apis/alert/alert.type';
+import { GetAlertListRes, PutAlertRes } from '@/apis/alert/alert.type';
 import queryOptions from '@/apis/alert/queries';
 import { BaseQuery } from '@/apis/common.type';
 import selectData from '@/apis/utils';
@@ -22,9 +22,9 @@ import selectData from '@/apis/utils';
 }
  */
 
-export function useGetAlerts(userId: string, params: BaseQuery) {
-  const res = useSuspenseQuery(queryOptions.getAlerts(userId, params));
-  return selectData<GetAlertsRes>(res);
+export function useGetAlertList(userId: string, params: BaseQuery) {
+  const res = useSuspenseQuery(queryOptions.getAlertList(userId, params));
+  return selectData<GetAlertListRes>(res);
 }
 
 /**

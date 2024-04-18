@@ -5,7 +5,7 @@ import { BaseQuery } from '@/apis/common.type';
 import { apiRequestorToken } from '@/apis/requestor';
 
 class AlertService {
-  getAlerts(userId: string, params: BaseQuery) {
+  getAlertList(userId: string, params: BaseQuery) {
     const config: AxiosRequestConfig = { params };
     return apiRequestorToken.get(`/users/${userId}/alerts`, config);
   }

@@ -30,7 +30,7 @@ type Item = {
   item: ItemInfo;
 };
 
-export type GetAlertsRes = {
+export type GetAlertListRes = {
   offset: number;
   limit: number;
   count: number;
