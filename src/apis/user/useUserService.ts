@@ -2,7 +2,7 @@ import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import queryOptions from '@/apis/user/queries';
 import { GetUserRes, PostUserPayload, PostUserRes, PutUserPayload, PutUserRes } from '@/apis/user/user.type';
-import selectData from '@/apis/utils';
+import { selectData } from '@/apis/utils';
 
 /**
  * 사용자를 등록하여 회원가입을 수행합니다.

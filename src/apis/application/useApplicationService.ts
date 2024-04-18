@@ -9,7 +9,7 @@ import {
 } from '@/apis/application/application.type';
 import queryOptions from '@/apis/application/queries';
 import { BaseQuery } from '@/apis/common.type';
-import selectData from '@/apis/utils';
+import { selectData } from '@/apis/utils';
 
 /**
  * 특정 가게의 특정 공고에 대한 지원 목록을 조회합니다.

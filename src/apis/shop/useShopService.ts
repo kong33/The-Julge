@@ -2,7 +2,7 @@ import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import queryOptions from '@/apis/shop/queries';
 import { PostShopPayload, PutShopPayload, GetShopRes, PostShopRes, PutShopRes } from '@/apis/shop/shop.type';
-import selectData from '@/apis/utils';
+import { selectData } from '@/apis/utils';
 
 /**
  * 가게를 등록합니다.

@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import { PostAuthenticationPayload, PostAuthenticationRes } from '@/apis/authentication/authentication.type';
 import queryOptions from '@/apis/authentication/queries';
-import selectData from '@/apis/utils';
+import { selectData } from '@/apis/utils';
 
 /**
  * 사용자 로그인을 처리합니다.

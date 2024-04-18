@@ -3,7 +3,7 @@ import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { GetAlertListRes, PutAlertRes } from '@/apis/alert/alert.type';
 import queryOptions from '@/apis/alert/queries';
 import { BaseQuery } from '@/apis/common.type';
-import selectData from '@/apis/utils';
+import { selectData } from '@/apis/utils';
 
 /**
  * 특정 사용자의 알림 목록을 조회합니다.

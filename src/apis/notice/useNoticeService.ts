@@ -12,7 +12,7 @@ import {
   PutNoticeRes
 } from '@/apis/notice/notice.type';
 import queryOptions from '@/apis/notice/queries';
-import selectData from '@/apis/utils';
+import { selectData } from '@/apis/utils';
 
 /**
  * 공고 목록을 조회합니다.
