@@ -65,6 +65,11 @@ export type NoticeItem = {
   closed: boolean;
 };
 
+export type ApplicationItem = {
+  id: string;
+  status: Status;
+};
+
 export type UserInfo = {
   name?: string;
   phone?: string;
