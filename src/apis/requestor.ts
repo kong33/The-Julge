@@ -1,6 +1,6 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios';
 
-import requestInterceptor from '@/apis/interceptors';
+import { errorInterceptor, requestInterceptor, successInterceptor } from '@/apis/interceptors';
 
 const axiosRequestConfig: AxiosRequestConfig = {
   // 3-18로 수정할 것
@@ -16,6 +16,8 @@ const apiRequestor: AxiosInstance = axios.create(axiosRequestConfig); // Token �
 const apiRequestorToken: AxiosInstance = axios.create(axiosRequestConfig); // Token 필요 O
 
 apiRequestorToken.interceptors.request.use(requestInterceptor);
-// apiRequestorToken.interceptors.response.use(successInterceptor, errorInterceptor);
+
+apiRequestor.interceptors.response.use(successInterceptor, errorInterceptor);
+apiRequestorToken.interceptors.response.use(successInterceptor, errorInterceptor);
 
 export { apiRequestor, apiRequestorToken };
