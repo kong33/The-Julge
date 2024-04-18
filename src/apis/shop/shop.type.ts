@@ -5,13 +5,19 @@ type User = {
   href: string;
 };
 
-export type PostShopPayload = ShopInfo;
-
 type Item = ShopItem & {
   user: User;
 };
 
-export type ShopRes = {
+export type GetShopRes = {
   item: Item;
   links: Array<Link>;
 };
+
+export type PostShopPayload = ShopInfo;
+
+export type PostShopRes = GetShopRes;
+
+export type PutShopPayload = ShopInfo;
+
+export type PutShopRes = GetShopRes;

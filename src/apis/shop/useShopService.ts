@@ -1,7 +1,7 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import queryOptions from '@/apis/shop/queries';
-import { PostShopPayload, ShopRes } from '@/apis/shop/shop.type';
+import { PostShopPayload, PutShopPayload, GetShopRes, PostShopRes, PutShopRes } from '@/apis/shop/shop.type';
 import selectData from '@/apis/utils';
 
 /**
@@ -23,7 +23,7 @@ import selectData from '@/apis/utils';
 
 export function usePostShop(payload: PostShopPayload) {
   const res = useMutation(queryOptions.postShop(payload));
-  return selectData<ShopRes>(res);
+  return selectData<PostShopRes>(res);
 }
 
 /**
@@ -35,9 +35,9 @@ export function usePostShop(payload: PostShopPayload) {
 }
  */
 
-export function useGetShopByShopId(shopId: string) {
-  const res = useSuspenseQuery(queryOptions.getShopByShopId(shopId));
-  return selectData<ShopRes>(res);
+export function useGetShop(shopId: string) {
+  const res = useSuspenseQuery(queryOptions.getShop(shopId));
+  return selectData<GetShopRes>(res);
 }
 
 /**
@@ -57,7 +57,7 @@ export function useGetShopByShopId(shopId: string) {
 }
  */
 
-export function usePutShop(shopId: string, payload: PostShopPayload) {
+export function usePutShop(shopId: string, payload: PutShopPayload) {
   const res = useMutation(queryOptions.putShop(shopId, payload));
-  return selectData<ShopRes>(res);
+  return selectData<PutShopRes>(res);
 }

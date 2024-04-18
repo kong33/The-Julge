@@ -7,7 +7,7 @@ class ShopService {
     return apiRequestorToken.post(`/shops`, payload);
   }
 
-  getShopByShopId(shopId: string) {
+  getShop(shopId: string) {
     return apiRequestor.get(`/shops/${shopId}`);
   }
 

@@ -1,10 +1,10 @@
 import ShopService from '@/apis/shop/Shop.service';
-import { PostShopPayload } from '@/apis/shop/shop.type';
+import { PostShopPayload, PutShopPayload } from '@/apis/shop/shop.type';
 
 const queryKeys = {
   postShop: (payload: PostShopPayload) => [`postShop`, payload] as const,
-  getShopByShopId: (shopId: string) => [`getShop`, shopId] as const,
-  putShop: (shopId: string, payload: PostShopPayload) => [`putShop`, { shopId, payload }] as const
+  getShop: (shopId: string) => [`getShop`, shopId] as const,
+  putShop: (shopId: string, payload: PutShopPayload) => [`putShop`, { shopId, payload }] as const
 };
 
 const queryOptions = {
@@ -12,13 +12,13 @@ const queryOptions = {
     mutationKey: queryKeys.postShop(payload),
     mutationFn: (postData: PostShopPayload) => ShopService.postShop(postData)
   }),
-  getShopByShopId: (shopId: string) => ({
-    queryKey: queryKeys.getShopByShopId(shopId),
-    queryFn: () => ShopService.getShopByShopId(shopId)
+  getShop: (shopId: string) => ({
+    queryKey: queryKeys.getShop(shopId),
+    queryFn: () => ShopService.getShop(shopId)
   }),
-  putShop: (shopId: string, payload: PostShopPayload) => ({
+  putShop: (shopId: string, payload: PutShopPayload) => ({
     mutationKey: queryKeys.putShop(shopId, payload),
-    mutationFn: (putData: PostShopPayload) => ShopService.putShop(shopId, putData)
+    mutationFn: (putData: PutShopPayload) => ShopService.putShop(shopId, putData)
   })
 };
 
