@@ -1,13 +1,11 @@
 import { MouseEventHandler } from 'react';
 
-import { addressList } from '@/libs/constants';
-
 import styles from './ScrollMenu.module.scss';
 
-export default function ScrollMenu({ handleClick }: { handleClick: MouseEventHandler }) {
+export default function ScrollMenu({ handleClick, list }: { handleClick: MouseEventHandler; list: string[] }) {
   return (
     <div className={styles.addressListWrapper}>
-      {addressList.map((item) => (
+      {list.map((item) => (
         <li key={item} role="presentation" className={styles.addressList} onClick={handleClick}>
           {item}
         </li>

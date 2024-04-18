@@ -1,5 +1,9 @@
 @import '@/styles/fonts.scss';
-
+.dragMenu {
+  width: 35rem;
+  height: 25.8rem;
+  overflow: scroll;
+}
 .addressList {
   @include sopoqa-14-400;
   flex: 0 0 calc(50% - 10px);
