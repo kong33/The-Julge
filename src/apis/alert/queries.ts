@@ -2,7 +2,7 @@ import AlertService from '@/apis/alert/Alert.service';
 import { BaseQuery } from '@/apis/common.type';
 
 const queryKeys = {
-  getAlertList: (userId: string, params: BaseQuery) => ['getUserAlerts', { userId, params }] as const,
+  getAlertList: (userId: string, params: BaseQuery) => ['getAlertList', { userId, params }] as const,
   putAlert: (userId: string, alertId: string) => ['putAlert', { userId, alertId }] as const
 };
 

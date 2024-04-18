@@ -2,7 +2,7 @@ import ImageService from '@/apis/image/Image.service';
 import { PostImagePayload } from '@/apis/image/image.type';
 
 const queryKeys = {
-  postImage: (name: string) => ['postImages', name] as const
+  postImage: (name: string) => ['postImage', name] as const
 };
 
 const queryOptions = {

@@ -4,11 +4,12 @@ import { BaseQuery } from '@/apis/common.type';
 
 const queryKeys = {
   getApplicationListByNoticeId: (shopId: string, noticeId: string, params: BaseQuery) =>
-    ['applications', { shopId, noticeId, params }] as const,
-  postApplication: (shopId: string, noticeId: string) => ['postApplications', { shopId, noticeId }] as const,
+    ['getApplicationListByNoticeId', { shopId, noticeId, params }] as const,
+  postApplication: (shopId: string, noticeId: string) => ['postApplication', { shopId, noticeId }] as const,
   putApplication: (shopId: string, noticeId: string, applicationId: string, payload: PutApplicationPayload) =>
-    ['putApplications', { shopId, noticeId, applicationId, payload }] as const,
-  getApplicationListByUserId: (userId: string, params: BaseQuery) => ['applications', { userId, params }] as const
+    ['putApplication', { shopId, noticeId, applicationId, payload }] as const,
+  getApplicationListByUserId: (userId: string, params: BaseQuery) =>
+    ['getApplicationListByUserId', { userId, params }] as const
 };
 
 const queryOptions = {
