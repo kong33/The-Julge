@@ -2,5 +2,14 @@
 
 .container {
   width: min(100%, 39rem);
-}
+  padding: 2.4rem 2rem;
 
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    &.p {
+      @include sopoqa-20-700;
+    }
+  }
+}

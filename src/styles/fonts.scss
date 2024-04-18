@@ -49,6 +49,14 @@
   line-height: 2rem;
 }
 
+@mixin sopoqa-20-700 {
+  font-family: 'SpoqaHanSansNeo-Regular';
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2rem;
+}
+
 @mixin sopoqa-28-700 {
   font-family: 'SpoqaHanSansNeo-Regular';
   font-size: 2.8rem;

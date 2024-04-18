@@ -11,7 +11,7 @@ export default function Filter({ filterShow }: { filterShow: boolean }) {
   const [clickedAddress, setClickedAddress] = useState<string[]>([]);
   const { isFilterShow, setIsFilterShow, filterRef } = useFilterOutsideClick({ filterShow });
 
-  const handleAddressClicked: MouseEventHandler<HTMLElement> = (e) => {
+  const handleMenuClick: MouseEventHandler<HTMLElement> = (e) => {
     const clickedAddressText = e.currentTarget.textContent;
     if (clickedAddressText) {
       setClickedAddress((prev) => [...prev, clickedAddressText]);
@@ -21,14 +21,14 @@ export default function Filter({ filterShow }: { filterShow: boolean }) {
   return (
     isFilterShow && (
       <div className={styles.container} ref={filterRef}>
-        <div>
-          <h1>상세 필터</h1>
+        <div className={styles.header}>
+          <p>상세 필터</p>
           <CloseButton onClick={() => setIsFilterShow(false)} />
         </div>
 
         <section>
           <p>위치</p>
-          <ScrollMenu list={addressList} handleClick={handleAddressClicked} />
+          <ScrollMenu list={addressList} handleClick={handleMenuClick} />
           <section className={styles.badgeList}>
             {clickedAddress.map((item) => (
               <div key={item}>
