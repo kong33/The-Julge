@@ -1,6 +1,7 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import {
+  GetApplicationsByUserIdRes,
   GetApplicationsRes,
   PostApplicationRes,
   PutApplicationPayload,
@@ -91,5 +92,5 @@ export function usePutApplication(
 
 export function useGetApplicationsByUserId(userId: string, params: BaseQuery) {
   const res = useSuspenseQuery(queryOptions.getApplicationsByUserId(userId, params));
-  return selectData<GetApplicationsRes>(res);
+  return selectData<GetApplicationsByUserIdRes>(res);
 }

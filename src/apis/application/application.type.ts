@@ -40,8 +40,10 @@ export type GetApplicationsRes = {
 
 export type PostApplicationRes = Item;
 
-export type PutApplicationRes = Item;
-
 export type PutApplicationPayload = {
   status: Status;
 };
+
+export type PutApplicationRes = Item;
+
+export type GetApplicationsByUserIdRes = GetApplicationsRes;

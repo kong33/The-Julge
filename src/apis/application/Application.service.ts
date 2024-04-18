@@ -1,7 +1,11 @@
 /* eslint-disable class-methods-use-this */
 import { AxiosRequestConfig } from 'axios';
 
-import { GetApplicationsRes, PutApplicationPayload } from '@/apis/application/application.type';
+import {
+  GetApplicationsByUserIdRes,
+  GetApplicationsRes,
+  PutApplicationPayload
+} from '@/apis/application/application.type';
 import { BaseQuery } from '@/apis/common.type';
 import { apiRequestor, apiRequestorToken } from '@/apis/requestor';
 
@@ -21,7 +25,7 @@ class ApplicationService {
 
   getApplicationsByUserId(userId: string, params: BaseQuery) {
     const config: AxiosRequestConfig = { params };
-    return apiRequestorToken.get<GetApplicationsRes>(`/users/${userId}/applications`, config);
+    return apiRequestorToken.get<GetApplicationsByUserIdRes>(`/users/${userId}/applications`, config);
   }
 }
 
