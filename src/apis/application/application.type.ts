@@ -29,7 +29,7 @@ type Item = {
   links: Array<Link>;
 };
 
-export type GetApplicationsRes = {
+export type GetApplicationListRes = {
   offset: number;
   limit: number;
   count: number;
@@ -46,4 +46,4 @@ export type PutApplicationPayload = {
 
 export type PutApplicationRes = Item;
 
-export type GetApplicationsByUserIdRes = GetApplicationsRes;
+export type GetApplicationListByUserIdRes = GetApplicationListRes;

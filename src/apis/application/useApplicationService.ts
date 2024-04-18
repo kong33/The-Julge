@@ -1,8 +1,8 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import {
-  GetApplicationsByUserIdRes,
-  GetApplicationsRes,
+  GetApplicationListByUserIdRes,
+  GetApplicationListRes,
   PostApplicationRes,
   PutApplicationPayload,
   PutApplicationRes
@@ -29,9 +29,9 @@ import selectData from '@/apis/utils';
 }
  */
 
-export function useGetApplicationsByNoticeId(shopId: string, noticeId: string, params: BaseQuery) {
-  const res = useSuspenseQuery(queryOptions.getApplicationsByNoticeId(shopId, noticeId, params));
-  return selectData<GetApplicationsRes>(res);
+export function useGetApplicationListByNoticeId(shopId: string, noticeId: string, params: BaseQuery) {
+  const res = useSuspenseQuery(queryOptions.getApplicationListByNoticeId(shopId, noticeId, params));
+  return selectData<GetApplicationListRes>(res);
 }
 
 /**
@@ -90,7 +90,7 @@ export function usePutApplication(
 }
  */
 
-export function useGetApplicationsByUserId(userId: string, params: BaseQuery) {
-  const res = useSuspenseQuery(queryOptions.getApplicationsByUserId(userId, params));
-  return selectData<GetApplicationsByUserIdRes>(res);
+export function useGetApplicationListByUserId(userId: string, params: BaseQuery) {
+  const res = useSuspenseQuery(queryOptions.getApplicationListByUserId(userId, params));
+  return selectData<GetApplicationListByUserIdRes>(res);
 }

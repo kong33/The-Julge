@@ -2,17 +2,17 @@
 import { AxiosRequestConfig } from 'axios';
 
 import {
-  GetApplicationsByUserIdRes,
-  GetApplicationsRes,
+  GetApplicationListByUserIdRes,
+  GetApplicationListRes,
   PutApplicationPayload
 } from '@/apis/application/application.type';
 import { BaseQuery } from '@/apis/common.type';
 import { apiRequestor, apiRequestorToken } from '@/apis/requestor';
 
 class ApplicationService {
-  getApplicationsByNoticeId(shopId: string, noticeId: string, params: BaseQuery) {
+  getApplicationListByNoticeId(shopId: string, noticeId: string, params: BaseQuery) {
     const config: AxiosRequestConfig = { params };
-    return apiRequestor.get<GetApplicationsRes>(`/shops/${shopId}/notices/${noticeId}/applications`, config);
+    return apiRequestor.get<GetApplicationListRes>(`/shops/${shopId}/notices/${noticeId}/applications`, config);
   }
 
   postApplication(shopId: string, noticeId: string) {
@@ -23,9 +23,9 @@ class ApplicationService {
     return apiRequestorToken.put(`/shops/${shopId}/notices/${noticeId}/applications/${applicationId}`, payload);
   }
 
-  getApplicationsByUserId(userId: string, params: BaseQuery) {
+  getApplicationListByUserId(userId: string, params: BaseQuery) {
     const config: AxiosRequestConfig = { params };
-    return apiRequestorToken.get<GetApplicationsByUserIdRes>(`/users/${userId}/applications`, config);
+    return apiRequestorToken.get<GetApplicationListByUserIdRes>(`/users/${userId}/applications`, config);
   }
 }
 
