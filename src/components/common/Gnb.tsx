@@ -20,7 +20,7 @@ type GnbProps = {
  * @param {boolean} [props.NotiStatus=true] - 알림 상태를 나타내며, true일 경우 알림이 활성
  */
 
-function Gnb({ userType = 'employee', NotiStatus = true }: GnbProps) {
+function Gnb({ userType, NotiStatus }: GnbProps) {
   return (
     <div className={styles.gnbContainer}>
       <div className={styles.gnbWrapper}>

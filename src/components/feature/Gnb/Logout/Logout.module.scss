@@ -4,7 +4,7 @@
 
 .logout {
   @include sopoqa-16-700;
-  line-height: 20px;
+  line-height: 2rem;
   color: $color-black;
 }
 
@@ -12,6 +12,6 @@
   .logout {
     @include sopoqa-14-400;
     font-weight: 700;
-    height: 17px;
+    height: 1.7rem;
   }
 }
