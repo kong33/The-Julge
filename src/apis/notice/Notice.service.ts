@@ -2,29 +2,35 @@
 import { AxiosRequestConfig } from 'axios';
 
 import { BaseQuery } from '@/apis/common.type';
-import { GetNoticesParams, GetNoticesRes, BaseNoticesRes, PostNoticePayload } from '@/apis/notice/notice.type';
+import {
+  GetNoticeListParams,
+  GetNoticeListRes,
+  PostNoticePayload,
+  GetNoticeListByShopIdRes,
+  PutNoticePayload
+} from '@/apis/notice/notice.type';
 import { apiRequestor, apiRequestorToken } from '@/apis/requestor';
 
 class NoticeService {
-  getNotices(params: GetNoticesParams) {
+  getNoticeList(params: GetNoticeListParams) {
     const config: AxiosRequestConfig = { params };
-    return apiRequestor.get<GetNoticesRes>(`/notices`, config);
+    return apiRequestor.get<GetNoticeListRes>(`/notices`, config);
   }
 
-  getNoticesByShopId(shopId: string, params: BaseQuery) {
+  getNoticeListByShopId(shopId: string, params: BaseQuery) {
     const config: AxiosRequestConfig = { params };
-    return apiRequestor.get<BaseNoticesRes>(`/shops/${shopId}/notices`, config);
+    return apiRequestor.get<GetNoticeListByShopIdRes>(`/shops/${shopId}/notices`, config);
   }
 
-  postNoticeByShopId(shopId: string, payload: PostNoticePayload) {
+  postNotice(shopId: string, payload: PostNoticePayload) {
     return apiRequestorToken.post(`/shops/${shopId}/notices`, payload);
   }
 
-  getNoticeByNoticeId(shopId: string, noticeId: string) {
+  getNotice(shopId: string, noticeId: string) {
     return apiRequestor.get(`/shops/${shopId}/notices/${noticeId}`);
   }
 
-  putNoticeByNoticeId(shopId: string, noticeId: string, payload: PostNoticePayload) {
+  putNotice(shopId: string, noticeId: string, payload: PutNoticePayload) {
     return apiRequestorToken.put(`/shops/${shopId}/notices/${noticeId}`, payload);
   }
 }

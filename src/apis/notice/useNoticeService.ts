@@ -1,7 +1,16 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import { BaseQuery } from '@/apis/common.type';
-import { GetNoticesParams, GetNoticesRes, BaseNoticesRes, PostNoticePayload, Item } from '@/apis/notice/notice.type';
+import {
+  GetNoticeListParams,
+  GetNoticeListRes,
+  PostNoticePayload,
+  PutNoticePayload,
+  GetNoticeListByShopIdRes,
+  PostNoticeRes,
+  GetNoticeRes,
+  PutNoticeRes
+} from '@/apis/notice/notice.type';
 import queryOptions from '@/apis/notice/queries';
 import selectData from '@/apis/utils';
 
@@ -28,10 +37,9 @@ import selectData from '@/apis/utils';
 }
  */
 
-// eslint-disable-next-line import/prefer-default-export
-export function useGetNotices(params: GetNoticesParams) {
-  const res = useSuspenseQuery(queryOptions.getNotices(params));
-  return selectData<GetNoticesRes>(res);
+export function useGetNoticeList(params: GetNoticeListParams) {
+  const res = useSuspenseQuery(queryOptions.getNoticeList(params));
+  return selectData<GetNoticeListRes>(res);
 }
 
 /**
@@ -51,9 +59,9 @@ export function useGetNotices(params: GetNoticesParams) {
 }
  */
 
-export function useGetNoticesByShopId(shopId: string, params: BaseQuery) {
-  const res = useSuspenseQuery(queryOptions.getNoticesByShopId(shopId, params));
-  return selectData<BaseNoticesRes>(res);
+export function useGetNoticeListByShopId(shopId: string, params: BaseQuery) {
+  const res = useSuspenseQuery(queryOptions.getNoticeListByShopId(shopId, params));
+  return selectData<GetNoticeListByShopIdRes>(res);
 }
 
 /**
@@ -71,9 +79,9 @@ export function useGetNoticesByShopId(shopId: string, params: BaseQuery) {
 }
  */
 
-export function usePostNoticeByShopId(shopId: string, payload: PostNoticePayload) {
-  const res = useMutation(queryOptions.postNoticeByShopId(shopId, payload));
-  return selectData<Item>(res);
+export function usePostNotice(shopId: string, payload: PostNoticePayload) {
+  const res = useMutation(queryOptions.postNotice(shopId, payload));
+  return selectData<PostNoticeRes>(res);
 }
 
 /**
@@ -86,9 +94,9 @@ export function usePostNoticeByShopId(shopId: string, payload: PostNoticePayload
 }
  */
 
-export function useGetNoticeByNoticeId(shopId: string, noticeId: string) {
-  const res = useSuspenseQuery(queryOptions.getNoticeByNoticeId(shopId, noticeId));
-  return selectData<Item>(res);
+export function useGetNotice(shopId: string, noticeId: string) {
+  const res = useSuspenseQuery(queryOptions.getNotice(shopId, noticeId));
+  return selectData<GetNoticeRes>(res);
 }
 
 /**
@@ -101,7 +109,7 @@ export function useGetNoticeByNoticeId(shopId: string, noticeId: string) {
 }
  */
 
-export function usePutNoticeByNoticeId(shopId: string, noticeId: string, payload: PostNoticePayload) {
-  const res = useMutation(queryOptions.putNoticeByNoticeId(shopId, noticeId, payload));
-  return selectData<Item>(res);
+export function usePutNotice(shopId: string, noticeId: string, payload: PutNoticePayload) {
+  const res = useMutation(queryOptions.putNotice(shopId, noticeId, payload));
+  return selectData<PutNoticeRes>(res);
 }

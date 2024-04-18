@@ -23,12 +23,7 @@ export type BaseNoticesRes = {
   links: Array<Link>;
 };
 
-export type GetNoticesRes = BaseNoticesRes & {
-  address: Array<string>;
-  keyword?: string;
-};
-
-export type GetNoticesParams = BaseQuery & {
+export type GetNoticeListParams = BaseQuery & {
   address?: string;
   keyword?: string;
   startsAtGte?: string;
@@ -36,9 +31,24 @@ export type GetNoticesParams = BaseQuery & {
   sort?: Sort;
 };
 
+export type GetNoticeListRes = BaseNoticesRes & {
+  address: Array<string>;
+  keyword?: string;
+};
+
+export type GetNoticeListByShopIdRes = BaseNoticesRes;
+
 export type PostNoticePayload = {
   hourlyPay: number;
   startsAt: string;
   workhour: number;
   description: string;
 };
+
+export type PostNoticeRes = Item;
+
+export type GetNoticeRes = Item;
+
+export type PutNoticePayload = PostNoticePayload;
+
+export type PutNoticeRes = Item;
