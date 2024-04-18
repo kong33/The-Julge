@@ -1,6 +1,6 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
-import { GetAlertsRes } from '@/apis/alert/alert.type';
+import { GetAlertsRes, PutAlertRes } from '@/apis/alert/alert.type';
 import queryOptions from '@/apis/alert/queries';
 import { BaseQuery } from '@/apis/common.type';
 import selectData from '@/apis/utils';
@@ -22,8 +22,24 @@ import selectData from '@/apis/utils';
 }
  */
 
-// eslint-disable-next-line import/prefer-default-export
 export function useGetAlerts(userId: string, params: BaseQuery) {
   const res = useSuspenseQuery(queryOptions.getAlerts(userId, params));
   return selectData<GetAlertsRes>(res);
+}
+
+/**
+ * 특정 사용자의 알림을 읽음 처리합니다.
+ * @param userId required; string
+ * @param alertId required; string
+ * @returns \{
+  offset: number;
+  limit: number;
+  items: Array\<Item>;
+  links: Array\<Link>;
+}
+ */
+
+export function usePutAlert(userId: string, alertId: string) {
+  const res = useMutation(queryOptions.putAlert(userId, alertId));
+  return selectData<PutAlertRes>(res);
 }

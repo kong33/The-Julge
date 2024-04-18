@@ -38,3 +38,10 @@ export type GetAlertsRes = {
   items: Array<Item>;
   links: Array<Link>;
 };
+
+export type PutAlertRes = {
+  offset: number;
+  limit: number;
+  items: Array<Item>;
+  links: Array<Link>;
+};
