@@ -6,6 +6,8 @@ export type Status = 'pending' | 'accepted' | 'rejected' | 'canceled';
 
 export type Sort = 'time' | 'pay' | 'hour' | 'shop';
 
+export type Result = 'accepted' | 'rejected';
+
 export type Address =
   | '서울시 종로구'
   | '서울시 중구'
@@ -87,5 +89,11 @@ export type Link = {
   method: string;
   href: string;
   body?: unknown;
-  query?: BaseQuery;
+  query?: BaseQuery & {
+    address?: string;
+    keyword?: string;
+    startsAtGte?: string;
+    hourlyPayGte?: number;
+    sort?: Sort;
+  };
 };
