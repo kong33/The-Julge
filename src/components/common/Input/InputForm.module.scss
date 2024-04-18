@@ -1,0 +1,27 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.inputFormContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.inputFormLabel {
+  @include sopoqa-16-400;
+  color: $color-black;
+}
+
+.required::after {
+  @include sopoqa-16-400;
+  color: $color-black;
+  content: '*';
+}
+
+.errorMessage {
+  @include sopoqa-12-400;
+  margin-left: 0.8rem;
+  color: $color-red-40;
+}
