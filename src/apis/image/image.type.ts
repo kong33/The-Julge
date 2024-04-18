@@ -1,24 +1,14 @@
-type Body = {
-  file: string;
+import { Link } from '@/apis/common.type';
+
+export type PostImagePayload = {
+  name: string;
 };
 
 type Item = {
   url: string;
 };
 
-type Link = {
-  rel: string;
-  description: string;
-  method: string;
-  href: string;
-  body: Body;
-};
-
-export type ImageRes = {
+export type PostImageRes = {
   item: Item;
   links: Array<Link>;
-};
-
-export type PostImagePayload = {
-  name: string;
 };

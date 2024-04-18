@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { ImageRes, PostImagePayload } from '@/apis/image/image.type';
+import { PostImageRes, PostImagePayload } from '@/apis/image/image.type';
 import queryOptions from '@/apis/image/queries';
 import selectData from '@/apis/utils';
 
@@ -26,5 +26,5 @@ import selectData from '@/apis/utils';
 // eslint-disable-next-line import/prefer-default-export
 export function usePostImage({ name }: PostImagePayload) {
   const res = useMutation(queryOptions.postImage(name));
-  return selectData<ImageRes>(res);
+  return selectData<PostImageRes>(res);
 }
