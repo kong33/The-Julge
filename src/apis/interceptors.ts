@@ -33,11 +33,16 @@ const successInterceptor = (response: AxiosResponse): AxiosResponse => {
  * 에러를 처리하는 인터셉터
  *
  * @param {AxiosError} error - Axios 에러 객체
- * @returns {Promise} 에러를 거부하는 프로미스
+ * @returns error.response - 에러 response; response가 없으면 error 반환
  */
-const errorInterceptor = (error: AxiosError): Promise<AxiosError> => {
+// const errorInterceptor = (error: AxiosError): Promise<AxiosError> => {
+//   console.error('Response Error:', error);
+//   return Promise.reject(error);
+// };
+const errorInterceptor = (error: AxiosError) => {
   console.error('Response Error:', error);
-  return Promise.reject(error);
+  const errorRes = error?.response ?? error;
+  return errorRes;
 };
 
 export { requestInterceptor, successInterceptor, errorInterceptor };
