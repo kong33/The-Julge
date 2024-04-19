@@ -9,11 +9,13 @@ import ErrorMessage from './ErrorMessage';
 import FieldLabel from './FieldLabel';
 import Label from './Label';
 
-interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   className?: string;
   label?: string;
   fieldLabel?: string;
   errorMessage?: string | undefined | null;
+  textarea?: boolean;
+  rows?: number;
   register?: UseFormRegisterReturn;
 }
 
@@ -25,6 +27,8 @@ interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement> {
  * @param fieldLabel input 맨 뒤에 고정된 문자열; ex) '원'
  * @param errorMessage 에러 메세지; react-hook-form의 errors.{form}.message에 대응됩니다.
  * @param type input의 타입; type=number의 경우 01234 -> 1,234 형태로 포맷팅됩니다. 금액/시간 등에는 number를 사용해주세요.
+ * @param textarea textarea; input을 textarea로 변경합니다.
+ * @param rows textarea의 줄 수; textarea의 높이를 지정합니다. 기본값=5
  * @param register react-hook-form의 register('form', validator)와 대응됩니다.
  * @param required label 끝에 '*' 문자를 추가합니다.
  * @param rest 기타 input의 모든 속성을 지원합니다.
@@ -37,6 +41,8 @@ export default function InputForm({
   fieldLabel = '',
   errorMessage = '',
   type = '',
+  textarea = false,
+  rows = 5,
   register,
   required = false,
   ...rest
@@ -67,6 +73,8 @@ export default function InputForm({
           style={{ paddingRight: inputFieldPaddingRight }}
           id={label}
           type={type}
+          textarea={textarea}
+          rows={rows}
           invalid={!!errorMessage}
           {...register}
           {...rest}

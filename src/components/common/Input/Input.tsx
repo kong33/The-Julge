@@ -1,11 +1,13 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { ForwardedRef, useState } from 'react';
 
 import styles from '@/components/common/Input/Input.module.scss';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   className?: string;
   invalid?: boolean;
+  textarea?: boolean;
+  rows?: number;
 }
 
 // 숫자에 콤마를 추가하는 함수
@@ -16,8 +18,8 @@ const formatNumber = (value: string) => {
   return cleanNum.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className = '', invalid = false, type, ...rest }: InputProps, ref) => {
+const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
+  ({ className = '', invalid = false, type, textarea = false, ...rest }: InputProps, ref) => {
     const inputClasses = classNames(styles.defaultInput, invalid && styles.invalid, className);
 
     const [numValue, setNumValue] = useState('');
@@ -28,13 +30,24 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       setNumValue(formattedNumber);
     };
 
+    if (textarea) {
+      return <textarea className={inputClasses} ref={ref as ForwardedRef<HTMLTextAreaElement>} {...rest} />;
+    }
+
     if (type === 'number') {
       return (
-        <input className={inputClasses} ref={ref} type="text" value={numValue} onChange={handleChange} {...rest} />
+        <input
+          className={inputClasses}
+          ref={ref as ForwardedRef<HTMLInputElement>}
+          type="text"
+          value={numValue}
+          onChange={handleChange}
+          {...rest}
+        />
       );
     }
 
-    return <input className={inputClasses} ref={ref} {...rest} />;
+    return <input className={inputClasses} ref={ref as ForwardedRef<HTMLInputElement>} {...rest} />;
   }
 );
 
