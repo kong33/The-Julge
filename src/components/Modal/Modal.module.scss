@@ -1,0 +1,13 @@
+@import '@/styles/mixin.scss';
+
+.modalWrap {
+  width: 54rem;
+  height: 25rem;
+  border-radius: 1.5rem;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include flexbox;
+}
