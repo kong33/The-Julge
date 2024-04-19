@@ -5,6 +5,7 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 import Input from '@/components/common/Input/Input';
 import styles from '@/components/common/Input/InputForm.module.scss';
 
+import ErrorMessage from './ErrorMessage';
 import FieldLabel from './FieldLabel';
 import Label from './Label';
 
@@ -44,7 +45,6 @@ export default function InputForm({
 
   const classes = {
     inputFormContainer: classNames(styles.inputFormContainer, className),
-
     inputFieldContainer: classNames(styles.inputFieldContainer),
     inputField: classNames(fieldLabel && `paddingRight: ${inputFieldPaddingRight}`),
   };
@@ -70,7 +70,7 @@ export default function InputForm({
         />
         <FieldLabel ref={fieldLabelRef}>{fieldLabel}</FieldLabel>
       </div>
-      {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+      <ErrorMessage>{errorMessage}</ErrorMessage>
     </div>
   );
 }
