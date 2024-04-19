@@ -5,6 +5,8 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 import Input from '@/components/common/Input/Input';
 import styles from '@/components/common/Input/InputForm.module.scss';
 
+import Label from './Label';
+
 interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   label?: string;
@@ -41,7 +43,7 @@ export default function InputForm({
 
   const classes = {
     inputFormContainer: classNames(styles.inputFormContainer, className),
-    inputFormLabelContainer: classNames(styles.inputFormLabel, required && styles.required),
+
     inputFieldContainer: classNames(styles.inputFieldContainer),
     inputField: classNames(fieldLabel && `paddingRight: ${inputFieldPaddingRight}`),
   };
@@ -54,11 +56,9 @@ export default function InputForm({
 
   return (
     <div className={classes.inputFormContainer}>
-      {label && (
-        <label className={classes.inputFormLabelContainer} htmlFor={label}>
-          {label}
-        </label>
-      )}
+      <Label htmlFor={label} required={required}>
+        {label}
+      </Label>
       <div className={classes.inputFieldContainer}>
         <Input
           style={{ paddingRight: inputFieldPaddingRight }}

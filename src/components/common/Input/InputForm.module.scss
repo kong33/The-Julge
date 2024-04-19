@@ -9,17 +9,6 @@
   width: 100%;
 }
 
-.inputFormLabel {
-  @include sopoqa-16-400;
-  color: $color-black;
-}
-
-.required::after {
-  @include sopoqa-16-400;
-  color: $color-black;
-  content: '*';
-}
-
 .inputFieldContainer {
   position: relative;
 }
