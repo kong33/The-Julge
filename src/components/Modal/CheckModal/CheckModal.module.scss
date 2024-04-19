@@ -1,0 +1,51 @@
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.contents {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  @include flexbox($direction: column, $justify: space-around);
+  @include mobile {
+    justify-content: space-evenly;
+  }
+}
+
+// 태블릿 PC 공통이기에 PC start
+.txtBox {
+  p {
+    @include pretendard-18-500;
+    word-break: keep-all;
+    padding-top: 8rem;
+    @include mobile {
+      padding-top: 1rem;
+      @include pretendard-16-500;
+    }
+  }
+}
+
+.btBox {
+  @include tablet {
+    width: 100%;
+    @include flexbox($justify: right);
+    padding-right: 3rem;
+  }
+  @include desktop {
+    width: 100%;
+    @include flexbox($justify: right);
+    padding-right: 3rem;
+  }
+}
+
+// 공통 컴포넌트의 스타일보다 특수성 높이기 위함
+.btBox .modalBt {
+  width: 12rem;
+  height: 5rem;
+  padding: 0;
+  @include pretendard-16-500;
+  @include mobile {
+    width: 13.8rem;
+    height: 4.2rem;
+    padding: 0;
+  }
+}

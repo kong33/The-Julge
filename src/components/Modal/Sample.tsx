@@ -1,30 +1,28 @@
 import Modal from '@/components/Modal/Modal';
 import Modals from '@/components/Modal/ModalGroup';
 
-function Naeun() {
+// 사용법 sample
+function Sample() {
   const handleClick = () => {
-    console.log(`버튼 클릭함!!!`);
+    console.log('신청 취소 혹은 신청 승인 클릭시 이벤트!!');
   };
   return (
-    <div>
-      {/* 모달선언 */}
+    <>
+      {/* 경고 표시 모달 */}
       <Modals.Root>
-        {/* 모달이 실행되는 버튼 | childen으로 되어있기에 태그를 사용할 수 있음 */}
-        {/* ex) <Modals.Trigger><Button>에러버튼</Button></Modals.Trigger>  */}
         <Modals.Trigger>에러버튼</Modals.Trigger>
-        {/* 조건부를 달 수 있음 | content는 꼭 실행되지 않아도 가능 */}
         <Modals.Content>
           <Modal types="error">내 프로필을 먼저 등록해주세요.</Modal>
         </Modals.Content>
       </Modals.Root>
-
+      {/* 체크 모달 */}
       <Modals.Root>
         <Modals.Trigger>체크버튼</Modals.Trigger>
         <Modals.Content>
-          <Modal types="check">비밀번호가 일치하지 않습니다.</Modal>
+          <Modal types="check">체크체크!!!!</Modal>
         </Modals.Content>
       </Modals.Root>
-
+      {/* 예/아니오 선택 모달 */}
       <Modals.Root>
         <Modals.Trigger>선택버튼1</Modals.Trigger>
         <Modals.Content>
@@ -42,8 +40,8 @@ function Naeun() {
           </Modal>
         </Modals.Content>
       </Modals.Root>
-    </div>
+    </>
   );
 }
 
-export default Naeun;
+export default Sample;

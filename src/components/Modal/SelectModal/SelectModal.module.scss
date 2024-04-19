@@ -17,3 +17,8 @@
     word-break: keep-all;
   }
 }
+
+.btBox {
+  @include flexbox();
+  gap: 0.8rem;
+}
