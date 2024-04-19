@@ -90,6 +90,7 @@ const selectStyles = {
   indicatorSeparator: () => ({}),
   dropdownIndicator: (provided: any) => ({
     ...provided,
+    padding: '0',
   }),
   input: (provided: any) => ({
     ...provided,
