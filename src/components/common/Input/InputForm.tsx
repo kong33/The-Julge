@@ -5,6 +5,7 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 import Input from '@/components/common/Input/Input';
 import styles from '@/components/common/Input/InputForm.module.scss';
 
+import FieldLabel from './FieldLabel';
 import Label from './Label';
 
 interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -67,11 +68,7 @@ export default function InputForm({
           {...register}
           {...rest}
         />
-        {fieldLabel && (
-          <span className={styles.fieldLabel} ref={fieldLabelRef}>
-            {fieldLabel}
-          </span>
-        )}
+        <FieldLabel ref={fieldLabelRef}>{fieldLabel}</FieldLabel>
       </div>
       {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
     </div>
