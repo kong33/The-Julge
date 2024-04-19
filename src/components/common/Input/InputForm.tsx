@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 import Input from '@/components/common/Input/Input';
@@ -35,21 +35,43 @@ export default function InputForm({
   required = false,
   ...rest
 }: InputFormProps) {
-  const inputFormContainerClasses = classNames(styles.inputFormContainer, className);
-  const inputFormLabelContainerClasses = classNames(styles.inputFormLabel, required && styles.required);
-  const inputFieldContainerClasses = classNames(styles.inputFieldContainer);
-  const inputFieldClasses = classNames(fieldLabel && styles.fieldLabelPadding);
+  // fieldLabel 너비 지정
+  const [inputFieldPaddingRight, setInputFieldPaddingRight] = useState('2rem');
+  const fieldLabelRef = useRef<HTMLSpanElement>(null);
+
+  const classes = {
+    inputFormContainer: classNames(styles.inputFormContainer, className),
+    inputFormLabelContainer: classNames(styles.inputFormLabel, required && styles.required),
+    inputFieldContainer: classNames(styles.inputFieldContainer),
+    inputField: classNames(fieldLabel && `paddingRight: ${inputFieldPaddingRight}`),
+  };
+
+  useEffect(() => {
+    // fieldLabel 크기만큼 여백 지정
+    const fieldLabelWidth = fieldLabelRef.current?.offsetWidth ?? 0;
+    setInputFieldPaddingRight(`${fieldLabelWidth / 10 + 2}rem`);
+  }, [fieldLabel]);
 
   return (
-    <div className={inputFormContainerClasses}>
+    <div className={classes.inputFormContainer}>
       {label && (
-        <label className={inputFormLabelContainerClasses} htmlFor={label}>
+        <label className={classes.inputFormLabelContainer} htmlFor={label}>
           {label}
         </label>
       )}
-      <div className={inputFieldContainerClasses}>
-        <Input className={inputFieldClasses} id={label} invalid={!!errorMessage} {...register} {...rest} />
-        {fieldLabel && <span className={styles.fieldLabel}>{fieldLabel}</span>}
+      <div className={classes.inputFieldContainer}>
+        <Input
+          style={{ paddingRight: inputFieldPaddingRight }}
+          id={label}
+          invalid={!!errorMessage}
+          {...register}
+          {...rest}
+        />
+        {fieldLabel && (
+          <span className={styles.fieldLabel} ref={fieldLabelRef}>
+            {fieldLabel}
+          </span>
+        )}
       </div>
       {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
     </div>
