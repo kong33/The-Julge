@@ -10,7 +10,7 @@ import Searchbar from '../feature/Gnb/Searchbar/Searchbar';
 
 type GnbProps = {
   userType?: 'employee' | 'employer' | 'guest';
-  NotiStatus?: boolean;
+  NotiStatus: boolean;
 };
 
 /**
