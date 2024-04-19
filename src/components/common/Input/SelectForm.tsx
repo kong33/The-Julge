@@ -128,6 +128,15 @@ function DropdownIndicator(props: any) {
   );
 }
 
+/**
+ * react-select를 이용한 Select 컴포넌트입니다.
+ * @param className string; 컨테이너의 스타일을 주입할 수 있습니다.
+ * @param size large | small; 드롭다운 사이즈입니다. 기본값=large
+ * @param instanceId string; 렌더링 시 요구되는 고유한 id입니다. react-select 요구사항입니다.
+ * @param optionList string[]; 옵션 리스트입니다.
+ * @param field react-hook-form의 Controller에 대응됩니다.
+ */
+
 export default function SelectForm({
   className = '',
   size = 'large',
