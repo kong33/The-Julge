@@ -13,12 +13,13 @@ type IFormInput = {
 
 interface SelectFormProps extends React.ComponentProps<typeof Select> {
   className?: string;
+  size?: 'large' | 'small';
   instanceId: string;
   optionList: string[];
   field: ControllerRenderProps<IFormInput, 'selection'>;
 }
 
-const customStyles = {
+const selectStyles = {
   control: (provided: any) => ({
     ...provided,
     padding: '1.6rem 2rem',
@@ -72,7 +73,7 @@ const customStyles = {
     background: state.isSelected ? '#e5e4e7' : 'none',
     color: '#111322',
     borderBottom: '0.1rem solid #f2f2f3',
-    '&:last-child': {
+    '&:last-of-type': {
       borderBottom: 'none',
     },
     '&:hover': { background: !state.isSelected && '#f2f2f3' },
@@ -95,6 +96,26 @@ const customStyles = {
   }),
 };
 
+const selectSmallStyle = {
+  ...selectStyles,
+  option: (provided: any, state: { isSelected: boolean }) => ({
+    ...provided,
+    padding: '0.8rem 0',
+    background: state.isSelected ? '#e5e4e7' : 'none',
+    color: '#111322',
+    borderBottom: '0.1rem solid #f2f2f3',
+    '&:first-of-type': {
+      paddingTop: '1.2rem',
+    },
+    '&:last-of-type': {
+      borderBottom: 'none',
+      paddingBottom: '1.2rem',
+    },
+    '&:hover': { background: !state.isSelected && '#f2f2f3' },
+    '&:active': { background: '#e5e4e7' },
+  }),
+};
+
 function DropdownIndicator(props: any) {
   const { selectProps } = props;
   const { menuIsOpen } = selectProps;
@@ -107,7 +128,14 @@ function DropdownIndicator(props: any) {
   );
 }
 
-function SelectForm({ className = '', instanceId, optionList, field, ...rest }: SelectFormProps) {
+export default function SelectForm({
+  className = '',
+  size = 'large',
+  instanceId,
+  optionList,
+  field,
+  ...rest
+}: SelectFormProps) {
   const selectOptionList = optionList.map((option) => ({ value: option, label: option }));
 
   const selectFormClasses = classNames(styles.selectForm, className);
@@ -118,7 +146,7 @@ function SelectForm({ className = '', instanceId, optionList, field, ...rest }: 
       {...field}
       instanceId={instanceId}
       options={selectOptionList}
-      styles={customStyles}
+      styles={size === 'small' ? selectSmallStyle : selectStyles}
       components={{ DropdownIndicator }}
       onChange={(value) => field.onChange(value)}
       isSearchable={false}
@@ -126,5 +154,3 @@ function SelectForm({ className = '', instanceId, optionList, field, ...rest }: 
     />
   );
 }
-
-export default SelectForm;
