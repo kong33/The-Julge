@@ -8,33 +8,29 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement | HTMLTe
   invalid?: boolean;
   textarea?: boolean;
   rows?: number;
+  // eslint-disable-next-line no-unused-vars
+  formatter?: (value: string) => string;
 }
 
-// 숫자에 콤마를 추가하는 함수
-const formatNumber = (value: string) => {
-  // 숫자 이외의 문자 제거, 선행하는 0 제거, 단 숫자가 0이거나 비어 있지 않은 경우를 제외
-  const cleanNum = value.replace(/\D/g, '').replace(/^0+/, '') || '0';
-  // 세 자리마다 콤마를 추가
-  return cleanNum.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
-
 const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
-  ({ className = '', invalid = false, type, textarea = false, ...rest }: InputProps, ref) => {
+  ({ className = '', invalid = false, textarea = false, formatter, ...rest }: InputProps, ref) => {
     const inputClasses = classNames(styles.defaultInput, invalid && styles.invalid, className);
 
     const [numValue, setNumValue] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = e.target;
-      const formattedNumber = formatNumber(value);
-      setNumValue(formattedNumber);
+      if (formatter) {
+        const { value } = e.target;
+        const formattedNumber = formatter(value);
+        setNumValue(formattedNumber);
+      }
     };
 
     if (textarea) {
       return <textarea className={inputClasses} ref={ref as ForwardedRef<HTMLTextAreaElement>} {...rest} />;
     }
 
-    if (type === 'number') {
+    if (formatter) {
       return (
         <input
           className={inputClasses}
