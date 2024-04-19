@@ -24,6 +24,7 @@ interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement> {
  * @param label label
  * @param fieldLabel input 맨 뒤에 고정된 문자열; ex) '원'
  * @param errorMessage 에러 메세지; react-hook-form의 errors.{form}.message에 대응됩니다.
+ * @param type input의 타입; type=number의 경우 01234 -> 1,234 형태로 포맷팅됩니다. 금액/시간 등에는 number를 사용해주세요.
  * @param register react-hook-form의 register('form', validator)와 대응됩니다.
  * @param required label 끝에 '*' 문자를 추가합니다.
  * @param rest 기타 input의 모든 속성을 지원합니다.
@@ -35,6 +36,7 @@ export default function InputForm({
   label = '',
   fieldLabel = '',
   errorMessage = '',
+  type = '',
   register,
   required = false,
   ...rest
@@ -64,6 +66,7 @@ export default function InputForm({
         <Input
           style={{ paddingRight: inputFieldPaddingRight }}
           id={label}
+          type={type}
           invalid={!!errorMessage}
           {...register}
           {...rest}
