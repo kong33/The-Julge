@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { ForwardedRef, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import Select, { GroupBase, SelectInstance, components } from 'react-select';
 
 import styles from '@/components/common/Input/SelectForm.module.scss';
@@ -135,7 +135,7 @@ interface SelectFormProps extends React.ComponentProps<typeof Select>, InputCont
  * @param errorMessage string; 에러 메세지; react-hook-form의 errors.{form}.message에 대응됩니다.
  */
 
-const SelectForm = forwardRef<ForwardedRef<Select>, SelectFormProps>(
+const SelectForm = forwardRef<React.Ref<Select>, SelectFormProps>(
   (
     {
       className = '',
@@ -160,7 +160,7 @@ const SelectForm = forwardRef<ForwardedRef<Select>, SelectFormProps>(
           styles={size === 'small' ? selectSmallStyle : selectStyles}
           components={{ DropdownIndicator }}
           isSearchable={false}
-          ref={ref as ForwardedRef<SelectInstance<unknown, boolean, GroupBase<unknown>>>}
+          ref={ref as React.Ref<SelectInstance<unknown, boolean, GroupBase<unknown>>>}
           {...field}
         />
       </InputContainer>
