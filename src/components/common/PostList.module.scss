@@ -14,6 +14,7 @@ $card-size-small: 17.1rem;
   }
   @include pc-first-mobile {
     max-width: 53.3rem;
+    gap: 1.6rem;
   }
   @include pc-first-small-mobile {
     max-width: 35.5rem;

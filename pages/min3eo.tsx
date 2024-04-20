@@ -9,12 +9,17 @@ const CARD_TAGS = {
   Orange: 'orange',
 } as const;
 
-const filterButtons = (
-  <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-    <Button solid size="medium" active onClick={() => console.log('마감임박순 클릭')}>
+const deadButton = (
+  <div style={{ display: 'flex', gap: '10px' }}>
+    <Button solid size="small" active onClick={() => console.log('마감임박순 클릭')}>
       마감임박순
     </Button>
-    <Button solid={false} size="medium" active onClick={() => console.log('상세 필터 클릭')}>
+  </div>
+);
+
+const filterButton = (
+  <div style={{ display: 'flex', gap: '10px' }}>
+    <Button solid={false} size="small" active onClick={() => console.log('상세 필터 클릭')}>
       상세 필터
     </Button>
   </div>
@@ -105,7 +110,12 @@ export default function Page() {
           posts={mockPosts}
           isHome={false}
           title="맛집에 대한 공고 목록"
-          filterElement={filterButtons}
+          filterElement={
+            <>
+              {deadButton}
+              {filterButton}
+            </>
+          }
           keyword="맛집"
         />
       </div>
