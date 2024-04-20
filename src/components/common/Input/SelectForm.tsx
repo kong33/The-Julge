@@ -1,17 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import classNames from 'classnames';
 import React, { ForwardedRef, forwardRef } from 'react';
 import Select, { GroupBase, SelectInstance, components } from 'react-select';
 
 import styles from '@/components/common/Input/SelectForm.module.scss';
 import { ReactComponent as DropdownSvg } from '@/public/svgs/dropdown.svg';
 
-interface SelectFormProps extends React.ComponentProps<typeof Select> {
-  className?: string;
-  size?: 'large' | 'small';
-  instanceId: string;
-  optionList: string[];
-}
+import InputContainer, { InputContainerProps } from './InputContainer';
 
 const selectStyles = {
   control: (provided: any) => ({
@@ -123,6 +117,12 @@ function DropdownIndicator(props: any) {
   );
 }
 
+interface SelectFormProps extends React.ComponentProps<typeof Select>, InputContainerProps {
+  size?: 'large' | 'small';
+  instanceId: string;
+  optionList: string[];
+}
+
 /**
  * react-select를 이용한 Select 컴포넌트입니다.
  * @param className string; 컨테이너의 스타일을 주입할 수 있습니다.
@@ -132,22 +132,34 @@ function DropdownIndicator(props: any) {
  */
 
 const SelectForm = forwardRef<ForwardedRef<Select>, SelectFormProps>(
-  ({ className = '', size = 'large', instanceId, optionList, ...field }: SelectFormProps, ref) => {
+  (
+    {
+      className = '',
+      size = 'large',
+      instanceId,
+      optionList,
+      label = '',
+      required = false,
+      errorMessage = '',
+      ...field
+    }: SelectFormProps,
+    ref
+  ) => {
     const selectOptionList = optionList.map((option) => ({ value: option, label: option }));
 
-    const selectFormClasses = classNames(styles.selectForm, className);
-
     return (
-      <Select
-        className={selectFormClasses}
-        instanceId={instanceId}
-        options={selectOptionList}
-        styles={size === 'small' ? selectSmallStyle : selectStyles}
-        components={{ DropdownIndicator }}
-        isSearchable={false}
-        ref={ref as ForwardedRef<SelectInstance<unknown, boolean, GroupBase<unknown>>>}
-        {...field}
-      />
+      <InputContainer className={className} label={label} required={required} errorMessage={errorMessage}>
+        <Select
+          className={styles.selectForm}
+          instanceId={instanceId}
+          options={selectOptionList}
+          styles={size === 'small' ? selectSmallStyle : selectStyles}
+          components={{ DropdownIndicator }}
+          isSearchable={false}
+          ref={ref as ForwardedRef<SelectInstance<unknown, boolean, GroupBase<unknown>>>}
+          {...field}
+        />
+      </InputContainer>
     );
   }
 );
