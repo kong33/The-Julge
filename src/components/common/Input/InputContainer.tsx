@@ -5,9 +5,9 @@ import ErrorMessage from '@/components/common/Input/ErrorMessage';
 import styles from '@/components/common/Input/InputContainer.module.scss';
 import Label from '@/components/common/Input/Label';
 
-interface InputContainerProps {
+export interface InputContainerProps {
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   label?: string;
   required?: boolean;
   errorMessage?: string | undefined | null;
