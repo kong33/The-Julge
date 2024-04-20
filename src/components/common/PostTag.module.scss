@@ -9,7 +9,7 @@
   object-fit: cover;
 }
 
-.chipWrapper {
+.TagWrapper {
   display: flex;
   align-items: center;
   max-width: 16.8rem;
@@ -20,20 +20,29 @@
 
   &.red {
     background: #ff4040;
-    @include mobile {
+    @include pc-first-mobile {
       background-color: white;
     }
   }
 
   &.orange {
     background: #ff8d72;
+    @include pc-first-mobile {
+      background-color: white;
+    }
+  }
+
+  &.undefined {
+    .imgContainer {
+      display: none;
+    }
   }
 
   &.closed {
     background: #e5e4e7;
-    @include mobile {
-      background-color: transparent;
-      .chipText {
+    @include pc-first-mobile {
+      background-color: white;
+      .TagText {
         color: #cbc9cf;
       }
       .imgContainer {
@@ -42,23 +51,22 @@
     }
   }
 
-  @include mobile {
+  @include pc-first-mobile {
     padding: 0;
-    height: auto;
     width: 100%;
     height: 100%;
     gap: 2px;
     background-color: transparent;
   }
 
-  .chipText {
+  .TagText {
     @include sopoqa-14-700;
     font-size: 1.2rem;
-    max-width: 10.4rem;
+    max-width: 10.5rem;
     color: $color-white;
     text-align: center;
 
-    @include mobile {
+    @include pc-first-mobile {
       font-weight: 400;
       font-size: 1.2rem;
       color: #ff4040;
@@ -76,7 +84,7 @@
     width: 20px;
     height: 20px;
 
-    @include mobile {
+    @include pc-first-mobile {
       filter: invert(55%) sepia(90%) saturate(300%) hue-rotate(300deg) brightness(100%) contrast(120%);
     }
   }

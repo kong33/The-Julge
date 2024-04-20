@@ -1,9 +1,10 @@
 import React from 'react';
 
-import Post from './Post';
-import styles from './PostList.module.scss';
+import HighlightKeyword from '@/components/common/HighlightKeyword';
+import Post from '@/components/common/Post';
+import styles from '@/components/common/PostList.module.scss';
 
-type CardTag = 'red' | 'orange' | 'hide';
+type CardTag = 'red' | 'orange';
 
 type PostData = {
   id: string;
@@ -11,12 +12,14 @@ type PostData = {
   duration: string;
   workhour: number;
   address: string;
+  originalHourlyPay: number;
   hourlyPay: number;
   imageUrl: string;
   closed: boolean;
   changeRate: number;
   isShowTag: CardTag;
-  onClickToDetailPage: () => void;
+  shopId: string;
+  noticeId: string;
 };
 
 interface PostListProps {
@@ -24,14 +27,20 @@ interface PostListProps {
   isHome?: boolean;
   title?: string;
   filterElement?: React.ReactNode;
+  keyword?: string;
 }
 
-function PostList({ posts, isHome, title, filterElement }: PostListProps) {
+function PostList({ posts, isHome, title, filterElement, keyword }: PostListProps) {
   return (
     <div className={styles.wrapper}>
       {(title || filterElement) && (
         <div className={isHome ? styles.titleHeaderHome : styles.titleHeader}>
-          {title && <h2 className={styles.title}>{title}</h2>}
+          {title && (
+            <h2 className={styles.title}>
+              <HighlightKeyword text={title} keyword={keyword} className={styles.highlight} />
+            </h2>
+          )}
+
           {filterElement && <div className={styles.filterElementWrapper}>{filterElement}</div>}
         </div>
       )}

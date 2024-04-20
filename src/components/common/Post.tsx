@@ -1,27 +1,23 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-import styles from './Post.module.scss';
-import PostTag from './PostTag';
-
-const CARD_TAGS = {
-  Red: 'red',
-  Orange: 'orange',
-  Hide: 'hide',
-} as const;
-
-type CardTag = (typeof CARD_TAGS)[keyof typeof CARD_TAGS];
+import styles from '@/components/common/Post.module.scss';
+import PostTag from '@/components/common/PostTag';
+import calcRate from '@/libs/utils/calcRate';
+import calcTagColor from '@/libs/utils/calcTagColor';
+import calcTimeWithWorkHours from '@/libs/utils/calcTimeWithWorkHours';
 
 type PostProps = {
   name: string;
   duration: string;
   workhour: number;
   address: string;
+  originalHourlyPay: number;
   hourlyPay: number;
   imageUrl: string;
   closed: boolean;
-  changeRate: undefined | number;
-  isShowTag: CardTag;
-  onClickToDetailPage: () => void;
+  shopId: string;
+  noticeId: string;
 };
 
 export default function Post({
@@ -29,18 +25,28 @@ export default function Post({
   duration,
   workhour,
   address,
+  originalHourlyPay,
   hourlyPay,
   imageUrl,
   closed,
-  changeRate,
-  isShowTag,
-  onClickToDetailPage,
+  shopId,
+  noticeId,
 }: PostProps) {
+  const formatDuration = calcTimeWithWorkHours(duration, workhour);
+  const formatTagColor = calcTagColor(hourlyPay, originalHourlyPay);
+  const formatRate = calcRate(hourlyPay, originalHourlyPay);
+
+  const router = useRouter();
+
+  const handleClickToDetailPage = () => {
+    router.push(`/detail/${shopId}/${noticeId}`);
+  };
+
   return (
     <div
       role="presentation"
       className={closed ? `${styles.cardWrapper} ${styles.closed}` : styles.cardWrapper}
-      onClick={onClickToDetailPage}
+      onClick={handleClickToDetailPage}
     >
       <div className={styles.cardHeader}>
         <Image className={styles.img} src={imageUrl} alt={name} width={280} height={160} />
@@ -61,9 +67,7 @@ export default function Post({
               width={17}
               height={17}
             />
-            <p className={closed ? `${styles.duration} ${styles.closed}` : styles.duration}>
-              {`${duration} (${workhour}시간)`}
-            </p>
+            <p className={closed ? `${styles.duration} ${styles.closed}` : styles.duration}>{formatDuration}</p>
           </div>
           <div className={styles.sectionAddress}>
             <Image
@@ -80,7 +84,7 @@ export default function Post({
           <p className={closed ? `${styles.hourlyPay} ${styles.closed}` : styles.hourlyPay}>
             {`${hourlyPay.toLocaleString()}원`}
           </p>
-          <PostTag isCardItem isShowChip={isShowTag} changeRate={changeRate} closed={closed} />
+          <PostTag isCardItem isShowTag={formatTagColor} changeRate={formatRate} closed={closed} />
         </div>
       </section>
     </div>

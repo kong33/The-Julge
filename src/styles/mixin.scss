@@ -1,5 +1,7 @@
 $breakpoint-tablet: 744px;
+$breakpoint-tablet: 744px;
 $breakpoint-desktop: 964px;
+$breakpoint-small-mobile: 593px;
 
 @mixin tablet {
   @media (min-width: #{$breakpoint-tablet}) {
@@ -11,4 +13,29 @@ $breakpoint-desktop: 964px;
   @media (min-width: #{$breakpoint-desktop}) {
     @content;
   }
+}
+
+@mixin pc-first-small-mobile {
+  @media (max-width: #{$breakpoint-small-mobile}) {
+    @content;
+  }
+}
+
+@mixin pc-first-tablet {
+  @media (max-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+@mixin pc-first-mobile {
+  @media (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+@mixin flexbox($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
 }
