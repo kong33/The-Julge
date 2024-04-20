@@ -22,8 +22,8 @@ interface DateTimeFormProps {
  * react-hook-form의 Controller에 대응됩니다.
  * @param className string; InputForm 커스텀 스타일; 컨테이너의 스타일을 주입할 수 있습니다.
  * @param value string; input의 value; ISO8601 형식; dateStr = new Date().toISOString();
- * @param onChange (date: Date) => void;
- * @returns
+ * @param onChange Controller의 onChange에 대응됩니다.
+ * @param onBlur Controller의 onBlur에 대응됩니다.
  */
 const DateTimeForm = forwardRef(({ className, value, onChange, onBlur }: DateTimeFormProps, ref) => {
   const datePickerClass = classNames(styles.datePicker, className);
