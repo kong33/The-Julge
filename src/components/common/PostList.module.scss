@@ -1,0 +1,75 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+$card-size-large: 31.2rem;
+$card-size-small: 17.1rem;
+
+@mixin mobile-card-wrap {
+  @media (max-width: #{$breakpoint-mobile-card-wrap}) {
+    @content;
+  }
+}
+$breakpoint-mobile-card-wrap: 593px;
+
+.wrapper {
+  @include flexbox(column, flex-start, flex-start);
+  max-width: 964px;
+  gap: 32px;
+  @include mobile {
+    gap: 16px;
+  }
+}
+
+.titleHeader {
+  @include flexbox(row, space-between, flex-start);
+  width: 100%;
+  @include tablet {
+    &.isHome {
+      padding: 0 32px;
+    }
+  }
+  @include mobile {
+    &.isHome {
+      padding: 0 12px;
+    }
+  }
+  @include mobile {
+    @include flexbox(column, flex-start, flex-start);
+    gap: 16px;
+    padding: 0 12px;
+  }
+}
+
+.title {
+  color: black;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.56px;
+  @include mobile {
+    font-size: 20px;
+  }
+}
+
+.filterElementWrapper {
+  @include flexbox(flex-end);
+  gap: 10px;
+}
+
+.listWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, $card-size-large);
+  gap: 31px 14px;
+  @include tablet {
+    grid-template-columns: repeat(2, $card-size-large);
+    margin: 0 auto;
+  }
+  @include mobile {
+    grid-template-columns: repeat(3, $card-size-small);
+    gap: 16px 8px;
+  }
+
+  @media (max-width: $breakpoint-mobile-card-wrap) {
+    grid-template-columns: repeat(2, $card-size-small);
+  }
+}
