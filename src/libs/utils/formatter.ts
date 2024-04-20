@@ -25,3 +25,11 @@ export function formatPhoneNumber(phoneNumber: string) {
   // eslint-disable-next-line max-len
   return `${digits.slice(0, areaCodeEndIndex)}-${digits.slice(areaCodeEndIndex, digits.length - 4)}-${digits.slice(digits.length - 4)}`;
 }
+
+// 정규식으로 모든 하이픈을 빈 문자열로 교체
+export function removeHyphens(phoneNumber: string) {
+  return phoneNumber.replace(/-/g, '');
+}
+
+// 콤마를 포함한 숫자 문자열을 number로 변경하는 함수
+export const removeCommasNumber = (number: string) => parseInt(number.replace(/,/g, ''), 10);
