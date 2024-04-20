@@ -125,10 +125,14 @@ interface SelectFormProps extends React.ComponentProps<typeof Select>, InputCont
 
 /**
  * react-select를 이용한 Select 컴포넌트입니다.
+ * react-hook-form의 Controller에 대응됩니다.
  * @param className string; 컨테이너의 스타일을 주입할 수 있습니다.
  * @param size large | small; 드롭다운 사이즈입니다. 기본값=large
  * @param instanceId string; 렌더링 시 요구되는 고유한 id입니다. react-select 요구사항입니다.
  * @param optionList string[]; 옵션 리스트입니다.
+ * @param label string; input과 연결된 label입니다.
+ * @param required boolean; label 끝에 '*' 문자를 추가합니다.
+ * @param errorMessage string; 에러 메세지; react-hook-form의 errors.{form}.message에 대응됩니다.
  */
 
 const SelectForm = forwardRef<ForwardedRef<Select>, SelectFormProps>(
