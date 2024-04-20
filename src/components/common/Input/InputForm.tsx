@@ -35,7 +35,7 @@ interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement | HT
  * @returns
  */
 
-const InputForm = forwardRef(
+const InputForm = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFormProps>(
   (
     {
       className = '',

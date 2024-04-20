@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { ForwardedRef, useState } from 'react';
+import React, { ForwardedRef } from 'react';
 
 import styles from '@/components/common/Input/Input.module.scss';
 
@@ -14,31 +14,32 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement | HTMLTe
 
 const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
   ({ className = '', invalid = false, textarea = false, formatter, ...rest }: InputProps, ref) => {
+    const { value, onChange, ...restProps } = rest;
+
     const inputClasses = classNames(styles.defaultInput, invalid && styles.invalid, className);
-
-    const [numValue, setNumValue] = useState('');
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (formatter) {
-        const { value } = e.target;
-        const formattedNumber = formatter(value);
-        setNumValue(formattedNumber);
-      }
-    };
 
     if (textarea) {
       return <textarea className={inputClasses} ref={ref as ForwardedRef<HTMLTextAreaElement>} {...rest} />;
     }
 
-    if (formatter) {
+    if (formatter && onChange) {
       return (
         <input
           className={inputClasses}
           ref={ref as ForwardedRef<HTMLInputElement>}
           type="text"
-          value={numValue}
-          onChange={handleChange}
-          {...rest}
+          value={value}
+          onChange={(e) => {
+            const newEvent = {
+              ...e,
+              target: {
+                ...e.target,
+                value: formatter(e.target.value),
+              },
+            };
+            onChange(newEvent);
+          }}
+          {...restProps}
         />
       );
     }
