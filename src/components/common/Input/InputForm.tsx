@@ -2,12 +2,10 @@ import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
+import FieldLabel from '@/components/common/Input/FieldLabel';
 import Input from '@/components/common/Input/Input';
+import InputContainer from '@/components/common/Input/InputContainer';
 import styles from '@/components/common/Input/InputForm.module.scss';
-
-import ErrorMessage from './ErrorMessage';
-import FieldLabel from './FieldLabel';
-import Label from './Label';
 
 interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   className?: string;
@@ -54,7 +52,6 @@ export default function InputForm({
   const fieldLabelRef = useRef<HTMLSpanElement>(null);
 
   const classes = {
-    inputFormContainer: classNames(styles.inputFormContainer, className),
     inputFieldContainer: classNames(styles.inputFieldContainer),
     inputField: classNames(fieldLabel && `paddingRight: ${inputFieldPaddingRight}`),
   };
@@ -66,10 +63,7 @@ export default function InputForm({
   }, [fieldLabel]);
 
   return (
-    <div className={classes.inputFormContainer}>
-      <Label htmlFor={label} required={required}>
-        {label}
-      </Label>
+    <InputContainer className={className} label={label} required={required} errorMessage={errorMessage}>
       <div className={classes.inputFieldContainer}>
         <Input
           style={{ paddingRight: inputFieldPaddingRight }}
@@ -82,7 +76,6 @@ export default function InputForm({
         />
         <FieldLabel ref={fieldLabelRef}>{fieldLabel}</FieldLabel>
       </div>
-      <ErrorMessage>{errorMessage}</ErrorMessage>
-    </div>
+    </InputContainer>
   );
 }
