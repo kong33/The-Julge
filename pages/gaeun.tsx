@@ -1,7 +1,6 @@
 import { useState, MouseEventHandler, useEffect } from 'react';
 
 import Filter from '@/components/feature/Filter/Filter';
-import './index.module.scss';
 import { addressList } from '@/libs/constants';
 import useFilterOutsideClick from '@/libs/hooks/useOutsideClick';
 
