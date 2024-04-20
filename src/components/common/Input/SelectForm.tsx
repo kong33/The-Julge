@@ -1,22 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import classNames from 'classnames';
-import React from 'react';
-import { ControllerRenderProps } from 'react-hook-form';
-import Select, { components } from 'react-select';
+import React, { ForwardedRef, forwardRef } from 'react';
+import Select, { GroupBase, SelectInstance, components } from 'react-select';
 
 import styles from '@/components/common/Input/SelectForm.module.scss';
 import { ReactComponent as DropdownSvg } from '@/public/svgs/dropdown.svg';
-
-type IFormInput = {
-  selection: { label: string; value: string };
-};
 
 interface SelectFormProps extends React.ComponentProps<typeof Select> {
   className?: string;
   size?: 'large' | 'small';
   instanceId: string;
   optionList: string[];
-  field: ControllerRenderProps<IFormInput, 'selection'>;
 }
 
 const selectStyles = {
@@ -33,7 +27,7 @@ const selectStyles = {
   }),
   singleValue: (provided: any) => ({
     ...provided,
-    fontFamily: 'Spoqa Han Sans Neo',
+    fontFamily: 'SpoqaHanSansNeo-Regular',
     fontSize: '1.6rem',
     fontWeight: '400',
     lineHeight: '2.6rem',
@@ -43,7 +37,7 @@ const selectStyles = {
     ...provided,
     marginTop: '0.8rem',
     textAlign: 'center',
-    fontFamily: 'Spoqa Han Sans Neo',
+    fontFamily: 'SpoqaHanSansNeo-Regular',
     fontSize: '1.4rem',
     fontWeight: '400',
     lineHeight: '2.2rem',
@@ -81,7 +75,7 @@ const selectStyles = {
   }),
   placeholder: (provided: any) => ({
     ...provided,
-    fontFamily: 'Spoqa Han Sans Neo',
+    fontFamily: 'SpoqaHanSansNeo-Regular',
     fontSize: '1.6rem',
     fontWeight: '400',
     lineHeight: '2.6rem',
@@ -135,32 +129,27 @@ function DropdownIndicator(props: any) {
  * @param size large | small; 드롭다운 사이즈입니다. 기본값=large
  * @param instanceId string; 렌더링 시 요구되는 고유한 id입니다. react-select 요구사항입니다.
  * @param optionList string[]; 옵션 리스트입니다.
- * @param field react-hook-form의 Controller에 대응됩니다.
  */
 
-export default function SelectForm({
-  className = '',
-  size = 'large',
-  instanceId,
-  optionList,
-  field,
-  ...rest
-}: SelectFormProps) {
-  const selectOptionList = optionList.map((option) => ({ value: option, label: option }));
+const SelectForm = forwardRef<ForwardedRef<Select>, SelectFormProps>(
+  ({ className = '', size = 'large', instanceId, optionList, ...field }: SelectFormProps, ref) => {
+    const selectOptionList = optionList.map((option) => ({ value: option, label: option }));
 
-  const selectFormClasses = classNames(styles.selectForm, className);
+    const selectFormClasses = classNames(styles.selectForm, className);
 
-  return (
-    <Select
-      className={selectFormClasses}
-      {...field}
-      instanceId={instanceId}
-      options={selectOptionList}
-      styles={size === 'small' ? selectSmallStyle : selectStyles}
-      components={{ DropdownIndicator }}
-      onChange={(value) => field.onChange(value)}
-      isSearchable={false}
-      {...rest}
-    />
-  );
-}
+    return (
+      <Select
+        className={selectFormClasses}
+        instanceId={instanceId}
+        options={selectOptionList}
+        styles={size === 'small' ? selectSmallStyle : selectStyles}
+        components={{ DropdownIndicator }}
+        isSearchable={false}
+        ref={ref as ForwardedRef<SelectInstance<unknown, boolean, GroupBase<unknown>>>}
+        {...field}
+      />
+    );
+  }
+);
+
+export default SelectForm;
