@@ -2,8 +2,8 @@ import { MouseEventHandler, RefObject, Dispatch, SetStateAction } from 'react';
 
 import Badge from '@/components/common/Badge/Badge';
 import Button from '@/components/common/Button';
-import ScrollMenu from '@/components/common/ScrollMenu/ScrollMenu';
 import styles from '@/components/feature/Filter/Filter.module.scss';
+import ScrollMenu from '@/components/feature/Filter/ScrollMenu/ScrollMenu';
 import { ReactComponent as CloseButton } from '@/public/svgs/closeButton.svg';
 
 type FilterProps = {
