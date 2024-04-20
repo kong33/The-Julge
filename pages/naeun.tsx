@@ -1,47 +1,55 @@
+import { ReactElement, useState } from 'react';
+
 import Modal from '@/components/Modal/Modal';
-import Modals from '@/components/Modal/ModalGroup';
+import ModalGroup from '@/components/Modal/ModalGroup';
 
 function Naeun() {
   const handleClick = () => {
-    console.log(`버튼 클릭함!!!`);
+    console.log(`모달내부에 신청취소 혹은 승인 취소 버튼 클릭함!!!`);
   };
+  const a = true;
+  // 조건에 따라 다른 모달이 떠야할 때
+  const [openModal, setOpenModal] = useState<ReactElement | null>(null);
+
+  const modalList = {
+    modal1: <Modal.Error>에러가 뜹니다!</Modal.Error>,
+    modal2: <Modal.Check>2</Modal.Check>,
+    modal3: <Modal.Select buttonClick={handleClick}>3</Modal.Select>,
+    modal4: <Modal.Select buttonClick={handleClick}>4</Modal.Select>,
+  };
+
+  const onClick1 = () => {
+    if (a) {
+      setOpenModal(modalList.modal1);
+    }
+    if (!a) {
+      setOpenModal(modalList.modal2);
+    }
+  };
+
+  // 서로 다른 위치의 버튼 모두 모달이 필요할 때 root를 선언해야함!!
   return (
     <div>
       {/* 모달선언 */}
-      <Modals.Root>
-        {/* 모달이 실행되는 버튼 | childen으로 되어있기에 태그를 사용할 수 있음 */}
-        {/* ex) <Modals.Trigger><Button>에러버튼</Button></Modals.Trigger>  */}
-        <Modals.Trigger>에러버튼</Modals.Trigger>
-        {/* 조건부를 달 수 있음 | content는 꼭 실행되지 않아도 가능 */}
-        <Modals.Content>
-          <Modal types="error">내 프로필을 먼저 등록해주세요.</Modal>
-        </Modals.Content>
-      </Modals.Root>
+      <ModalGroup.Trigger>
+        <button type="button" onClick={onClick1}>
+          버튼1
+        </button>
+      </ModalGroup.Trigger>
+      <ModalGroup.Content>{openModal}</ModalGroup.Content>
 
-      <Modals.Root>
-        <Modals.Trigger>체크버튼</Modals.Trigger>
-        <Modals.Content>
-          <Modal types="check">비밀번호가 일치하지 않습니다.</Modal>
-        </Modals.Content>
-      </Modals.Root>
+      <div>asdfadsf</div>
 
-      <Modals.Root>
-        <Modals.Trigger>선택버튼1</Modals.Trigger>
-        <Modals.Content>
-          <Modal types="select" buttonType="user" buttonClick={handleClick}>
-            신청을 취소하시겠어요?
-          </Modal>
-        </Modals.Content>
-      </Modals.Root>
-
-      <Modals.Root>
-        <Modals.Trigger>선택버튼2</Modals.Trigger>
-        <Modals.Content>
-          <Modal types="select" buttonType="ceo" buttonClick={handleClick}>
-            신청을 승인하시겠어요?
-          </Modal>
-        </Modals.Content>
-      </Modals.Root>
+      <ModalGroup.Root>
+        <ModalGroup.Trigger>
+          <button type="button" onClick={onClick1}>
+            버튼2
+          </button>
+        </ModalGroup.Trigger>
+        <ModalGroup.Content>
+          <Modal.Select buttonClick={handleClick}>3</Modal.Select>
+        </ModalGroup.Content>
+      </ModalGroup.Root>
     </div>
   );
 }

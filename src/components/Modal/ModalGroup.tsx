@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useRef, useState } from 'react';
 
+import Portal from '@/components/Modal/Portal';
 import useOnClickOutside from '@/libs/hooks/useOnClickOutside';
-
-import Portal from './Portal';
 
 type ModalProps = {
   isOpen: boolean;
@@ -35,11 +34,8 @@ function ModalRoot({ children }: { children: React.ReactNode }) {
 
 function ModalTrigger({ children }: { children: React.ReactNode }) {
   const { toggle } = useModal();
-  return (
-    <button type="button" onClick={toggle}>
-      {children}
-    </button>
-  );
+  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+  return <div onClick={toggle}>{children}</div>;
 }
 
 function ModalContent({ children }: { children: React.ReactNode }) {
@@ -47,13 +43,15 @@ function ModalContent({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(ref, () => close());
-  return isOpen ? (
-    <Portal>
-      <div ref={ref}>{children}</div>
-    </Portal>
-  ) : (
+  return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    <></>
+    <>
+      {isOpen && (
+        <Portal>
+          <div ref={ref}>{children}</div>
+        </Portal>
+      )}
+    </>
   );
 }
 

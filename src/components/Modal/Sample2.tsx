@@ -3,18 +3,18 @@ import { ReactElement, useState } from 'react';
 import Modal from '@/components/Modal/Modal';
 import Modals from '@/components/Modal/ModalGroup';
 
-// 사용법 sample1
-// 버튼마다 다른 모달이 뜨며, 조건에 따라 각각 다른 모달이 뜨는 경우
-function Sample() {
+// 사용법 sample2
+// 조건에 따라 각각 다른 모달이 뜨는 경우
+function Sample2() {
   const handleClick = () => {
     console.log(`모달내부에 신청취소 혹은 승인 취소 버튼 클릭함!!!`);
   };
   const a = true;
-  const b = true;
+  // 조건에 따라 다른 모달이 떠야할 때
   const [openModal, setOpenModal] = useState<ReactElement | null>(null);
 
   const modalList = {
-    modal1: <Modal.Error>1</Modal.Error>,
+    modal1: <Modal.Error>에러가 뜹니다!</Modal.Error>,
     modal2: <Modal.Check>2</Modal.Check>,
     modal3: <Modal.Select buttonClick={handleClick}>3</Modal.Select>,
     modal4: <Modal.Select buttonClick={handleClick}>4</Modal.Select>,
@@ -29,15 +29,6 @@ function Sample() {
     }
   };
 
-  const onClick2 = () => {
-    if (b) {
-      setOpenModal(modalList.modal3);
-    }
-    if (!b) {
-      setOpenModal(modalList.modal4);
-    }
-  };
-
   return (
     <div>
       {/* 모달선언 */}
@@ -45,13 +36,18 @@ function Sample() {
         <button type="button" onClick={onClick1}>
           버튼1
         </button>
-        <button type="button" onClick={onClick2}>
+      </Modals.Trigger>
+      <Modals.Content>{openModal}</Modals.Content>
+      <Modals.Trigger>
+        <button type="button" onClick={onClick1}>
           버튼2
         </button>
       </Modals.Trigger>
-      <Modals.Content>{openModal}</Modals.Content>
+      <Modals.Content>
+        <Modal.Select buttonClick={handleClick}>3</Modal.Select>
+      </Modals.Content>
     </div>
   );
 }
 
-export default Sample;
+export default Sample2;

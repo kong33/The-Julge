@@ -1,17 +1,16 @@
-import Image from 'next/image';
 import React from 'react';
 
 import styles from '@/components/Modal/ErrorModal/ErrorModal.module.scss';
+import { useModal } from '@/components/Modal/ModalGroup';
 import Button from '@/components/common/Button';
-
-import { useModal } from '../ModalGroup';
+import { ReactComponent as Warning } from '@/public/svgs/warning.svg';
 
 function ErrorModal({ children }: { children: React.ReactNode }) {
   const { close } = useModal();
   return (
     <div className={styles.contents}>
       <div className={styles.txtBox}>
-        <Image src="/svgs/warning.svg" alt="check" width={24} height={24} />
+        <Warning />
         <p>{children}</p>
       </div>
       <div className={styles.btBox}>

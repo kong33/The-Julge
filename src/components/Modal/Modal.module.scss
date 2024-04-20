@@ -10,11 +10,11 @@
   transform: translate(-50%, -50%);
 }
 .largeModal {
-  width: 54rem;
-  height: 25rem;
-  @include mobile {
-    width: 30rem;
-    height: 22rem;
+  width: 30rem;
+  height: 22rem;
+  @include tablet {
+    width: 54rem;
+    height: 25rem;
   }
 }
 
