@@ -1,10 +1,10 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 
-import '@/styles/reset.scss';
-
 import AsyncBoundary from '@/components/common/AsyncBoundary';
+import { FilterProvider } from '@/components/feature/Filter/Filter';
 import ModalGroup from '@/components/feature/Modal/ModalGroup';
+import '@/styles/reset.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
@@ -15,7 +15,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <AsyncBoundary>
       <QueryClientProvider client={queryClient}>
         <ModalGroup.Root>
-          <Component {...pageProps} />
+          <FilterProvider>
+            <Component {...pageProps} />
+          </FilterProvider>
         </ModalGroup.Root>
       </QueryClientProvider>
     </AsyncBoundary>
