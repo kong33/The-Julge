@@ -1,5 +1,6 @@
 import { useState, MouseEventHandler, useEffect } from 'react';
 
+import { Address as AddressType } from '@/apis/common.type';
 import Filter from '@/components/feature/Filter/Filter';
 import { addressList } from '@/libs/constants';
 import useFilterOutsideClick from '@/libs/hooks/useOutsideClick';
@@ -9,7 +10,7 @@ export default function Gaeun() {
   // filter를 보일지 말 지 state로 관리
   const [openFilter, setOpenFilter] = useState(false);
   // clickedAddress 필수로 관리 해주세요 (prop으로 넘김) => 시작일과 금액도 같이 객체로 관리해주세요
-  const [clickedAddress, setClickedAddress] = useState<string[]>([]);
+  const [clickedAddress, setClickedAddress] = useState<AddressType[]>([]);
 
   // useFilterOutsideClick 커스텀 훅에서 다음을 가져와주세요.
   const { isOutsideClicked, setIsOutsideClicked, filterRef } = useFilterOutsideClick();
