@@ -1,9 +1,9 @@
 import React from 'react';
 
-import styles from '@/components/Modal/ErrorModal/ErrorModal.module.scss';
-import { childrenProps } from '@/components/Modal/Modal.type';
-import { useModal } from '@/components/Modal/ModalGroup';
 import Button from '@/components/common/Button';
+import styles from '@/components/feature/Modal/ErrorModal/ErrorModal.module.scss';
+import { childrenProps } from '@/components/feature/Modal/Modal.type';
+import { useModal } from '@/components/feature/Modal/ModalGroup';
 import { ReactComponent as Warning } from '@/public/svgs/warning.svg';
 
 function ErrorModal({ children }: childrenProps) {

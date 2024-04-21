@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useRef, useState } from 'react';
 
-import { ModalGroupProps, childrenProps } from '@/components/Modal/Modal.type';
-import Portal from '@/components/Modal/Portal';
+import { ModalGroupProps, childrenProps } from '@/components/feature/Modal/Modal.type';
+import Portal from '@/components/feature/Modal/Portal';
 import useOnClickOutside from '@/libs/hooks/useOnClickOutside';
 
 const ModalContext = createContext<ModalGroupProps | undefined>(undefined);

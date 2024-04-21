@@ -21,6 +21,6 @@ export default function usePagination(totalItems: number, itemsPerPage: number) 
     totalPages,
     onPageChange,
     startIndex,
-    endIndex,
+    endIndex
   };
 }

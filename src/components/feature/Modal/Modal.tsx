@@ -1,10 +1,10 @@
 import React from 'react';
 
-import CheckModal from '@/components/Modal/CheckModal/CheckModal';
-import ErrorModal from '@/components/Modal/ErrorModal/ErrorModal';
-import styles from '@/components/Modal/Modal.module.scss';
-import { childrenProps, selectProps } from '@/components/Modal/Modal.type';
-import SelectModal from '@/components/Modal/SelectModal/SelectModal';
+import CheckModal from '@/components/feature/Modal/CheckModal/CheckModal';
+import ErrorModal from '@/components/feature/Modal/ErrorModal/ErrorModal';
+import styles from '@/components/feature/Modal/Modal.module.scss';
+import { childrenProps, selectProps } from '@/components/feature/Modal/Modal.type';
+import SelectModal from '@/components/feature/Modal/SelectModal/SelectModal';
 
 /**
  * Modal 컴포넌트

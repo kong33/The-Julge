@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react';
 
-import Modal from '@/components/Modal/Modal';
-import ModalGroup from '@/components/Modal/ModalGroup';
+import Modal from '@/components/feature/Modal/Modal';
+import ModalGroup from '@/components/feature/Modal/ModalGroup';
 
 function Naeun() {
   const handleClick = () => {

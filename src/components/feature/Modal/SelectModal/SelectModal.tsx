@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { SelectModalProps } from '@/components/Modal/Modal.type';
-import { useModal } from '@/components/Modal/ModalGroup';
-import styles from '@/components/Modal/SelectModal/SelectModal.module.scss';
 import Button from '@/components/common/Button';
+import { SelectModalProps } from '@/components/feature/Modal/Modal.type';
+import { useModal } from '@/components/feature/Modal/ModalGroup';
+import styles from '@/components/feature/Modal/SelectModal/SelectModal.module.scss';
 import { ReactComponent as Check } from '@/public/svgs/modalcheck.svg';
 
 function SelectModal({ buttonClick, children }: SelectModalProps) {

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import styles from '@/components/Modal/CheckModal/CheckModal.module.scss';
-import { childrenProps } from '@/components/Modal/Modal.type';
-import { useModal } from '@/components/Modal/ModalGroup';
 import Button from '@/components/common/Button';
+import styles from '@/components/feature/Modal/CheckModal/CheckModal.module.scss';
+import { childrenProps } from '@/components/feature/Modal/Modal.type';
+import { useModal } from '@/components/feature/Modal/ModalGroup';
 
 function CheckModal({ children }: childrenProps) {
   const { close } = useModal();

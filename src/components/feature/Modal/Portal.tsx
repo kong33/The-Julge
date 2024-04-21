@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 
-import { childrenProps } from '@/components/Modal/Modal.type';
-import styles from '@/components/Modal/Portal.module.scss';
+import styles from '@/components//feature/Modal/Portal.module.scss';
+import { childrenProps } from '@/components/feature/Modal/Modal.type';
 
 function Potal({ children }: childrenProps) {
   // eslint-disable-next-line react/jsx-no-useless-fragment
