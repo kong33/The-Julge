@@ -30,7 +30,7 @@ export default function Post({
   imageUrl,
   closed,
   shopId,
-  noticeId,
+  noticeId
 }: PostProps) {
   const formatDuration = calcTimeWithWorkHours(duration, workhour);
   const formatTagColor = calcTagColor(hourlyPay, originalHourlyPay);

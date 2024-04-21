@@ -18,7 +18,7 @@ export default function PostTag({ isCardItem, isShowTag, changeRate, closed }: P
     !closed && isShowTag === 'red' ? styles.red : '',
     !closed && isShowTag === 'orange' ? styles.orange : '',
     !closed && isShowTag === undefined ? styles.undefined : '',
-    isCardItem ? styles.isCardItem : '',
+    isCardItem ? styles.isCardItem : ''
   ]
     .filter(Boolean)
     .join(' ');

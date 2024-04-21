@@ -6,7 +6,7 @@ import PostList from '../src/components/common/PostList';
 
 const CARD_TAGS = {
   Red: 'red',
-  Orange: 'orange',
+  Orange: 'orange'
 } as const;
 
 const deadButton = (
@@ -38,7 +38,7 @@ const mockPosts = [
     changeRate: 10,
     isShowTag: CARD_TAGS.Red,
     shopId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
-    noticeId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
+    noticeId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9'
   },
   {
     id: '2',
@@ -53,7 +53,7 @@ const mockPosts = [
     changeRate: 10,
     isShowTag: CARD_TAGS.Red,
     shopId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
-    noticeId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
+    noticeId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9'
   },
   {
     id: '3',
@@ -68,7 +68,7 @@ const mockPosts = [
     changeRate: 10,
     isShowTag: CARD_TAGS.Red,
     shopId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
-    noticeId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
+    noticeId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9'
   },
   {
     id: '4',
@@ -83,7 +83,7 @@ const mockPosts = [
     changeRate: 10,
     isShowTag: CARD_TAGS.Red,
     shopId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
-    noticeId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
+    noticeId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9'
   },
   {
     id: '5',
@@ -98,8 +98,8 @@ const mockPosts = [
     changeRate: 10,
     isShowTag: CARD_TAGS.Red,
     shopId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
-    noticeId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
-  },
+    noticeId: '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9'
+  }
 ];
 
 export default function Page() {
