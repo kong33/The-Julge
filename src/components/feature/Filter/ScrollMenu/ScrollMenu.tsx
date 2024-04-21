@@ -1,8 +1,10 @@
 import { MouseEventHandler } from 'react';
 
+import { Address as AddressType } from '@/apis/common.type';
+
 import styles from './ScrollMenu.module.scss';
 
-export default function ScrollMenu({ handleClick, list }: { handleClick: MouseEventHandler; list: string[] }) {
+export default function ScrollMenu({ handleClick, list }: { handleClick: MouseEventHandler; list: AddressType[] }) {
   return (
     <div className={styles.addressListWrapper}>
       {list.map((item) => (
