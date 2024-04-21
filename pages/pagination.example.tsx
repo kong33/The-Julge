@@ -35,8 +35,8 @@ export async function getStaticProps() {
   return {
     props: {
       data,
-      totalItems,
-    },
+      totalItems
+    }
   };
 }
 export default PaginationSample;
