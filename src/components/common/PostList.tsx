@@ -22,17 +22,17 @@ type PostData = {
   noticeId: string;
 };
 
-interface PostListProps {
+type PostListProps = {
   posts: PostData[];
   isHome?: boolean;
   title?: string;
   filterElement?: React.ReactNode;
   keyword?: string;
-}
+};
 
 function PostList({ posts, isHome, title, filterElement, keyword }: PostListProps) {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.postListWrapper}>
       {(title || filterElement) && (
         <div className={isHome ? styles.titleHeaderHome : styles.titleHeader}>
           {title && (

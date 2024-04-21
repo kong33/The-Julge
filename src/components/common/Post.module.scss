@@ -52,7 +52,7 @@
   .cardHeader {
     position: relative;
     width: 100%;
-    height: 160px;
+    height: 16rem;
 
     @include pc-first-mobile {
       height: 8.4rem;
@@ -106,7 +106,7 @@
       @include sopoqa-14-400;
       color: #7d7986;
       flex: 1 0 0;
-      line-height: 16px;
+      line-height: 1.6rem;
       word-break: keep-all;
 
       @include pc-first-mobile {
@@ -133,7 +133,7 @@
       gap: 0.6rem;
       @include sopoqa-14-400;
       color: #7d7986;
-      line-height: 16px;
+      line-height: 1.6rem;
 
       .address {
         &.closed {

@@ -5,7 +5,7 @@
 $card-size-large: 31.2rem;
 $card-size-small: 17.1rem;
 
-.wrapper {
+.postListWrapper {
   @include flexbox(column, flex-start, flex-start);
   max-width: 96.4rem;
   gap: 3.2rem;
@@ -24,28 +24,27 @@ $card-size-small: 17.1rem;
 .titleHeader {
   @include flexbox(row, space-between, flex-start);
   width: 100%;
+
   @include pc-first-tablet {
     &.isHome {
       padding: 0 3.2rem;
     }
   }
   @include pc-first-mobile {
+    @include flexbox(column, flex-start, flex-start);
+    gap: 1.2rem;
+    padding: 0 0.6rem;
     &.isHome {
+      gap: 1.2rem;
       padding: 0 1.2rem;
     }
-  }
-  @include pc-first-mobile {
-    @include flexbox(column, flex-start, flex-start);
-    gap: 1.6rem;
-    padding: 0 0.6rem;
   }
 }
 
 .title {
+  @include sopoqa-28-700;
   color: $color-black;
-  font-size: 2.8rem;
-  font-weight: 700;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.02rem;
   @include pc-first-mobile {
     font-size: 2rem;
   }
