@@ -59,7 +59,7 @@ function ModalContent({ children }: childrenProps) {
 const ModalGroup = {
   Root: ModalRoot,
   Trigger: ModalTrigger,
-  Content: ModalContent,
+  Content: ModalContent
 };
 
 export default ModalGroup;

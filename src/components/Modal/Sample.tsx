@@ -17,7 +17,7 @@ function Sample() {
     modal1: <Modal.Error>1</Modal.Error>,
     modal2: <Modal.Check>2</Modal.Check>,
     modal3: <Modal.Select buttonClick={handleClick}>3</Modal.Select>,
-    modal4: <Modal.Select buttonClick={handleClick}>4</Modal.Select>,
+    modal4: <Modal.Select buttonClick={handleClick}>4</Modal.Select>
   };
 
   const onClick1 = () => {

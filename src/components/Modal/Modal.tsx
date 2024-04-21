@@ -39,7 +39,7 @@ function SelectContent({ children, buttonClick }: selectProps) {
 const Modal = {
   Error: ErrorContent,
   Check: CheckContent,
-  Select: SelectContent,
+  Select: SelectContent
 };
 
 export default Modal;

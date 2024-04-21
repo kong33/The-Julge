@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 
 import '@/styles/reset.scss';
 
+import ModalGroup from '@/components/Modal/ModalGroup';
 import AsyncBoundary from '@/components/common/AsyncBoundary';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -13,7 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <AsyncBoundary>
       <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
+        <ModalGroup.Root>
+          <Component {...pageProps} />
+        </ModalGroup.Root>
       </QueryClientProvider>
     </AsyncBoundary>
   );

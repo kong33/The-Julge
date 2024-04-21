@@ -15,7 +15,7 @@ function Naeun() {
     modal1: <Modal.Error>에러가 뜹니다!</Modal.Error>,
     modal2: <Modal.Check>2</Modal.Check>,
     modal3: <Modal.Select buttonClick={handleClick}>3</Modal.Select>,
-    modal4: <Modal.Select buttonClick={handleClick}>4</Modal.Select>,
+    modal4: <Modal.Select buttonClick={handleClick}>4</Modal.Select>
   };
 
   const onClick1 = () => {
@@ -37,8 +37,6 @@ function Naeun() {
         </button>
       </ModalGroup.Trigger>
       <ModalGroup.Content>{openModal}</ModalGroup.Content>
-
-      <div>asdfadsf</div>
 
       <ModalGroup.Root>
         <ModalGroup.Trigger>
