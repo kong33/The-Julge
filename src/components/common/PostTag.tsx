@@ -5,20 +5,18 @@ import caclTagText, { calcTagTextProps } from '@/utils/calcTagText';
 import styles from './PostTag.module.scss';
 
 type PostTagprops = {
-  isCardItem?: boolean;
   isShowTag: calcTagTextProps;
   changeRate: undefined | number;
   closed: boolean;
 };
 
-export default function PostTag({ isCardItem, isShowTag, changeRate, closed }: PostTagprops) {
+export default function PostTag({ isShowTag, changeRate, closed }: PostTagprops) {
   const TagWrapperClasses = [
     styles.TagWrapper,
     closed ? styles.closed : '',
     !closed && isShowTag === 'red' ? styles.red : '',
     !closed && isShowTag === 'orange' ? styles.orange : '',
-    !closed && isShowTag === undefined ? styles.undefined : '',
-    isCardItem ? styles.isCardItem : ''
+    !closed && isShowTag === undefined ? styles.undefined : ''
   ]
     .filter(Boolean)
     .join(' ');

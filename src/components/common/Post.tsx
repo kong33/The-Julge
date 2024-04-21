@@ -84,7 +84,7 @@ export default function Post({
           <p className={closed ? `${styles.hourlyPay} ${styles.closed}` : styles.hourlyPay}>
             {`${hourlyPay.toLocaleString()}원`}
           </p>
-          <PostTag isCardItem isShowTag={formatTagColor} changeRate={formatRate} closed={closed} />
+          <PostTag isShowTag={formatTagColor} changeRate={formatRate} closed={closed} />
         </div>
       </section>
     </div>
