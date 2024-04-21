@@ -13,11 +13,11 @@
   height: 7rem;
   padding: 1.5rem 0;
 
-  @include tablet {
+  @include pc-first-tablet {
     padding: 1.5rem 3.2rem;
   }
 
-  @include mobile {
+  @include pc-first-mobile {
     padding: 1.5rem 3.2rem;
     height: 10.2rem;
   }
@@ -28,7 +28,7 @@
   margin: 0 auto;
   @include flexbox($justify: flex-start);
 
-  @include mobile {
+  @include pc-first-mobile {
     display: grid;
     grid-row-gap: 1.5rem;
     grid-template-areas:
@@ -45,7 +45,7 @@
   align-items: center;
   margin-right: 4rem;
 
-  @include mobile {
+  @include pc-first-mobile {
     height: 3rem;
     width: 8.4rem;
   }
@@ -59,7 +59,7 @@
   margin-right: auto;
   grid-area: gnbSearchbar;
 
-  @include mobile {
+  @include pc-first-mobile {
     margin-right: 0;
   }
 }

@@ -7,7 +7,7 @@
   color: $color-black;
 }
 
-@include mobile {
+@include pc-first-mobile {
   .menu {
     @include sopoqa-14-400;
     font-weight: 700;

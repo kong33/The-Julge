@@ -10,20 +10,20 @@ type UserData = {
 const mockData: UserData[] = [
   {
     userType: 'employee',
-    NotiStatus: true,
+    NotiStatus: true
   },
   {
     userType: 'employer',
-    NotiStatus: false,
+    NotiStatus: false
   },
   {
     userType: 'guest',
-    NotiStatus: false,
-  },
+    NotiStatus: false
+  }
 ];
 
 export default function Page() {
-  const userData = mockData[2];
+  const userData = mockData[0];
 
   return (
     <div>
