@@ -1,11 +1,11 @@
 import React from 'react';
 
 import styles from '@/components/Modal/CheckModal/CheckModal.module.scss';
+import { childrenProps } from '@/components/Modal/Modal.type';
+import { useModal } from '@/components/Modal/ModalGroup';
 import Button from '@/components/common/Button';
 
-import { useModal } from '../ModalGroup';
-
-function CheckModal({ children }: { children: React.ReactNode }) {
+function CheckModal({ children }: childrenProps) {
   const { close } = useModal();
   return (
     <div className={styles.contents}>

@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react';
 
 import Modal from '@/components/Modal/Modal';
-import Modals from '@/components/Modal/ModalGroup';
+import ModalGroup from '@/components/Modal/ModalGroup';
 
 // 사용법 sample2
 // 조건에 따라 각각 다른 모달이 뜨는 경우
@@ -32,20 +32,20 @@ function Sample2() {
   return (
     <div>
       {/* 모달선언 */}
-      <Modals.Trigger>
+      <ModalGroup.Trigger>
         <button type="button" onClick={onClick1}>
           버튼1
         </button>
-      </Modals.Trigger>
-      <Modals.Content>{openModal}</Modals.Content>
-      <Modals.Trigger>
+      </ModalGroup.Trigger>
+      <ModalGroup.Content>{openModal}</ModalGroup.Content>
+      <ModalGroup.Trigger>
         <button type="button" onClick={onClick1}>
           버튼2
         </button>
-      </Modals.Trigger>
-      <Modals.Content>
+      </ModalGroup.Trigger>
+      <ModalGroup.Content>
         <Modal.Select buttonClick={handleClick}>3</Modal.Select>
-      </Modals.Content>
+      </ModalGroup.Content>
     </div>
   );
 }

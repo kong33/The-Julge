@@ -1,22 +1,17 @@
 import React, { createContext, useContext, useRef, useState } from 'react';
 
+import { ModalGroupProps, childrenProps } from '@/components/Modal/Modal.type';
 import Portal from '@/components/Modal/Portal';
 import useOnClickOutside from '@/libs/hooks/useOnClickOutside';
 
-type ModalProps = {
-  isOpen: boolean;
-  close: () => void;
-  toggle: () => void;
-};
-
-const ModalContext = createContext<ModalProps | undefined>(undefined);
+const ModalContext = createContext<ModalGroupProps | undefined>(undefined);
 export const useModal = () => {
   const context = useContext(ModalContext);
   if (!context) throw new Error('root로 감싸기');
   return context;
 };
 
-function ModalProvider({ children }: { children: React.ReactNode }) {
+function ModalProvider({ children }: childrenProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const close = () => setIsOpen(false);
@@ -28,17 +23,17 @@ function ModalProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-function ModalRoot({ children }: { children: React.ReactNode }) {
+function ModalRoot({ children }: childrenProps) {
   return <ModalProvider>{children}</ModalProvider>;
 }
 
-function ModalTrigger({ children }: { children: React.ReactNode }) {
+function ModalTrigger({ children }: childrenProps) {
   const { toggle } = useModal();
   // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
   return <div onClick={toggle}>{children}</div>;
 }
 
-function ModalContent({ children }: { children: React.ReactNode }) {
+function ModalContent({ children }: childrenProps) {
   const { isOpen, close } = useModal();
   const ref = useRef<HTMLDivElement>(null);
 

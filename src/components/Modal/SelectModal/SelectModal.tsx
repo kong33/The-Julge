@@ -1,14 +1,11 @@
 import React from 'react';
 
+import { SelectModalProps } from '@/components/Modal/Modal.type';
 import { useModal } from '@/components/Modal/ModalGroup';
 import styles from '@/components/Modal/SelectModal/SelectModal.module.scss';
 import Button from '@/components/common/Button';
 import { ReactComponent as Check } from '@/public/svgs/modalcheck.svg';
 
-type SelectModalProps = {
-  children: React.ReactNode;
-  buttonClick: () => void;
-};
 function SelectModal({ buttonClick, children }: SelectModalProps) {
   const { close } = useModal();
   return (

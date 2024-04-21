@@ -3,6 +3,7 @@ import React from 'react';
 import CheckModal from '@/components/Modal/CheckModal/CheckModal';
 import ErrorModal from '@/components/Modal/ErrorModal/ErrorModal';
 import styles from '@/components/Modal/Modal.module.scss';
+import { childrenProps, selectProps } from '@/components/Modal/Modal.type';
 import SelectModal from '@/components/Modal/SelectModal/SelectModal';
 
 /**
@@ -11,10 +12,7 @@ import SelectModal from '@/components/Modal/SelectModal/SelectModal';
  * @param types 모달 타입; error | check | select
  * @param buttonClick 모달 내부의 button 클릭시 이벤트 ; () => void
  */
-type errorProps = {
-  children: React.ReactNode;
-};
-function ErrorContent({ children }: errorProps) {
+function ErrorContent({ children }: childrenProps) {
   return (
     <div className={styles.smallModal}>
       <ErrorModal>{children}</ErrorModal>
@@ -22,10 +20,7 @@ function ErrorContent({ children }: errorProps) {
   );
 }
 
-type checkProps = {
-  children: React.ReactNode;
-};
-function CheckContent({ children }: checkProps) {
+function CheckContent({ children }: childrenProps) {
   return (
     <div className={styles.largeModal}>
       <CheckModal>{children}</CheckModal>
@@ -33,10 +28,6 @@ function CheckContent({ children }: checkProps) {
   );
 }
 
-type selectProps = {
-  children: React.ReactNode;
-  buttonClick: () => void;
-};
 function SelectContent({ children, buttonClick }: selectProps) {
   return (
     <div className={styles.smallModal}>
