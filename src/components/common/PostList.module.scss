@@ -9,35 +9,18 @@ $card-size-small: 17.1rem;
   @include flexbox(column, flex-start, flex-start);
   max-width: 96.4rem;
   gap: 3.2rem;
-  @include pc-first-tablet {
-    max-width: 64.2rem;
-  }
   @include pc-first-mobile {
-    max-width: 53.3rem;
     gap: 1.6rem;
-  }
-  @include pc-first-small-mobile {
-    max-width: 35.5rem;
   }
 }
 
 .titleHeader {
   @include flexbox(row, space-between, flex-start);
   width: 100%;
-
-  @include pc-first-tablet {
-    &.isHome {
-      padding: 0 3.2rem;
-    }
-  }
   @include pc-first-mobile {
     @include flexbox(column, flex-start, flex-start);
     gap: 1.2rem;
     padding: 0 0.6rem;
-    &.isHome {
-      gap: 1.2rem;
-      padding: 0 1.2rem;
-    }
   }
 }
 

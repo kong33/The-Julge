@@ -24,17 +24,16 @@ type PostData = {
 
 type PostListProps = {
   posts: PostData[];
-  isHome?: boolean;
   title?: string;
   filterElement?: React.ReactNode;
   keyword?: string;
 };
 
-function PostList({ posts, isHome, title, filterElement, keyword }: PostListProps) {
+function PostList({ posts, title, filterElement, keyword }: PostListProps) {
   return (
     <div className={styles.postListWrapper}>
       {(title || filterElement) && (
-        <div className={isHome ? styles.titleHeaderHome : styles.titleHeader}>
+        <div className={styles.titleHeader}>
           {title && (
             <h2 className={styles.title}>
               <HighlightKeyword text={title} keyword={keyword} className={styles.highlight} />

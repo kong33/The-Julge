@@ -108,7 +108,6 @@ export default function Page() {
       <div>
         <PostList
           posts={mockPosts}
-          isHome={false}
           title="맛집에 대한 공고 목록"
           filterElement={
             <>
