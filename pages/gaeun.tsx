@@ -30,7 +30,7 @@ export default function Gaeun() {
 
   // 다음 handleMenuClick을 선언하고
   const handleMenuClick: MouseEventHandler<HTMLElement> = (e) => {
-    const clickedMenuText = e.currentTarget.textContent;
+    const clickedMenuText = e.currentTarget.textContent as AddressType;
     if (clickedMenuText && !clickedAddress.find((item) => item === clickedMenuText)) {
       setClickedAddress((prev) => [...prev, clickedMenuText]);
     }
