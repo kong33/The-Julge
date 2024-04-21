@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
-import '@/styles/globals.scss';
+import '@/styles/reset.scss';
 
 import AsyncBoundary from '@/components/common/AsyncBoundary';
 
