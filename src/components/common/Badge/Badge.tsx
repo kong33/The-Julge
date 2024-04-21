@@ -1,3 +1,4 @@
+import classNames from 'classnames/bind';
 import { useState } from 'react';
 
 import { ReactComponent as CloseButton } from '@/public/svgs/badgeCloseBtn.svg';
@@ -12,12 +13,15 @@ type BadgeProps = {
 
 export default function Badge({ title, color, closeBtn = false }: BadgeProps) {
   const [isShown, setIsShown] = useState(true);
+  const cn = classNames.bind(styles);
+  const className = cn('container', color, isShown ? styles.show : styles.hide);
+
   const handleCloseButtonClick = () => {
     setIsShown(false);
   };
 
   return (
-    <div className={`${styles.container} ${styles[color]} ${isShown ? styles.show : styles.hide}`}>
+    <div className={className}>
       <p>{title}</p>
       {closeBtn && <CloseButton onClick={handleCloseButtonClick} />}
     </div>

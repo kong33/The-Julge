@@ -18,7 +18,7 @@ export default function Gaeun() {
   useEffect(() => {
     if (isOutsideClicked) {
       setOpenFilter(false);
-      setIsOutsideClicked(false);
+      // setIsOutsideClicked(false);
     }
   }, [isOutsideClicked, setIsOutsideClicked]);
 
