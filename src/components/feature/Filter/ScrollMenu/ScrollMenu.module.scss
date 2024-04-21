@@ -1,0 +1,25 @@
+@import '@/styles/globals.scss';
+
+.addressListWrapper {
+  width: 35rem;
+  height: 25.8rem;
+  overflow: scroll;
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 2rem;
+}
+
+.addressList {
+  @include sopoqa-14-400;
+  flex: 0 0 calc(50% - 1rem);
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  li:hover {
+    background-color: $color-red-10;
+  }
+}
