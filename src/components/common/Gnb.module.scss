@@ -1,0 +1,82 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.gnbContainer {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+}
+
+.gnbWrapper {
+  width: 100%;
+  height: 7rem;
+  padding: 1.5rem 0;
+
+  @include pc-first-tablet {
+    padding: 1.5rem 3.2rem;
+  }
+
+  @include pc-first-mobile {
+    padding: 1.5rem 3.2rem;
+    height: 10.2rem;
+  }
+}
+
+.gnbSection {
+  max-width: 96.4rem;
+  margin: 0 auto;
+  @include flexbox($justify: flex-start);
+
+  @include pc-first-mobile {
+    display: grid;
+    grid-row-gap: 1.5rem;
+    grid-template-areas:
+      'gnbLogo gnbMenu'
+      'gnbSearchbar gnbSearchbar';
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+}
+
+.gnbLogo {
+  grid-area: gnbLogo;
+  display: flex;
+  align-items: center;
+  margin-right: 4rem;
+
+  @include pc-first-mobile {
+    height: 3rem;
+    width: 8.4rem;
+  }
+}
+
+.gnbItem {
+  cursor: pointer;
+}
+
+.gnbSearchbar {
+  margin-right: auto;
+  grid-area: gnbSearchbar;
+
+  @include pc-first-mobile {
+    margin-right: 0;
+  }
+}
+
+.gnbMenu {
+  align-items: center;
+  grid-area: gnbMenu;
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+  margin-right: 0.3rem;
+}
+
+.notification {
+  cursor: pointer;
+}
+
+.notification:hover {
+  opacity: 0.8;
+}

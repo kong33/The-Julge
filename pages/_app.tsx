@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 
 import AsyncBoundary from '@/components/common/AsyncBoundary';
 import { FilterProvider } from '@/components/feature/Filter/FilterContext';
+import ModalGroup from '@/components/feature/Modal/ModalGroup';
 import '@/styles/reset.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -13,9 +14,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <AsyncBoundary>
       <QueryClientProvider client={queryClient}>
-        <FilterProvider>
-          <Component {...pageProps} />
-        </FilterProvider>
+        <ModalGroup.Root>
+          <FilterProvider>
+            <Component {...pageProps} />
+          </FilterProvider>
+        </ModalGroup.Root>
       </QueryClientProvider>
     </AsyncBoundary>
   );
