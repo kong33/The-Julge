@@ -18,7 +18,7 @@ export default function InputContainer({
   label = '',
   required = false,
   errorMessage = '',
-  children,
+  children
 }: InputContainerProps) {
   const inputFormContainer = classNames(styles.inputFormContainer, className);
 

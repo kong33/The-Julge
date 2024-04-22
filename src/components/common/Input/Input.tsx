@@ -34,8 +34,8 @@ const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProp
               ...e,
               target: {
                 ...e.target,
-                value: formatter(e.target.value),
-              },
+                value: formatter(e.target.value)
+              }
             };
             onChange(newEvent);
           }}

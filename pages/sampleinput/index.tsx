@@ -55,7 +55,7 @@ const defaultFormValues = {
   hourlyPay: 0,
   phone: '',
   startsAt: new Date().toISOString(), // api에서 날짜의 기본 포맷은 ISO8601입니다.
-  address: ''
+  address: { value: '서울시 용산구', label: '서울시 용산구' } // SelectForm의 기본값은 {value,label} 객체쌍으로 전달해주세요.
 };
 
 // 폼 검증 객체입니다.

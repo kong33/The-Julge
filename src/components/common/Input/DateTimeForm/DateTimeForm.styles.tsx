@@ -26,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .react-datepicker {
-    z-index: 10000;
+    z-index: 1000;
     border-radius: 0.6rem;
     border: 0.1rem solid #E5E4E7;
     box-shadow: 0 0.4rem 2.5rem 0 rgba(0, 0, 0, 0.10);
