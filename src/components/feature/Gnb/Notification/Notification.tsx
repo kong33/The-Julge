@@ -26,7 +26,7 @@ export default function NotiButton({ NotiStatus }: NotiButtonProps) {
   return (
     <button type="button" className={styles.button} onClick={toggleModal}>
       <Image
-        src={NotiStatus ? '/images/notification-active.svg' : '/images/notification-inactive.svg'}
+        src={NotiStatus ? '/svgs/notification-active.svg' : '/svgs/notification-inactive.svg'}
         alt="알림"
         width={20}
         height={20}

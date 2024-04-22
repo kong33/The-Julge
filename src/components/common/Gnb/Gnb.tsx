@@ -1,16 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
-import styles from './Gnb.module.scss';
-import LogoutMenu from '../feature/Gnb/Logout/Logout';
-import Menu from '../feature/Gnb/Menu/Menu';
-import NotiButton from '../feature/Gnb/Notification/Notification';
-import Searchbar from '../feature/Gnb/Searchbar/Searchbar';
+import styles from '@/components/common/Gnb/Gnb.module.scss';
+import LogoutMenu from '@/components/feature/Gnb/Logout/Logout';
+import Menu from '@/components/feature/Gnb/Menu/Menu';
+import NotiButton from '@/components/feature/Gnb/Notification/Notification';
+import Searchbar from '@/components/feature/Gnb/Searchbar/Searchbar';
 
 type GnbProps = {
-  userType?: 'employee' | 'employer' | 'guest';
-  NotiStatus: boolean;
+  userType?: 'employee' | 'employer' | 'guest' | undefined;
+  // shopId?: string;
 };
 
 /**
@@ -20,14 +19,16 @@ type GnbProps = {
  * @param {boolean} [props.NotiStatus=true] - 알림 상태를 나타내며, true일 경우 알림이 활성
  */
 
-function Gnb({ userType, NotiStatus }: GnbProps) {
+function Gnb({ userType }: GnbProps) {
+  const notiStatus = true;
+
   return (
     <div className={styles.gnbContainer}>
       <div className={styles.gnbWrapper}>
         <div className={styles.gnbSection}>
           <div className={styles.gnbLogo}>
             <Link href="/">
-              <Image src="/images/logo.svg" alt=" logo" width={112} height={40} />
+              <Image src="/svgs/logo.svg" alt=" logo" width={112} height={40} />
             </Link>
           </div>
           <div className={styles.gnbSearchbar}>
@@ -43,14 +44,14 @@ function Gnb({ userType, NotiStatus }: GnbProps) {
             <div className={styles.gnbMenu}>
               <Menu id="my-profile" name="내 프로필" />
               <LogoutMenu name="로그아웃" />
-              <NotiButton NotiStatus={NotiStatus} />
+              <NotiButton NotiStatus={notiStatus} />
             </div>
           )}
           {userType === 'employer' && (
             <div className={styles.gnbMenu}>
               <Menu id="my-shop" name="내 가게" />
               <LogoutMenu name="로그아웃" />
-              <NotiButton NotiStatus={NotiStatus} />
+              <NotiButton NotiStatus={notiStatus} />
             </div>
           )}
         </div>
