@@ -90,7 +90,6 @@ const mockPosts = [
 ];
 
 export default function Page() {
-  console.log('mockPosts:', mockPosts);
   return (
     <div style={{ padding: '30px' }}>
       <div>
