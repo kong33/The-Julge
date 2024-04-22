@@ -1,8 +1,8 @@
 import React from 'react';
 
 import HighlightKeyword from '@/components/common/HighlightKeyword';
-import Post from '@/components/common/Post';
-import styles from '@/components/common/PostList.module.scss';
+import Post from '@/components/common/Post/Post';
+import styles from '@/components/layout/PostList/PostList.module.scss';
 
 type CardTag = 'red' | 'orange';
 

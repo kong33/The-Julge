@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import styles from '@/components/common/Post.module.scss';
-import PostTag from '@/components/common/PostTag';
+import PostTag from '@/components/common/Post/PostTag';
 import calcRate from '@/libs/utils/calcRate';
 import calcTagColor from '@/libs/utils/calcTagColor';
 import calcTimeWithWorkHours from '@/libs/utils/calcTimeWithWorkHours';
+
+import styles from './Post.module.scss';
 
 type PostProps = {
   name: string;

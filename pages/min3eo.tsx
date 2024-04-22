@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from '@/components/common/Button';
 
-import PostList from '../src/components/common/PostList';
+import PostList from '../src/components/layout/PostList/PostList';
 
 const CARD_TAGS = {
   Red: 'red',
