@@ -24,7 +24,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'codeit-images.codeit.com',
+        hostname: 'bootcamp-project-api.s3.ap-northeast-2.amazonaws.com',
         port: '',
         pathname: '/**'
       }
