@@ -1,7 +1,7 @@
-$mobile-max-width: 375px;
-$tablet-min-width: 376px;
-$tablet-max-width: 768px;
-$desktop-min-width: 769px;
+$mobile-max-width: 768px;
+$tablet-min-width: 769px;
+$tablet-max-width: 1200px;
+$desktop-min-width: 1201px;
 
 //mobile first
 @mixin tablet {
