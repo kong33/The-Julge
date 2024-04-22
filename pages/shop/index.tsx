@@ -8,7 +8,7 @@ import { GetShopRes } from '@/apis/shop/shop.type';
 import Button from '@/components/common/Button';
 import styles from '@/pages/shop/index.module.scss';
 import DefaultShopImg from '@/public/images/defualt-shop.png';
-import { ReactComponent as LocationIcon } from '@/public/svgs/location.svg';
+import { ReactComponent as LocationSvg } from '@/public/svgs/location.svg';
 
 export const getServerSideProps = async () => {
   const shopId = '451c0907-2226-4c5d-8947-ba9fdbb5f91d';
@@ -74,7 +74,7 @@ function ShopArticle({ shopData }: { shopData: GetShopRes }) {
             <p className={styles.shopName}>{name}</p>
           </div>
           <div className={styles.shopLocationContainer}>
-            <LocationIcon className={styles.shopLocationIcon} />
+            <LocationSvg className={styles.shopLocationIcon} />
             <span className={styles.shopLocationText}>{`${address1} ${address2}`}</span>
           </div>
           <p className={styles.shopDescription}>{description}</p>
