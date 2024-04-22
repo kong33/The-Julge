@@ -53,8 +53,7 @@
       }
 
       .registerButton {
-        @include sopoqa-16-700;
-        padding: 1.4rem 13.6rem;
+        @include button-large;
       }
     }
   }
