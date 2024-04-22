@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-import styles from './Notification.module.scss';
+import styles from '@/components/feature/Gnb/Notification/Notification.module.scss';
 
 type NotiButtonProps = {
   NotiStatus: boolean;

@@ -12,16 +12,10 @@ type GnbProps = {
   // shopId?: string;
 };
 
-/**
- * 전체적인 GNB 컴포넌트
- *
- * @param {'employee' | 'employer' | 'guest'} [props.userType='employee'] - 사용자의 유형
- * @param {boolean} [props.NotiStatus=true] - 알림 상태를 나타내며, true일 경우 알림이 활성
- */
-
 function Gnb({ userType }: GnbProps) {
   const notiStatus = true;
 
+  console.log(userType);
   return (
     <div className={styles.gnbContainer}>
       <div className={styles.gnbWrapper}>
