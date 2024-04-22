@@ -1,0 +1,44 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.defaultInput {
+  @include sopoqa-16-400;
+  display: flex;
+  padding: 1.6rem 2rem;
+  gap: 1rem;
+  width: 100%;
+  color: $color-black;
+  border-radius: 0.6rem;
+  border: 0.1rem solid $color-gray-30;
+  outline: none;
+  background: $color-white;
+
+  //textarea
+  resize: none;
+
+  &::placeholder {
+    color: $color-gray-40;
+  }
+
+  //스크롤바
+  &::-webkit-scrollbar {
+    width: 1.2rem;
+  }
+
+  //스크롤바 핸들
+  &::-webkit-scrollbar-thumb {
+    cursor: default;
+    background: $color-gray-50;
+    border-radius: 9999rem;
+    background-clip: padding-box;
+    border: 0.4rem solid transparent;
+  }
+}
+
+.invalid {
+  border: 0.1rem solid $color-red-40;
+  &:focus {
+    border: 0.1rem solid $color-gray-30;
+  }
+}
