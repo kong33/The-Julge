@@ -2,8 +2,25 @@ import { useState, MouseEventHandler, useEffect, useRef } from 'react';
 
 import { Address as AddressType } from '@/apis/common.type';
 import { Filter, useFilter } from '@/components/feature/Filter/Filter';
+import NotificationModal from '@/components/feature/NotificationModal/NotificationModal';
 import { addressList } from '@/libs/constants';
 
+const alertlist = [
+  {
+    shop: 'gaeunshop',
+    result: 'rejected',
+    createdAt: '2024-04-17T18:41:16.187Z', // createdAt
+    startsAt: '2024-04-23T06:00:00Z', // notice - startsAt
+    workhour: 8
+  },
+  {
+    shop: 'gaeunshop1',
+    result: 'accepted',
+    createdAt: '2024-04-17T18:41:16.187Z', // createdAt
+    startsAt: '2024-04-23T06:00:00Z', // notice - startsAt
+    workhour: 9
+  }
+];
 export default function Gaeun() {
   const filterRef = useRef<HTMLDivElement>(null); // ref 객체 생성
   const { isOpen, open, close } = useFilter();
@@ -18,12 +35,9 @@ export default function Gaeun() {
       }
     }
 
-    if (isOpen) {
-      // 이벤트 리스너 추가
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mouseup', handleClickOutside);
-    }
+    // 이벤트 리스너 추가
+    document.addEventListener('mousedown', handleClickOutside);
+
     return () => {
       // 컴포넌트 언마운트 시 이벤트 리스너 제거
       document.removeEventListener('mousedown', handleClickOutside);
@@ -58,15 +72,18 @@ export default function Gaeun() {
     );
   }
   return (
-    <div>
-      <Filter
-        scrollMenuList={addressList}
-        handleMenuClick={handleMenuClick}
-        clickedAddress={clickedAddress}
-        handleResetBtnClick={handleResetBtnClick}
-        handleApplyBtnClick={handleApplyBtnClick}
-        filterRef={filterRef}
-      />
-    </div>
+    <>
+      <div>
+        <Filter
+          scrollMenuList={addressList}
+          handleMenuClick={handleMenuClick}
+          clickedAddress={clickedAddress}
+          handleResetBtnClick={handleResetBtnClick}
+          handleApplyBtnClick={handleApplyBtnClick}
+          filterRef={filterRef}
+        />
+      </div>
+      <NotificationModal alertCount={6} alertList={alertlist} isModalShow />
+    </>
   );
 }
