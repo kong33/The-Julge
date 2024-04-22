@@ -1,0 +1,42 @@
+@import '@/styles/globals.scss';
+
+.container {
+  width: 32.8rem;
+  padding: 1.6rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-radius: 0.4rem;
+  border: solid 0.1rem #e5e4e7;
+
+  background-color: white;
+
+  p:nth-child(2) {
+    @include sopoqa-14-400;
+  }
+
+  p:nth-child(3) {
+    @include sopoqa-12-400;
+    color: #a4a1aa;
+  }
+
+  .elipse {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    display: block;
+  }
+}
+.accepted {
+  background-color: $color-blue-20;
+}
+.rejected {
+  background-color: $color-red-40;
+}
+
+.acceptedComment {
+  color: $color-blue-20;
+}
+.rejectedComment {
+  color: $color-red-40;
+}
