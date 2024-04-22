@@ -1,0 +1,16 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.menu {
+  @include sopoqa-16-700;
+  color: $color-black;
+}
+
+@include pc-first-mobile {
+  .menu {
+    @include sopoqa-14-400;
+    font-weight: 700;
+    height: 1.7rem;
+  }
+}

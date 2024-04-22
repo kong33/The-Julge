@@ -1,0 +1,17 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.logout {
+  @include sopoqa-16-700;
+  line-height: 2rem;
+  color: $color-black;
+}
+
+@include pc-first-mobile {
+  .logout {
+    @include sopoqa-14-400;
+    font-weight: 700;
+    height: 1.7rem;
+  }
+}

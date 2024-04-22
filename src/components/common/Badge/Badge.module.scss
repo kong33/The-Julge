@@ -1,0 +1,34 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+
+.container {
+  padding: 0.6rem 1rem;
+  border-radius: 2rem;
+  gap: 0.4rem;
+  @include sopoqa-14-700;
+  display: flex;
+  align-items: center;
+
+  &.blue {
+    color: $color-blue-20;
+    background-color: $color-blue-10;
+  }
+
+  &.green {
+    color: $color-green-20;
+    background-color: $color-green-10;
+  }
+
+  &.red {
+    color: $color-red-40;
+    background-color: $color-red-10;
+  }
+
+  &.show {
+    display: inline-flex;
+  }
+
+  &.hide {
+    display: none;
+  }
+}
