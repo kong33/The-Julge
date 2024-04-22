@@ -4,9 +4,9 @@ import React, { forwardRef } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 
 // import styles from '@/components/common/Input/DateTimeForm.module.scss';
-import GlobalStyle from '@/components/common/Input/DateTimeForm.styles';
+import GlobalStyle from '@/components/common/Input/DateTimeForm/DateTimeForm.styles';
 
-import InputContainer, { InputContainerProps } from './InputContainer';
+import InputContainer, { InputContainerProps } from '../InputContainer';
 
 registerLocale('ko', ko); // 한국어 로케일
 

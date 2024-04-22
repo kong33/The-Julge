@@ -2,9 +2,9 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
-import DateTimeForm from '@/components/common/Input/DateTimeForm';
-import InputForm from '@/components/common/Input/InputForm';
-import SelectForm from '@/components/common/Input/SelectForm';
+import DateTimeForm from '@/components/common/Input/DateTimeForm/DateTimeForm';
+import InputForm from '@/components/common/Input/InputForm/InputForm';
+import SelectForm from '@/components/common/Input/SelectForm/SelectForm';
 import { formatNumber, formatPhoneNumber, removeCommasNumber, removeHyphens } from '@/libs/utils/formatter';
 import styles from '@/pages/sampleinput/index.module.scss';
 
@@ -34,7 +34,7 @@ const optionList = [
   '서울시 서초구',
   '서울시 강남구',
   '서울시 송파구',
-  '서울시 강동구',
+  '서울시 강동구'
 ];
 
 // 폼 타입입니다.
@@ -55,7 +55,7 @@ const defaultFormValues = {
   hourlyPay: 0,
   phone: '',
   startsAt: new Date().toISOString(), // api에서 날짜의 기본 포맷은 ISO8601입니다.
-  address: '',
+  address: ''
 };
 
 // 폼 검증 객체입니다.
@@ -63,27 +63,27 @@ const validate = {
   email: {
     pattern: {
       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, // 값이 만족해야 하는 문자열 포맷입니다.
-      message: '올바른 이메일 주소가 아닙니다.', // pattern.value를 만족하지 못할 경우 erros에 message가 전달됩니다.
+      message: '올바른 이메일 주소가 아닙니다.' // pattern.value를 만족하지 못할 경우 erros에 message가 전달됩니다.
     },
     required: '이메일을 입력해 주세요.', // 값이 없을 경우 errors에 message가 전달됩니다.
-    submit: '이메일을 확인해 주세요.', // 폼 제출 시 값에 문제가 있을 경우 errors에 message가 전달됩니다.
+    submit: '이메일을 확인해 주세요.' // 폼 제출 시 값에 문제가 있을 경우 errors에 message가 전달됩니다.
   },
   password: {
     required: '비밀번호를 입력해 주세요.',
-    submit: '비밀번호을 확인해 주세요.',
+    submit: '비밀번호을 확인해 주세요.'
   },
   phone: {
     required: '전화번호를 입력해 주세요.',
-    submit: '비밀번호를 확인해 주세요.',
+    submit: '비밀번호를 확인해 주세요.'
   },
   startsAt: {
     required: '시간을 선택해 주세요.',
-    submit: '시간을 확인해 주세요.',
+    submit: '시간을 확인해 주세요.'
   },
   address: {
     required: '주소를 선택해 주세요.',
-    submit: '주소를 확인해 주세요.',
-  },
+    submit: '주소를 확인해 주세요.'
+  }
 };
 
 /** **********************************
@@ -96,10 +96,10 @@ export default function InputPage() {
     register, // 폼 데이터 관련 객체입니다. value, onChange 등 input 속성이 포함되어 있습니다.
     handleSubmit, // 폼 제출 시 호출할 함수입니다.
     // setError, // 에러를 의도적으로 생성합니다. API에서 받아온 에러를 errors에 전달할 수 있습니다. ex) setError('form', { type: 'form', message: 'api 에러 메세지입니다.' });
-    formState: { errors }, // 폼 상태 객체입니다. errors['form'].message에 validate의 에러 메세지가 저장됩니다.
+    formState: { errors } // 폼 상태 객체입니다. errors['form'].message에 validate의 에러 메세지가 저장됩니다.
   } = useForm<IFormInput>({
     defaultValues: defaultFormValues, // 폼 기본값
-    mode: 'onBlur', // onBlur 시 검증
+    mode: 'onBlur' // onBlur 시 검증
   });
 
   // useForm register를 모아놓은 객체입니다.
@@ -110,7 +110,7 @@ export default function InputPage() {
     phone: register('phone', validate.phone),
     startsAt: register('startsAt', validate.startsAt),
     address: register('address', validate.address),
-    description: register('description'),
+    description: register('description')
   };
 
   // 폼 제출 시 handleSubmit에서 호출할 함수입니다.
@@ -154,6 +154,7 @@ export default function InputPage() {
       <InputForm
         className={styles.input}
         label="이메일"
+        type="email"
         required
         errorMessage={errors.email?.message}
         {...registerList.email}

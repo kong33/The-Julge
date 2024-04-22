@@ -5,7 +5,7 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 import FieldLabel from '@/components/common/Input/FieldLabel';
 import Input from '@/components/common/Input/Input';
 import InputContainer from '@/components/common/Input/InputContainer';
-import styles from '@/components/common/Input/InputForm.module.scss';
+import styles from '@/components/common/Input/InputForm/InputForm.module.scss';
 
 interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   className?: string;
@@ -57,7 +57,7 @@ const InputForm = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFormPr
 
     const classes = {
       inputFieldContainer: classNames(styles.inputFieldContainer),
-      inputField: classNames(fieldLabel && `paddingRight: ${inputFieldPaddingRight}`),
+      inputField: classNames(fieldLabel && `paddingRight: ${inputFieldPaddingRight}`)
     };
 
     useEffect(() => {
