@@ -8,7 +8,7 @@ export default function Home() {
       <Head>
         <title>The-Julge</title>
       </Head>
-      <p className={styles.text}>home</p>;
+      <p className={styles.text}>home</p>
     </>
   );
 }

@@ -2,6 +2,7 @@ import { ReactElement, useState } from 'react';
 
 import Modal from '@/components/feature/Modal/Modal';
 import ModalGroup from '@/components/feature/Modal/ModalGroup';
+import EmptyLayout from '@/layouts/EmptyLayout';
 
 function Naeun() {
   const handleClick = () => {
@@ -53,3 +54,7 @@ function Naeun() {
 }
 
 export default Naeun;
+
+Naeun.getLayout = function getLayout(page: ReactElement) {
+  return <EmptyLayout>{page}</EmptyLayout>;
+};
