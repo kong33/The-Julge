@@ -11,7 +11,7 @@
  * // => '2021-04-01 09:00~17:00'
  */
 
-function calcTimeWithWorkHours(duration: string, workhour: number) {
+function calcFormatDuratoin(duration: string, workhour: number) {
   const date = duration.slice(0, 10);
   const time = duration.slice(11, 13);
   const minutes = duration.slice(14, 16);
@@ -24,4 +24,4 @@ function calcTimeWithWorkHours(duration: string, workhour: number) {
   return `${date} ${time}:${minutes}~${newTime}`;
 }
 
-export default calcTimeWithWorkHours;
+export default calcFormatDuratoin;

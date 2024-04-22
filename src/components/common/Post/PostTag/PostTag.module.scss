@@ -57,18 +57,17 @@
     height: 100%;
     gap: 0.2rem;
     background-color: transparent;
+    margin-top: 0.3rem;
   }
 
   .TagText {
-    @include sopoqa-14-700;
-    font-size: 1.2rem;
+    @include sopoqa-12-700;
     max-width: 10.5rem;
     color: $color-white;
     text-align: center;
 
     @include pc-first-mobile {
       font-weight: 400;
-      font-size: 1.2rem;
       color: #ff4040;
     }
 

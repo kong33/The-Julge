@@ -1,46 +1,29 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import PostTag from '@/components/common/Post/PostTag';
-import calcRate from '@/libs/utils/calcRate';
-import calcTagColor from '@/libs/utils/calcTagColor';
-import calcTimeWithWorkHours from '@/libs/utils/calcTimeWithWorkHours';
+import PostTag from '@/components/common/Post/PostTag/PostTag';
+import calcFormatDuratoin from '@/libs/utils/calcFormatDuratoin';
 
 import styles from './Post.module.scss';
-
-type PostProps = {
-  name: string;
-  duration: string;
-  workhour: number;
-  address: string;
-  originalHourlyPay: number;
-  hourlyPay: number;
-  imageUrl: string;
-  closed: boolean;
-  shopId: string;
-  noticeId: string;
-};
+import { PostProps } from './PostType';
 
 export default function Post({
+  id,
   name,
-  duration,
+  startedAt,
   workhour,
   address,
-  originalHourlyPay,
   hourlyPay,
+  originalHourlyPay,
   imageUrl,
   closed,
-  shopId,
-  noticeId
+  shopId
 }: PostProps) {
-  const formatDuration = calcTimeWithWorkHours(duration, workhour);
-  const formatTagColor = calcTagColor(hourlyPay, originalHourlyPay);
-  const formatRate = calcRate(hourlyPay, originalHourlyPay);
-
   const router = useRouter();
+  const duration = calcFormatDuratoin(startedAt, workhour);
 
   const handleClickToDetailPage = () => {
-    router.push(`/detail/${shopId}/${noticeId}`);
+    router.push(`/detail/${shopId}/${id}`);
   };
 
   return (
@@ -68,7 +51,7 @@ export default function Post({
               width={17}
               height={17}
             />
-            <p className={closed ? `${styles.duration} ${styles.closed}` : styles.duration}>{formatDuration}</p>
+            <p className={closed ? `${styles.duration} ${styles.closed}` : styles.duration}>{duration}</p>
           </div>
           <div className={styles.sectionAddress}>
             <Image
@@ -85,7 +68,7 @@ export default function Post({
           <p className={closed ? `${styles.hourlyPay} ${styles.closed}` : styles.hourlyPay}>
             {`${hourlyPay.toLocaleString()}원`}
           </p>
-          <PostTag isShowTag={formatTagColor} changeRate={formatRate} closed={closed} />
+          <PostTag closed={closed} hourlyPay={hourlyPay} originalHourlyPay={originalHourlyPay} />
         </div>
       </section>
     </div>

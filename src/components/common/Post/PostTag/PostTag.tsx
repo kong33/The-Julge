@@ -1,16 +1,15 @@
 import Image from 'next/image';
 
-import caclTagText, { calcTagTextProps } from '@/utils/calcTagText';
+import styles from '@/components/common/Post/PostTag/PostTag.module.scss';
+import { PostTagprops } from '@/components/common/Post/PostType';
+import calcRate from '@/libs/utils/calcRate';
+import calcTagColor from '@/libs/utils/calcTagColor';
+import caclTagText from '@/utils/calcTagText';
 
-import styles from './PostTag.module.scss';
+export default function PostTag({ closed, hourlyPay, originalHourlyPay }: PostTagprops) {
+  const changeRate = calcRate(hourlyPay, originalHourlyPay);
+  const isShowTag = calcTagColor(hourlyPay, originalHourlyPay);
 
-type PostTagprops = {
-  isShowTag: calcTagTextProps;
-  changeRate: undefined | number;
-  closed: boolean;
-};
-
-export default function PostTag({ isShowTag, changeRate, closed }: PostTagprops) {
   const TagWrapperClasses = [
     styles.TagWrapper,
     closed ? styles.closed : '',
