@@ -44,7 +44,6 @@
 
 @mixin sopoqa-16-400 {
   font-family: 'SpoqaHanSansNeo-Regular';
-  font-family: 'SpoqaHanSansNeo-Regular';
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
@@ -52,7 +51,6 @@
 }
 
 @mixin sopoqa-16-700 {
-  font-family: 'SpoqaHanSansNeo-Regular';
   font-family: 'SpoqaHanSansNeo-Regular';
   font-size: 1.6rem;
   font-style: normal;
@@ -68,8 +66,16 @@
   line-height: 2rem;
 }
 
-@mixin sopoqa-28-700 {
+@mixin sopoqa-24-700 {
   font-family: 'SpoqaHanSansNeo-Regular';
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.048rem;
+}
+
+@mixin sopoqa-28-700 {
   font-family: 'SpoqaHanSansNeo-Regular';
   font-size: 2.8rem;
   font-style: normal;
@@ -79,7 +85,6 @@
 
 //pretendard
 @mixin pretendard-16-400 {
-  font-family: 'Pretendard-Regular';
   font-family: 'Pretendard-Regular';
   font-size: 1.6rem;
   font-style: normal;
@@ -104,4 +109,3 @@
   font-weight: 500;
   line-height: normal;
 }
-
