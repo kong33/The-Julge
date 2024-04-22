@@ -14,7 +14,7 @@ function Footer() {
   }[] = [
     { id: 1, svg: EmailIcon, link: '/' },
     { id: 2, svg: FacebookIcon, link: 'https://www.facebook.com/' },
-    { id: 3, svg: InstagramIcon, link: 'https://www.instagram.com/' },
+    { id: 3, svg: InstagramIcon, link: 'https://www.instagram.com/' }
   ];
 
   return (

@@ -1,6 +1,6 @@
-@import '../../../styles/colors.scss';
-@import '../../../styles/fonts.scss';
-@import '../../../styles/mixin.scss';
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
 
 .footerBox {
   @include flexbox;
@@ -9,12 +9,11 @@
   background-color: $color-gray-10;
   color: $color-gray-50;
   @include sopoqa-16-400;
+  padding: 3.7rem auto;
 }
 
 .footerWrapper {
   @include flexbox($justify: space-between);
-  display: flex;
-  flex-direction: space-between;
   width: 96.4rem;
 }
 
@@ -47,10 +46,17 @@
   height: 2.5rem;
 }
 
-@include mobile {
+@include tablet {
+  .footerBox {
+    padding: 3.7rem 3.2rem;
+  }
+}
+
+@include pc-first-mobile {
   .footerBox {
     height: 12.6rem;
     padding: 3.2rem 2rem 1.6rem;
+    @include sopoqa-14-400;
   }
   .footerWrapper {
     height: 7.8rem;
@@ -60,5 +66,8 @@
       'copyright .';
     row-gap: 4rem;
     margin: 0;
+  }
+  .copyright {
+    @include sopoqa-12-400;
   }
 }

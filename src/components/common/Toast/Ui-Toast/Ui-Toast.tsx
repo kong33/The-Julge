@@ -1,4 +1,4 @@
-import { UiToastProps } from '@/components/common/Toast/Type-Toast';
+import { UiToastProps } from '@/components/common/Toast/Toast.Type.';
 import styles from '@/components/common/Toast/Ui-Toast/Ui-Toast.module.scss';
 
 function UiToast({ children }: UiToastProps) {

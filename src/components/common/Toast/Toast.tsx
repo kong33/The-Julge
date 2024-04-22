@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { ToastProps } from '@/components/common/Toast/Type-Toast';
+import { ToastProps } from '@/components/common/Toast/Toast.Type.';
 import UiToast from '@/components/common/Toast/Ui-Toast/Ui-Toast';
 
 /**
