@@ -1,0 +1,9 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.errorMessage {
+  @include sopoqa-12-400;
+  margin-left: 0.8rem;
+  color: $color-red-40;
+}

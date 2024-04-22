@@ -1,0 +1,27 @@
+@import '@/styles/globals.scss';
+.container {
+  background-color: $color-red-10;
+  width: min(100%, 36.8rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding: 2.4rem 2rem;
+  border-radius: 1rem;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  padding: 2.4rem 2rem;
+  border-radius: 1rem;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+  border: solid 0.1rem #cbc9cf;
+  h1 {
+    @include sopoqa-20-700;
+  }
+}
