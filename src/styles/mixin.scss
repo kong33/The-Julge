@@ -35,3 +35,19 @@ $desktop-min-width: 1201px;
   align-items: $align;
   justify-content: $justify;
 }
+
+//button
+@mixin button-small {
+  @include sopoqa-12-400;
+  padding: 0.8rem 1.2rem;
+}
+
+@mixin button-medium {
+  @include sopoqa-14-700;
+  padding: 1rem 2rem;
+}
+
+@mixin button-large {
+  @include sopoqa-16-700;
+  padding: 1.4rem 13.6rem;
+}
