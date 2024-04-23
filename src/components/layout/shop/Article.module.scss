@@ -1,0 +1,124 @@
+// shop-article
+.articleShop {
+  @include user-article;
+  background: $color-red-10;
+  border: none;
+  padding: 2rem;
+  @include tablet {
+    padding: 2.4rem;
+  }
+  @include desktop {
+    @include flexbox();
+    gap: 3rem;
+    height: 35.6rem;
+  }
+
+  .shopImg {
+    border-radius: 1.2rem;
+    overflow: hidden;
+    @include desktop {
+      border-radius: 1.2rem;
+      width: 53.9rem;
+      height: 100%;
+    }
+  }
+
+  .shopContainer {
+    padding-top: 1.2rem;
+    width: 100%;
+    @include tablet {
+      padding-top: 1.6rem;
+    }
+    @include desktop {
+      @include flexbox($direction: column, $align: left, $justify: space-between);
+      padding-top: 1.2rem;
+      width: 34.6rem;
+      height: 100%;
+    }
+
+    .shopDetailContainer {
+      @include flexbox($direction: column, $align: left, $justify: flex-start);
+      gap: 0.8rem;
+      margin-bottom: 2.4rem;
+      @include tablet {
+        gap: 1.2rem;
+        margin-bottom: 4rem;
+      }
+      @include desktop {
+        width: 34.6rem;
+        margin-bottom: auto;
+      }
+
+      .shopTitleContainer {
+        .shopCategory {
+          @include sopoqa-14-700;
+          color: $color-primary;
+          margin-bottom: 0.8rem;
+          @include tablet {
+            @include sopoqa-16-700;
+          }
+        }
+
+        .shopName {
+          @include sopoqa-24-700;
+          @include tablet {
+            @include sopoqa-28-700;
+          }
+        }
+      }
+
+      .shopLocationContainer {
+        @include flexbox($align: center, $justify: flex-start);
+        gap: 0.6rem;
+
+        .shopLocationIcon {
+          width: 1.6rem;
+          height: 1.6rem;
+          @include tablet {
+            width: 2rem;
+            height: 2rem;
+          }
+        }
+
+        .shopLocationText {
+          @include sopoqa-14-400;
+          color: $color-gray-50;
+          @include tablet {
+            @include sopoqa-16-400;
+          }
+        }
+      }
+
+      .shopDescription {
+        @include sopoqa-14-400;
+        @include tablet {
+          @include sopoqa-16-400;
+        }
+      }
+    }
+
+    .shopButtonContainer {
+      @include flexbox($align: center, $justify: space-between);
+      gap: 0.8rem;
+
+      .shopButton {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        @include tablet {
+          @include button-large;
+          width: 100%;
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+
+// notice-list-article
+.articleNoticeList {
+  @include user-article;
+  background: none;
+  border: none;
+}
