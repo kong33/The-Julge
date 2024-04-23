@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 
 import AsyncBoundary from '@/components/common/AsyncBoundary';
-import { FilterProvider } from '@/components/feature/Filter/Filter';
+import { FilterProvider } from '@/components/feature/Filter/FilterContext';
 import ModalGroup from '@/components/feature/Modal/ModalGroup';
 import '@/styles/reset.scss';
 
