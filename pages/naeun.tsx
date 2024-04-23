@@ -1,3 +1,4 @@
+import { Item } from '@/apis/notice/notice.type';
 import { useGetNoticeList } from '@/apis/notice/useNoticeService';
 import Pagination from '@/components/feature/pagination/pagination';
 import usePagination from '@/hooks/usePagination';
@@ -10,7 +11,7 @@ function Naeun() {
     <>
       <h1>Items</h1>
       <ul>
-        {currentItems.map((post) => (
+        {currentItems.map((post: Item) => (
           <li key={post.item.id}>{post.item.id}</li>
         ))}
       </ul>
