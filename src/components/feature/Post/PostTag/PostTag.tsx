@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import styles from '@/components/common/Post/PostTag/PostTag.module.scss';
-import { PostTagprops } from '@/components/common/Post/PostType';
+import styles from '@/components/feature/Post/PostTag/PostTag.module.scss';
+import { PostTagprops } from '@/components/feature/Post/PostType';
 import calcRate from '@/libs/utils/calcRate';
 import calcTagColor from '@/libs/utils/calcTagColor';
 import caclTagText from '@/utils/calcTagText';

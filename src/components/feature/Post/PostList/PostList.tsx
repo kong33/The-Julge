@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Post from '@/components/common/Post/Post';
-import styles from '@/components/common/Post/PostList/PostListOne.module.scss';
-import { PostListProps } from '@/components/common/Post/PostType';
+import Post from '@/components/feature/Post/Post';
+import styles from '@/components/feature/Post/PostList/PostList.module.scss';
+import { PostListProps } from '@/components/feature/Post/PostType';
 
-function PostListOne({ datas }: PostListProps) {
+function PostList({ datas }: PostListProps) {
   const posts = datas.map((item) => ({
     name: item.shop?.item.name,
     id: item.id,
@@ -29,4 +29,4 @@ function PostListOne({ datas }: PostListProps) {
   );
 }
 
-export default PostListOne;
+export default PostList;

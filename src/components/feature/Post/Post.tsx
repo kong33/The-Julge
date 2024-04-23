@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import PostTag from '@/components/common/Post/PostTag/PostTag';
+import styles from '@/components/feature/Post/Post.module.scss';
+import PostTag from '@/components/feature/Post/PostTag/PostTag';
 import calcFormatDuratoin from '@/libs/utils/calcFormatDuratoin';
 
-import styles from './Post.module.scss';
 import { PostProps } from './PostType';
 
 export default function Post({

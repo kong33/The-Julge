@@ -1,7 +1,7 @@
 import React from 'react';
 
-import PostList from '@/components/common/Post/PostList/PostList';
-import PostListOne from '@/components/common/Post/PostList/PostListOne';
+import PostList from '@/components/feature/Post/PostList/PostList';
+import PostListOne from '@/components/feature/Post/PostList/PostListOne';
 
 const mockPosts = [
   {
