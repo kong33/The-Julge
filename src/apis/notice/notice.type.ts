@@ -5,7 +5,8 @@ type Shop = {
   href: string;
 };
 
-type ItemInfo = NoticeItem & {
+// 테스트를 위한 export 작성 - 나은
+export type ItemInfo = NoticeItem & {
   shop: Shop;
 };
 

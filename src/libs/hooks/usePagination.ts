@@ -3,24 +3,30 @@ import { useEffect, useState } from 'react';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function usePagination(apifunction: any, itemsPerPage: number) {
   const [currentPage, setCurrentPage] = useState<number>(1); // 현재 페이지 위치
-  const { data } = apifunction({ limit: itemsPerPage });
-  // 전체 페이지 = (전체 카드 개수 / 한 페이지에 보여주는 카드 개수)의 올림수
-  const totalPages: number = Math.ceil(data.count / itemsPerPage);
+  const [offsetNum, setOffsetNum] = useState<number>(0);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [itemData, setItemData] = useState<any[]>([]);
 
-  const totalItems = data.count;
+  const { data } = apifunction({ limit: itemsPerPage, offset: offsetNum });
+
+  const totalItem = data.count;
+  const totalPages: number = Math.ceil(totalItem / itemsPerPage);
+
+  useEffect(() => {
+    setItemData(data.items);
+    setOffsetNum((currentPage - 1) * itemsPerPage);
+    console.log(itemData, offsetNum, currentPage);
+  }, [currentPage, data.items]);
+
   // 페이지 위치 변경
   const onPageChange = (page: number): void => {
     setCurrentPage(page);
   };
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [totalItems]); // totalItems가 변경될 때마다 currentPage를 1로 초기화
-
   return {
     currentPage,
     totalPages,
     onPageChange,
-    currentItems: data.items
+    currentItems: itemData
   };
 }
