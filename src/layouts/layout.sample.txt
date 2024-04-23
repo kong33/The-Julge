@@ -1,0 +1,8 @@
+{page}.getLayout = function getLayout(page: ReactElement) {
+  return <{레이아웃}>{page}</{레이아웃}>;
+};
+
+{ex}
+Naeun.getLayout = function getLayout(page: ReactElement) {
+  return <EmptyLayout>{page}</EmptyLayout>;
+};

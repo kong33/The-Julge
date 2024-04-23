@@ -1,0 +1,173 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 31.2rem;
+  height: 35rem;
+  padding: 1.6rem;
+  border: 0.1rem solid rgb(175, 162, 162);
+  border-radius: 1.2rem;
+  cursor: pointer;
+  background-color: $color-white;
+  gap: 2rem;
+  position: relative;
+
+  @include pc-first-mobile {
+    width: 17rem;
+    height: 27rem;
+    padding: 1.2rem;
+    gap: 1.2rem;
+  }
+
+  &.closed {
+    cursor: default;
+
+    .closedLayer {
+      @include sopoqa-24-700;
+      position: absolute;
+      border-radius: 1.2rem;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #cbc9cf;
+      z-index: 10;
+      pointer-events: none;
+
+      @include pc-first-mobile {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .cardHeader {
+    position: relative;
+    width: 100%;
+    height: 16rem;
+
+    @include pc-first-mobile {
+      height: 8.4rem;
+    }
+    .img {
+      width: 280rem;
+      height: 16rem;
+      border-radius: 1.2rem;
+
+      @include pc-first-mobile {
+        width: 14.7rem;
+        height: 8.4rem;
+      }
+    }
+  }
+
+  .cardSection {
+    display: flex;
+    flex-direction: column;
+    width: 27rem;
+    gap: 1.6rem;
+
+    @include pc-first-mobile {
+      width: 14.7rem;
+    }
+
+    .sectionContent {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+
+      .title {
+        color: $color-black;
+        @include sopoqa-16-700;
+        font-size: 2rem;
+        margin-bottom: 0.9rem;
+
+        &.closed {
+          color: #cbc9cf;
+        }
+
+        @include pc-first-mobile {
+          line-height: 2rem;
+        }
+      }
+    }
+
+    .sectionDuration {
+      display: flex;
+      gap: 0.6rem;
+      @include sopoqa-14-400;
+      color: #7d7986;
+      flex: 1 0 0;
+      line-height: 1.6rem;
+      word-break: keep-all;
+
+      @include pc-first-mobile {
+        .img {
+          margin-bottom: 1.2rem;
+        }
+      }
+      .duration {
+        &.closed {
+          color: #cbc9cf;
+          @include pc-first-mobile {
+            font-size: 1.2rem;
+          }
+        }
+        @include pc-first-mobile {
+          height: max-content;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .sectionAddress {
+      display: flex;
+      gap: 0.6rem;
+      @include sopoqa-14-400;
+      color: #7d7986;
+      line-height: 1.6rem;
+
+      .address {
+        &.closed {
+          color: #cbc9cf;
+          @include pc-first-mobile {
+            font-size: 1.2rem;
+          }
+        }
+        @include pc-first-mobile {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .sectionHourlyPay {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @include pc-first-mobile {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hourlyPay {
+        @include sopoqa-16-700;
+        font-size: 2.4rem;
+        letter-spacing: 0.02em;
+        @include pc-first-mobile {
+          font-size: 1.6em;
+        }
+
+        &.closed {
+          color: #cbc9cf;
+        }
+      }
+    }
+  }
+}
