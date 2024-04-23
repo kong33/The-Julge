@@ -5,43 +5,31 @@ import { GetNoticeListByShopIdRes } from '@/apis/notice/notice.type';
 import { GetShopRes } from '@/apis/shop/shop.type';
 import Button from '@/components/common/Button';
 import styles from '@/components/layout/shop/Article.module.scss';
+import { pageList } from '@/libs/constants';
 import DefaultShopImg from '@/public/images/defualt-shop.png';
 import { ReactComponent as LocationSvg } from '@/public/svgs/location.svg';
-
-const pageList = {
-  shareRegister: '/shop/register',
-  shareEdit: '/shop/edit',
-  noticeRegister: '/shop/edit' // 주소 나중에 바꾸기
-};
 
 // ShopArticle
 export function ShopArticle({ shopData }: { shopData: GetShopRes }) {
   const router = useRouter();
 
+  // shopItem이나 shopId가 없을 때 /shop 페이지로 이동
+  if (!shopData?.item?.id) {
+    return router.replace(pageList.shop());
+  }
+
   const { item: shopItem } = shopData;
   console.log('shopItem', shopItem);
-
-  const handleClick = {
-    toShopRegisterPage: () => router.push(pageList.shareRegister),
-    toShopEditPage: () => router.push(pageList.shareEdit),
-    toNoticeRegisterPage: () => router.push(pageList.shareRegister)
-  };
-
-  if (!shopItem?.id) {
-    return (
-      <article className={styles.article}>
-        <p className={styles.description}>내 가게를 소개하고 공고도 등록해 보세요.</p>
-        <Button className={styles.button} onClick={handleClick.toShopRegisterPage} size="medium" active solid>
-          가게 등록하기
-        </Button>
-      </article>
-    );
-  }
 
   const { name, category, address1, address2, description } = shopItem; // 나중에 id, imageUrl 추가
 
   // const shopImg = imageUrl;
   const shopImg = DefaultShopImg; // 이미지 나중에 바꾸기
+
+  const handleClick = {
+    toShopEditPage: () => router.push(pageList.shopEdit(shopItem.id)),
+    toNoticeRegisterPage: () => router.push(pageList.shopNoticeRegister(shopItem.id))
+  };
 
   return (
     <article className={styles.articleShop}>
@@ -81,14 +69,21 @@ export function ShopArticle({ shopData }: { shopData: GetShopRes }) {
 }
 
 // NoticeListArticle
-export function NoticeListArticle({ noticeListData }: { noticeListData: GetNoticeListByShopIdRes }) {
+export function NoticeListArticle({
+  shopData,
+  noticeListData
+}: {
+  shopData: GetShopRes;
+  noticeListData: GetNoticeListByShopIdRes;
+}) {
   const router = useRouter();
 
+  const { item: shopItem } = shopData;
   const { items: noticeListItem } = noticeListData;
   console.log('noticeListItem', noticeListItem);
 
   const handleClick = {
-    toNoticeRegisterPage: () => router.push(pageList.shareRegister)
+    toNoticeRegisterPage: () => router.push(pageList.shopNoticeRegister(shopItem.id))
   };
 
   if (!noticeListItem?.length) {

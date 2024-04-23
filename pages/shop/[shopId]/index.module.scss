@@ -1,0 +1,33 @@
+@import '@/styles/globals.scss';
+
+.main {
+  @include main;
+}
+
+.section {
+  @include user-section;
+}
+
+.title {
+  @include h1;
+}
+
+// article
+.article {
+  @include user-article;
+
+  .description {
+    @include sopoqa-14-400;
+    margin-bottom: 1.6rem;
+    @include tablet {
+      @include sopoqa-16-400;
+      margin-bottom: 2.4rem;
+    }
+  }
+}
+
+.button {
+  @include tablet {
+    @include button-large;
+  }
+}
