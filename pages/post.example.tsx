@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PostList from '@/components/common/Post/PostList/PostList';
+import PostListOne from '@/components/common/Post/PostList/PostListOne';
 
 const mockPosts = [
   {
@@ -92,6 +93,10 @@ const mockPosts = [
 export default function Page() {
   return (
     <div style={{ padding: '30px' }}>
+      <div>
+        <PostListOne datas={mockPosts} />
+      </div>
+      <hr style={{ margin: '10px' }} />
       <div>
         <PostList datas={mockPosts} />
       </div>

@@ -16,7 +16,6 @@ $card-size-small: 17.1rem;
 
   @include pc-first-tablet {
     grid-template-columns: repeat(2, $card-size-large);
-    margin: 0 auto;
   }
 
   @include pc-first-mobile {
