@@ -5,6 +5,7 @@ import { Filter, useFilter } from '@/components/feature/Filter/Filter';
 import NotificationModal from '@/components/feature/NotificationModal/NotificationModal';
 import { addressList } from '@/libs/constants';
 
+// import { setCookie } from 'cookies-next';
 const alertlist = [
   {
     shop: 'gaeunshop',
