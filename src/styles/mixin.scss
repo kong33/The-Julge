@@ -37,3 +37,15 @@ $breakpoint-desktop: 964px;
   align-items: $align;
   justify-content: $justify;
 }
+
+@mixin main {
+  padding: 0 1.2rem;
+
+  @include tablet {
+    padding: 0 3.2rem;
+  }
+
+  @include desktop {
+    padding: 0;
+  }
+}
