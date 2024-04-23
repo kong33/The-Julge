@@ -3,16 +3,13 @@ import React from 'react';
 
 import Button from '@/components/common/Button';
 import MainLayout from '@/layouts/MainLayout';
+import { pageList } from '@/libs/constants';
 import styles from '@/pages/shop/index.module.scss';
-
-const pageList = {
-  shareRegister: '/shop/register'
-};
 
 // (shopId X) 사장님 가게 상세
 export default function ShopPage() {
   const handleClick = {
-    toShopRegisterPage: () => router.push(pageList.shareRegister)
+    toShopRegisterPage: () => router.push(pageList.shopRegister())
   };
 
   return (
