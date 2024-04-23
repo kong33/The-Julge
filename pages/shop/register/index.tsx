@@ -4,6 +4,7 @@ import MainLayout from '@/layouts/MainLayout';
 
 // (shopId X) 사장님 가게 등록
 export default function ShopRegisterPage() {
+  // 시작
   return <div>/shop/register</div>;
 }
 
