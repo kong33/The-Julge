@@ -1,10 +1,12 @@
+import { ReactNode } from 'react';
+
 interface UiToastProps {
-  children: string;
+  children: ReactNode;
 }
 
 interface ToastProps {
   onShow: () => void;
-  children: string;
+  children: ReactNode;
 }
 
 export type { UiToastProps, ToastProps };
