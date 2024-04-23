@@ -1,0 +1,11 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.fieldLabel {
+  @include sopoqa-16-400;
+  position: absolute;
+  right: 1.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+}

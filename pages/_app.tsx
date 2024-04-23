@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import React from 'react';
 
 import AsyncBoundary from '@/components/common/AsyncBoundary';
-import { FilterProvider } from '@/components/feature/Filter/Filter';
+import { FilterProvider } from '@/components/feature/Filter/FilterContext';
 import ModalGroup from '@/components/feature/Modal/ModalGroup';
 import '@/styles/reset.scss';
 import MainLayout from '@/layouts/MainLayout';
