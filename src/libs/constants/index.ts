@@ -61,5 +61,6 @@ export const pageList = {
   home: () => `/`,
   userNoticeDetail: (shopId: string, noticeId: string) => `/notice/${shopId}/${noticeId}`,
   user: () => `/user`,
-  userEdit: () => `/user/edit`
+  userEdit: () => `/user/edit`,
+  page404: () => `/404`
 };
