@@ -3,8 +3,12 @@ import { useEffect, useState } from 'react';
 /**
  * Pagination 컴포넌트
  * @param apifunction 사용할 api 함수 => items 불러와야할 api 함수 작성
- * @param itemsPerPage
- * @param onPageChange 현재 페이지 usestate에 저장하는 함수: onPageChange(저장할 페이지번호)
+ * @param itemsPerPage 한 페이지에 보여줄 post 개수]
+ * @
+ * @return currentPage: number;  현재 페이지
+ * @return totalPages: number; 총 페이지 개수
+ * @return onPageChange: (page: number) => void; pagechange 함수
+ * @return currentItems: Array<any>; 반환하는 데이터 리스트
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function usePagination(apifunction: any, itemsPerPage: number) {

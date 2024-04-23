@@ -1,14 +1,23 @@
-import Head from 'next/head';
+import { Item } from '@/apis/notice/notice.type';
+import { useGetNoticeList } from '@/apis/notice/useNoticeService';
+import Pagination from '@/components/feature/pagination/pagination';
+import usePagination from '@/hooks/usePagination';
 
-import styles from '@/pages/index.module.scss';
+const ITEMS_PER_PAGE = 6; // 페이지 당 아이템 수
 
-export default function Home() {
+function Home() {
+  const { currentPage, totalPages, onPageChange, currentItems } = usePagination(useGetNoticeList, ITEMS_PER_PAGE);
   return (
     <>
-      <Head>
-        <title>The-Julge</title>
-      </Head>
-      <p className={styles.text}>home</p>;
+      <h1>Items</h1>
+      <ul>
+        {currentItems.map((post: Item) => (
+          <li key={post.item.id}>{post.item.id}</li>
+        ))}
+      </ul>
+      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
     </>
   );
 }
+
+export default Home;
