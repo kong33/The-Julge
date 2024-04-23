@@ -7,7 +7,7 @@ import Button from '@/components/common/Button';
 import styles from '@/components/layout/shop/Article.module.scss';
 import { pageList } from '@/libs/constants';
 import DefaultShopImg from '@/public/images/defualt-shop.png';
-import { ReactComponent as LocationSvg } from '@/public/svgs/location.svg';
+import { ReactComponent as LocationSvg } from '@/public/svgs/location-shop.svg';
 
 // ShopArticle
 export function ShopArticle({ shopData }: { shopData: GetShopRes }) {
