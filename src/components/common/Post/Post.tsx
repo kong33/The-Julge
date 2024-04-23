@@ -33,7 +33,7 @@ export default function Post({
       onClick={handleClickToDetailPage}
     >
       <div className={styles.cardHeader}>
-        <Image className={styles.img} src={imageUrl} alt={name} width={280} height={160} />
+        <Image className={styles.img} src={imageUrl} alt={name} width={280} height={160} priority />
         {closed && (
           <div className={styles.closedLayer}>
             <span className={styles.closedText}>지난 공고</span>
