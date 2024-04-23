@@ -9,7 +9,7 @@ function EmptyLayout({ children }: { children: React.ReactNode }) {
       <Head>
         <title>The-Julge</title>
       </Head>
-      {children}
+      <main>{children}</main>
     </>
   );
 }
