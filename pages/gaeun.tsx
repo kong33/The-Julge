@@ -1,10 +1,10 @@
 import { useState, MouseEventHandler, useEffect, useRef } from 'react';
 
 import { Address as AddressType } from '@/apis/common.type';
+import RadioInputForm from '@/components/common/Input/RadioInputForm/RadioInputForm';
 import { Filter, useFilter } from '@/components/feature/Filter/Filter';
 import NotificationModal from '@/components/feature/NotificationModal/NotificationModal';
 import { addressList } from '@/libs/constants';
-
 // import { setCookie } from 'cookies-next';
 const alertlist = [
   {
@@ -85,6 +85,7 @@ export default function Gaeun() {
         />
       </div>
       <NotificationModal alertCount={6} alertList={alertlist} isModalShow />
+      <RadioInputForm label="rkdmsasdf" />
     </>
   );
 }

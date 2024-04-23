@@ -1,81 +1,110 @@
-import Link from 'next/link';
-import { useState, MouseEvent } from 'react';
+import Cookies from 'js-cookie';
+import Link from 'next/link'; // import { useState, MouseEvent } from 'react';
+import { useForm } from 'react-hook-form';
 
+import { PostAuthenticationPayload } from '@/apis/authentication/authentication.type';
+import { usePostAuthentication } from '@/apis/authentication/useAuthenticationService';
 import Button from '@/components/common/Button';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
-import { ReactComponent as Logo } from '@/public/svgs/Logo.svg';
-import { ReactComponent as ButtonCheck } from '@/public/svgs/buttonCheck.svg';
-import { ReactComponent as ButtonUnCheck } from '@/public/svgs/buttonUnCheck.svg';
+import {
+  AuthFormProps, // clickedState,
+  IFormInput,
+  defaultFormValues,
+  validate,
+  status
+} from '@/components/feature/AuthForm/AuthForm.type';
+import { ReactComponent as Logo } from '@/public/svgs/Logo.svg'; // import { ReactComponent as ButtonCheck } from '@/public/svgs/buttonCheck.svg';//import { ReactComponent as ButtonUnCheck } from '@/public/svgs/buttonUnCheck.svg';
 
-// import { useForm } from 'react-hook-form';
+export default function AuthForm({ formType }: AuthFormProps) {
+  const {
+    // control,
+    register,
+    handleSubmit
+    // formState: { errors }
+  } = useForm<IFormInput>({ defaultValues: defaultFormValues, mode: 'onBlur' });
 
-// const {
-//   register,
-//   handleSubmit,
-//   formState: { errors }
-// } = useForm();
-
-const status = {
-  login: {
-    formLabel: ['이메일', '비밀번호'],
-    buttonText: '로그인 하기',
-    footerText: '회원이 아니신가요?',
-    footerLink: '회원가입하기',
-    errorMessage: ['이메일 형식으로 작성해 주세요.', '8자 이상으로 입력해주시고, 특수문자를 1개 이상 포함해주세요.']
-  },
-  signin: {
-    formLabel: ['이메일', '비밀번호', '비밀번호 확인'],
-    buttonText: '가입하기',
-    footerText: '이미 가입하셨나요?',
-    footerLink: '로그인하기',
-    errorMessage: [
-      '이메일 형식으로 작성해 주세요.',
-      '8자 이상으로 입력해주시고, 특수문자를 1개 이상 포함해주세요.',
-      '비밀번호를 확인해주세요.'
-    ]
-  }
-};
-
-type AuthFormProps = {
-  type: 'login' | 'signin';
-};
-
-type clickedState = {
-  알바생: boolean;
-  사장님: boolean;
-};
-export default function AuthForm({ type }: AuthFormProps) {
-  const [isClicked, setIsClicked] = useState<clickedState>({ 알바생: false, 사장님: false });
-  const handleClicked = (e: MouseEvent<HTMLButtonElement>) => {
-    const clickedButton = e.currentTarget.id as keyof clickedState;
-    setIsClicked((prev) => ({
-      ...prev,
-      [clickedButton]: !prev[clickedButton]
-    }));
+  const registerList = {
+    email: register('email', validate.email),
+    password: register('password', validate.password)
   };
+
+  // const [isClicked, setIsClicked] = useState<clickedState>({ 알바생: false, 사장님: false });
+
+  // const handleClicked = (e: MouseEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  //   const clickedButton = e.currentTarget.id as keyof clickedState;
+  //   setIsClicked((prev) => ({
+  //     ...prev,
+  //     [clickedButton]: !prev[clickedButton]
+  //   }));
+  // };
+
+  const OnSubmit = async (payload: PostAuthenticationPayload) => {
+    try {
+      const response = usePostAuthentication(payload);
+      if (response.ok) {
+        console.log('tjdrhd');
+        const { token, user } = response.item;
+        const { links } = response;
+        Cookies.set('authToken', token, { expires: 1, path: '/' });
+        Cookies.set('userInfo', user, { expires: 1, path: '/' });
+        Cookies.set('links', links, { expires: 1, path: '/' }); // 이건 필요할 지 모르겠네욤. 필요 없으면 추후 삭제하곘습니다.
+      }
+      // response 형태
+      //   "item": {
+      //     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyOGQ1ZGNjOS04NTFlLTQyNGUtYmI2Zi0wYjNjMmU4NmM2NWEiLCJpYXQiOjE3MTM4ODMyNzN9.D5TBVN5ny590TnljMSuHAhuxPD7in-iMJNu4leV_l6A",
+      //     "user": {
+      //       "item": {
+      //         "id": "28d5dcc9-851e-424e-bb6f-0b3c2e86c65a",
+      //         "email": "codeit@codeit.com",
+      //         "type": "employee",
+      //         "name": "수정한 이름2",
+      //         "phone": "01087654321",
+      //         "address": "서울시 종로구",
+      //         "bio": "string"
+      //       },
+      //       "href": "/api/0-1/the-julge/users/28d5dcc9-851e-424e-bb6f-0b3c2e86c65a"
+      //     }
+      //   },
+      //   "links": []
+      // }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(OnSubmit)}>
       <Logo width="248" height="44" />
       <div>
-        {status[type].formLabel.map((item, index) => (
-          <InputForm label={item} errorMessage={status[type].errorMessage[index]} type="string" />
-        ))}
+        <InputForm label="이메일" errorMessage="이메일 형식으로 작성해주세요" type="email" {...registerList.email} />
+        <InputForm
+          label="비밀번호"
+          errorMessage="8자 이상으로 입력해주세요"
+          type="password"
+          {...registerList.password}
+        />
         <Button size="large" solid submit active>
-          {status[type].buttonText}
+          {status[formType].buttonText}
         </Button>
       </div>
       <div>
-        <p>{status[type].footerText}</p>
-        <Link href="/">{status[type].footerLink}</Link>
-        {type === 'signin' && (
+        <p>{status[formType].footerText}</p>
+        <Link href="/">{status[formType].footerLink}</Link>
+        {/* 회원가입 페이지일 경우 아래의 내용 추가 랜더링 */}
+        {formType === 'signup' && (
           <>
-            <InputForm label={status[type].formLabel[2]} errorMessage={status[type].errorMessage[2]} type="string" />
-            <Button size="large" submit active id="알바님" onClick={handleClicked}>
-              {isClicked ? <ButtonCheck /> : <ButtonUnCheck />}알바님
-            </Button>
-            <Button size="large" submit active id="사장님" onClick={handleClicked}>
-              사장님
-            </Button>
+            <InputForm
+              label={status[formType].formLabel[2]}
+              errorMessage={status[formType].errorMessage[2]}
+              type="password"
+            />
+            {/* <InputForm
+              type="radio"
+              label={{ isClicked.알바생 ? <ButtonCheck /> : <ButtonUnCheck /> }}
+              className={styles.radioButton}
+              fieldLabel="회원 유형"
+              onClick={handleClicked}
+            /> */}
           </>
         )}
       </div>

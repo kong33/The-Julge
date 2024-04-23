@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Provider } from 'jotai';
 import type { AppProps } from 'next/app';
 
 import AsyncBoundary from '@/components/common/AsyncBoundary';
@@ -13,13 +14,15 @@ export default function App({ Component, pageProps }: AppProps) {
   // Suspense: 비동기 로딩 처리
   return (
     <AsyncBoundary>
-      <QueryClientProvider client={queryClient}>
-        <ModalGroup.Root>
-          <FilterProvider>
-            <Component {...pageProps} />
-          </FilterProvider>
-        </ModalGroup.Root>
-      </QueryClientProvider>
+      <Provider>
+        <QueryClientProvider client={queryClient}>
+          <ModalGroup.Root>
+            <FilterProvider>
+              <Component {...pageProps} />
+            </FilterProvider>
+          </ModalGroup.Root>
+        </QueryClientProvider>
+      </Provider>
     </AsyncBoundary>
   );
 }

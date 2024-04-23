@@ -104,8 +104,6 @@ export default function InputPage() {
 
   // useForm register를 모아놓은 객체입니다.
   const registerList = {
-    email: register('email', validate.email),
-    password: register('password', validate.password),
     hourlyPay: register('hourlyPay'),
     phone: register('phone', validate.phone),
     startsAt: register('startsAt', validate.startsAt),

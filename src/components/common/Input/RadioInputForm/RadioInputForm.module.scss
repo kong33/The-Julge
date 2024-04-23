@@ -1,0 +1,11 @@
+@import '@/styles/globals.scss';
+.RadioInputFieldContainer {
+  position: relative;
+  width: 16.8rem;
+  height: 5.2rem;
+  border: 0.1rem solid $color-red-40;
+  border-radius: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
