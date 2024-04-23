@@ -145,7 +145,7 @@ export default function ShopPage({
         <ShopArticle shopData={shopData} />
       </section>
       <section className={styles.section}>
-        <h1 className={styles.title}>등록한 공고</h1>
+        <h1 className={styles.title}>{noticeListData.items?.length && '내가 '}등록한 공고</h1>
         <NoticeListArticle noticeListData={noticeListData} />
       </section>
     </main>
