@@ -28,7 +28,7 @@ export function ShopArticle({ shopData }: { shopData: GetShopRes }) {
 
   const handleClick = {
     toShopEditPage: () => router.push(pageList.shopEdit(shopItem.id)),
-    toNoticeRegisterPage: () => router.push(pageList.shopNoticeRegister(shopItem.id))
+    toShopNoticeRegisterPage: () => router.push(pageList.shopNoticeRegister(shopItem.id))
   };
 
   return (
@@ -59,7 +59,13 @@ export function ShopArticle({ shopData }: { shopData: GetShopRes }) {
           <Button className={styles.shopButton} onClick={handleClick.toShopEditPage} size="medium" active>
             편집하기
           </Button>
-          <Button className={styles.shopButton} onClick={handleClick.toNoticeRegisterPage} size="medium" active solid>
+          <Button
+            className={styles.shopButton}
+            onClick={handleClick.toShopNoticeRegisterPage}
+            size="medium"
+            active
+            solid
+          >
             공고 등록하기
           </Button>
         </div>
@@ -83,14 +89,14 @@ export function NoticeListArticle({
   console.log('noticeListItem', noticeListItem);
 
   const handleClick = {
-    toNoticeRegisterPage: () => router.push(pageList.shopNoticeRegister(shopItem.id))
+    toShopNoticeRegisterPage: () => router.push(pageList.shopNoticeRegister(shopItem.id))
   };
 
   if (!noticeListItem?.length) {
     return (
       <article className={styles.article}>
         <p className={styles.description}>공고를 등록해 보세요.</p>
-        <Button className={styles.button} onClick={handleClick.toNoticeRegisterPage} size="medium" active solid>
+        <Button className={styles.button} onClick={handleClick.toShopNoticeRegisterPage} size="medium" active solid>
           공고 등록하기
         </Button>
       </article>
