@@ -52,6 +52,7 @@ export function ShopArticle({ shopData }: { shopData: GetShopRes }) {
           width={2156}
           height={1232}
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          priority
         />
       </div>
       <div className={styles.shopContainer}>
