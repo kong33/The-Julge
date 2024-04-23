@@ -1,0 +1,14 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.defaultLabel {
+  @include sopoqa-16-400;
+  color: $color-black;
+}
+
+.required::after {
+  @include sopoqa-16-400;
+  color: $color-black;
+  content: '*';
+}
