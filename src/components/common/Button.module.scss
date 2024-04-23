@@ -14,12 +14,11 @@
 .solid {
   background: $color-primary;
   color: $color-white;
-  border: none;
 }
 
 .inactive {
   background: $color-gray-40;
-  border: none;
+  border-color: $color-gray-40;
   color: $color-white;
   cursor: default;
 }
