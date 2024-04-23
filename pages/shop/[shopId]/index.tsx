@@ -12,7 +12,6 @@ import { pageList } from '@/libs/constants';
 import styles from '@/pages/shop/index.module.scss';
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
-  // const shopId = '451c0907-2226-4c5d-8947-ba9fdbb5f91d';
   const { query } = context;
   const { shopId }: { shopId?: string } = query;
 
@@ -46,8 +45,13 @@ export default function ShopDetailPage({
 }) {
   const router = useRouter();
 
-  if (!shopData?.item) {
-    router.replace(pageList.shop());
+  // 토큰이 없으면 로그인 페이지로 리다이렉트
+  // 쿠키로 대체되면 tpyeof window === 'undefined' 제거
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token') ?? '';
+    if (!token) {
+      router.replace(pageList.login());
+    }
   }
 
   return (
