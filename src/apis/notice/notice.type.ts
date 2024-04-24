@@ -5,7 +5,7 @@ type Shop = {
   href: string;
 };
 
-type ItemInfo = NoticeItem & {
+export type ItemInfo = NoticeItem & {
   shop: Shop;
 };
 

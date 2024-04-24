@@ -2,10 +2,22 @@ import React from 'react';
 
 import Post from '@/components/feature/Post/Post';
 import styles from '@/components/feature/Post/PostList/PostList.module.scss';
-import { PostListProps } from '@/components/feature/Post/PostType';
+import { PostListProps, PostData } from '@/components/feature/Post/PostType';
 
 function PostList({ datas }: PostListProps) {
-  const posts = datas.map((item) => ({
+  // const posts = datas.map((item) => ({
+  //   name: item.shop?.item.name,
+  //   id: item.id,
+  //   startedAt: item.startsAt,
+  //   workhour: item.workhour,
+  //   address: item.shop?.item.address1,
+  //   hourlyPay: item.hourlyPay,
+  //   originalHourlyPay: item.shop?.item.originalHourlyPay,
+  //   imageUrl: item.shop?.item.imageUrl,
+  //   closed: item.closed,
+  //   shopId: item.shop?.item.id
+  // }));
+  const posts = datas.map((item: PostData) => ({
     name: item.shop?.item.name,
     id: item.id,
     startedAt: item.startsAt,
@@ -15,9 +27,9 @@ function PostList({ datas }: PostListProps) {
     originalHourlyPay: item.shop?.item.originalHourlyPay,
     imageUrl: item.shop?.item.imageUrl,
     closed: item.closed,
-    shopId: item.shop.item.id
+    shopId: item.shop?.item.id
   }));
-
+  console.log(posts);
   return (
     <div className={styles.listWrapper}>
       {datas.length === 0 ? (
