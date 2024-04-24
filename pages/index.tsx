@@ -12,14 +12,22 @@ const ITEMS_PER_PAGE = 6; // 페이지 당 아이템 수
 
 function Home() {
   const { currentPage, totalPages, onPageChange, currentItems } = usePagination(useGetNoticeList, ITEMS_PER_PAGE);
+  const { data } = useGetNoticeList({ limit: 3 });
   const twoDimensionalArray = currentItems.map((item: Item) => {
     return item.item;
   });
+  const customList = data.items.map((item: Item) => {
+    return item.item;
+  });
+  console.log(customList);
   return (
     <>
       <section className={styles.customContainer}>
-        <h2>맞춤 공고</h2>
-        <p> list 들어갈 자리</p>
+        <article>
+          <h2>맞춤 공고</h2>
+          {/* 임시 데이터 사용 */}
+          <PostList datas={customList} />
+        </article>
       </section>
       <section className={styles.noticeContainer}>
         <PostList datas={twoDimensionalArray} />

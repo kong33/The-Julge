@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Footer from '@/components/common/Footer/Footer';
 import HeadLayout from '@/layouts//HeadLayout';
 
 export default function OnlytagLayout({ children }: { children: React.ReactNode }) {
@@ -7,7 +8,7 @@ export default function OnlytagLayout({ children }: { children: React.ReactNode 
     <>
       <HeadLayout />
       <main>{children}</main>
-      {/* footer */}
+      <Footer />
     </>
   );
 }

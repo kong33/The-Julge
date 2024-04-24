@@ -1,11 +1,21 @@
 @import '@/styles/globals.scss';
 
+.customContainer,
+.noticeContainer {
+  @include flexbox(column, center, center);
+  padding: 6rem 0;
+}
 .customContainer {
   background-color: #ffebe7;
+  article {
+    @include flexbox(column, center, flex-start);
+    gap: 3rem;
+  }
+  h2 {
+    @include sopoqa-28-700;
+  }
 }
 
 .noticeContainer {
-  @include flexbox(column, center, center);
   gap: 40px;
-  padding: 6rem 0;
 }

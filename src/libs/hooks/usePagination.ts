@@ -21,7 +21,7 @@ export default function usePagination(apifunction: any, itemsPerPage: number) {
   const totalPages: number = Math.ceil(totalItem / itemsPerPage);
   useEffect(() => {
     setOffsetNum((currentPage - 1) * itemsPerPage);
-  }, [currentPage, data.items]);
+  }, [currentPage, data.items, itemsPerPage]);
 
   // 페이지 위치 변경
   const onPageChange = (page: number): void => {
