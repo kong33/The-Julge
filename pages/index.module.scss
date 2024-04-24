@@ -1,0 +1,11 @@
+@import '@/styles/globals.scss';
+
+.customContainer {
+  background-color: #ffebe7;
+}
+
+.noticeContainer {
+  @include flexbox(column, center, center);
+  gap: 40px;
+  padding: 6rem 0;
+}

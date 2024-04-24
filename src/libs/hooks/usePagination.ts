@@ -14,7 +14,6 @@ import { useEffect, useState } from 'react';
 export default function usePagination(apifunction: any, itemsPerPage: number) {
   const [currentPage, setCurrentPage] = useState<number>(1); // 현재 페이지 위치
   const [offsetNum, setOffsetNum] = useState<number>(0);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
   const { data } = apifunction({ limit: itemsPerPage, offset: offsetNum });
 
