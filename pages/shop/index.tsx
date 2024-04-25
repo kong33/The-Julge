@@ -1,11 +1,12 @@
 import { jwtDecode } from 'jwt-decode';
+import { redirect } from 'next/navigation';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 import { useGetUser } from '@/apis/user/useUserService';
 import Button from '@/components/common/Button';
 import MainLayout from '@/layouts/MainLayout';
-import { pageList } from '@/libs/constants';
+import { pageList } from '@/libs/constants/contants';
 import styles from '@/pages/shop/index.module.scss';
 
 // 토큰; 나중에 쿠키로 대체
@@ -24,7 +25,7 @@ export default function ShopPage() {
   // 쿠키로 대체되면 tpyeof window === 'undefined' 제거
   if (typeof window !== 'undefined') {
     if (!token) {
-      router.replace(pageList.login());
+      redirect(pageList.login());
     }
   }
 
@@ -32,7 +33,7 @@ export default function ShopPage() {
   const { data } = useGetUser(userId);
   const shopId = data?.item?.shop?.item?.id ?? '';
   if (shopId) {
-    router.replace(pageList.shopDetail(shopId));
+    redirect(pageList.shopDetail(shopId));
   }
 
   const handleClick = {

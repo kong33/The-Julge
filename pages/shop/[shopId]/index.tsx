@@ -8,7 +8,7 @@ import ShopService from '@/apis/shop/Shop.service';
 import { GetShopRes } from '@/apis/shop/shop.type';
 import { NoticeListArticle, ShopArticle } from '@/components/layout/shop/Article';
 import MainLayout from '@/layouts/MainLayout';
-import { pageList } from '@/libs/constants';
+import { pageList } from '@/libs/constants/contants';
 import styles from '@/pages/shop/index.module.scss';
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {

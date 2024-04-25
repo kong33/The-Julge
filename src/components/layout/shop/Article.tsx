@@ -5,7 +5,7 @@ import { GetNoticeListByShopIdRes } from '@/apis/notice/notice.type';
 import { GetShopRes } from '@/apis/shop/shop.type';
 import Button from '@/components/common/Button';
 import styles from '@/components/layout/shop/Article.module.scss';
-import { pageList } from '@/libs/constants';
+import { pageList } from '@/libs/constants/contants';
 import DefaultShopImg from '@/public/images/defualt-shop.png';
 import { ReactComponent as LocationSvg } from '@/public/svgs/location-shop.svg';
 
