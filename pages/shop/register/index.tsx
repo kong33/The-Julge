@@ -255,66 +255,69 @@ export default function ShopRegisterPage() {
           </Link>
         </div>
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-          <InputForm
-            label={formList.name.label}
-            required={formList.name.required}
-            errorMessage={errors.name?.message}
-            placeholder={formList.name.placeholder}
-            {...registerList.name}
-          />
-          <Controller
-            control={control}
-            name="category"
-            render={({ field }) => (
-              <SelectForm
-                label={formList.category.label}
-                required={formList.category.required}
-                instanceId="category"
-                optionList={categoryList}
-                errorMessage={errors.category?.message}
-                placeholder={formList.category.placeholder}
-                {...field}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="address1"
-            render={({ field }) => (
-              <SelectForm
-                label={formList.address1.label}
-                required={formList.address1.required}
-                instanceId="address1"
-                optionList={addressList}
-                errorMessage={errors.address1?.message}
-                placeholder={formList.address1.placeholder}
-                {...field}
-              />
-            )}
-          />
-          <InputForm
-            label={formList.address2.label}
-            required={formList.address2.required}
-            errorMessage={errors.address2?.message}
-            placeholder={formList.address2.placeholder}
-            {...registerList.address2}
-          />
-          <Controller
-            control={control}
-            name="originalHourlyPay"
-            render={({ field }) => (
-              <InputForm
-                label={formList.originalHourlyPay.label}
-                fieldLabel="원"
-                required={formList.originalHourlyPay.required}
-                errorMessage={errors.originalHourlyPay?.message}
-                placeholder={formList.originalHourlyPay.placeholder}
-                formatter={formatNumber}
-                {...field}
-              />
-            )}
-          />
+          <div className={styles.inputGridContainer}>
+            <InputForm
+              label={formList.name.label}
+              required={formList.name.required}
+              errorMessage={errors.name?.message}
+              placeholder={formList.name.placeholder}
+              {...registerList.name}
+            />
+            <Controller
+              control={control}
+              name="category"
+              render={({ field }) => (
+                <SelectForm
+                  label={formList.category.label}
+                  required={formList.category.required}
+                  instanceId="category"
+                  optionList={categoryList}
+                  errorMessage={errors.category?.message}
+                  placeholder={formList.category.placeholder}
+                  {...field}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="address1"
+              render={({ field }) => (
+                <SelectForm
+                  label={formList.address1.label}
+                  required={formList.address1.required}
+                  instanceId="address1"
+                  optionList={addressList}
+                  errorMessage={errors.address1?.message}
+                  placeholder={formList.address1.placeholder}
+                  {...field}
+                />
+              )}
+            />
+            <InputForm
+              label={formList.address2.label}
+              required={formList.address2.required}
+              errorMessage={errors.address2?.message}
+              placeholder={formList.address2.placeholder}
+              {...registerList.address2}
+            />
+            <Controller
+              control={control}
+              name="originalHourlyPay"
+              render={({ field }) => (
+                <InputForm
+                  label={formList.originalHourlyPay.label}
+                  fieldLabel="원"
+                  required={formList.originalHourlyPay.required}
+                  errorMessage={errors.originalHourlyPay?.message}
+                  placeholder={formList.originalHourlyPay.placeholder}
+                  formatter={formatNumber}
+                  {...field}
+                />
+              )}
+            />
+          </div>
           <FileInputForm
+            className={styles.fileInput}
             label={formList.imageUrl.label}
             required={formList.imageUrl.required}
             errorMessage={errors.imageUrl?.message}
@@ -329,11 +332,13 @@ export default function ShopRegisterPage() {
             {...registerList.description}
           />
         </form>
-        <ModalGroup.Trigger disableToggle>
-          <Button className={styles.submitButton} onClick={handleSubmit(onSubmit)} submit active size="large" solid>
-            등록하기
-          </Button>
-        </ModalGroup.Trigger>
+        <div className={styles.buttonContainer}>
+          <ModalGroup.Trigger disableToggle>
+            <Button className={styles.submitButton} onClick={handleSubmit(onSubmit)} submit active size="large" solid>
+              등록하기
+            </Button>
+          </ModalGroup.Trigger>
+        </div>
       </section>
       <ModalGroup.Content>{openModal}</ModalGroup.Content>
     </>
