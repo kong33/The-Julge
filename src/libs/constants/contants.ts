@@ -67,3 +67,5 @@ export const pageList = {
   page404: () => `/404`,
   search: () => '/search'
 };
+
+export const defaultLimit = 3;
