@@ -32,8 +32,6 @@ const FileInputForm = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFo
   ({ className = '', label = '', errorMessage = '', required = false, ...rest }: InputFormProps, ref) => {
     const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
 
-    console.log('rest', rest);
-
     const { onChange: registerOnChange, ...restProps } = rest;
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
