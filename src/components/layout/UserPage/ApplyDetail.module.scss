@@ -1,0 +1,26 @@
+@import '@/styles/globals.scss';
+
+.noticeList {
+  background-color: $color-white;
+  width: 100%;
+  height: 20rem;
+  padding: 6rem 2.4rem 6rem 2.4rem;
+  gap: 1.6rem;
+  border-radius: 1.2rem;
+  border: 1px solid #e5e4e7;
+
+  @include flexbox(column, center, center);
+}
+
+.noticeEmpty {
+  @include sopoqa-14-400;
+}
+
+.listButton {
+  @include sopoqa-14-700;
+  padding: 1rem 2rem;
+  height: 3.7rem;
+  color: $color-white;
+  line-height: 16.8rem;
+  text-align: center;
+}
