@@ -37,9 +37,9 @@ export default function Post({
           className={styles.img}
           src={imageUrl}
           alt={name}
-          width={280}
-          height={160}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          width={1120}
+          height={640}
+          style={{ objectFit: 'cover' }}
           priority
         />
         {closed && (

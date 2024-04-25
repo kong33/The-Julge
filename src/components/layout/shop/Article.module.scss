@@ -14,13 +14,11 @@
   }
 
   .shopImg {
+    @include flexbox($align: center, $justify: center);
     border-radius: 1.2rem;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
-    @include desktop {
-      border-radius: 1.2rem;
-      width: 53.9rem;
-      height: 100%;
-    }
   }
 
   .shopContainer {
@@ -116,6 +114,12 @@
   }
 }
 
+.defaultButton {
+  @include tablet {
+    @include button-large;
+  }
+}
+
 // notice-list-article empty
 .articleNoticeListEmpty {
   @include user-article;
@@ -130,15 +134,13 @@
   }
 }
 
-.button {
-  @include tablet {
-    @include button-large;
-  }
-}
-
 // notice-list-article
 .articleNoticeList {
   @include user-article;
+  padding: 0;
   background: none;
   border: none;
+  @include tablet {
+    padding: 0;
+  }
 }
