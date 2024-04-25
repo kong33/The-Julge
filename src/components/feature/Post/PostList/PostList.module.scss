@@ -11,15 +11,16 @@ $card-size-small: 17.1rem;
   justify-content: center;
   display: grid;
   gap: 3.1rem 1.4rem;
+  width: 100%;
 
-  grid-template-columns: repeat(3, $card-size-large);
+  grid-template-columns: repeat(auto-fill, $card-size-large);
 
   @include pc-first-tablet {
-    grid-template-columns: repeat(2, $card-size-large);
+    grid-template-columns: repeat(auto-fill, $card-size-large);
   }
 
   @include pc-first-mobile {
-    grid-template-columns: repeat(2, $card-size-small);
+    grid-template-columns: repeat(auto-fill, $card-size-small);
     gap: 1.6rem 0.8rem;
   }
 }
