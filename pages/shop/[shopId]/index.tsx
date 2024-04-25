@@ -61,7 +61,7 @@ export default function ShopDetailPage({
         <ShopArticle shopData={shopData} />
       </section>
       <section className={styles.section}>
-        <h1 className={styles.title}>{noticeListData.items?.length && '내가 '}등록한 공고</h1>
+        <h1 className={styles.title}>{noticeListData.items?.length === 0 ? '' : '내가 '}등록한 공고</h1>
         <NoticeListArticle shopData={shopData} noticeListData={noticeListData} />
       </section>
     </>

@@ -1,4 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { GetServerSideProps } from 'next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -15,7 +18,7 @@ import SelectForm from '@/components/common/Input/SelectForm/SelectForm';
 import Modal from '@/components/feature/Modal/Modal';
 import ModalGroup, { useModal } from '@/components/feature/Modal/ModalGroup';
 import MainLayout from '@/layouts/MainLayout';
-import { addressList, categoryList } from '@/libs/constants/contants';
+import { addressList, categoryList, pageList } from '@/libs/constants/contants';
 import { formatNumber, removeCommasNumber } from '@/libs/utils/formatter';
 import styles from '@/pages/shop/register/index.module.scss';
 import { ReactComponent as CloseSvg } from '@/public/svgs/close-shop-page.svg';
@@ -100,14 +103,56 @@ const formList = {
   }
 };
 
+// 토큰 나중에 쿠키로 대체
+// jwtDecode
+const token =
+  // eslint-disable-next-line max-len
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlMWFiNjk1My03MTNkLTQwNWEtOWM2NC05Njk0ZTFmZTFmOTQiLCJpYXQiOjE3MTQwNTYyOTZ9.OTO68dwg4m6AHcyHk841GlAf22OWKt5PxeTpHW_TGR4';
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  // token이 없으면 홈페이지로 리다이렉트
+  if (!token) {
+    return {
+      redirect: {
+        destination: pageList.home(),
+        permanent: false
+      }
+    };
+  }
+
+  // const userId = jwtDecode<{ userId: string }>(token).userId ?? '';
+  // const { data: shopData } = await UserService.getUser(userId);
+  // const shopId = shopData?.item?.shop?.item?.id ?? '';
+  // const userType = shopData?.item?.type ?? '';
+
+  // // shopId가 있으면 /shop/[shopId] 페이지로 리다이렉트
+  // if (shopId) {
+  //   return {
+  //     redirect: {
+  //       destination: pageList.shopDetail(shopId),
+  //       permanent: false
+  //     }
+  //   };
+  // }
+
+  // // employer가 아니면 홈페이지로 리다이렉트
+  // if (userType !== 'employer') {
+  //   return {
+  //     redirect: {
+  //       destination: pageList.home(),
+  //       permanent: false
+  //     }
+  //   };
+  // }
+
+  return {
+    props: {}
+  };
+};
+
 // (shopId X) 사장님 가게 등록
 export default function ShopRegisterPage() {
-  /**
-   *
-   * employer가 아니면 리다이렉션
-   *
-   *
-   */
+  const router = useRouter();
 
   const {
     control,
@@ -117,7 +162,7 @@ export default function ShopRegisterPage() {
     watch
   } = useForm<IFormInput>({
     defaultValues: defaultValueList, // 폼 기본값
-    mode: 'onTouched' // onBlur 시 검증});
+    mode: 'onTouched' // onTouched 시 검증
   });
 
   const watchImageFile = watch('imageUrl')[0];
@@ -145,11 +190,10 @@ export default function ShopRegisterPage() {
   const [openModal, setOpenModal] = useState<ReactElement | null>(null);
   const { toggle } = useModal();
   const handleClickCloseModal = {
-    onError: () => {
-      console.log('모달 실패 클릭');
-    },
+    onError: () => {},
     onSubmit: () => {
-      console.log('모달 성공 클릭');
+      const shopId = postShopData?.item?.id ?? '';
+      router.push(pageList.shopDetail(shopId));
     }
   };
   const modalList = {
@@ -166,13 +210,6 @@ export default function ShopRegisterPage() {
     imageUrl: register('imageUrl', formList.imageUrl.validate),
     description: register('description')
   };
-
-  /**
-   *
-   * 닫기 버튼
-   *
-   *
-   */
 
   const onSubmit = () => {
     // 폼 데이터 업로드
@@ -195,11 +232,13 @@ export default function ShopRegisterPage() {
 
   // 폼 제출
   useEffect(() => {
-    // 에러 메세지 모달 렌더링 / 폼 제출 성공 시 리다이렉션
+    // 에러 메세지 모달 렌더링
     if (postShopData?.message) {
       setOpenModal(modalList.onError);
       toggle();
     }
+
+    // 폼 제출 성공 시 리다이렉션
     if (postShopData?.item) {
       setOpenModal(modalList.onSuccess);
       toggle();
@@ -211,7 +250,9 @@ export default function ShopRegisterPage() {
       <section className={styles.section}>
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>가게 정보</h1>
-          <CloseSvg className={styles.closeIcon} />
+          <Link href={pageList.shop()}>
+            <CloseSvg className={styles.closeIcon} />
+          </Link>
         </div>
         <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
           <InputForm

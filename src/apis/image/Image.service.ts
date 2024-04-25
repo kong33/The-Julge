@@ -10,7 +10,6 @@ class ImageService {
   }
 
   putImage(file: File, presignedUrl: string) {
-    console.log('file', file);
     return apiFileRequestor.put(presignedUrl, file);
   }
 
