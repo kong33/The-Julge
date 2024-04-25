@@ -7,7 +7,7 @@ import ShopService from '@/apis/shop/Shop.service';
 import { GetShopRes } from '@/apis/shop/shop.type';
 import { NoticeListArticle, ShopArticle } from '@/components/layout/shop/Article';
 import MainLayout from '@/layouts/MainLayout';
-import { pageList } from '@/libs/constants/contants';
+import { defaultLimit, pageList } from '@/libs/constants/contants';
 import styles from '@/pages/shop/index.module.scss';
 
 // 토큰 나중에 쿠키로 대체
@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
   }
 
   const { data: shopData } = await ShopService.getShop(shopId);
-  const { data: noticeListData } = await NoticeService.getNoticeListByShopId(shopId, {});
+  const { data: noticeListData } = await NoticeService.getNoticeListByShopId(shopId, { limit: defaultLimit });
 
   if (!shopData?.item) {
     return {
