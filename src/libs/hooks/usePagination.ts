@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { Item } from '@/apis/notice/notice.type';
+
 /**
  * Pagination 컴포넌트
  * @param apifunction 사용할 api 함수 => items 불러와야할 api 함수 작성
@@ -27,11 +29,13 @@ export default function usePagination(apifunction: any, itemsPerPage: number) {
   const onPageChange = (page: number): void => {
     setCurrentPage(page);
   };
-
+  const dataList = data.items.map((item: Item) => {
+    return item.item;
+  });
   return {
     currentPage,
     totalPages,
     onPageChange,
-    currentItems: data.items
+    currentItems: dataList
   };
 }

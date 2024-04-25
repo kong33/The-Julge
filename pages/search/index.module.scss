@@ -1,0 +1,5 @@
+.searchContainer {
+  @include flexbox(column, center, center);
+  padding: 4rem 1.2rem;
+  gap: 40px;
+}

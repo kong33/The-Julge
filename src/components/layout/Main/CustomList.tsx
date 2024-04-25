@@ -27,9 +27,13 @@ function CustomList() {
 
   return (
     <div className={styles.customList}>
-      {posts.map((post: JSX.IntrinsicAttributes & PostProps) => (
-        <Post key={post.id} {...post} />
-      ))}
+      <ul>
+        {posts.map((post: JSX.IntrinsicAttributes & PostProps) => (
+          <li>
+            <Post key={post.id} {...post} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

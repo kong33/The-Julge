@@ -2,6 +2,8 @@ import { Controller, useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
 import SelectForm from '@/components/common/Input/SelectForm/SelectForm';
+import PostList from '@/components/feature/Post/PostList/PostList';
+import Pagination from '@/components/feature/pagination/pagination';
 import styles from '@/pages/index.module.scss';
 
 // selectForm option
@@ -15,8 +17,14 @@ const defaultFormValues = {
 
 type PostSearchProps = {
   search?: string | string[];
+  currentPage: number;
+  totalPages: number;
+  // eslint-disable-next-line no-unused-vars
+  onPageChange: (page: number) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  currentItems: any[];
 };
-function PostSearch({ search = '' }: PostSearchProps) {
+function PostSearch({ search = '', currentPage, totalPages, onPageChange, currentItems }: PostSearchProps) {
   // selectForm option
   const {
     control, // react-hook-form의 Controller에 연결됩니다.
@@ -30,39 +38,42 @@ function PostSearch({ search = '' }: PostSearchProps) {
 
   if (search) {
     pageTitle = (
-      <>
-        <h2>
-          <span className={styles.highlight}>{search}</span>에 대한 공고 목록
-        </h2>
-        ;
-      </>
+      <h2>
+        <span className={styles.highlight}>{search}</span>에 대한 공고 목록
+      </h2>
     );
   }
 
   return (
-    <div className={styles.txtContent}>
-      {pageTitle}
-      <div className={styles.condition}>
-        <Controller
-          name="filter"
-          control={control}
-          render={({ field }) => (
-            <SelectForm
-              size="filter"
-              errorMessage={errors.filter?.message}
-              className={styles.filterInput}
-              instanceId="filter"
-              optionList={optionList}
-              {...field}
+    <section className={styles.noticeContainer}>
+      <article className={styles.noticeList}>
+        <div className={styles.txtContent}>
+          {pageTitle}
+          <div className={styles.condition}>
+            <Controller
+              name="filter"
+              control={control}
+              render={({ field }) => (
+                <SelectForm
+                  size="filter"
+                  errorMessage={errors.filter?.message}
+                  className={styles.filterInput}
+                  instanceId="filter"
+                  optionList={optionList}
+                  {...field}
+                />
+              )}
             />
-          )}
-        />
-        <Button active size="small">
-          asd
-        </Button>
-        {/* filter도 추가 */}
-      </div>
-    </div>
+            <Button active size="small">
+              asd
+            </Button>
+            {/* filter도 추가 */}
+          </div>
+        </div>
+        <PostList datas={currentItems} />
+      </article>
+      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
+    </section>
   );
 }
 
