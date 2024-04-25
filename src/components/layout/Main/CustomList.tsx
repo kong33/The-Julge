@@ -1,7 +1,9 @@
+import { JSX } from 'react';
+
 import { Item } from '@/apis/notice/notice.type';
 import { useGetNoticeList } from '@/apis/notice/useNoticeService';
 import Post from '@/components/feature/Post/Post';
-import { PostData } from '@/components/feature/Post/PostType';
+import { PostData, PostProps } from '@/components/feature/Post/PostType';
 import styles from '@/pages/index.module.scss';
 
 function CustomList() {
@@ -25,7 +27,7 @@ function CustomList() {
 
   return (
     <div className={styles.customList}>
-      {posts.map((post) => (
+      {posts.map((post: JSX.IntrinsicAttributes & PostProps) => (
         <Post key={post.id} {...post} />
       ))}
     </div>
