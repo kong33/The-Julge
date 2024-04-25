@@ -19,8 +19,6 @@ export function ShopArticle({ shopData }: { shopData: GetShopRes }) {
   }
 
   const { item: shopItem } = shopData;
-  console.log('shopItem', shopItem);
-
   const { name, category, address1, address2, description } = shopItem; // 나중에 id, imageUrl 추가
 
   // const shopImg = imageUrl;
