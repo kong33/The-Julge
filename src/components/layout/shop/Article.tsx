@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from 'react';
+import { startTransition, useCallback, useEffect, useState } from 'react';
 
 import { GetNoticeListByShopIdRes } from '@/apis/notice/notice.type';
 import { useGetNoticeListByShopId } from '@/apis/notice/useNoticeService';
@@ -82,12 +82,6 @@ export function NoticeListArticle({
   const noticeMaxCount = moreNoticeListItems?.count;
   const moreNoticeListItem = moreNoticeListItems?.items;
 
-  const loadMoreNoticeList = useCallback(() => {
-    setQueryParams((prev) => {
-      return { offset: prev.offset + prev.limit, limit: prev.limit };
-    });
-  }, []);
-
   // `noticeListItem`을 `postListDatas` 구조로 매핑
   const postListDatas = noticeListItem.map((notice) => {
     const noticeItem = notice.item;
@@ -113,6 +107,14 @@ export function NoticeListArticle({
       }
     };
   });
+
+  const loadMoreNoticeList = useCallback(() => {
+    startTransition(() => {
+      setQueryParams((prev) => {
+        return { offset: prev.offset + prev.limit, limit: prev.limit };
+      });
+    });
+  }, []);
 
   const observationTargetRef = useIntersectionObserver({ callbackIn: loadMoreNoticeList });
 
@@ -156,10 +158,10 @@ export function NoticeListArticle({
             }
           };
         });
-
         setLoadedNoticeList([...loadedNoticeList, ...morePostListDatas]);
       }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [moreNoticeListItems]);
 
@@ -187,7 +189,7 @@ export function NoticeListArticle({
       <PostList datas={loadedNoticeList} />
       {/* 옵저버에 등록될 엔트리 */}
       {noticeMaxCount > queryParams.offset + queryParams.limit && (
-        <div style={{ height: `0.1rem` }} ref={observationTargetRef} />
+        <div style={{ height: `0.01rem` }} ref={observationTargetRef} />
       )}
     </article>
   );
