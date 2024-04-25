@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 import styles from '@/components/common/Input/FileInputForm/FileInputForm.module.scss';
@@ -30,9 +30,43 @@ interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement | HT
 
 const FileInputForm = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFormProps>(
   ({ className = '', label = '', errorMessage = '', required = false, ...rest }: InputFormProps, ref) => {
+    const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
+
+    console.log('rest', rest);
+
+    const { onChange: registerOnChange, ...restProps } = rest;
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      console.log('이미지 변경');
+      // register의 onChange를 먼저 호출
+      if (registerOnChange) {
+        registerOnChange(event);
+      }
+
+      const file = event.target.files?.[0];
+      if (file) {
+        const fileURL = URL.createObjectURL(file);
+        setBackgroundImage(fileURL);
+      }
+    };
+
+    useEffect(() => {
+      return () => {
+        if (backgroundImage) {
+          URL.revokeObjectURL(backgroundImage); // 메모리 누수 방지
+        }
+      };
+    }, [backgroundImage]);
+
     return (
       <InputContainer className={className} label={label} required={required} errorMessage={errorMessage}>
-        <div className={styles.inputFieldContainer}>
+        <div
+          className={styles.inputFieldContainer}
+          style={{
+            backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
+            backgroundSize: 'cover'
+          }}
+        >
           {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           <label htmlFor={label} className={styles.fileInputLabel}>
             <CameraSvg className={styles.cameraIcon} />
@@ -44,7 +78,8 @@ const FileInputForm = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFo
             type="file"
             accept="image/*"
             ref={ref as React.Ref<HTMLInputElement>}
-            {...rest}
+            onChange={handleFileChange}
+            {...restProps}
           />
         </div>
       </InputContainer>
