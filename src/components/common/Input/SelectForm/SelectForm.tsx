@@ -111,6 +111,40 @@ const selectSmallStyle = {
   })
 };
 
+const selectErrorStyle = {
+  ...selectStyles,
+  control: (provided: any) => ({
+    ...provided,
+    padding: '1.6rem 2rem',
+    borderRadius: '0.6rem',
+    border: '0.1rem solid #ff4040',
+    boxShadow: 'none',
+    background: '#FFF',
+    '&:hover': {},
+    '&:focus': {
+      border: '0.1rem solid #cbc9cf'
+    },
+    '&:active': {}
+  })
+};
+
+const selectSmallErrorStyle = {
+  ...selectSmallStyle,
+  control: (provided: any) => ({
+    ...provided,
+    padding: '1.6rem 2rem',
+    borderRadius: '0.6rem',
+    border: '0.1rem solid #ff4040',
+    boxShadow: 'none',
+    background: '#FFF',
+    '&:hover': {},
+    '&:focus': {
+      border: '0.1rem solid #cbc9cf'
+    },
+    '&:active': {}
+  })
+};
+
 function DropdownIndicator(props: any) {
   const { selectProps } = props;
   const { menuIsOpen } = selectProps;
@@ -157,13 +191,16 @@ const SelectForm = forwardRef<React.Ref<Select>, SelectFormProps>(
   ) => {
     const selectOptionList = optionList.map((option) => ({ value: option, label: option }));
 
+    const selectLargeStyles = errorMessage ? selectErrorStyle : selectStyles;
+    const selectSmallStyles = errorMessage ? selectSmallErrorStyle : selectSmallStyle;
+
     return (
       <InputContainer className={className} label={label} required={required} errorMessage={errorMessage}>
         <Select
           className={styles.selectForm}
           instanceId={instanceId}
           options={selectOptionList}
-          styles={size === 'small' ? selectSmallStyle : selectStyles}
+          styles={size === 'small' ? selectSmallStyles : selectLargeStyles}
           components={{ DropdownIndicator }}
           isSearchable={false}
           ref={ref as React.Ref<SelectInstance<unknown, boolean, GroupBase<unknown>>>}
