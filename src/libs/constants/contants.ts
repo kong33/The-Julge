@@ -1,4 +1,4 @@
-import { Address as AddressType } from '@/apis/common.type';
+import { Address as AddressType, Category } from '@/apis/common.type';
 
 export const addressList: AddressType[] = [
   '서울시 종로구',
@@ -27,6 +27,8 @@ export const addressList: AddressType[] = [
   '서울시 송파구',
   '서울시 강동구'
 ];
+
+export const categoryList: Category[] = ['한식', '중식', '일식', '양식', '분식', '카페', '편의점', '기타'];
 
 export const a = 1;
 //  lint 에러를 막기 위한 임시 코드
@@ -62,5 +64,6 @@ export const pageList = {
   userNoticeDetail: (shopId: string, noticeId: string) => `/notice/${shopId}/${noticeId}`,
   user: () => `/user`,
   userEdit: () => `/user/edit`,
-  page404: () => `/404`
+  page404: () => `/404`,
+  search: () => '/search'
 };
