@@ -1,36 +1,48 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
-export default function useIntersectionObserver(callback: () => void) {
-  const [observationTarget, setObservationTarget] = useState(null);
+interface useIntersectionObserverProps {
+  callbackIn?: () => void;
+  callbackOut?: () => void;
+}
 
-  const observer = useRef(
-    new IntersectionObserver(
-      ([entry]) => {
-        // entry가 뷰포트 안에 들어오면(isIntersecting = true) callback 함수 호출
-        if (entry.isIntersecting) {
-          callback();
-        }
-      },
-      { threshold: 1 } // entry가 뷰포트 안에 1개 들어오면 작동
-    )
-  );
+// callbackIn: entry.isIntersecting === true 일 때 실행
+// callbackOut: entry.isIntersecting === false 일 때 실행
+export default function useIntersectionObserver({ callbackIn, callbackOut }: useIntersectionObserverProps) {
+  const observationTargetRef = useRef<HTMLElement | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    // observationTarget이 있을 때 추적
-    // observationTarget이 바뀔 때마다 갱신
-    const currentTarget = observationTarget;
-    const currentObserver = observer.current;
+    // typeof window !== 'undefined' => 서버가 아닌 클라이언트 환경이면 true
+    // !observerRef.current => IntersectionObserver 인스턴스가 아직 생성되지 않은 상태면 true
+    if (typeof window !== 'undefined' && !observerRef.current) {
+      observerRef.current = new IntersectionObserver(([entry]) => {
+        // entry가 뷰포트 안에 있으면 callback 함수 호출
+        if (entry.isIntersecting) {
+          callbackIn?.();
+        }
+        // entry가 뷰포트 안에 없으면 callback 함수 호출
+        if (!entry.isIntersecting) {
+          callbackOut?.();
+        }
+      });
+    }
 
-    if (currentTarget) {
+    const currentTarget = observationTargetRef.current;
+    const currentObserver = observerRef.current;
+
+    if (currentTarget && currentObserver) {
       currentObserver.observe(currentTarget);
     }
 
     return () => {
-      if (currentTarget) {
+      if (currentTarget && currentObserver) {
         currentObserver.unobserve(currentTarget);
       }
     };
-  }, [observationTarget]);
+  }, [callbackIn, callbackOut]);
 
-  return setObservationTarget;
+  // observationTarget의 current를 직접 수정할 수 있는 함수 반환
+  return (node: HTMLElement | null) => {
+    observationTargetRef.current = node;
+  };
 }
