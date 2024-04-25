@@ -40,7 +40,6 @@ export default function Post({
           width={1120}
           height={640}
           style={{ objectFit: 'cover' }}
-          priority
         />
         {closed && (
           <div className={styles.closedLayer}>
