@@ -1,8 +1,6 @@
 /* eslint-disable class-methods-use-this */
-import { AxiosRequestConfig } from 'axios';
-
 import { PostImagePayload } from '@/apis/image/image.type';
-import { apiFileRequestor, apiRequestor, apiRequestorToken } from '@/apis/requestor';
+import { apiFileRequestor, apiRequestorNoBaseUrl, apiRequestorToken } from '@/apis/requestor';
 
 import { removeQueryParams } from '../utils';
 
@@ -12,17 +10,13 @@ class ImageService {
   }
 
   putImage(file: File, presignedUrl: string) {
-    const formData = new FormData();
-    formData.append('file', file);
-    return apiFileRequestor.put(presignedUrl, formData);
+    console.log('file', file);
+    return apiFileRequestor.put(presignedUrl, file);
   }
 
   getImage(presignedUrl: string) {
-    const config: AxiosRequestConfig = {
-      baseURL: ''
-    };
     const cleanUrl = removeQueryParams(presignedUrl); // query params 제거
-    return apiRequestor.put(cleanUrl, config);
+    return apiRequestorNoBaseUrl.put(cleanUrl);
   }
 }
 

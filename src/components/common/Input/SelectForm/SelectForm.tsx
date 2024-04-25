@@ -29,6 +29,7 @@ const selectStyles = {
     fontSize: '1.6rem',
     fontWeight: '400',
     lineHeight: '2.6rem',
+    margin: '0',
     color: '#111322'
   }),
   menu: (provided: any) => ({
