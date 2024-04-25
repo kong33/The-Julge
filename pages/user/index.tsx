@@ -65,9 +65,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
 export default function UserDetailPage({ userId, userData, ApplicationData }: Props) {
   const router = useRouter();
-  const onClickEdit = () => {
-    router.push(pageList.userEdit());
-  };
   const onClickList = () => {
     router.push(pageList.home());
   };
@@ -81,7 +78,7 @@ export default function UserDetailPage({ userId, userData, ApplicationData }: Pr
       <div className={styles.wrapper}>
         <section className={`${styles.profileSection} ${!isRegisterd ? styles.columnDirection : ''}`}>
           <h1>내 프로필</h1>
-          <ProfileCard isRegisterd={isRegisterd} onClickEdit={onClickEdit} {...userData.item} />
+          <ProfileCard isRegisterd={isRegisterd} {...userData.item} />
         </section>
         {isRegisterd && (
           <section className={styles.listSection}>

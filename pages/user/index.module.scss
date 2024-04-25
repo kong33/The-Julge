@@ -37,6 +37,10 @@
         @include sopoqa-20-700;
         text-align: left;
         margin-bottom: 2rem;
+
+        @include tablet {
+          @include sopoqa-28-700;
+        }   
       }
     }
 
@@ -46,6 +50,10 @@
         @include sopoqa-20-700;
         text-align: left;
         margin-bottom: 2rem;
+
+        @include tablet {
+          @include sopoqa-28-700;
+        }   
       }
     }
   }
