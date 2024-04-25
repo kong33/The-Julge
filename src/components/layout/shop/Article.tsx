@@ -6,27 +6,20 @@ import { GetShopRes } from '@/apis/shop/shop.type';
 import Button from '@/components/common/Button';
 import styles from '@/components/layout/shop/Article.module.scss';
 import { pageList } from '@/libs/constants/contants';
-import DefaultShopImg from '@/public/images/defualt-shop.png';
 import { ReactComponent as LocationSvg } from '@/public/svgs/location-shop.svg';
 
 // ShopArticle
 export function ShopArticle({ shopData }: { shopData: GetShopRes }) {
   const router = useRouter();
 
-  // shopItem이나 shopId가 없을 때 /shop 페이지로 이동
-  if (!shopData?.item?.id) {
-    return router.replace(pageList.shop());
-  }
-
   const { item: shopItem } = shopData;
-  const { name, category, address1, address2, description } = shopItem; // 나중에 id, imageUrl 추가
+  const { id: shopId, name, category, address1, address2, description, imageUrl } = shopItem;
 
-  // const shopImg = imageUrl;
-  const shopImg = DefaultShopImg; // 이미지 나중에 바꾸기
+  const shopImg = imageUrl;
 
   const handleClick = {
-    toShopEditPage: () => router.push(pageList.shopEdit(shopItem.id)),
-    toShopNoticeRegisterPage: () => router.push(pageList.shopNoticeRegister(shopItem.id))
+    toShopEditPage: () => router.push(pageList.shopEdit(shopId)),
+    toShopNoticeRegisterPage: () => router.push(pageList.shopNoticeRegister(shopId))
   };
 
   return (
@@ -92,7 +85,7 @@ export function NoticeListArticle({
 
   if (!noticeListItem?.length) {
     return (
-      <article className={styles.article}>
+      <article className={styles.articleNoticeListEmpty}>
         <p className={styles.description}>공고를 등록해 보세요.</p>
         <Button className={styles.button} onClick={handleClick.toShopNoticeRegisterPage} size="medium" active solid>
           공고 등록하기
@@ -101,6 +94,5 @@ export function NoticeListArticle({
     );
   }
 
-  // 여기 작업해야함
   return <article className={styles.articleNoticeList}>PostList-무한 스크롤</article>;
 }
