@@ -19,6 +19,10 @@ const selectStyles = {
     '&:focus': {},
     '&:active': {}
   }),
+  valueContainer: (provided: any) => ({
+    ...provided,
+    padding: '0'
+  }),
   singleValue: (provided: any) => ({
     ...provided,
     fontFamily: 'SpoqaHanSansNeo-Regular',
@@ -73,7 +77,8 @@ const selectStyles = {
     fontSize: '1.6rem',
     fontWeight: '400',
     lineHeight: '2.6rem',
-    color: '#A4A1AA'
+    color: '#A4A1AA',
+    margin: '0'
   }),
   indicatorSeparator: () => ({}),
   dropdownIndicator: (provided: any) => ({
