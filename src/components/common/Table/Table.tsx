@@ -4,7 +4,7 @@ import Pagination from '@/components/feature/pagination/pagination';
 
 interface TableProps<T> {
   data: T[];
-  columns: NoticesColumn<T>[];
+  columns: NoticesColumn[];
   currentPage: number;
   totalPages: number;
   // eslint-disable-next-line no-unused-vars
@@ -20,7 +20,7 @@ interface TableProps<T> {
  * @param onPageChange 현재 페이지 usestate에 저장하는 함수: onPageChange(페이지번호)
  */
 
-function Table<T extends { id: string }>({ data, columns, currentPage, totalPages, onPageChange }: TableProps<T>) {
+function Table<T>({ data, columns, currentPage, totalPages, onPageChange }: TableProps<T>) {
   return (
     <div className={styles.container}>
       <div className={styles.tableWrapper}>
@@ -37,16 +37,18 @@ function Table<T extends { id: string }>({ data, columns, currentPage, totalPage
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => {
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            {data.map((item: any) => {
+              // eslint-disable-next-line no-lone-blocks
+              {
+                /* id/status: application(userId 아님), name/bio/phone: user */
+              }
               return (
                 <tr key={item.id}>
-                  {columns.map((column) => {
-                    return (
-                      <td key={item[column.id].id}>
-                        <span>{item[column.id].label}</span>
-                      </td>
-                    );
-                  })}
+                  <td>{item.name}</td>
+                  <td>{item.bio}</td>
+                  <td>{item.phone}</td>
+                  <td>{item.status}</td>
                 </tr>
               );
             })}

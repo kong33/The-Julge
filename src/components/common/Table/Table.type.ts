@@ -1,5 +1,5 @@
-export interface NoticesColumn<T> {
-  id: keyof T;
+export interface NoticesColumn {
+  id: string;
   label: string;
 }
 
@@ -19,14 +19,14 @@ export interface EmployeeNotices {
   status: 'pending | accepted | rejected | canceled';
 }
 
-export const EMPLOYEE_COLUMNS: NoticesColumn<string>[] = [
+export const EMPLOYEE_COLUMNS: NoticesColumn[] = [
   { id: 'store', label: '가게' },
   { id: 'date', label: '일자' },
   { id: 'hourlyPay', label: '시급' },
   { id: 'status', label: '상태' }
 ];
 
-export const EMPLOYER_COLUMNS: NoticesColumn<EmployerNotices>[] = [
+export const EMPLOYER_COLUMNS: NoticesColumn[] = [
   { id: 'name', label: '신청자' },
   { id: 'bio', label: '소개' },
   { id: 'phone', label: '전화번호' },

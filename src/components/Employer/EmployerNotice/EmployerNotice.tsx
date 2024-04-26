@@ -34,19 +34,22 @@ function EmployerNotice() {
 
     if (data && data.items) {
       setApplicantList(
-        data.items.map((i) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        data.items.map((i: any) => {
           const { item } = i;
+          const { id: applicationId, user, status } = item;
+          const { name, bio, phone } = user.item; // 지원자 id 여기에서 가져올 수 있음(id)
           return {
-            id: item?.user?.item.id as string,
-            name: item?.user?.item.name as string,
-            bio: item?.user?.item.bio as string,
-            phone: item?.user?.item.phone as string,
+            id: applicationId,
+            name,
+            bio,
+            phone,
             status:
-              item.status === 'pending' ? (
+              status === 'pending' ? (
                 <StatusButton />
               ) : (
                 // userId={item.user?.item.id as string
-                <StatusChip status={item.status} />
+                <StatusChip status={status} />
               )
           };
         })
