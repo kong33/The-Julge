@@ -45,10 +45,13 @@ function Table<T>({ data, columns, currentPage, totalPages, onPageChange }: Tabl
               }
               return (
                 <tr key={item.id}>
-                  <td>{item.name}</td>
-                  <td>{item.bio}</td>
-                  <td>{item.phone}</td>
-                  <td>{item.status}</td>
+                  {columns.map((column) => {
+                    return (
+                      <td key={column.id as string}>
+                        <span>{item[column.id]}</span>
+                      </td>
+                    );
+                  })}
                 </tr>
               );
             })}
