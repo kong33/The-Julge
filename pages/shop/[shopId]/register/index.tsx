@@ -113,11 +113,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const shopId = shopData?.item?.shop?.item?.id ?? '';
   const userType = shopData?.item?.type ?? '';
 
-  // shopId가 있으면 /shop/[shopId] 페이지로 리다이렉트
-  if (shopId) {
+  // shopId가 없으면 /shop 페이지로 리다이렉트
+  if (!shopId) {
     return {
       redirect: {
-        destination: pageList.shopDetail(shopId),
+        destination: pageList.shop(),
         permanent: false
       }
     };
