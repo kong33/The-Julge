@@ -10,6 +10,7 @@ interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement | HT
   label?: string;
   errorMessage?: string | undefined | null;
   register?: UseFormRegisterReturn;
+  backgroundImageUrl?: string;
 }
 
 /**
@@ -29,8 +30,18 @@ interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement | HT
  */
 
 const FileInputForm = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFormProps>(
-  ({ className = '', label = '', errorMessage = '', required = false, ...rest }: InputFormProps, ref) => {
-    const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
+  (
+    {
+      className = '',
+      label = '',
+      errorMessage = '',
+      required = false,
+      backgroundImageUrl = '',
+      ...rest
+    }: InputFormProps,
+    ref
+  ) => {
+    const [backgroundImage, setBackgroundImage] = useState<string | null>(backgroundImageUrl || null);
 
     const { onChange: registerOnChange, ...restProps } = rest;
 
