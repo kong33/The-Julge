@@ -72,7 +72,9 @@ const FileInputForm = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFo
         <div
           className={styles.inputFieldContainer}
           style={{
-            backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
+            backgroundImage: backgroundImage
+              ? `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${backgroundImage})`
+              : undefined,
             backgroundSize: 'cover'
           }}
         >
