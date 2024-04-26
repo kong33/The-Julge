@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { jwtDecode } from 'jwt-decode';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -10,6 +11,7 @@ import { PostImageRes } from '@/apis/image/image.type';
 import { usePostImage, usePutImage } from '@/apis/image/useImageService';
 import { PostShopPayload } from '@/apis/shop/shop.type';
 import { usePostShop } from '@/apis/shop/useShopService';
+import UserService from '@/apis/user/User.service';
 import { removeQueryParams } from '@/apis/utils';
 import Button from '@/components/common/Button';
 import FileInputForm from '@/components/common/Input/FileInputForm/FileInputForm';
@@ -120,30 +122,30 @@ export const getServerSideProps: GetServerSideProps = async () => {
     };
   }
 
-  // const userId = jwtDecode<{ userId: string }>(token).userId ?? '';
-  // const { data: shopData } = await UserService.getUser(userId);
-  // const shopId = shopData?.item?.shop?.item?.id ?? '';
-  // const userType = shopData?.item?.type ?? '';
+  const userId = jwtDecode<{ userId: string }>(token).userId ?? '';
+  const { data: shopData } = await UserService.getUser(userId);
+  const shopId = shopData?.item?.shop?.item?.id ?? '';
+  const userType = shopData?.item?.type ?? '';
 
-  // // shopId가 있으면 /shop/[shopId] 페이지로 리다이렉트
-  // if (shopId) {
-  //   return {
-  //     redirect: {
-  //       destination: pageList.shopDetail(shopId),
-  //       permanent: false
-  //     }
-  //   };
-  // }
+  // shopId가 있으면 /shop/[shopId] 페이지로 리다이렉트
+  if (shopId) {
+    return {
+      redirect: {
+        destination: pageList.shopDetail(shopId),
+        permanent: false
+      }
+    };
+  }
 
-  // // employer가 아니면 홈페이지로 리다이렉트
-  // if (userType !== 'employer') {
-  //   return {
-  //     redirect: {
-  //       destination: pageList.home(),
-  //       permanent: false
-  //     }
-  //   };
-  // }
+  // employer가 아니면 홈페이지로 리다이렉트
+  if (userType !== 'employer') {
+    return {
+      redirect: {
+        destination: pageList.home(),
+        permanent: false
+      }
+    };
+  }
 
   return {
     props: {}
