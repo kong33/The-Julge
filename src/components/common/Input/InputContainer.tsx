@@ -24,9 +24,7 @@ export default function InputContainer({
 
   return (
     <div className={inputFormContainer}>
-      <Label htmlFor={label} required={required}>
-        {label}
-      </Label>
+      <Label required={required}>{label}</Label>
       {children}
       <ErrorMessage>{errorMessage}</ErrorMessage>
     </div>

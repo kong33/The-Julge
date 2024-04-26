@@ -1,0 +1,37 @@
+@import '@/styles/globals.scss';
+
+.section {
+  @include user-section;
+}
+
+.sectionBottom {
+  @include user-section;
+  padding-bottom: 8rem;
+  @include tablet {
+    padding-bottom: 12rem;
+  }
+}
+
+.title {
+  @include h1;
+}
+
+// article
+.article {
+  @include user-article;
+
+  .description {
+    @include sopoqa-14-400;
+    margin-bottom: 1.6rem;
+    @include tablet {
+      @include sopoqa-16-400;
+      margin-bottom: 2.4rem;
+    }
+  }
+}
+
+.button {
+  @include tablet {
+    @include button-large;
+  }
+}
