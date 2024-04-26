@@ -20,7 +20,7 @@ import SelectForm from '@/components/common/Input/SelectForm/SelectForm';
 import Modal from '@/components/feature/Modal/Modal';
 import ModalGroup, { useModal } from '@/components/feature/Modal/ModalGroup';
 import MainLayout from '@/layouts/MainLayout';
-import { addressList, categoryList, pageList } from '@/libs/constants/contants';
+import { MAX_HOURLY_PAY, MIN_HOURLY_PAY, addressList, categoryList, pageList } from '@/libs/constants/contants';
 import { formatNumber, removeCommasNumber } from '@/libs/utils/formatter';
 import styles from '@/pages/shop/register/index.module.scss';
 import { ReactComponent as CloseSvg } from '@/public/svgs/close-shop-page.svg';
@@ -44,10 +44,6 @@ const defaultValueList = {
   imageUrl: [],
   description: ''
 };
-
-// 최소 및 최대 시급 설정
-const minHourlyPay = 10000; // 최소 시급
-const maxHourlyPay = 1000000000; // 최대 시급
 
 const formList = {
   name: {
@@ -83,7 +79,7 @@ const formList = {
           if (!value) return '기본 시급을 입력해 주세요.';
           const numValue = removeCommasNumber(value); // 쉼표 제거 후 숫자 변환
           return (
-            (numValue >= minHourlyPay && numValue <= maxHourlyPay) ||
+            (numValue >= MIN_HOURLY_PAY && numValue <= MAX_HOURLY_PAY) ||
             '시급은 최저시급 이상이어야 하고, 1,000,000,000원을 넘을 수 없습니다.'
           );
         }
