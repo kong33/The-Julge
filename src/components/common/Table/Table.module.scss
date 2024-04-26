@@ -17,15 +17,9 @@
   max-width: 96.4rem;
   @include sopoqa-12-400;
 
-  &::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
-
-  &::-webkit-scrollbar-thumb,
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
+  overflow-x: auto; /* 가로 스크롤바 표시 여부에 따라 조정 */
+  overflow-y: hidden; /* 세로 스크롤바 숨김 */
+  -webkit-overflow-scrolling: touch;
 
   @include tablet {
     width: 100%;
@@ -33,6 +27,7 @@
 }
 
 .table {
+  max-width: 96.4rem;
   border-spacing: 0;
   word-break: normal;
 
@@ -78,7 +73,7 @@
     }
 
     &:last-of-type {
-      width: 16.2rem;
+      width: 23.6rem;
       min-width: 16.2rem;
       position: sticky;
       right: 0;
