@@ -42,8 +42,8 @@ function Table<T extends { id: string }>({ data, columns, currentPage, totalPage
                 <tr key={item.id}>
                   {columns.map((column) => {
                     return (
-                      <td key={column.id as string}>
-                        <span>{item[column.id]}</span>
+                      <td key={item[column.id].id}>
+                        <span>{item[column.id].label}</span>
                       </td>
                     );
                   })}

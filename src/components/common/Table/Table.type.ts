@@ -19,7 +19,7 @@ export interface EmployeeNotices {
   status: 'pending | accepted | rejected | canceled';
 }
 
-export const EMPLOYEE_COLUMNS: NoticesColumn<EmployeeNotices>[] = [
+export const EMPLOYEE_COLUMNS: NoticesColumn<string>[] = [
   { id: 'store', label: '가게' },
   { id: 'date', label: '일자' },
   { id: 'hourlyPay', label: '시급' },

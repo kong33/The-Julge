@@ -5,7 +5,7 @@ import { useGetApplicationListByNoticeId } from '@/apis/application/useApplicati
 import { EmployerNotices } from '@/components/common/Table/Table.type';
 import EmployerTable from '@/components/feature/Notice/EmployerTable/EmployerTable';
 import StatusButton from '@/components/feature/Notice/StatusButton/StatusButton';
-import UiTableStatusChip from '@/components/feature/Notice/StatusChip/StatusChip';
+import StatusChip from '@/components/feature/Notice/StatusChip/StatusChip';
 
 function EmployerNotice() {
   // const router = useRouter();
@@ -17,8 +17,8 @@ function EmployerNotice() {
   // const { shopId, noticeId } = router.query;
 
   const { data } = useGetApplicationListByNoticeId(
-    '63fcc375-5d0a-4ba4-ac5b-101b03973c74',
-    '4c7bdc76-2912-41e8-82d3-dc973e254d9b',
+    '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
+    '9ce03c73-3218-4c2a-a130-223b0c9a1498',
     {
       offset: pageNum - 1,
       limit: 5
@@ -46,7 +46,7 @@ function EmployerNotice() {
                 <StatusButton />
               ) : (
                 // userId={item.user?.item.id as string
-                <UiTableStatusChip status={item.status} />
+                <StatusChip status={item.status} />
               )
           };
         })
