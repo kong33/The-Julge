@@ -4,38 +4,49 @@
 .noticeContainer {
   @include flexbox(column, center, center);
   padding: 4rem 1.2rem;
+  @include tablet {
+    padding: 6rem 0;
+  }
 }
 
 .customContainer {
   background-color: #ffebe7;
-  @include flexbox(column);
-  gap: 3rem;
-  align-items: flex-start;
+  overflow: hidden;
+  @include flexbox(column, center, flex-start);
+  gap: 3.2rem;
   h2 {
     @include sopoqa-20-700;
+    @include tablet {
+      @include sopoqa-28-700;
+    }
   }
 }
 
 .noticeContainer {
-  gap: 40px;
+  gap: 4rem;
   .noticeList {
-    width: 100%;
     @include flexbox(column);
-    gap: 3rem;
+    gap: 1rem;
     align-items: normal;
+    @include tablet {
+      gap: 3.2rem;
+    }
   }
-}
-
-.filterInput {
-  width: 100%;
-  max-width: 10.5rem;
 }
 
 .txtContent {
   width: 100%;
-  @include flexbox(row, space-between, center);
+  @include flexbox(column, center, flex-start);
+  gap: 1.6rem;
+  @include tablet {
+    gap: 0;
+    @include flexbox(row, space-between, center);
+  }
   h2 {
     @include sopoqa-20-700;
+    @include tablet {
+      @include sopoqa-28-700;
+    }
   }
   .highlight {
     color: $color-primary;
@@ -45,6 +56,11 @@
 .condition {
   @include flexbox();
   gap: 1rem;
+}
+
+.filterInput {
+  width: 100%;
+  max-width: 10.5rem;
 }
 
 .customList {

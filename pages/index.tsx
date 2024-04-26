@@ -16,9 +16,11 @@ function Home() {
   return (
     <>
       <section className={styles.customContainer}>
-        <h2>맞춤 공고</h2>
-        {/* 임시 데이터 사용 */}
-        <CustomList />
+        <article>
+          <h2>맞춤 공고</h2>
+          {/* 임시 데이터 사용 */}
+          <CustomList />
+        </article>
       </section>
       <PostSearch
         currentPage={currentPage}
