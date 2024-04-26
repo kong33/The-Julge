@@ -8,4 +8,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.8rem;
+
+  .input {
+    width: 2rem;
+    background-color: $color-primary;
+  }
+  input:checked {
+    background-color: $color-primary;
+  }
+  input::before {
+    background-color: $color-primary;
+  }
+
+  p {
+    @include sopoqa-14-400;
+  }
 }
