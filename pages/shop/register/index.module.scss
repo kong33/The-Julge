@@ -40,7 +40,9 @@
   }
 
   .inputGridContainer {
+    @include flexbox($direction: column);
     width: 100%;
+    gap: 2rem;
     @include tablet {
       display: grid;
       grid-template-columns: 1fr 1fr;
