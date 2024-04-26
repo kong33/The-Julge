@@ -5,6 +5,7 @@ import NoticeService from '@/apis/notice/Notice.service';
 import { GetNoticeListByShopIdRes } from '@/apis/notice/notice.type';
 import ShopService from '@/apis/shop/Shop.service';
 import { GetShopRes } from '@/apis/shop/shop.type';
+import AsyncBoundary from '@/components/common/AsyncBoundary';
 import { NoticeListArticle, ShopArticle } from '@/components/layout/shop/Article';
 import MainLayout from '@/layouts/MainLayout';
 import { defaultLimit, pageList } from '@/libs/constants/contants';
@@ -70,7 +71,9 @@ export default function ShopDetailPage({
       </section>
       <section className={styles.sectionBottom}>
         <h1 className={styles.title}>{noticeListData.items?.length === 0 ? '' : '내가 '}등록한 공고</h1>
-        <NoticeListArticle shopData={shopData} noticeListData={noticeListData} />
+        <AsyncBoundary>
+          <NoticeListArticle shopData={shopData} noticeListData={noticeListData} />
+        </AsyncBoundary>
       </section>
     </>
   );
