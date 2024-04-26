@@ -1,0 +1,90 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.TagWrapper {
+  display: flex;
+  align-items: center;
+  max-width: 16.8rem;
+  height: 3.5rem;
+  padding: 1.2rem;
+  border-radius: 2rem;
+  gap: 0.6rem;
+
+  &.red {
+    background: #ff4040;
+    @include pc-first-mobile {
+      background-color: white;
+    }
+  }
+
+  &.orange {
+    background: #ff8d72;
+    @include pc-first-mobile {
+      background-color: white;
+    }
+  }
+
+  &.undefined {
+    .imgContainer {
+      display: none;
+    }
+  }
+
+  &.closed {
+    background: #e5e4e7;
+    @include pc-first-mobile {
+      background-color: white;
+      .TagText {
+        color: #cbc9cf;
+      }
+      .imgContainer {
+        filter: invert(20%) sepia(1%) saturate(4500%) hue-rotate(200deg) brightness(140%) contrast(80%);
+      }
+    }
+  }
+
+  @include pc-first-mobile {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    gap: 0.2rem;
+    background-color: transparent;
+    margin-top: 0.3rem;
+  }
+
+  .TagText {
+    @include sopoqa-12-700;
+    max-width: 10.5rem;
+    color: $color-white;
+    text-align: center;
+
+    @include pc-first-mobile {
+      font-weight: 400;
+      color: #ff4040;
+    }
+
+    &.changeRateFlag {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .imgContainer {
+    width: 2rem;
+    height: 2rem;
+
+    @include pc-first-mobile {
+      filter: invert(55%) sepia(90%) saturate(300%) hue-rotate(300deg) brightness(100%) contrast(120%);
+    }
+  }
+}
