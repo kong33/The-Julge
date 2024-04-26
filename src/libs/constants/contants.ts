@@ -68,7 +68,7 @@ export const pageList = {
   search: () => '/search'
 };
 
-export const defaultLimit = 3;
+export const defaultLimit = 6;
 
 // 최소 및 최대 시급 설정
 export const MIN_HOURLY_PAY = 10000; // 최소 시급
