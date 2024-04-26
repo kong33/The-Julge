@@ -40,7 +40,7 @@
   }
 
   .inputGridContainer {
-    @include flexbox($direction: column, $align: start);
+    @include flexbox($direction: column, $align: flex-start);
     width: 100%;
     gap: 2rem;
     @include tablet {

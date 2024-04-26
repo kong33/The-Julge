@@ -31,7 +31,7 @@
 }
 
 .formContainer {
-  @include flexbox($direction: column);
+  @include flexbox($direction: column, $align: left);
   gap: 2rem;
   margin-bottom: 2.4rem;
   @include tablet {
@@ -40,7 +40,7 @@
   }
 
   .inputGridContainer {
-    @include flexbox($direction: column, $align: start);
+    @include flexbox($direction: column, $align: flex-start);
     width: 100%;
     gap: 2rem;
     @include tablet {
