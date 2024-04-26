@@ -119,9 +119,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 
   const userId = jwtDecode<{ userId: string }>(token).userId ?? '';
-  const { data: shopData } = await UserService.getUser(userId);
-  const shopId = shopData?.item?.shop?.item?.id ?? '';
-  const userType = shopData?.item?.type ?? '';
+  const { data: userData } = await UserService.getUser(userId);
+  const shopId = userData?.item?.shop?.item?.id ?? '';
+  const userType = userData?.item?.type ?? '';
 
   // shopId가 있으면 /shop/[shopId] 페이지로 리다이렉트
   if (shopId) {
