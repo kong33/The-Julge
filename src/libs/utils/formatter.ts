@@ -32,4 +32,6 @@ export function removeHyphens(phoneNumber: string) {
 }
 
 // 콤마를 포함한 숫자 문자열을 number로 변경하는 함수
-export const removeCommasNumber = (number: string) => parseInt(number.replace(/,/g, ''), 10);
+export const removeCommasNumber = (number: string) => {
+  return parseInt(number.replace(/,/g, ''), 10);
+};

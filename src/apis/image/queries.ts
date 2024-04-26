@@ -3,7 +3,7 @@ import { PostImagePayload } from '@/apis/image/image.type';
 
 const queryKeys = {
   postImage: (name: string) => ['postImage', name] as const,
-  putImage: (file: File, presignedUrl: string) => ['putImage', { file, presignedUrl }] as const,
+  putImage: (file: File | null) => ['putImage', { file }] as const,
   getImage: (presignedUrl: string) => ['getImage', presignedUrl] as const
 };
 
@@ -12,9 +12,10 @@ const queryOptions = {
     mutationKey: queryKeys.postImage(name),
     mutationFn: (postData: PostImagePayload) => ImageService.postImage(postData)
   }),
-  putImage: (file: File, presignedUrl: string) => ({
-    mutationKey: queryKeys.putImage(file, presignedUrl),
-    mutationFn: (putFile: File) => ImageService.putImage(putFile, presignedUrl)
+  putImage: (file: File | null) => ({
+    mutationKey: queryKeys.putImage(file),
+    mutationFn: ({ putFile, putPresignedUrl }: { putFile: File; putPresignedUrl: string }) =>
+      ImageService.putImage(putFile, putPresignedUrl)
   }),
   getImage: (presignedUrl: string) => ({
     queryKey: queryKeys.getImage(presignedUrl),

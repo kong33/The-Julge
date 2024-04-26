@@ -34,8 +34,8 @@ export function usePostImage({ name }: PostImagePayload) {
  * @param presignedUrl required; string
  * @returns  */
 
-export function usePutImage(file: File, presignedUrl: string) {
-  return useMutation(queryOptions.putImage(file, presignedUrl));
+export function usePutImage(file: File | null) {
+  return useMutation(queryOptions.putImage(file));
 }
 
 /**
