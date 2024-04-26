@@ -36,3 +36,10 @@
     text-align: center;
   }
 }
+
+.invalid {
+  border: 0.1rem solid $color-red-40;
+  &:focus {
+    border: 0.1rem solid $color-gray-30;
+  }
+}

@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { forwardRef, useEffect, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
@@ -67,10 +68,12 @@ const FileInputForm = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFo
       };
     }, [backgroundImage]);
 
+    const inputFieldContainerClasses = classNames(styles.inputFieldContainer, errorMessage && styles.invalid);
+
     return (
       <InputContainer className={className} label={label} required={required} errorMessage={errorMessage}>
         <div
-          className={styles.inputFieldContainer}
+          className={inputFieldContainerClasses}
           style={{
             backgroundImage: backgroundImage
               ? `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${backgroundImage})`
