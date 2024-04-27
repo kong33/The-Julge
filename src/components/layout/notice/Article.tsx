@@ -217,7 +217,7 @@ export default function NoticeArticle({ noticeData, userData }: { noticeData: Ge
       active: true,
       onClick: () => {
         console.log('신청하기');
-        if (qualifyUser() !== userQualifyList.noProfile) {
+        if (qualifyUser() === userQualifyList.noProfile) {
           setOpenModal(modalList.onError(''));
           toggle();
         } else {
