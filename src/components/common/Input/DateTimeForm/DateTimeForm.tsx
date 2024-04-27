@@ -1,6 +1,6 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import ko from 'date-fns/locale/ko';
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 
 // import styles from '@/components/common/Input/DateTimeForm.module.scss';
@@ -31,6 +31,12 @@ interface DateTimeFormProps extends InputContainerProps {
 const DateTimeForm = forwardRef(
   ({ className, value, label = '', required = false, errorMessage = '', ...rest }: DateTimeFormProps, ref) => {
     const { onBlur, ...restProps } = rest;
+
+    // Ref를 `DatePicker`에 올바르게 전달
+    useImperativeHandle(ref, () => ({
+      focus: () => {}
+    }));
+
     return (
       <InputContainer className={className} label={label} required={required} errorMessage={errorMessage}>
         {errorMessage ? <GlobalErrorStyle /> : <GlobalStyle />}
