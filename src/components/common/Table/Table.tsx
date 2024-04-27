@@ -57,9 +57,9 @@ function Table<T>({ data, columns, currentPage, totalPages, onPageChange }: Tabl
             })}
           </tbody>
         </table>
-        <div className={styles.pagination}>
-          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
-        </div>
+      </div>
+      <div className={styles.pagination}>
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
       </div>
     </div>
   );
