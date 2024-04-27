@@ -1,14 +1,15 @@
 import styles from '@/components/feature/Notice/StatusChip/StatusChip.module.scss';
 
 interface StatusChipProps {
-  status: 'pending' | 'accepted' | 'rejected';
+  status: 'pending' | 'accepted' | 'rejected' | 'canceled';
 }
 
 function StatusChip({ status }: StatusChipProps) {
   const message = {
     pending: '대기중',
     accepted: '승인완료',
-    rejected: '거절'
+    rejected: '거절',
+    canceled: '취소'
   };
 
   return (
@@ -17,8 +18,10 @@ function StatusChip({ status }: StatusChipProps) {
         <div className={styles.pending}>{message[status]}</div>
       ) : status === 'accepted' ? (
         <div className={styles.accepted}>{message[status]}</div>
-      ) : (
+      ) : status === 'rejected' ? (
         <div className={styles.rejected}>{message[status]}</div>
+      ) : (
+        <div className={styles.canceled}>{message[status]}</div>
       )}
     </div>
   );

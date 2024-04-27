@@ -25,7 +25,6 @@ function EmployerNotice() {
     }
   );
 
-  console.log(data);
   const [applicantList, setApplicantList] = useState<EmployerNotices[]>();
 
   useEffect(() => {
