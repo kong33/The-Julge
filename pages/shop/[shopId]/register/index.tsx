@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import axios, { AxiosError } from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { PostNoticePayload } from '@/apis/notice/notice.type';
@@ -17,6 +18,7 @@ import ModalGroup, { useModal } from '@/components/feature/Modal/ModalGroup';
 import MainLayout from '@/layouts/MainLayout';
 import { MAX_HOURLY_PAY, MIN_HOURLY_PAY, pageList } from '@/libs/constants/contants';
 import { formatNumber, removeCommasNumber } from '@/libs/utils/formatter';
+import roundUpToNextHour from '@/libs/utils/roundUpToNextHour';
 import styles from '@/pages/shop/[shopId]/register/index.module.scss';
 import { ReactComponent as CloseSvg } from '@/public/svgs/close-shop-page.svg';
 
@@ -28,7 +30,7 @@ type IFormInput = {
 };
 
 // 현재 시간
-const now = new Date();
+const now = roundUpToNextHour(new Date());
 
 const defaultValueList = {
   hourlyPay: '',
@@ -171,42 +173,43 @@ export default function ShopNoticeRegisterPage({ shopId }: { shopId: string }) {
   const { toggle } = useModal();
   const handleClickCloseModal = {
     onError: () => {},
-    onSubmit: () => {
+    onSuccess: () => {
       const noticeId = postNoticeData?.item?.id;
       router.push(pageList.shopNoticeDetail(shopId, noticeId));
     }
   };
+
   const modalList = {
-    onError: <Modal.Error onClick={handleClickCloseModal.onError}>{postNoticeData?.message}</Modal.Error>,
-    onSuccess: <Modal.Check onClick={handleClickCloseModal.onSubmit}>등록이 완료되었습니다.</Modal.Check>
+    // eslint-disable-next-line react/no-unstable-nested-components
+    onError: (message: string) => <Modal.Error onClick={handleClickCloseModal.onError}>{message}</Modal.Error>,
+    onSuccess: <Modal.Check onClick={handleClickCloseModal.onSuccess}>등록이 완료되었습니다.</Modal.Check>
   };
 
   const registerList = {
     hourlyPay: register('hourlyPay', formList.hourlyPay.validate),
     startsAt: register('startsAt', formList.startsAt.validate),
-    workhour: register('workhour', formList.workhour.validate),
+    workhour: register('workhour'),
     description: register('description')
+  };
+
+  const onSuccess = () => {
+    setOpenModal(modalList.onSuccess);
+    toggle();
+  };
+
+  const onError = (e: AxiosError) => {
+    if (axios.isAxiosError(e) && e.response) {
+      const { message } = e.response.data as { message: string };
+      console.log('message', message);
+      setOpenModal(modalList.onError(message));
+      toggle();
+    }
   };
 
   const onSubmit = () => {
     // 폼 데이터 업로드
-    postNotice(postNoticePayload);
+    postNotice(postNoticePayload, { onSuccess, onError });
   };
-
-  // 폼 제출
-  useEffect(() => {
-    // 에러 메세지 모달 렌더링
-    if (postNoticeData?.message) {
-      setOpenModal(modalList.onError);
-      toggle();
-    }
-
-    // 폼 제출 성공 시 리다이렉션
-    if (postNoticeData?.item) {
-      setOpenModal(modalList.onSuccess);
-      toggle();
-    }
-  }, [postNoticeData]);
 
   return (
     <>
