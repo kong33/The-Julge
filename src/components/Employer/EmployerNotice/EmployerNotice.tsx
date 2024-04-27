@@ -1,5 +1,5 @@
 // import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { startTransition, useEffect, useState } from 'react';
 
 import { useGetApplicationListByNoticeId } from '@/apis/application/useApplicationService';
 import styles from '@/components/Employer/EmployerNotice/EmployerNotice.module.scss';
@@ -12,7 +12,9 @@ function EmployerNotice() {
   // const router = useRouter();
   const [pageNum, setPageNum] = useState<number>(1);
   const onPageChange = (page: number) => {
-    setPageNum(page);
+    startTransition(() => {
+      setPageNum(page);
+    });
   };
 
   // const { shopId, noticeId } = router.query;
@@ -35,30 +37,32 @@ function EmployerNotice() {
     }
 
     if (data && data.items) {
-      setApplicantList(
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        data.items.map((i: any) => {
-          const { item } = i;
-          const { id: applicationId, user, status } = item;
-          const { name, bio, phone } = user.item; // 지원자 id 여기에서 가져올 수 있음(id)
-          return {
-            id: applicationId,
-            name,
-            bio,
-            phone,
-            status:
-              status === 'pending' ? (
-                <StatusButton
-                  // shopId={item.shop?.item?.id as string}
-                  // noticeId={item.notice?.item?.id as string}
-                  userId={item.user?.item.id as string}
-                />
-              ) : (
-                <StatusChip status={status} />
-              )
-          };
-        })
-      );
+      startTransition(() => {
+        setApplicantList(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          data.items.map((i: any) => {
+            const { item } = i;
+            const { id: applicationId, user, status } = item;
+            const { name, bio, phone } = user.item; // 지원자 id 여기에서 가져올 수 있음(id)
+            return {
+              id: applicationId,
+              name,
+              bio,
+              phone,
+              status:
+                status === 'pending' ? (
+                  <StatusButton
+                    // shopId={item.shop?.item?.id as string}
+                    // noticeId={item.notice?.item?.id as string}
+                    userId={item.user?.item.id as string}
+                  />
+                ) : (
+                  <StatusChip status={status} />
+                )
+            };
+          })
+        );
+      });
     }
   }, [data]);
 
