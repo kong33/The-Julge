@@ -2,9 +2,16 @@ import { Controller, useForm } from 'react-hook-form';
 
 import Button from '@/components/common/Button';
 import SelectForm from '@/components/common/Input/SelectForm/SelectForm';
+import Filter from '@/components/feature/Filter/Filter';
+import { useFilter } from '@/components/feature/Filter/FilterContext';
 import PostList from '@/components/feature/Post/PostList/PostList';
 import Pagination from '@/components/feature/pagination/pagination';
+import { addressList } from '@/libs/constants/contants';
+import useManageFilter from '@/libs/hooks/useManageFilter';
+import useSortedPostData from '@/libs/hooks/useSortedPostData';
 import styles from '@/pages/index.module.scss';
+// pagination option
+const ITEMS_PER_PAGE = 6; // 페이지 당 아이템 수
 
 // selectForm option
 type IFormInput = {
@@ -16,19 +23,18 @@ const defaultFormValues = {
 };
 
 type PostSearchProps = {
-  search?: string | string[];
-  currentPage: number;
-  totalPages: number;
-  // eslint-disable-next-line no-unused-vars
-  onPageChange: (page: number) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  currentItems: any[];
+  search?: string;
 };
-function PostSearch({ search = '', currentPage, totalPages, onPageChange, currentItems }: PostSearchProps) {
+function PostSearch({ search = '' }: PostSearchProps) {
+  const { currentPage, totalPages, onPageChange, currentItems } = useSortedPostData(ITEMS_PER_PAGE, {
+    keyword: search
+  });
+
   // selectForm option
   const {
     control, // react-hook-form의 Controller에 연결됩니다.
-    formState: { errors } // 폼 상태 객체입니다. errors['form'].message에 validate의 에러 메세지가 저장됩니다.
+    formState: { errors }, // 폼 상태 객체입니다. errors['form'].message에 validate의 에러 메세지가 저장됩니다.
+    watch
   } = useForm<IFormInput>({
     defaultValues: defaultFormValues, // 폼 기본값
     mode: 'onBlur' // onBlur 시 검증
@@ -43,7 +49,23 @@ function PostSearch({ search = '', currentPage, totalPages, onPageChange, curren
       </h2>
     );
   }
+  // select 데이터
+  const watchSelect = watch('filter');
+  const selectedValue = typeof watchSelect === 'string' ? watchSelect : watchSelect?.value;
+  console.log(selectedValue);
 
+  // filter
+  const { isOpen, open, close } = useFilter();
+  const { filterRef, handleMenuClick, filterData, handleResetBtnClick, handleApplyBtnClick } = useManageFilter();
+  const handlefilterClick = () => {
+    if (isOpen) {
+      close();
+      console.log(isOpen);
+    } else {
+      open();
+      console.log('11');
+    }
+  };
   return (
     <section className={styles.noticeContainer}>
       <article className={styles.noticeList}>
@@ -64,10 +86,22 @@ function PostSearch({ search = '', currentPage, totalPages, onPageChange, curren
                 />
               )}
             />
-            <Button active size="small">
-              asd
-            </Button>
-            {/* filter도 추가 */}
+            <div className={styles.filterContent}>
+              <Button solid active size="small" onClick={handlefilterClick} className={styles.filterBt}>
+                상세필터
+              </Button>
+              {/* filter도 추가 */}
+              {isOpen && (
+                <Filter
+                  scrollMenuList={addressList}
+                  handleMenuClick={handleMenuClick}
+                  clickedAddress={filterData.address}
+                  handleResetBtnClick={handleResetBtnClick}
+                  handleApplyBtnClick={handleApplyBtnClick}
+                  filterRef={filterRef}
+                />
+              )}
+            </div>
           </div>
         </div>
         <PostList datas={currentItems} />

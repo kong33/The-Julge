@@ -150,15 +150,12 @@ const selectSmallErrorStyle = {
 // 공고 정렬 select style
 const selectFilterStyle = {
   ...selectSmallStyle,
-  indicatorsContainer: (provided: any) => ({
-    ...provided,
-    paddingRight: '1rem'
-  }),
   control: (provided: any) => ({
     ...provided,
     minHeight: '3rem',
-    padding: '0 0',
+    padding: '0.5rem 1rem',
     borderRadius: '0.6rem',
+    gap: '0.6rem',
     border: '0',
     boxShadow: 'none',
     background: '#F2F2F3',

@@ -1,18 +1,11 @@
 import { ReactElement } from 'react';
 
-import { useGetNoticeList } from '@/apis/notice/useNoticeService';
 import CustomList from '@/components/layout/Main/CustomList';
-import PostSearch from '@/components/layout/Main/PostSearch/PostSearch';
-import usePagination from '@/hooks/usePagination';
+import PostSearch from '@/components/layout/Main/PostSearch';
 import OnlytagLayout from '@/layouts/OnlytageLayout';
 import styles from '@/pages/index.module.scss';
 
-// pagination option
-const ITEMS_PER_PAGE = 6; // 페이지 당 아이템 수
-
 function Home() {
-  const { currentPage, totalPages, onPageChange, currentItems } = usePagination(useGetNoticeList, ITEMS_PER_PAGE);
-
   return (
     <>
       <section className={styles.customContainer}>
@@ -22,12 +15,7 @@ function Home() {
           <CustomList />
         </article>
       </section>
-      <PostSearch
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={onPageChange}
-        currentItems={currentItems}
-      />
+      <PostSearch />
     </>
   );
 }
