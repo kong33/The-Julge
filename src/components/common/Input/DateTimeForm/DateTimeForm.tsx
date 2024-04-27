@@ -1,10 +1,10 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import ko from 'date-fns/locale/ko';
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 
 // import styles from '@/components/common/Input/DateTimeForm.module.scss';
-import GlobalStyle from '@/components/common/Input/DateTimeForm/DateTimeForm.styles';
+import { GlobalStyle, GlobalErrorStyle } from '@/components/common/Input/DateTimeForm/DateTimeForm.styles';
 
 import InputContainer, { InputContainerProps } from '../InputContainer';
 
@@ -29,14 +29,19 @@ interface DateTimeFormProps extends InputContainerProps {
  * @param errorMessage string; 에러 메세지; react-hook-form의 errors.{form}.message에 대응됩니다.
  */
 const DateTimeForm = forwardRef(
-  ({ className, value, onChange, onBlur, label = '', required = false, errorMessage = '' }: DateTimeFormProps, ref) => {
+  ({ className, value, label = '', required = false, errorMessage = '', ...rest }: DateTimeFormProps, ref) => {
+    const { onBlur, ...restProps } = rest;
+
+    // Ref를 `DatePicker`에 올바르게 전달
+    useImperativeHandle(ref, () => ({
+      focus: () => {}
+    }));
+
     return (
       <InputContainer className={className} label={label} required={required} errorMessage={errorMessage}>
-        <GlobalStyle />
+        {errorMessage ? <GlobalErrorStyle /> : <GlobalStyle />}
         <DatePicker
           selected={new Date(value)}
-          onChange={onChange}
-          onBlur={onBlur}
           ref={ref as React.Ref<DatePicker>}
           showTimeSelect
           timeFormat="HH:mm"
@@ -44,6 +49,13 @@ const DateTimeForm = forwardRef(
           timeCaption="시간"
           dateFormat="yyyy-MM-dd HH:mm"
           locale="ko"
+          onChangeRaw={() => {
+            if (onBlur) onBlur();
+          }}
+          onBlur={() => {
+            if (onBlur) onBlur();
+          }}
+          {...restProps}
         />
       </InputContainer>
     );

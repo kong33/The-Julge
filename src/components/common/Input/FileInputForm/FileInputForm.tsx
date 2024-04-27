@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { forwardRef, useEffect, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
@@ -10,6 +11,7 @@ interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement | HT
   label?: string;
   errorMessage?: string | undefined | null;
   register?: UseFormRegisterReturn;
+  backgroundImageUrl?: string;
 }
 
 /**
@@ -29,8 +31,18 @@ interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement | HT
  */
 
 const FileInputForm = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFormProps>(
-  ({ className = '', label = '', errorMessage = '', required = false, ...rest }: InputFormProps, ref) => {
-    const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
+  (
+    {
+      className = '',
+      label = '',
+      errorMessage = '',
+      required = false,
+      backgroundImageUrl = '',
+      ...rest
+    }: InputFormProps,
+    ref
+  ) => {
+    const [backgroundImage, setBackgroundImage] = useState<string | null>(backgroundImageUrl || null);
 
     const { onChange: registerOnChange, ...restProps } = rest;
 
@@ -56,12 +68,16 @@ const FileInputForm = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFo
       };
     }, [backgroundImage]);
 
+    const inputFieldContainerClasses = classNames(styles.inputFieldContainer, errorMessage && styles.invalid);
+
     return (
       <InputContainer className={className} label={label} required={required} errorMessage={errorMessage}>
         <div
-          className={styles.inputFieldContainer}
+          className={inputFieldContainerClasses}
           style={{
-            backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
+            backgroundImage: backgroundImage
+              ? `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${backgroundImage})`
+              : undefined,
             backgroundSize: 'cover'
           }}
         >
