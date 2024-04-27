@@ -3,9 +3,8 @@ import { useRouter } from 'next/router';
 
 import styles from '@/components/feature/Post/Post.module.scss';
 import PostTag from '@/components/feature/Post/PostTag/PostTag';
+import { PostProps } from '@/components/feature/Post/PostType';
 import calcFormatDuratoin from '@/libs/utils/calcFormatDuratoin';
-
-import { PostProps } from './PostType';
 
 export default function Post({
   id,

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-import styles from './Menu.module.scss';
+import styles from '@/components/feature/Gnb/Menu/Menu.module.scss';
 
 type MenuProps = {
   name?: string;

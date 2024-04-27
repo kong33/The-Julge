@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import styles from './Logout.module.scss';
+import styles from '@/components/feature/Gnb/Logout/Logout.module.scss';
 
 type LogoutMenuProps = {
   name?: string;

@@ -2,11 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import styles from './Gnb.module.scss';
-import LogoutMenu from '../feature/Gnb/Logout/Logout';
-import Menu from '../feature/Gnb/Menu/Menu';
-import NotiButton from '../feature/Gnb/Notification/Notification';
-import Searchbar from '../feature/Gnb/Searchbar/Searchbar';
+import styles from '@/components/common/Gnb.module.scss';
+import LogoutMenu from '@/components/feature/Gnb/Logout/Logout';
+import Menu from '@/components/feature/Gnb/Menu/Menu';
+import NotiButton from '@/components/feature/Gnb/Notification/Notification';
+import Searchbar from '@/components/feature/Gnb/Searchbar/Searchbar';
 
 type GnbProps = {
   userType?: 'employee' | 'employer' | 'guest';
