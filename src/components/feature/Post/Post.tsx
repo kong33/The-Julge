@@ -28,7 +28,7 @@ export default function Post({
   const now = new Date().getTime();
   const startsAtDate = new Date(startedAt).getTime();
 
-  const isClosed = closed || now < startsAtDate;
+  const isClosed = closed || startsAtDate < now;
 
   return (
     <div
