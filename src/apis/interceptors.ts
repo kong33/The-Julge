@@ -35,14 +35,9 @@ const successInterceptor = (response: AxiosResponse): AxiosResponse => {
  * @param {AxiosError} error - Axios 에러 객체
  * @returns error.response - 에러 response; response가 없으면 error 반환
  */
-// const errorInterceptor = (error: AxiosError): Promise<AxiosError> => {
-//   console.error('Response Error:', error);
-//   return Promise.reject(error);
-// };
 const errorInterceptor = (error: AxiosError) => {
   console.error('Response Error:', error);
-  const errorRes = error?.response ?? error;
-  return errorRes;
+  return Promise.reject(error);
 };
 
 export { requestInterceptor, successInterceptor, errorInterceptor };
