@@ -17,8 +17,8 @@ function EmployerNotice() {
   // const { shopId, noticeId } = router.query;
 
   const { data } = useGetApplicationListByNoticeId(
-    '1ca5bd34-2cc0-4ae3-b94e-c461d2e3e6f9',
-    '9ce03c73-3218-4c2a-a130-223b0c9a1498',
+    '4490151c-5217-4157-b072-9c37b05bed47',
+    '99996477-82db-4bda-aae1-4044f11d9a8b',
     {
       offset: pageNum - 1,
       limit: 5
@@ -47,9 +47,12 @@ function EmployerNotice() {
             phone,
             status:
               status === 'pending' ? (
-                <StatusButton />
+                <StatusButton
+                  // shopId={item.shop?.item?.id as string}
+                  // noticeId={item.notice?.item?.id as string}
+                  userId={item.user?.item.id as string}
+                />
               ) : (
-                // userId={item.user?.item.id as string
                 <StatusChip status={status} />
               )
           };
