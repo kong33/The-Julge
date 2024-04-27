@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 
 import { useGetApplicationListByNoticeId } from '@/apis/application/useApplicationService';
+import styles from '@/components/Employer/EmployerNotice/EmployerNotice.module.scss';
 import { EmployerNotices } from '@/components/common/Table/Table.type';
 import EmployerTable from '@/components/feature/Notice/EmployerTable/EmployerTable';
 import StatusButton from '@/components/feature/Notice/StatusButton/StatusButton';
@@ -64,7 +65,7 @@ function EmployerNotice() {
   return (
     <div>
       <div>
-        <h2>신청자 목록</h2>
+        <h1 className={styles.title}>신청자 목록</h1>
       </div>
       <div>
         {applicantList && (
