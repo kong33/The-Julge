@@ -5,6 +5,14 @@
 .inputFormContainer {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
   width: 100%;
+  position: relative;
+}
+
+.inputFormLabel {
+  margin-bottom: 0.8rem;
+}
+
+.inputFormErrorMessage {
+  margin-top: 0.8rem;
 }

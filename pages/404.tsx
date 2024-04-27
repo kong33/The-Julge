@@ -7,7 +7,7 @@ export default function Page404() {
   const router = useRouter();
 
   const handleClick = () => {
-    router.replace(pageList.home());
+    router.push(pageList.home());
   };
 
   return (
