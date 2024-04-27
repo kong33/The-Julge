@@ -25,6 +25,11 @@ export default function Post({
     router.push(`/notice/${shopId}/${id}`);
   };
 
+  const now = new Date().getTime();
+  const startsAtDate = new Date(startedAt).getTime();
+
+  const isClosed = closed || now < startsAtDate;
+
   return (
     <div
       role="presentation"
@@ -40,7 +45,7 @@ export default function Post({
           height={640}
           style={{ objectFit: 'cover' }}
         />
-        {closed && (
+        {isClosed && (
           <div className={styles.closedLayer}>
             <span className={styles.closedText}>지난 공고</span>
           </div>
@@ -48,33 +53,33 @@ export default function Post({
       </div>
       <section className={styles.cardSection}>
         <div className={styles.sectionContent}>
-          <div className={closed ? `${styles.title} ${styles.closed}` : styles.title}>{name}</div>
+          <div className={isClosed ? `${styles.title} ${styles.closed}` : styles.title}>{name}</div>
           <div className={styles.sectionDuration}>
             <Image
               className={styles.img}
-              src={closed ? '/svgs/clock-disabled.svg' : '/svgs/clock.svg'}
+              src={isClosed ? '/svgs/clock-disabled.svg' : '/svgs/clock.svg'}
               alt="clock"
               width={17}
               height={17}
             />
-            <p className={closed ? `${styles.duration} ${styles.closed}` : styles.duration}>{duration}</p>
+            <p className={isClosed ? `${styles.duration} ${styles.closed}` : styles.duration}>{duration}</p>
           </div>
           <div className={styles.sectionAddress}>
             <Image
               className={styles.img}
-              src={closed ? '/svgs/location-disabled.svg' : '/svgs/location.svg'}
+              src={isClosed ? '/svgs/location-disabled.svg' : '/svgs/location.svg'}
               alt="location"
               width={17}
               height={17}
             />
-            <p className={closed ? `${styles.address} ${styles.closed}` : styles.address}>{address}</p>
+            <p className={isClosed ? `${styles.address} ${styles.closed}` : styles.address}>{address}</p>
           </div>
         </div>
         <div className={styles.sectionHourlyPay}>
-          <p className={closed ? `${styles.hourlyPay} ${styles.closed}` : styles.hourlyPay}>
+          <p className={isClosed ? `${styles.hourlyPay} ${styles.closed}` : styles.hourlyPay}>
             {`${hourlyPay.toLocaleString()}원`}
           </p>
-          <PostTag closed={closed} hourlyPay={hourlyPay} originalHourlyPay={originalHourlyPay} />
+          <PostTag closed={isClosed} hourlyPay={hourlyPay} originalHourlyPay={originalHourlyPay} />
         </div>
       </section>
     </div>
