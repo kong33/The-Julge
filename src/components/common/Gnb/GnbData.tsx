@@ -1,20 +1,26 @@
-/* import { getCookie } from 'cookies-next';
+import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 
+import AlertService from '@/apis/alert/Alert.service';
+import { GetAlertListRes } from '@/apis/alert/alert.type';
 import UserService from '@/apis/user/User.service';
 import Gnb from '@/components/common/Gnb/Gnb';
 
 function GnbData() {
-  const [userType, setUserType] = useState<'guest' | 'employee' | 'employer' | undefined>();
-  const [shopId, setShopId] = useState<string | null>(null);
-
+  const [userType, setUserType] = useState<'guest' | 'employee' | 'employer'>('guest');
+  const [alertList, setAlertList] = useState<GetAlertListRes>({
+    offset: 0,
+    limit: 5,
+    count: 0,
+    hasNext: false,
+    items: [],
+    links: []
+  });
   useEffect(() => {
     const fetchData = async () => {
-      const userId = getCookie('userId');
+      const userId = Cookies.get('userId');
 
-      console.log('userId:', userId);
-
-      if (userId === undefined || userId === null) {
+      if (!userId) {
         setUserType('guest');
         return;
       }
@@ -25,71 +31,21 @@ function GnbData() {
           throw new Error('사용자 데이터를 찾을 수 없습니다');
         }
 
-        const user = userInfo.data;
+        const user = userInfo.data.item;
         setUserType(user.type);
 
-        if (user.type === 'employer' && user.shop) {
-          setShopId(user.shop);
+        if (user.type === 'employee' || user.type === 'employer') {
+          const params = { offset: 0, limit: 5 };
+          const alertListData = await AlertService.getAlertList(userId, params);
+          setAlertList(alertListData.data);
         }
       } catch (error) {
-        console.error('사용자 데이터를 불러오는 중 오류가 발생했습니다:', error);
-        setUserType(undefined);
-        setShopId(null);
-      }
-    };
-    fetchData();
-  }, []);
-
-  return <Gnb userType={userType} shopId={shopId || ''} />;
-}
-
-export default GnbData;
-*/
-
-import { getCookie } from 'cookies-next';
-import { useEffect, useState } from 'react';
-
-import UserService from '@/apis/user/User.service';
-import Gnb from '@/components/common/Gnb/Gnb';
-
-function GnbData() {
-  const [userType, setUserType] = useState<'guest' | 'employee' | 'employer' | undefined>();
-  // const [shopId, setShopId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const userId = getCookie('userId');
-      console.log('userId:', userId);
-
-      if (userId === undefined) {
         setUserType('guest');
-        return;
-      }
-
-      try {
-        const userInfo = await UserService.getUser(userId);
-
-        if (!userInfo.data) {
-          throw new Error('사용자 데이터를 찾을 수 없습니다');
-        }
-
-        const user = userInfo.data;
-        setUserType(user.item.type);
-
-        // if (user.type === 'employer' && user.item.shop) {
-        //  setShopId(user.item.shop.item.id);
-        // }
-      } catch (error) {
-        console.error('사용자 데이터를 불러오는 중 오류가 발생했습니다:', error);
-        setUserType(undefined);
-        // setShopId(null);
       }
     };
-
     fetchData();
   }, []);
-
-  return <Gnb userType={userType} />;
+  return <Gnb alertList={alertList} userType={userType} />;
 }
 
 export default GnbData;

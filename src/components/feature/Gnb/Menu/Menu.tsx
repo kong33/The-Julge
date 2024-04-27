@@ -18,7 +18,7 @@ type MenuProps = {
  */
 export default function Menu({ name, id }: MenuProps) {
   return (
-    <Link href={id ? `/${id}` : '#'}>
+    <Link href={id ? `/${id}` : '#'} passHref>
       <button type="button" className={styles.menu}>
         {name}
       </button>

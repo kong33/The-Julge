@@ -6,6 +6,7 @@
   position: sticky;
   z-index: 100;
   top: 0;
+  background-color: $color-white;
 }
 
 .gnbWrapper {
@@ -18,7 +19,7 @@
   }
 
   @include pc-first-mobile {
-    padding: 1.5rem 3.2rem;
+    padding: 1rem 1.2rem;
     height: 10.2rem;
   }
 }
@@ -48,6 +49,7 @@
   @include pc-first-mobile {
     height: 3rem;
     width: 8.4rem;
+    margin-right: auto;
   }
 }
 
@@ -65,18 +67,70 @@
 }
 
 .gnbMenu {
-  align-items: center;
   grid-area: gnbMenu;
-  display: flex;
-  gap: 2rem;
+  white-space: nowrap;
   justify-content: flex-end;
-  margin-right: 0.3rem;
+  display: flex;
+  gap: 4rem;
+  @include pc-first-tablet {
+  }
+  @include pc-first-mobile {
+    gap: 2rem;
+  }
+  .notiModalSection {
+    position: absolute;
+    z-index: 1000;
+    top: 100%;
+  }
+
+  .notification {
+    cursor: pointer;
+  }
+
+  .notification:hover {
+    opacity: 0.8;
+  }
 }
 
-.notification {
-  cursor: pointer;
-}
+.gnbMenuThree {
+  grid-area: gnbMenu;
+  white-space: nowrap;
+  justify-content: flex-end;
+  display: flex;
+  gap: 4rem;
+  &:last-child {
+    margin-right: -4rem;
+  }
+  @include pc-first-tablet {
+    gap: 1.2rem;
+    &:last-child {
+      margin-right: -1.2rem;
+    }
+  }
+  @include pc-first-mobile {
+    gap: 1.6rem;
+    &:last-child {
+      margin-right: -1.6rem;
+    }
+  }
+  .notiModalSection {
+    position: absolute;
+    z-index: 1000;
+    top: 100%;
+    margin-right: 4rem;
+    @include pc-first-tablet {
+      margin-right: 1.2rem;
+    }
+    @include pc-first-mobile {
+      margin-right: 1.6rem;
+    }
+  }
 
-.notification:hover {
-  opacity: 0.8;
+  .notification {
+    cursor: pointer;
+  }
+
+  .notification:hover {
+    opacity: 0.8;
+  }
 }
