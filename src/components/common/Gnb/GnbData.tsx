@@ -28,7 +28,7 @@ function GnbData() {
       try {
         const userInfo = await UserService.getUser(userId);
         if (!userInfo.data) {
-          throw new Error('사용자 데이터를 찾을 수 없습니다');
+          setUserType('guest');
         }
 
         const user = userInfo.data.item;

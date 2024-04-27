@@ -72,23 +72,9 @@
   justify-content: flex-end;
   display: flex;
   gap: 4rem;
-  @include pc-first-tablet {
-  }
+
   @include pc-first-mobile {
-    gap: 2rem;
-  }
-  .notiModalSection {
-    position: absolute;
-    z-index: 1000;
-    top: 100%;
-  }
-
-  .notification {
-    cursor: pointer;
-  }
-
-  .notification:hover {
-    opacity: 0.8;
+    gap: 1.8rem;
   }
 }
 
@@ -98,39 +84,15 @@
   justify-content: flex-end;
   display: flex;
   gap: 4rem;
-  &:last-child {
-    margin-right: -4rem;
-  }
   @include pc-first-tablet {
     gap: 1.2rem;
-    &:last-child {
-      margin-right: -1.2rem;
-    }
   }
   @include pc-first-mobile {
     gap: 1.6rem;
-    &:last-child {
-      margin-right: -1.6rem;
-    }
   }
   .notiModalSection {
     position: absolute;
     z-index: 1000;
     top: 100%;
-    margin-right: 4rem;
-    @include pc-first-tablet {
-      margin-right: 1.2rem;
-    }
-    @include pc-first-mobile {
-      margin-right: 1.6rem;
-    }
-  }
-
-  .notification {
-    cursor: pointer;
-  }
-
-  .notification:hover {
-    opacity: 0.8;
   }
 }

@@ -25,9 +25,8 @@ type AlertFormat = {
 
 function Gnb({ userType, alertList }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const modalRef = useRef<HTMLDivElement>(null);
-
   const [formattedAlertList, setFormattedAlertList] = useState<AlertFormat[]>([]);
+  const modalRef = useRef<HTMLDivElement>(null);
   const modalFilterRef = useRef<HTMLDivElement>(null);
   const NotiStatus = alertList.count > 0;
 
@@ -44,12 +43,10 @@ function Gnb({ userType, alertList }: Props) {
     if (isModalOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isModalOpen]);
-
   useEffect(() => {
     if (alertList && alertList.count > 0) {
       const formatAlertList = alertList.items.map((alert) => ({
