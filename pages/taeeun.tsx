@@ -1,9 +1,12 @@
 import EmployerNotice from '@/components/Employer/EmployerNotice/EmployerNotice';
+import AsyncBoundary from '@/components/common/AsyncBoundary';
 
 function TaeEun() {
   return (
     <div>
-      <EmployerNotice />
+      <AsyncBoundary>
+        <EmployerNotice />
+      </AsyncBoundary>
     </div>
   );
 }
