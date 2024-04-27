@@ -42,8 +42,10 @@ const successInterceptor = (response: AxiosResponse): AxiosResponse => {
 // };
 const errorInterceptor = (error: AxiosError) => {
   console.error('Response Error:', error);
-  const errorRes = error?.response ?? error;
-  return errorRes;
+  // const errorRes = error?.response ?? error;
+  // throw new Error(errorRes as any);
+  // return errorRes;
+  return Promise.reject(error);
 };
 
 export { requestInterceptor, successInterceptor, errorInterceptor };

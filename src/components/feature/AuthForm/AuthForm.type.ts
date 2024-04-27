@@ -1,9 +1,10 @@
 import '@/libs/constants/constatns';
 // login 페이지 인지 signup
-export type AuthFormProps = {
-  formType: 'login' | 'signup';
-};
 
+// enum authFormtype {
+//   LOGIN = "login",
+//   SIGNUP = "signup"
+// }
 export interface IFormInput {
   email: string;
   password: string;
@@ -73,4 +74,8 @@ export const status = {
     ],
     redirectPath: '/'
   }
+};
+
+export type LoginErrorMessage = {
+  message: string;
 };

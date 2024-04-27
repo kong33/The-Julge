@@ -35,7 +35,7 @@
 //   } = useForm<IFormInput>({ defaultValues: defaultLoginFormValues, mode: 'onTouched' });
 
 //   //autom으로 유저 정보 전역 저장
-//   const [, setUserInfoAtom] = useAtom(userInfoAtom);
+//   const [_, setUserInfoAtom] = useAtom(userInfoAtom);
 //   //모달 띄울 에러메세지
 //   const [alertMessage, setAlertMessage] = useState('');
 

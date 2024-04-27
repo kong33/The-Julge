@@ -1,3 +1,6 @@
-// // import { PostAuthenticationRes } from '@/apis/authentication/authentication.type';
-// // import { atom } from 'jotai';
-// // export const userInfoAtom = atom<PostAuthenticationRes | null>(null);
+import { atom } from 'jotai';
+
+import { PostAuthenticationRes } from '@/apis/authentication/authentication.type';
+
+const userInfoAtom = atom<PostAuthenticationRes | null>(null);
+export default userInfoAtom;

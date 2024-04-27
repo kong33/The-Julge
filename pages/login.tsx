@@ -1,5 +1,5 @@
-import AuthForm from '@/components/feature/AuthForm/AuthForm';
+import LoginForm from '@/components/feature/LoginForm/LoginFom';
 
 export default function login() {
-  return <AuthForm formType="login" />;
+  return <LoginForm />;
 }
