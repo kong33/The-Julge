@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import axios, { AxiosError } from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
@@ -195,7 +196,8 @@ export default function ShopRegisterPage() {
     }
   };
   const modalList = {
-    onError: <Modal.Error onClick={handleClickCloseModal.onError}>{postShopData?.message}</Modal.Error>,
+    // eslint-disable-next-line react/no-unstable-nested-components
+    onError: (message: string) => <Modal.Error onClick={handleClickCloseModal.onError}>{message}</Modal.Error>,
     onSuccess: <Modal.Check onClick={handleClickCloseModal.onSubmit}>등록이 완료되었습니다.</Modal.Check>
   };
 
@@ -209,9 +211,23 @@ export default function ShopRegisterPage() {
     description: register('description')
   };
 
+  const onSuccess = () => {
+    setOpenModal(modalList.onSuccess);
+    toggle();
+  };
+
+  const onError = (e: AxiosError) => {
+    if (axios.isAxiosError(e) && e.response) {
+      const { message } = e.response.data as { message: string };
+      console.log('message', message);
+      setOpenModal(modalList.onError(message));
+      toggle();
+    }
+  };
+
   const onSubmit = () => {
     // 폼 데이터 업로드
-    postShop(postShopPayload);
+    postShop(postShopPayload, { onSuccess, onError });
   };
 
   // presignedUrlData 생성
@@ -227,21 +243,6 @@ export default function ShopRegisterPage() {
       putImageS3({ putFile: watchImageFile, putPresignedUrl: presignedUrlData?.item.url });
     }
   }, [presignedUrlData]);
-
-  // 폼 제출
-  useEffect(() => {
-    // 에러 메세지 모달 렌더링
-    if (postShopData?.message) {
-      setOpenModal(modalList.onError);
-      toggle();
-    }
-
-    // 폼 제출 성공 시 리다이렉션
-    if (postShopData?.item) {
-      setOpenModal(modalList.onSuccess);
-      toggle();
-    }
-  }, [postShopData]);
 
   return (
     <>

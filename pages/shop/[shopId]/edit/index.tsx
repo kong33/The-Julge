@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import axios, { AxiosError } from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
@@ -186,7 +187,7 @@ export default function ShopEditPage({ shopId, shopData }: { shopId: string; sho
     description: watch('description') || shopData.description
   };
 
-  const { mutate: putShop, data: putShopData } = usePutShop(shopId, putShopPayload);
+  const { mutate: putShop } = usePutShop(shopId, putShopPayload);
 
   // 모달
   const [openModal, setOpenModal] = useState<ReactElement | null>(null);
@@ -198,7 +199,8 @@ export default function ShopEditPage({ shopId, shopData }: { shopId: string; sho
     }
   };
   const modalList = {
-    onError: <Modal.Error onClick={handleClickCloseModal.onError}>{putShopData?.message}</Modal.Error>,
+    // eslint-disable-next-line react/no-unstable-nested-components
+    onError: (message: string) => <Modal.Error onClick={handleClickCloseModal.onError}>{message}</Modal.Error>,
     onSuccess: <Modal.Check onClick={handleClickCloseModal.onSubmit}>수정이 완료되었습니다.</Modal.Check>
   };
 
@@ -212,9 +214,23 @@ export default function ShopEditPage({ shopId, shopData }: { shopId: string; sho
     description: register('description')
   };
 
+  const onSuccess = () => {
+    setOpenModal(modalList.onSuccess);
+    toggle();
+  };
+
+  const onError = (e: AxiosError) => {
+    if (axios.isAxiosError(e) && e.response) {
+      const { message } = e.response.data as { message: string };
+      console.log('message', message);
+      setOpenModal(modalList.onError(message));
+      toggle();
+    }
+  };
+
   const onSubmit = () => {
     // 폼 데이터 업로드
-    putShop(putShopPayload);
+    putShop(putShopPayload, { onSuccess, onError });
   };
 
   // presignedUrlData 생성
@@ -230,21 +246,6 @@ export default function ShopEditPage({ shopId, shopData }: { shopId: string; sho
       putImageS3({ putFile: watchImageFile, putPresignedUrl: presignedUrlData?.item.url });
     }
   }, [presignedUrlData]);
-
-  // 폼 제출
-  useEffect(() => {
-    // 에러 메세지 모달 렌더링
-    if (putShopData?.message) {
-      setOpenModal(modalList.onError);
-      toggle();
-    }
-
-    // 폼 제출 성공 시 리다이렉션
-    if (putShopData?.item) {
-      setOpenModal(modalList.onSuccess);
-      toggle();
-    }
-  }, [putShopData]);
 
   return (
     <>
