@@ -67,3 +67,9 @@ export const pageList = {
   page404: () => `/404`,
   search: () => '/search'
 };
+
+export const defaultLimit = 6;
+
+// 최소 및 최대 시급 설정
+export const MIN_HOURLY_PAY = 10000; // 최소 시급
+export const MAX_HOURLY_PAY = 1000000000; // 최대 시급

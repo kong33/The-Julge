@@ -1,6 +1,6 @@
 import Filter from '@/components/feature/Filter/Filter';
 import { useFilter } from '@/components/feature/Filter/FilterContext';
-import { addressList } from '@/libs/constants';
+import { addressList } from '@/libs/constants/contants';
 import useManageFilter from '@/libs/hooks/useManageFilter';
 
 // const alertlist = [

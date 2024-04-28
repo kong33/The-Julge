@@ -24,11 +24,11 @@ export default function InputContainer({
 
   return (
     <div className={inputFormContainer}>
-      <Label htmlFor={label} required={required}>
+      <Label className={styles.inputFormLabel} required={required}>
         {label}
       </Label>
       {children}
-      <ErrorMessage>{errorMessage}</ErrorMessage>
+      <ErrorMessage className={styles.inputFormErrorMessage}>{errorMessage}</ErrorMessage>
     </div>
   );
 }

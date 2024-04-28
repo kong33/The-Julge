@@ -19,12 +19,17 @@ const selectStyles = {
     '&:focus': {},
     '&:active': {}
   }),
+  valueContainer: (provided: any) => ({
+    ...provided,
+    padding: '0'
+  }),
   singleValue: (provided: any) => ({
     ...provided,
     fontFamily: 'SpoqaHanSansNeo-Regular',
     fontSize: '1.6rem',
     fontWeight: '400',
     lineHeight: '2.6rem',
+    margin: '0',
     color: '#111322'
   }),
   menu: (provided: any) => ({
@@ -73,7 +78,8 @@ const selectStyles = {
     fontSize: '1.6rem',
     fontWeight: '400',
     lineHeight: '2.6rem',
-    color: '#A4A1AA'
+    color: '#A4A1AA',
+    margin: '0'
   }),
   indicatorSeparator: () => ({}),
   dropdownIndicator: (provided: any) => ({
@@ -102,6 +108,40 @@ const selectSmallStyle = {
     },
     '&:hover': { background: !state.isSelected && '#f2f2f3' },
     '&:active': { background: '#e5e4e7' }
+  })
+};
+
+const selectErrorStyle = {
+  ...selectStyles,
+  control: (provided: any) => ({
+    ...provided,
+    padding: '1.6rem 2rem',
+    borderRadius: '0.6rem',
+    border: '0.1rem solid #ff4040',
+    boxShadow: 'none',
+    background: '#FFF',
+    '&:hover': {},
+    '&:focus': {
+      border: '0.1rem solid #cbc9cf'
+    },
+    '&:active': {}
+  })
+};
+
+const selectSmallErrorStyle = {
+  ...selectSmallStyle,
+  control: (provided: any) => ({
+    ...provided,
+    padding: '1.6rem 2rem',
+    borderRadius: '0.6rem',
+    border: '0.1rem solid #ff4040',
+    boxShadow: 'none',
+    background: '#FFF',
+    '&:hover': {},
+    '&:focus': {
+      border: '0.1rem solid #cbc9cf'
+    },
+    '&:active': {}
   })
 };
 
@@ -151,13 +191,16 @@ const SelectForm = forwardRef<React.Ref<Select>, SelectFormProps>(
   ) => {
     const selectOptionList = optionList.map((option) => ({ value: option, label: option }));
 
+    const selectLargeStyles = errorMessage ? selectErrorStyle : selectStyles;
+    const selectSmallStyles = errorMessage ? selectSmallErrorStyle : selectSmallStyle;
+
     return (
       <InputContainer className={className} label={label} required={required} errorMessage={errorMessage}>
         <Select
           className={styles.selectForm}
           instanceId={instanceId}
           options={selectOptionList}
-          styles={size === 'small' ? selectSmallStyle : selectStyles}
+          styles={size === 'small' ? selectSmallStyles : selectLargeStyles}
           components={{ DropdownIndicator }}
           isSearchable={false}
           ref={ref as React.Ref<SelectInstance<unknown, boolean, GroupBase<unknown>>>}
