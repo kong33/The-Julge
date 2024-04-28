@@ -1,0 +1,43 @@
+@import '@/styles/colors.scss';
+@import '@/styles/mixin.scss';
+@import '@/styles/mixin.scss';
+
+.CheckStatusButtonContainer {
+  width: 100%;
+  @include flexbox;
+  gap: 0.8rem;
+
+  button {
+    font-size: 1.2rem;
+    padding: 0.7rem 0.8rem;
+
+    @include tablet {
+      font-size: 1.4rem;
+      padding: 1rem 2rem;
+      word-break: keep-all;
+      gap: 1.2rem;
+    }
+  }
+
+  .approve {
+    border: 1px $color-blue-20 solid;
+    border-radius: 0.6rem;
+    color: $color-blue-20;
+
+    &:hover {
+      background-color: $color-blue-20;
+      color: $color-white;
+    }
+  }
+
+  .reject {
+    border: 1px $color-primary solid;
+    border-radius: 0.6rem;
+    color: $color-primary;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+}
