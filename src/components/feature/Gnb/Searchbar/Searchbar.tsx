@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
-import styles from './Searchbar.module.scss';
+import styles from '@/components/feature/Gnb/Searchbar/Searchbar.module.scss';
 
 export default function Searchbar() {
   const [searchInput, setSearchInput] = useState('');

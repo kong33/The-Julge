@@ -6,6 +6,7 @@
   position: sticky;
   z-index: 100;
   top: 0;
+  background-color: $color-white;
 }
 
 .gnbWrapper {
@@ -18,7 +19,7 @@
   }
 
   @include pc-first-mobile {
-    padding: 1.5rem 3.2rem;
+    padding: 1rem 1.2rem;
     height: 10.2rem;
   }
 }
@@ -45,9 +46,12 @@
   align-items: center;
   margin-right: 4rem;
 
-  @include pc-first-mobile {
-    height: 3rem;
-    width: 8.4rem;
+  .gnbLogoSvg {
+    @include pc-first-mobile {
+      height: 3rem;
+      width: 8.4rem;
+      margin-right: auto;
+    }
   }
 }
 
@@ -65,18 +69,32 @@
 }
 
 .gnbMenu {
-  align-items: center;
   grid-area: gnbMenu;
-  display: flex;
-  gap: 2rem;
+  white-space: nowrap;
   justify-content: flex-end;
-  margin-right: 0.3rem;
+  display: flex;
+  gap: 4rem;
+
+  @include pc-first-mobile {
+    gap: 1.8rem;
+  }
 }
 
-.notification {
-  cursor: pointer;
-}
-
-.notification:hover {
-  opacity: 0.8;
+.gnbMenuThree {
+  grid-area: gnbMenu;
+  white-space: nowrap;
+  justify-content: flex-end;
+  display: flex;
+  gap: 4rem;
+  @include pc-first-tablet {
+    gap: 1.2rem;
+  }
+  @include pc-first-mobile {
+    gap: 1.6rem;
+  }
+  .notiModalSection {
+    position: absolute;
+    z-index: 1000;
+    top: 100%;
+  }
 }
