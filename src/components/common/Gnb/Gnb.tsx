@@ -60,8 +60,6 @@ function Gnb({ userType, alertList }: Props) {
     }
   }, [alertList]);
 
-  console.log('userType', userType);
-
   return (
     <div className={styles.gnbContainer}>
       <div className={styles.gnbWrapper}>
