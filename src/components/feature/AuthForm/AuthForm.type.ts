@@ -79,3 +79,6 @@ export const status = {
 export type LoginErrorMessage = {
   message: string;
 };
+export type SignupErrorMessage = {
+  message: string;
+};

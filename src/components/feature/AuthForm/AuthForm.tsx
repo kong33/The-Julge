@@ -77,22 +77,6 @@
 //   const handleLoginError = (e: Error) => {
 //     console.log('error', e);
 //   };
-//   //회원가입 성공시 실행
-//   const handleSignupSuccess = (data: GetUserRes | ErrorPutUserRes) => {
-//     console.log('success');
-//     console.log(data);
-//     if (isErrorPutUserRes(data)) {
-//       setAlertMessage(data.message);
-//     } else {
-//       //const { id } = data.item;
-//       //Cookies.set('signupData', id, { expires: 1, path: '/' });
-//       router.push(status[formType].redirectPath);
-//     }
-//   };
-//   //회원가입 실패시 실행
-//   const handleSignupError = (e: Error) => {
-//     console.log('error', e);
-//   };
 
 //   type PostType = {
 //     email: string;

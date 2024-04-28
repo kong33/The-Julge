@@ -19,7 +19,7 @@ import {
 } from '@/components/feature/AuthForm/AuthForm.type';
 import { ReactComponent as Logo } from '@/public/svgs/Logo.svg';
 
-import userInfoAtom from '../AuthForm/AuthAtom';
+import { userInfoAtom } from '../AuthForm/AuthAtom';
 import Modal from '../Modal/Modal';
 import ModalGroup from '../Modal/ModalGroup';
 
@@ -102,7 +102,7 @@ export default function LoginForm() {
           <Link href={status.login.footerLink}>{status.login.footerLinkText}</Link>
         </div>
       </form>
-      {isModalOpen && (
+      {isModalOpen ?? (
         <ModalGroup.Content>
           <Modal.Error>{alertMessage}</Modal.Error>
         </ModalGroup.Content>
