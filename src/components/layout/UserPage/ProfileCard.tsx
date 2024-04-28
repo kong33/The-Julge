@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import Button from '@/components/common/Button';
-import ModalGroup from '@/components/feature/Modal/ModalGroup';
-import UserEditModal from '@/components/feature/userEditModal/uesrEditModal';
+import { ReactComponent as LocationSvg } from '@/public/svgs/location-shop.svg';
+import { ReactComponent as PhoneSvg } from '@/public/svgs/phone.svg';
 
 import styles from './ProfileCard.module.scss';
 
@@ -15,9 +15,10 @@ type UserProfileProps = {
 };
 
 export default function ProfileCard({ isRegisterd, ...props }: UserProfileProps) {
-  const [isModalOpen, setModalOpen] = useState(false);
-  console.log(isModalOpen);
-  const toggleModal = () => setModalOpen(!isModalOpen);
+  const router = useRouter();
+  const onClick = () => {
+    router.push('/user/edit');
+  };
 
   if (!isRegisterd) {
     return (
@@ -26,17 +27,10 @@ export default function ProfileCard({ isRegisterd, ...props }: UserProfileProps)
           <p>내 프로필을 등록하고 원하는 가게에 지원해 보세요.</p>
         </div>
         <div className={styles.section}>
-          <ModalGroup.Trigger>
-            <Button className={styles.editButton} solid size="large" active onClick={toggleModal}>
-              내 프로필 등록하기
-            </Button>
-          </ModalGroup.Trigger>
+          <Button className={styles.editButton} solid size="large" active onClick={onClick}>
+            내 프로필 등록하기
+          </Button>
         </div>
-        {isModalOpen && (
-          <ModalGroup.Content>
-            <UserEditModal onClose={toggleModal} />
-          </ModalGroup.Content>
-        )}
       </div>
     );
   }
@@ -48,27 +42,24 @@ export default function ProfileCard({ isRegisterd, ...props }: UserProfileProps)
           <p>{props.name}</p>
         </div>
         <div className={styles.infoSection}>
-          <p>☎ {props.phone}</p>
-          <p>☎ {props.address}</p>
+          <div>
+            <PhoneSvg className={styles.icon} />
+            <p>{props.phone}</p>
+          </div>
+          <div>
+            <LocationSvg className={styles.icon} />
+            <p>{props.address}</p>
+          </div>
         </div>
         <div className={styles.bioSection}>
           <p>{props.bio}</p>
         </div>
       </div>
-
       <div className={styles.section}>
-        <ModalGroup.Trigger>
-          <Button className={styles.editButton} solid size="large" active onClick={toggleModal}>
-            편집하기
-          </Button>
-        </ModalGroup.Trigger>
+        <Button className={styles.editButton} solid size="large" active onClick={onClick}>
+          편집하기
+        </Button>
       </div>
-
-      {isModalOpen && (
-        <ModalGroup.Content>
-          <UserEditModal onClose={toggleModal} />
-        </ModalGroup.Content>
-      )}
     </div>
   );
 }

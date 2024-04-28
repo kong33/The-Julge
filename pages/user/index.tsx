@@ -5,7 +5,7 @@ import React from 'react';
 import UserService from '@/apis/user/User.service';
 import ApplyDetail from '@/components/layout/UserPage/ApplyDetail';
 import ProfileCard from '@/components/layout/UserPage/ProfileCard';
-import { pageList } from '@/libs/constants';
+import { pageList } from '@/libs/constants/contants';
 
 import styles from './index.module.scss';
 
