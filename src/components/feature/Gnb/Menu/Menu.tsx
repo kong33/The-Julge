@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-import styles from './Menu.module.scss';
+import styles from '@/components/feature/Gnb/Menu/Menu.module.scss';
 
 type MenuProps = {
   name?: string;
@@ -18,7 +18,7 @@ type MenuProps = {
  */
 export default function Menu({ name, id }: MenuProps) {
   return (
-    <Link href={id ? `/${id}` : '#'}>
+    <Link href={id ? `/${id}` : '#'} passHref>
       <button type="button" className={styles.menu}>
         {name}
       </button>
