@@ -1,11 +1,12 @@
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import React from 'react';
 
+import { GetApplicationListRes } from '@/apis/application/application.type';
 import UserService from '@/apis/user/User.service';
 import ApplyDetail from '@/components/layout/UserPage/ApplyDetail';
 import ProfileCard from '@/components/layout/UserPage/ProfileCard';
 import { pageList } from '@/libs/constants/contants';
+import applicationData1 from '@/pages/test';
 
 import styles from './index.module.scss';
 
@@ -18,20 +19,13 @@ type UserData = {
   };
 };
 
-type Applications = {
-  id: string;
-  title: string;
-  description: string;
-  createdAt: string;
-};
-
 type Props = {
   userId: string;
   userData: UserData;
-  ApplicationData: Applications[];
+  applicationData: GetApplicationListRes;
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req } = context;
   const { cookies } = req;
   const { userId } = cookies;
@@ -44,26 +38,19 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
       }
     };
   }
-
   const { data: userData } = await UserService.getUser(userId);
   if (!userData) {
     return {
       notFound: true
     };
   }
-  const ApplicationData = [
-    {
-      id: 'qwer',
-      title: 'Application Title',
-      description: 'Description of the application',
-      createdAt: '2024-04-25T09:00:00'
-    }
-  ];
 
-  return { props: { userId, userData, ApplicationData } };
+  const applicationData = applicationData1;
+
+  return { props: { userId, userData, applicationData } };
 };
-
-export default function UserDetailPage({ userId, userData, ApplicationData }: Props) {
+export default function UserDetailPage({ userId, userData, applicationData }: Props) {
+  console.log('유저 공고 data', applicationData);
   const router = useRouter();
   const onClickList = () => {
     router.push(pageList.home());
@@ -83,7 +70,7 @@ export default function UserDetailPage({ userId, userData, ApplicationData }: Pr
         {isRegisterd && (
           <section className={styles.listSection}>
             <h1>신청 내역</h1>
-            <ApplyDetail ApplicationData={ApplicationData} onClickList={onClickList} />
+            <ApplyDetail applicationData={applicationData} onClickList={onClickList} />
           </section>
         )}
       </div>

@@ -9,7 +9,7 @@ interface EmployeeTableProps {
   onPageChange: (page: number) => void;
 }
 
-function EmployerTable({ applicationList, currentPage, totalPages, onPageChange }: EmployeeTableProps) {
+function EmployeeTable({ applicationList, currentPage, totalPages, onPageChange }: EmployeeTableProps) {
   return (
     <Table
       data={applicationList}
@@ -21,4 +21,4 @@ function EmployerTable({ applicationList, currentPage, totalPages, onPageChange 
   );
 }
 
-export default EmployerTable;
+export default EmployeeTable;

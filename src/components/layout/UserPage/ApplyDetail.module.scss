@@ -16,6 +16,11 @@
     @include flexbox(column, center, center);
     gap: 1.6rem;
   }
+
+  .tableContainer {
+    height: 100%;
+    border: none;
+  }
 }
 
 .applycationEmpty {
