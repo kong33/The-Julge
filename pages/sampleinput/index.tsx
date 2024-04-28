@@ -148,7 +148,7 @@ export default function InputPage() {
   // 폼 JSX 예시입니다.
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-      {/* 이메일 */}
+      {/* 이메일
       <InputForm
         className={styles.input}
         label="이메일"
@@ -157,7 +157,7 @@ export default function InputPage() {
         errorMessage={errors.email?.message}
         {...registerList.email}
       />
-      {/* 비밀번호 */}
+      {/* 비밀번호 
       <InputForm
         className={styles.input}
         label="비밀번호"
@@ -165,7 +165,7 @@ export default function InputPage() {
         required
         errorMessage={errors.password?.message}
         {...registerList.password}
-      />
+      /> */}
       {/* 시급 */}
       <Controller
         name="hourlyPay"
