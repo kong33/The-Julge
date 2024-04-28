@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import { ReactComponent as LocationSvg } from '@/public/svgs/location-shop.svg';
 import { ReactComponent as PhoneSvg } from '@/public/svgs/phone.svg';
 

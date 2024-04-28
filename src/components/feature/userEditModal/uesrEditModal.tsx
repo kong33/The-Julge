@@ -4,7 +4,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { Address } from '@/apis/common.type';
 import UserService from '@/apis/user/User.service';
 import { PutUserPayload } from '@/apis/user/user.type';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
 import SelectForm from '@/components/common/Input/SelectForm/SelectForm';
 import { addressList } from '@/libs/constants/contants';

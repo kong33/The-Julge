@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { GetApplicationListRes } from '@/apis/application/application.type';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import EmployeeTable from '@/components/feature/Notice/EmployeeTable/EmployeeTable';
 import StatusChip from '@/components/feature/Notice/StatusChip/StatusChip';
 
