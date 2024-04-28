@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 
 import { PostAuthenticationPayload } from '@/apis/authentication/authentication.type';
 import { usePostAuthentication } from '@/apis/authentication/useAuthenticationService';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
 import {
   IFormInput,
@@ -16,7 +16,7 @@ import {
   validate,
   status,
   LoginErrorMessage
-} from '@/components/feature/AuthForm/AuthForm.type';
+} from '@/libs/constants/AuthForm.type';
 import { ReactComponent as Logo } from '@/public/svgs/Logo.svg';
 
 import { userInfoAtom } from '../../../libs/contexts/AuthAtom';

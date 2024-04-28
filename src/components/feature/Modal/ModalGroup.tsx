@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useRef, useState } from 'react';
 
-import { ModalGroupProps, childrenProps } from '@/components/feature/Modal/Modal.type';
+import { ModalGroupProps, defaultProps, triggerProps } from '@/components/feature/Modal/Modal.type';
 import Portal from '@/components/feature/Modal/Portal';
 import useOnClickOutside from '@/libs/hooks/useOnClickOutside';
 
@@ -11,7 +11,7 @@ export const useModal = () => {
   return context;
 };
 
-function ModalProvider({ children }: childrenProps) {
+function ModalProvider({ children }: defaultProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const close = () => setIsOpen(false);
@@ -24,17 +24,23 @@ function ModalProvider({ children }: childrenProps) {
   );
 }
 
-function ModalRoot({ children }: childrenProps) {
+function ModalRoot({ children }: defaultProps) {
   return <ModalProvider>{children}</ModalProvider>;
 }
 
-function ModalTrigger({ children }: childrenProps) {
+function ModalTrigger({ children, onClick, disableToggle = false }: triggerProps) {
   const { toggle } = useModal();
+  const handleClick = () => {
+    if (!disableToggle) {
+      if (onClick) onClick();
+      else toggle();
+    }
+  };
   // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-  return <div onClick={toggle}>{children}</div>;
+  return <div onClick={handleClick}>{children}</div>;
 }
 
-function ModalContent({ children }: childrenProps) {
+function ModalContent({ children }: defaultProps) {
   const { isOpen, close } = useModal();
   const ref = useRef<HTMLDivElement>(null);
 

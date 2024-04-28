@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import DateTimeForm from '@/components/common/Input/DateTimeForm/DateTimeForm';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
 import SelectForm from '@/components/common/Input/SelectForm/SelectForm';

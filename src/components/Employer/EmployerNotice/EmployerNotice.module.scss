@@ -1,0 +1,9 @@
+@import '@/styles/globals.scss';
+
+.title {
+  @include h1;
+  margin-bottom: 1.6rem;
+  @include tablet {
+    margin-bottom: 3.2rem;
+  }
+}

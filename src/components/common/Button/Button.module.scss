@@ -1,0 +1,36 @@
+@import '@/styles/globals.scss';
+.defaultButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  background: $color-white;
+  color: $color-primary;
+  border-radius: 0.6rem;
+  border: 0.1rem solid $color-primary;
+  cursor: pointer;
+}
+
+.solid {
+  background: $color-primary;
+  color: $color-white;
+}
+
+.inactive {
+  background: $color-gray-40;
+  border-color: $color-gray-40;
+  color: $color-white;
+  cursor: default;
+}
+
+.large {
+  @include button-large;
+}
+
+.medium {
+  @include button-medium;
+}
+
+.small {
+  @include button-small;
+}

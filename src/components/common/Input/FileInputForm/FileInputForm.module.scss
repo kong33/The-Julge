@@ -1,0 +1,42 @@
+@import '@/styles/globals.scss';
+
+.inputFieldContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 1.2rem;
+  border: 0.1rem solid $color-gray-30;
+  background: $color-gray-10;
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileInputLabel {
+  @include flexbox($direction: column, $align: center);
+  gap: 1.1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+
+  .cameraIcon {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  .placeholder {
+    @include sopoqa-16-700;
+    color: $color-gray-40;
+    text-align: center;
+  }
+}
+
+.invalid {
+  border: 0.1rem solid $color-red-40;
+  &:focus {
+    border: 0.1rem solid $color-gray-30;
+  }
+}

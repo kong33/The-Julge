@@ -1,7 +1,14 @@
 import React from 'react';
 
-export type childrenProps = {
+export type defaultProps = {
   children: React.ReactNode;
+  onClick?: () => void;
+};
+
+export type triggerProps = {
+  children: React.ReactNode;
+  onClick?: () => void;
+  disableToggle?: boolean;
 };
 
 export type selectProps = {

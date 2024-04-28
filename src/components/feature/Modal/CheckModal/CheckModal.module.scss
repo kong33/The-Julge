@@ -4,6 +4,7 @@
 .contents {
   width: 100%;
   height: 100%;
+  padding: 2.8rem;
   text-align: center;
   @include flexbox($direction: column, $justify: space-evenly);
   @include tablet {
@@ -13,13 +14,18 @@
 
 // 태블릿 PC 공통이기에 PC start
 .txtBox {
+  @include flexbox($direction: column, $align: center);
+  padding-top: 0.5rem;
+  height: 11.4rem;
+  @include tablet {
+    padding-top: 3rem;
+    height: 14.4rem;
+  }
   p {
-    padding-top: 1rem;
     @include pretendard-16-500;
     @include tablet {
       @include pretendard-18-500;
       word-break: keep-all;
-      padding-top: 8rem;
     }
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import { SelectModalProps } from '@/components/feature/Modal/Modal.type';
 import { useModal } from '@/components/feature/Modal/ModalGroup';
 import styles from '@/components/feature/Modal/SelectModal/SelectModal.module.scss';
