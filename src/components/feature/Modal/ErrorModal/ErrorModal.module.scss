@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   padding: 2.4rem;
+  text-align: center;
   @include flexbox($direction: column);
   gap: 3.2rem;
 }
