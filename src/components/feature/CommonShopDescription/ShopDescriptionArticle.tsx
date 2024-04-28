@@ -11,7 +11,7 @@ import { ReactComponent as LocationSvg } from '@/public/svgs/clock.svg';
 
 import PostTagNotice from '../Post/PostTag/PostTagNotice';
 
-export function ShopDescriptionArticle() {
+function ShopDescriptionArticle() {
   const router = useRouter();
   const { data } = useGetNotice('4490151c-5217-4157-b072-9c37b05bed47', '99996477-82db-4bda-aae1-4044f11d9a8b');
 
