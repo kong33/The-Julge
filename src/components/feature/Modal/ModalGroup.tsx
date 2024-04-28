@@ -15,11 +15,12 @@ function ModalProvider({ children }: childrenProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const close = () => setIsOpen(false);
+  const open = () => setIsOpen(true);
   const toggle = () => setIsOpen((prev) => !prev);
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <ModalContext.Provider value={{ isOpen, close, toggle }}>{children}</ModalContext.Provider>
+    <ModalContext.Provider value={{ isOpen, close, open, toggle }}>{children}</ModalContext.Provider>
   );
 }
 

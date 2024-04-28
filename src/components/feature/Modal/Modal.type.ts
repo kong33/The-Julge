@@ -12,6 +12,7 @@ export type selectProps = {
 export type ModalGroupProps = {
   isOpen: boolean;
   close: () => void;
+  open: () => void;
   toggle: () => void;
 };
 

@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { PostAuthenticationPayload } from '@/apis/authentication/authentication.type';
@@ -19,24 +19,25 @@ import {
 } from '@/components/feature/AuthForm/AuthForm.type';
 import { ReactComponent as Logo } from '@/public/svgs/Logo.svg';
 
-import { userInfoAtom } from '../AuthForm/AuthAtom';
+import { userInfoAtom } from '../../../libs/contexts/AuthAtom';
 import Modal from '../Modal/Modal';
-import ModalGroup from '../Modal/ModalGroup';
+import ModalGroup, { useModal } from '../Modal/ModalGroup';
 
 export default function LoginForm() {
   const {
     handleSubmit,
     register,
-    formState: { errors }
+    formState: { errors, isValid }
   } = useForm<IFormInput>({ defaultValues: defaultLoginFormValues, mode: 'onTouched' });
-  // 모달 열고 닫는 상태
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   // 모달 띄울 에러메세지
   const [alertMessage, setAlertMessage] = useState('');
-
+  // 모달 열고 닫는 상태
+  const { open: modalOpen, isOpen: isModalOpen } = useModal();
   // autom으로 유저 정보 전역 저장
   const [, setUserInfoAtom] = useAtom(userInfoAtom);
-
+  // 버튼 active
+  const [isButtonActive, setIsButtonActive] = useState(false);
   // 관리할 레지스터 (validation 을 위해 존재)
   const registerList = {
     email: register('email', validate.email),
@@ -54,10 +55,10 @@ export default function LoginForm() {
 
   // login 성공시 실행
   const handleLoginSuccess = () => {
-    setIsModalOpen(false);
     const { token } = loginData.item;
     Cookies.set('authToken', token, { expires: 1, path: '/' });
     setUserInfoAtom(loginData);
+
     router.push(status.login.redirectPath);
   };
 
@@ -66,7 +67,7 @@ export default function LoginForm() {
     if (axios.isAxiosError(e) && e.response) {
       const data = e.response.data as LoginErrorMessage;
       setAlertMessage(data.message);
-      setIsModalOpen(true);
+      modalOpen();
     } else {
       console.error(e);
     }
@@ -74,6 +75,14 @@ export default function LoginForm() {
   const onSubmit = (payload: PostAuthenticationPayload) => {
     loginMutate(payload, { onSuccess: handleLoginSuccess, onError: handleLoginError });
   };
+
+  useEffect(() => {
+    if (isValid) {
+      setIsButtonActive(true);
+    } else {
+      setIsButtonActive(false);
+    }
+  }, [isValid]);
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -93,7 +102,7 @@ export default function LoginForm() {
             {...registerList.password}
             name="password"
           />
-          <Button size="large" solid submit active>
+          <Button size="large" solid submit active={isButtonActive}>
             {status.login.buttonText}
           </Button>
         </div>
@@ -102,7 +111,7 @@ export default function LoginForm() {
           <Link href={status.login.footerLink}>{status.login.footerLinkText}</Link>
         </div>
       </form>
-      {isModalOpen ?? (
+      {isModalOpen && (
         <ModalGroup.Content>
           <Modal.Error>{alertMessage}</Modal.Error>
         </ModalGroup.Content>
