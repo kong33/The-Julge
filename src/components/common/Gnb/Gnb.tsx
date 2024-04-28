@@ -3,10 +3,10 @@ import Link from 'next/link';
 import React from 'react';
 
 import styles from './Gnb.module.scss';
-import LogoutMenu from '../feature/Gnb/Logout/Logout';
-import Menu from '../feature/Gnb/Menu/Menu';
-import NotiButton from '../feature/Gnb/Notification/Notification';
-import Searchbar from '../feature/Gnb/Searchbar/Searchbar';
+import LogoutMenu from '../../feature/Gnb/Logout/Logout';
+import Menu from '../../feature/Gnb/Menu/Menu';
+import NotiButton from '../../feature/Gnb/Notification/Notification';
+import Searchbar from '../../feature/Gnb/Searchbar/Searchbar';
 
 type GnbProps = {
   userType?: 'employee' | 'employer' | 'guest';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import DateTimeForm from '@/components/common/Input/DateTimeForm/DateTimeForm';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
 import SelectForm from '@/components/common/Input/SelectForm/SelectForm';
@@ -104,8 +104,6 @@ export default function InputPage() {
 
   // useForm register를 모아놓은 객체입니다.
   const registerList = {
-    email: register('email', validate.email),
-    password: register('password', validate.password),
     hourlyPay: register('hourlyPay'),
     phone: register('phone', validate.phone),
     startsAt: register('startsAt', validate.startsAt),
@@ -150,7 +148,7 @@ export default function InputPage() {
   // 폼 JSX 예시입니다.
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-      {/* 이메일 */}
+      {/* 이메일
       <InputForm
         className={styles.input}
         label="이메일"
@@ -159,7 +157,7 @@ export default function InputPage() {
         errorMessage={errors.email?.message}
         {...registerList.email}
       />
-      {/* 비밀번호 */}
+      {/* 비밀번호 
       <InputForm
         className={styles.input}
         label="비밀번호"
@@ -167,7 +165,7 @@ export default function InputPage() {
         required
         errorMessage={errors.password?.message}
         {...registerList.password}
-      />
+      /> */}
       {/* 시급 */}
       <Controller
         name="hourlyPay"

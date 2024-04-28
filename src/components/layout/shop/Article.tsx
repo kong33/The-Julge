@@ -5,7 +5,7 @@ import { startTransition, useCallback, useEffect, useState } from 'react';
 import { GetNoticeListByShopIdRes } from '@/apis/notice/notice.type';
 import { useGetNoticeListByShopId } from '@/apis/notice/useNoticeService';
 import { GetShopRes } from '@/apis/shop/shop.type';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import PostList from '@/components/feature/Post/PostList/PostList';
 import styles from '@/components/layout/shop/Article.module.scss';
 import { defaultLimit, pageList } from '@/libs/constants/contants';

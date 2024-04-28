@@ -18,7 +18,19 @@ import { selectData } from '@/apis/utils';
  */
 
 export function usePostUser(payload: PostUserPayload) {
-  const res = useMutation(queryOptions.postUser(payload));
+  // const [isError, setIsError] = useState(false);
+  const res = useMutation(
+    queryOptions.postUser(payload)
+    //   , {
+    //   onSuccess: (res) => { },
+    //   onError: (error: Error) => {
+    //     setIsError(true);
+    //   },
+    //   onSettled: (res) => {
+
+    //   }
+    // }
+  );
   return selectData<PostUserRes>(res);
 }
 

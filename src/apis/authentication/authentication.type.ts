@@ -18,3 +18,7 @@ export type PostAuthenticationRes = {
   item: Item;
   links: Array<Link>;
 };
+
+export type PostAuthenticationResError = {
+  message: string;
+};
