@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import { useGetNotice } from '@/apis/notice/useNoticeService';
 import Button from '@/components/common/Button';
@@ -11,6 +12,7 @@ import { ReactComponent as LocationSvg } from '@/public/svgs/clock.svg';
 import PostTagNotice from '../Post/PostTag/PostTagNotice';
 
 export function ShopDescriptionArticle() {
+  const router = useRouter();
   const { data } = useGetNotice('4490151c-5217-4157-b072-9c37b05bed47', '99996477-82db-4bda-aae1-4044f11d9a8b');
 
   const { item: noticeItem } = data;
@@ -31,7 +33,7 @@ export function ShopDescriptionArticle() {
   const isPreviousNotice = startsAtDate < now;
 
   const handleEditNotice = () => {
-    console.log('공고편집');
+    router.push(`/shops/'4490151c-5217-4157-b072-9c37b05bed47'/$'99996477-82db-4bda-aae1-4044f11d9a8b'/edit`);
   };
 
   const noticeImgClosedClasses = classNames(
@@ -40,7 +42,10 @@ export function ShopDescriptionArticle() {
 
   return (
     <article className={styles.articleContainer}>
-      <div>{name}</div>
+      <div className={styles.noticeTitleContainer}>
+        <p className={styles.noticeTitle}>식당</p>
+        <div className={styles.noticeTitleText}>{name}</div>
+      </div>
       <div className={styles.noticeContainer}>
         <div className={styles.noticeImg}>
           <Image src={imageUrl} alt="shop" width={2156} height={1232} style={{ objectFit: 'cover' }} priority />

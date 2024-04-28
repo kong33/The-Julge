@@ -1,4 +1,25 @@
-// shop-article
+.noticeTitleContainer {
+  @include flexbox($direction: column, $align: flex-start);
+  gap: 0.8rem;
+}
+
+.noticeTitle {
+  @include sopoqa-14-700;
+  color: $color-primary;
+
+  @include tablet {
+    @include sopoqa-16-700;
+  }
+}
+
+.noticeTitleText {
+  @include sopoqa-20-700;
+
+  @include tablet {
+    @include sopoqa-28-700;
+  }
+}
+
 .articleContainer {
   @include flexbox($direction: column, $align: flex-start);
   min-width: 35.1rem;

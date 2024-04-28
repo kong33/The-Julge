@@ -23,7 +23,7 @@ function EmployerNotice() {
     '4490151c-5217-4157-b072-9c37b05bed47',
     '99996477-82db-4bda-aae1-4044f11d9a8b',
     {
-      offset: pageNum - 1,
+      offset: (pageNum - 1) * 5,
       limit: 5
     }
   );
