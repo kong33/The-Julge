@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import UserService from '@/apis/user/User.service';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import MainLayout from '@/layouts/MainLayout';
 import { pageList } from '@/libs/constants/contants';
 import styles from '@/pages/shop/index.module.scss';

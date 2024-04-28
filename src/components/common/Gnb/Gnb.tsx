@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 
@@ -9,6 +8,7 @@ import Menu from '@/components/feature/Gnb/Menu/Menu';
 import NotiButton from '@/components/feature/Gnb/Notification/Notification';
 import Searchbar from '@/components/feature/Gnb/Searchbar/Searchbar';
 import NotificationModal from '@/components/feature/NotificationModal/NotificationModal';
+import { ReactComponent as Logo } from '@/public/svgs/Logo.svg';
 
 type Props = {
   alertList: GetAlertListRes;
@@ -60,13 +60,15 @@ function Gnb({ userType, alertList }: Props) {
     }
   }, [alertList]);
 
+  console.log('userType', userType);
+
   return (
     <div className={styles.gnbContainer}>
       <div className={styles.gnbWrapper}>
         <div className={styles.gnbSection}>
           <div className={styles.gnbLogo}>
             <Link href="/" passHref>
-              <Image src="/svgs/logo.svg" alt=" logo" width={112} height={40} />
+              <Logo width="112" height="40" className={styles.gnbLogoSvg} />
             </Link>
           </div>
           <div className={styles.gnbSearchbar}>
@@ -74,7 +76,7 @@ function Gnb({ userType, alertList }: Props) {
           </div>
           {userType === 'guest' && (
             <div className={styles.gnbMenu}>
-              <Menu name="로그인" id="signin" />
+              <Menu name="로그인" id="login" />
               <Menu name="회원가입" id="signup" />
             </div>
           )}

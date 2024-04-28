@@ -5,6 +5,12 @@ export type PostUserPayload = {
   password: string;
   type: UserType;
 };
+export type PostInputType = {
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  type: string;
+};
 
 type Item = {
   id: string;
@@ -41,4 +47,8 @@ export type PutUserRes = {
     shop: { item: ShopInfo } | null;
   };
   links: Array<Link>;
+};
+
+export type ErrorPutUserRes = {
+  message: string;
 };

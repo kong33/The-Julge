@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import Link from 'next/link';
 
 import styles from '@/components/feature/NotificationModal/NotificationModalCard/NotificationModal.module.scss';
 import calculateMinutesAgo from '@/libs/utils/calculateMinutesAgo';
@@ -25,13 +26,15 @@ export default function NotificationModalCard(data: dataProps) {
   const { formattedDate, fromToHour } = calculateWorkhour(startsAt, workhour);
 
   return (
-    <article className={cn('container')}>
-      <div className={elipseCN} />
-      <p>
-        {`${shop} (${formattedDate} ${fromToHour}) 공고 지원이 `}
-        <span className={cn(`${result}Comment`)}>{resultComment[result]}</span>되었어요.
-      </p>
-      <p>{calculatedTime}</p>
-    </article>
+    <Link href="/">
+      <article className={cn('container')}>
+        <div className={elipseCN} />
+        <p>
+          {`${shop} (${formattedDate} ${fromToHour}) 공고 지원이 `}
+          <span className={cn(`${result}Comment`)}>{resultComment[result]}</span>되었어요.
+        </p>
+        <p>{calculatedTime}</p>
+      </article>
+    </Link>
   );
 }

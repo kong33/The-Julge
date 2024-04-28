@@ -46,10 +46,12 @@
   align-items: center;
   margin-right: 4rem;
 
-  @include pc-first-mobile {
-    height: 3rem;
-    width: 8.4rem;
-    margin-right: auto;
+  .gnbLogoSvg {
+    @include pc-first-mobile {
+      height: 3rem;
+      width: 8.4rem;
+      margin-right: auto;
+    }
   }
 }
 

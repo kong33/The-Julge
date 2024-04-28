@@ -14,7 +14,7 @@ import { PostShopPayload } from '@/apis/shop/shop.type';
 import { usePostShop } from '@/apis/shop/useShopService';
 import UserService from '@/apis/user/User.service';
 import { removeQueryParams } from '@/apis/utils';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import FileInputForm from '@/components/common/Input/FileInputForm/FileInputForm';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
 import SelectForm from '@/components/common/Input/SelectForm/SelectForm';
