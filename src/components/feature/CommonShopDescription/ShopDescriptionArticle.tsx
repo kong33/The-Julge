@@ -1,4 +1,3 @@
-// import Image from 'next/image';
 import classNames from 'classnames';
 import Image from 'next/image';
 
@@ -10,7 +9,7 @@ import { ReactComponent as ClockSvg } from '@/public/svgs/clock-notice.svg';
 import { ReactComponent as LocationSvg } from '@/public/svgs/clock.svg';
 
 import PostTagNotice from '../Post/PostTag/PostTagNotice';
-// ShopArticle
+
 export function ShopDescriptionArticle() {
   const { data } = useGetNotice('4490151c-5217-4157-b072-9c37b05bed47', '99996477-82db-4bda-aae1-4044f11d9a8b');
 
@@ -44,16 +43,15 @@ export function ShopDescriptionArticle() {
       <div>{name}</div>
       <div className={styles.noticeContainer}>
         <div className={styles.noticeImg}>
-          이미지
           <Image src={imageUrl} alt="shop" width={2156} height={1232} style={{ objectFit: 'cover' }} priority />
           <div className={noticeImgClosedClasses}>{isPreviousNotice ? '지난 공고' : '마감 완료'}</div>
         </div>
         <div className={styles.noticeDetailContainer}>
           <div className={styles.noticeInfo}>
             <div className={styles.noticeHourlyPayBox}>
-              <p className={styles.noticeHourlyPCategory}>시급</p>
-              <div className={styles.noticeHourlyDetail}>
-                <p className={styles.noticeName}>{hourlyPay}원</p>
+              <p className={styles.noticeHourlyPayCategory}>시급</p>
+              <div>
+                <p className={styles.noticeHourly}>{hourlyPay}원</p>
                 <PostTagNotice closed={closed} hourlyPay={hourlyPay} originalHourlyPay={originalHourlyPay} />
               </div>
             </div>
@@ -74,9 +72,9 @@ export function ShopDescriptionArticle() {
           </div>
         </div>
       </div>
-      <div className={styles.noticeCommentContainer}>
-        <p className={styles.noticeCommentTitle}>공고 설명</p>
-        <p className={styles.noticeComment}>{description}</p>
+      <div className={styles.noticeDescriptionContainer}>
+        <p className={styles.noticeDescription}>공고 설명</p>
+        <p className={styles.noticeDescriptionText}>{description}</p>
       </div>
     </article>
   );
