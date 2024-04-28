@@ -1,4 +1,13 @@
 // shop-article
+.shopBox {
+  @include flexbox($direction: column, $align: flex-start);
+  padding: 4rem 1.2rem;
+
+  @include tablet {
+    padding: 6rem 23.8rem;
+  }
+}
+
 .titleWrapper {
   @include flexbox($direction: column, $justify: flex-start, $align: flex-start);
   gap: 0.8rem;
@@ -168,4 +177,23 @@
   @include tablet {
     padding: 0;
   }
+}
+
+.noticeDetail {
+  line-height: normal;
+  @include sopoqa-14-700;
+}
+
+.noticeDetailText {
+  @include sopoqa-14-400;
+}
+
+.noticeDetailContainer {
+  @include flexbox($direction: column, $align: flex-start, $justify: flex-start);
+  min-width: 35.1rem;
+  padding: 2rem;
+  gap: 3.2rem;
+  border-radius: 1.2rem;
+  background: $color-gray-10;
+  margin-top: 1.2rem;
 }

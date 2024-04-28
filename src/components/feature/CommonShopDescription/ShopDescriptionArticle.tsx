@@ -8,7 +8,7 @@ import { ReactComponent as LocationSvg } from '@/public/svgs/clock.svg';
 // ShopArticle
 export function ShopDescriptionArticle() {
   return (
-    <article>
+    <article className={styles.shopBox}>
       <div className={styles.titleWrapper}>
         <h1 className={styles.title}>식당</h1>
         <h2 className={styles.titleName}>도토리 식당</h2>
@@ -37,6 +37,13 @@ export function ShopDescriptionArticle() {
             </Button>
           </div>
         </div>
+      </div>
+      <div className={styles.noticeDetailContainer}>
+        <p className={styles.noticeDetail}>공고설명</p>
+        <p className={styles.noticeDetailText}>
+          기존 알바 친구가 그만둬서 새로운 친구를 구했는데, 그 사이에 하루가 비네요. 급해서 시급도 높였고 그렇게 바쁜
+          날이 아니라서 괜찮을거예요.
+        </p>
       </div>
     </article>
   );
