@@ -16,7 +16,7 @@ import {
   SignupErrorMessage,
   defaultSignupFormValues
 } from '@/libs/constants/AuthForm.type';
-import { ReactComponent as Logo } from '@/public/svgs/Logo.svg';
+import { ReactComponent as Logo } from '@/public/svgs/Logo1.svg';
 
 import { userIdAtom } from '../../../libs/contexts/AuthAtom';
 import Modal from '../Modal/Modal';

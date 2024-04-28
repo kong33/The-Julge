@@ -17,7 +17,7 @@ import {
   status,
   LoginErrorMessage
 } from '@/libs/constants/AuthForm.type';
-import { ReactComponent as Logo } from '@/public/svgs/Logo.svg';
+import { ReactComponent as Logo } from '@/public/svgs/Logo1.svg';
 
 import { userInfoAtom } from '../../../libs/contexts/AuthAtom';
 import Modal from '../Modal/Modal';
