@@ -1,8 +1,33 @@
 // shop-article
+.titleWrapper {
+  @include flexbox($direction: column, $justify: flex-start, $align: flex-start);
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.title {
+  @include sopoqa-14-700;
+  color: $color-primary;
+
+  @include tablet {
+    @include sopoqa-16-700;
+  }
+}
+
+.titleName {
+  @include sopoqa-20-700;
+
+  @include tablet {
+    @include sopoqa-24-700;
+  }
+}
+
 .articleShop {
   @include user-article;
-  background: $color-red-10;
-  border: none;
+  background: $color-white;
+  border-radius: 1.2rem;
+  border: 0.1rem solid $color-gray-20;
+  background: $color-white;
   padding: 2rem;
   @include tablet {
     padding: 2.4rem;
