@@ -3,7 +3,7 @@ import Button from '@/components/common/Button';
 import styles from './ProfileCard.module.scss';
 
 type UserProfileProps = {
-  isProfile: boolean;
+  isRegisterd: boolean;
   name: string;
   phone: string;
   address: string;
@@ -11,8 +11,8 @@ type UserProfileProps = {
   onClickEdit: () => void;
 };
 
-export default function ProfileCard({ isProfile, name, phone, address, bio, onClickEdit }: UserProfileProps) {
-  if (!isProfile) {
+export default function ProfileCard({ isRegisterd, onClickEdit, ...props }: UserProfileProps) {
+  if (!isRegisterd) {
     return (
       <div className={styles.nonDataWrapper}>
         <div className={styles.section}>
@@ -31,14 +31,14 @@ export default function ProfileCard({ isProfile, name, phone, address, bio, onCl
       <div className={styles.section}>
         <div className={styles.nameSection}>
           <h1>이름</h1>
-          <p>{name}</p>
+          <p>{props.name}</p>
         </div>
         <div className={styles.infoSection}>
-          <p>☎ {phone}</p>
-          <p>☎ {address}</p>
+          <p>☎ {props.phone}</p>
+          <p>☎ {props.address}</p>
         </div>
         <div className={styles.bioSection}>
-          <p>{bio}</p>
+          <p>{props.bio}</p>
         </div>
       </div>
 
