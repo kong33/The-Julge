@@ -8,7 +8,7 @@ import DateTimeForm from '@/components/common/Input/DateTimeForm/DateTimeForm';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
 import styles from '@/components/feature/Filter/Filter.module.scss';
 import ScrollMenu from '@/components/feature/Filter/ScrollMenu/ScrollMenu';
-import { formatNumber } from '@/libs/utils/formatter';
+import { formatNumber, removeCommasNumber } from '@/libs/utils/formatter';
 import { ReactComponent as CloseButton } from '@/public/svgs/closeButton.svg';
 
 import { FilterContext } from './FilterContext';
@@ -50,7 +50,7 @@ export default function Filter({
   handleMenuClick,
   clickedAddress,
   handleResetBtnClick,
-  handleApplyBtnClick,
+  // handleApplyBtnClick,
   filterRef
 }: FilterProps) {
   const filterContext = useContext(FilterContext);
@@ -62,12 +62,24 @@ export default function Filter({
   const { close } = filterContext;
   const {
     control, // react-hook-form의 Controller에 연결됩니다.
-    formState: { errors } // 폼 상태 객체입니다. errors['form'].message에 validate의 에러 메세지가 저장됩니다.
+    formState: { errors }, // 폼 상태 객체입니다. errors['form'].message에 validate의 에러 메세지가 저장됩니다.
+    // watch,
+    getValues,
+    handleSubmit
     // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useForm<IFormInput>({
     defaultValues: defaultFormValues, // 폼 기본값
     mode: 'onBlur' // onBlur 시 검증
   });
+
+  // const watchTime = watch('startsAt');
+  const onSubmit = () => {
+    // Raw 인풋 데이터를 올바른 값으로 변경합니다.
+    const hourlyPay = removeCommasNumber(getValues('hourlyPay').toString());
+    const startsAt = new Date(getValues('startsAt')).toISOString();
+    console.log(hourlyPay, startsAt);
+  };
+
   return (
     <div className={styles.container} ref={filterRef}>
       <div className={styles.header}>
@@ -104,7 +116,6 @@ export default function Filter({
             />
           )}
         />
-        {/* <input placeholder="입력" /> */}
       </section>
 
       <hr />
@@ -112,7 +123,6 @@ export default function Filter({
       <section className={styles.chargeWrapper}>
         <p>금액</p>
         <section>
-          {/* <input placeholder="입력" /> */}
           <Controller
             name="hourlyPay"
             control={control}
@@ -142,7 +152,7 @@ export default function Filter({
         >
           초기화
         </Button>
-        <Button solid size="large" active submit={false} className={styles.applyBtn} onClick={handleApplyBtnClick}>
+        <Button solid size="large" active submit={false} className={styles.applyBtn} onClick={handleSubmit(onSubmit)}>
           적용하기
         </Button>
       </section>

@@ -41,6 +41,7 @@ export default function useManageFilter() {
     if (clickedMenuText && !filterData.address?.find((item) => item === clickedMenuText)) {
       setFilterData((prev) => ({ ...prev, address: [...(prev.address || []), clickedMenuText] }));
     }
+    console.log(filterData);
   };
   const handleInputChange = () => {
     console.log('state관리 해주세용 - 헷갈리시면 저한테 물어봐주세요');
