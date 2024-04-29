@@ -19,7 +19,7 @@ import MainLayout from '@/layouts/MainLayout';
 import { addressList, pageList } from '@/libs/constants/contants';
 import { formatPhoneNumber } from '@/libs/utils/formatter';
 import validatePhoneNumber from '@/libs/utils/phoneValidator';
-import styles from '@/pages/user/edit/index.module.scss';
+import styles from '@/pages/user/register/index.module.scss';
 import { ReactComponent as CloseSvg } from '@/public/svgs/close-shop-page.svg';
 
 interface UserItem {
@@ -28,7 +28,7 @@ interface UserItem {
   type: 'employee';
   name: string;
   phone: string;
-  address: Address;
+  address: string;
   bio: string;
   shop: null;
 }
@@ -54,6 +54,13 @@ type IFormInput = {
   phone: string;
   address: { value: Address; label: Address } | null;
   bio: string;
+};
+
+const defaultValueList = {
+  name: '',
+  phone: '',
+  address: null,
+  bio: ''
 };
 
 const inputList = {
@@ -141,15 +148,6 @@ export default function UserRegisterPage(getUserData: GetUserData) {
   // eslint-disable-next-line react/destructuring-assignment
   const userData = getUserData.getUserData;
   const router = useRouter();
-
-  const defaults = userData.item;
-  const defaultValueList = {
-    name: defaults.name || '',
-    phone: defaults.phone || '',
-    address: defaults.address ? { value: defaults.address, label: defaults.address } : null, // address가 존재하면 구조에 맞게 설정
-    bio: defaults.bio || ''
-  };
-
   const {
     control,
     register,
@@ -213,7 +211,7 @@ export default function UserRegisterPage(getUserData: GetUserData) {
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.header}>
-            <h1>내 프로필 편집</h1>
+            <h1>내 프로필 등록</h1>
             <Link href={pageList.user()}>
               <CloseSvg className={styles.closeIcon} />
             </Link>
