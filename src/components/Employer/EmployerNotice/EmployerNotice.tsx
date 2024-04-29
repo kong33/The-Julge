@@ -4,6 +4,7 @@ import { startTransition, useEffect, useState } from 'react';
 
 import { useGetApplicationListByNoticeId } from '@/apis/application/useApplicationService';
 import styles from '@/components/Employer/EmployerNotice/EmployerNotice.module.scss';
+import NoApplicantList from '@/components/common/Table/NoApplicantList';
 import { EmployerNotices } from '@/components/common/Table/Table.type';
 import EmployerTable from '@/components/feature/Notice/EmployerTable/EmployerTable';
 import StatusButton from '@/components/feature/Notice/StatusButton/StatusButton';
@@ -68,13 +69,15 @@ function EmployerNotice() {
         <h1 className={styles.title}>신청자 목록</h1>
       </div>
       <div>
-        {applicantList && (
+        {applicantList && applicantList.length > 0 ? (
           <EmployerTable
             applicationList={applicantList}
             currentPage={pageNum}
             totalPages={Math.ceil((data?.count ?? 0) / 5)}
             onPageChange={onPageChange}
           />
+        ) : (
+          <NoApplicantList />
         )}
       </div>
     </div>

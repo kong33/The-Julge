@@ -10,9 +10,13 @@ import calcFormatDuratoin from '@/libs/utils/calcFormatDuratoin';
 import { ReactComponent as ClockSvg } from '@/public/svgs/clock-notice.svg';
 import { ReactComponent as LocationSvg } from '@/public/svgs/clock.svg';
 
-function ShopDescriptionArticle() {
+interface ShopDescriptionArticleProps {
+  shopId: string;
+  noticeId: string;
+}
+
+function ShopDescriptionArticle({ shopId, noticeId }: ShopDescriptionArticleProps) {
   const router = useRouter();
-  const { shopId, noticeId } = router.query;
   const { data } = useGetNotice(shopId as string, noticeId as string);
 
   const { item: noticeItem } = data;

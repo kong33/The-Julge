@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import EmployerNotice from '@/components/Employer/EmployerNotice/EmployerNotice';
@@ -6,12 +7,18 @@ import ShopDescriptionArticle from '@/components/feature/CommonShopDescription/S
 import MainLayout from '@/layouts/MainLayout';
 import styles from '@/pages/shop/[shopId]/[noticeId]/index.module.scss';
 
-function shopNoticeDetail() {
+export const getServerSideProps = async () => {
+  return { props: {} };
+};
+
+function ShopNoticeDetail() {
+  const router = useRouter();
+  const { shopId, noticeId } = router.query;
   return (
     <div>
       <div className={styles.top}>
         <AsyncBoundary>
-          <ShopDescriptionArticle />
+          <ShopDescriptionArticle shopId={shopId as string} noticeId={noticeId as string} />
         </AsyncBoundary>
       </div>
       <div className={styles.bottom}>
@@ -23,8 +30,8 @@ function shopNoticeDetail() {
   );
 }
 
-export default shopNoticeDetail;
+export default ShopNoticeDetail;
 
-shopNoticeDetail.getLayout = function getLayout(page: React.ReactNode) {
+ShopNoticeDetail.getLayout = function getLayout(page: React.ReactNode) {
   return <MainLayout>{page}</MainLayout>;
 };
