@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 
 import Button from '@/components/common/Button/Button';
 import styles from '@/components/layout/UserPage/ProfileCard.module.scss';
+import { pageList } from '@/libs/constants/contants';
 import { ReactComponent as LocationSvg } from '@/public/svgs/location-shop.svg';
 import { ReactComponent as PhoneSvg } from '@/public/svgs/phone.svg';
 
@@ -16,10 +17,10 @@ type UserProfileProps = {
 export default function ProfileCard({ isRegisterd, ...props }: UserProfileProps) {
   const router = useRouter();
   const onClickRegister = () => {
-    router.push('/user/register');
+    router.push(pageList.userRegister());
   };
   const onClickEdit = () => {
-    router.push('/user/edit');
+    router.push(pageList.userEdit());
   };
   if (!isRegisterd) {
     return (
