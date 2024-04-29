@@ -48,12 +48,29 @@
       gap: 0.4rem;
       margin-bottom: 2.4rem;
 
-      > p {
-        @include sopoqa-14-400;
-        color: $color-gray-50;
-
+      > div {
+        @include flexbox(row, flex-start, left);
+        gap: 0.8rem;
+        align-items: center;
         @include tablet {
-          @include sopoqa-16-400;
+          gap: 1.6rem;
+        }
+
+        .icon {
+          width: 1.6rem;
+          height: 1.6rem;
+          @include tablet {
+            width: 2rem;
+            height: 2rem;
+          }
+        }
+
+        > p {
+          @include sopoqa-14-400;
+          color: $color-gray-50;
+          @include tablet {
+            @include sopoqa-16-400;
+          }
         }
       }
     }

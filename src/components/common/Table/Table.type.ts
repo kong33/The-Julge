@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface NoticesColumn {
   id: string;
   label: string;
@@ -16,7 +18,7 @@ export interface EmployeeNotices {
   store: string;
   date: string;
   hourlyPay: number;
-  status: 'pending | accepted | rejected | canceled';
+  status: React.ReactNode;
 }
 
 export const EMPLOYEE_COLUMNS: NoticesColumn[] = [

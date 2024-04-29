@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import Button from '@/components/common/Button/Button';
-import ModalGroup from '@/components/feature/Modal/ModalGroup';
-import UserEditModal from '@/components/feature/userEditModal/uesrEditModal';
-
-import styles from './ProfileCard.module.scss';
+import styles from '@/components/layout/UserPage/ProfileCard.module.scss';
+import { pageList } from '@/libs/constants/contants';
+import { ReactComponent as LocationSvg } from '@/public/svgs/location-shop.svg';
+import { ReactComponent as PhoneSvg } from '@/public/svgs/phone.svg';
 
 type UserProfileProps = {
   isRegisterd: boolean;
@@ -15,10 +15,13 @@ type UserProfileProps = {
 };
 
 export default function ProfileCard({ isRegisterd, ...props }: UserProfileProps) {
-  const [isModalOpen, setModalOpen] = useState(false);
-  console.log(isModalOpen);
-  const toggleModal = () => setModalOpen(!isModalOpen);
-
+  const router = useRouter();
+  const onClickRegister = () => {
+    router.push(pageList.userRegister());
+  };
+  const onClickEdit = () => {
+    router.push(pageList.userEdit());
+  };
   if (!isRegisterd) {
     return (
       <div className={styles.nonDataWrapper}>
@@ -26,17 +29,10 @@ export default function ProfileCard({ isRegisterd, ...props }: UserProfileProps)
           <p>내 프로필을 등록하고 원하는 가게에 지원해 보세요.</p>
         </div>
         <div className={styles.section}>
-          <ModalGroup.Trigger>
-            <Button className={styles.editButton} solid size="large" active onClick={toggleModal}>
-              내 프로필 등록하기
-            </Button>
-          </ModalGroup.Trigger>
+          <Button className={styles.editButton} solid size="large" active onClick={onClickRegister}>
+            내 프로필 등록하기
+          </Button>
         </div>
-        {isModalOpen && (
-          <ModalGroup.Content>
-            <UserEditModal onClose={toggleModal} />
-          </ModalGroup.Content>
-        )}
       </div>
     );
   }
@@ -48,27 +44,24 @@ export default function ProfileCard({ isRegisterd, ...props }: UserProfileProps)
           <p>{props.name}</p>
         </div>
         <div className={styles.infoSection}>
-          <p>☎ {props.phone}</p>
-          <p>☎ {props.address}</p>
+          <div>
+            <PhoneSvg className={styles.icon} />
+            <p>{props.phone}</p>
+          </div>
+          <div>
+            <LocationSvg className={styles.icon} />
+            <p>{props.address}</p>
+          </div>
         </div>
         <div className={styles.bioSection}>
           <p>{props.bio}</p>
         </div>
       </div>
-
       <div className={styles.section}>
-        <ModalGroup.Trigger>
-          <Button className={styles.editButton} solid size="large" active onClick={toggleModal}>
-            편집하기
-          </Button>
-        </ModalGroup.Trigger>
+        <Button className={styles.editButton} solid size="large" active onClick={onClickEdit}>
+          편집하기
+        </Button>
       </div>
-
-      {isModalOpen && (
-        <ModalGroup.Content>
-          <UserEditModal onClose={toggleModal} />
-        </ModalGroup.Content>
-      )}
     </div>
   );
 }
