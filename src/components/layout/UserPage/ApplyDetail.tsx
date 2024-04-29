@@ -4,8 +4,7 @@ import { GetApplicationListRes } from '@/apis/application/application.type';
 import Button from '@/components/common/Button/Button';
 import EmployeeTable from '@/components/feature/Notice/EmployeeTable/EmployeeTable';
 import StatusChip from '@/components/feature/Notice/StatusChip/StatusChip';
-
-import styles from './ApplyDetail.module.scss';
+import styles from '@/components/layout/UserPage/ApplyDetail.module.scss';
 
 type NoticeListData = {
   applicationData: GetApplicationListRes;
@@ -13,9 +12,10 @@ type NoticeListData = {
 };
 
 function ApplyDetail({ applicationData, onClickList }: NoticeListData) {
+  console.log('확인용 111111', applicationData);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-  const totalPages = Math.ceil(applicationData.items.length / itemsPerPage);
+  const totalPages = Math.ceil(applicationData.count / itemsPerPage - 1);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;

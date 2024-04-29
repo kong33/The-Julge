@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router';
 
 import Button from '@/components/common/Button/Button';
+import styles from '@/components/layout/UserPage/ProfileCard.module.scss';
 import { ReactComponent as LocationSvg } from '@/public/svgs/location-shop.svg';
 import { ReactComponent as PhoneSvg } from '@/public/svgs/phone.svg';
-
-import styles from './ProfileCard.module.scss';
 
 type UserProfileProps = {
   isRegisterd: boolean;
@@ -16,10 +15,12 @@ type UserProfileProps = {
 
 export default function ProfileCard({ isRegisterd, ...props }: UserProfileProps) {
   const router = useRouter();
-  const onClick = () => {
+  const onClickRegister = () => {
+    router.push('/user/register');
+  };
+  const onClickEdit = () => {
     router.push('/user/edit');
   };
-
   if (!isRegisterd) {
     return (
       <div className={styles.nonDataWrapper}>
@@ -27,7 +28,7 @@ export default function ProfileCard({ isRegisterd, ...props }: UserProfileProps)
           <p>내 프로필을 등록하고 원하는 가게에 지원해 보세요.</p>
         </div>
         <div className={styles.section}>
-          <Button className={styles.editButton} solid size="large" active onClick={onClick}>
+          <Button className={styles.editButton} solid size="large" active onClick={onClickRegister}>
             내 프로필 등록하기
           </Button>
         </div>
@@ -56,7 +57,7 @@ export default function ProfileCard({ isRegisterd, ...props }: UserProfileProps)
         </div>
       </div>
       <div className={styles.section}>
-        <Button className={styles.editButton} solid size="large" active onClick={onClick}>
+        <Button className={styles.editButton} solid size="large" active onClick={onClickEdit}>
           편집하기
         </Button>
       </div>

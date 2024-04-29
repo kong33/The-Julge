@@ -1,17 +1,18 @@
+import { jwtDecode } from 'jwt-decode';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 
 import { GetApplicationListRes } from '@/apis/application/application.type';
-import UserService from '@/apis/user/User.service';
+import { useGetApplicationListByUserId } from '@/apis/application/useApplicationService';
+import { useGetUser } from '@/apis/user/useUserService';
 import ApplyDetail from '@/components/layout/UserPage/ApplyDetail';
 import ProfileCard from '@/components/layout/UserPage/ProfileCard';
 import { pageList } from '@/libs/constants/contants';
-import applicationData1 from '@/pages/test';
-
-import styles from './index.module.scss';
+import styles from '@/pages/user/index.module.scss';
 
 type UserData = {
   item: {
+    id: string;
     name: string;
     phone: string;
     address: string;
@@ -28,7 +29,18 @@ type Props = {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req } = context;
   const { cookies } = req;
-  const { userId } = cookies;
+  const { token } = cookies;
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: pageList.home(),
+        permanent: false
+      }
+    };
+  }
+
+  const userId = jwtDecode<{ userId: string }>(token).userId ?? '';
 
   if (!userId) {
     return {
@@ -38,27 +50,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
     };
   }
-  const { data: userData } = await UserService.getUser(userId);
-  if (!userData) {
-    return {
-      notFound: true
-    };
-  }
-
-  const applicationData = applicationData1;
-
-  return { props: { userId, userData, applicationData } };
+  return { props: { userId } };
 };
-export default function UserDetailPage({ userId, userData, applicationData }: Props) {
-  console.log('유저 공고 data', applicationData);
+
+export default function UserDetailPage({ userId }: Props) {
+  const { data: userData } = useGetUser(userId);
+  const { data: applicationData } = useGetApplicationListByUserId(userData?.item.id, { offset: 0, limit: 5 });
+
   const router = useRouter();
   const onClickList = () => {
     router.push(pageList.home());
   };
-  console.log('유저아이디', userId);
-  console.log('유저 공고', userData.item);
+  const isRegisterd = !!(userData?.item && userData?.item.name);
 
-  const isRegisterd = !!(userData.item && userData.item.name);
+  if (!userData || !applicationData) return null;
 
   return (
     <div className={styles.container}>
