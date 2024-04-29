@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import { pageList } from '@/libs/constants/contants';
 
 export default function Page404() {

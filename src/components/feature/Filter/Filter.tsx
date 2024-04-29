@@ -2,7 +2,7 @@ import { MouseEventHandler, RefObject, useContext } from 'react';
 
 import { Address as AddressType } from '@/apis/common.type';
 import Badge from '@/components/common/Badge/Badge';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import styles from '@/components/feature/Filter/Filter.module.scss';
 import { FilterContext } from '@/components/feature/Filter/FilterContext';
 import ScrollMenu from '@/components/feature/Filter/ScrollMenu/ScrollMenu';

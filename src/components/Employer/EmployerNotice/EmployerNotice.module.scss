@@ -1,0 +1,19 @@
+@import '@/styles/globals.scss';
+
+.title {
+  @include h1;
+  margin-bottom: 1.6rem;
+  @include tablet {
+    margin-bottom: 3.2rem;
+  }
+}
+
+.container {
+  @include tablet {
+    width: 68rem;
+  }
+
+  @include desktop {
+    width: 96.4rem;
+  }
+}

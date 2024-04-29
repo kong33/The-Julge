@@ -3,3 +3,18 @@
 .mainStyle {
   @include main;
 }
+
+.emptyLayout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+}
+
+.stickyFooter {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

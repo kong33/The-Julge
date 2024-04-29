@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
-
+import Cookies from 'js-cookie';
 /**
  * 요청을 보내기 전에 토큰이 있을 경우 Authorization 헤더에 토큰을 추가하는 인터셉터
  *
@@ -10,10 +10,11 @@ const requestInterceptor = (config: InternalAxiosRequestConfig): InternalAxiosRe
   if (typeof window === 'undefined') return config;
 
   const modefiedConfig = config;
-  const token = localStorage.getItem('token') ?? '';
+  const token = Cookies.get('token');
 
   if (token) {
     modefiedConfig.headers.Authorization = `Bearer ${token}`;
+    console.log('토큰전송');
   }
 
   return modefiedConfig;
