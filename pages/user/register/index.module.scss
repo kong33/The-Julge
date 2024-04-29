@@ -4,7 +4,12 @@
   justify-content: center;
   margin: auto;
   max-width: 96.4rem;
-
+  @include tablet {
+    margin-bottom: 9.1rem;
+  }
+  @include desktop {
+    margin-bottom: 18.3rem;
+  } 
   .wrapper {
     display: flex;
     padding: 4rem 0 8rem;
@@ -58,20 +63,23 @@
     }
   }
 }
-
 .buttonSection {
   align-items: center;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  @include tablet {
+    display: flex;
+    justify-content: center;
+  }
   .submitButton {
+    max-width: 100%;
     width: 100%;
-    margin-top: 2rem;
     @include button-medium;
     @include sopoqa-16-700;
     @include tablet {
+      display: flex;
       width: 31.2rem;
       height: 4.8rem;
+      margin-top: 1.2rem;
     }
   }
 }

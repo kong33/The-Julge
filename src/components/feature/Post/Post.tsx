@@ -23,7 +23,7 @@ export default function Post({
   const duration = calcFormatDuratoin(startedAt, workhour);
 
   const handleClickToDetailPage = () => {
-    router.push(`/notice/${shopId}/${id}`);
+    router.push(`/shop/${shopId}/${id}`);
   };
 
   return (
