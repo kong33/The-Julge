@@ -13,8 +13,15 @@ export default function useManageFilter() {
   const filterRef = useRef<HTMLDivElement>(null); // ref 객체 생성
   const { close } = useFilter();
   const [filterData, setFilterData] = useState<filterDataType>({});
-
+  const [selectAddress, setSelectAddress] = useState<AddressType[]>([]);
+  let reset = false;
   useEffect(() => {
+    console.log(reset);
+    if (!reset) {
+      setFilterData({ address: selectAddress });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      reset = true;
+    }
     function handleClickOutside(e: MouseEvent) {
       const { target } = e;
       if (filterRef.current && !filterRef.current.contains(target as Node)) {
@@ -45,7 +52,7 @@ export default function useManageFilter() {
   };
   // 이건 나중에 적용하기 했을 때 돌아갈 로직을 적으시면 됩니다.
   const handleApplyBtnClick = () => {
-    console.log('적용');
+    setSelectAddress(filterData.address ?? []);
     close();
   };
 
