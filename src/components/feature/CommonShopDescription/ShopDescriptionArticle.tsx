@@ -8,7 +8,7 @@ import styles from '@/components/feature/CommonShopDescription/ShopDescriptionAr
 import PostTagNotice from '@/components/feature/Post/PostTag/PostTagNotice';
 import calcFormatDuratoin from '@/libs/utils/calcFormatDuratoin';
 import { ReactComponent as ClockSvg } from '@/public/svgs/clock-notice.svg';
-import { ReactComponent as LocationSvg } from '@/public/svgs/clock.svg';
+import { ReactComponent as LocationSvg } from '@/public/svgs/location-shop.svg';
 
 interface ShopDescriptionArticleProps {
   shopId: string;
