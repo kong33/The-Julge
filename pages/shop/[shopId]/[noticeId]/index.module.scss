@@ -1,0 +1,27 @@
+.top {
+  background-color: $color-gray-5;
+  padding: 4rem 1.2rem;
+
+  @include tablet {
+    @include flexbox();
+    padding: 6rem 0;
+  }
+  @include desktop {
+    @include flexbox();
+    padding: 6rem 23.8rem;
+  }
+}
+
+.bottom {
+  background-color: $color-gray-5;
+  padding: 4rem 1.2rem;
+
+  @include tablet {
+    @include flexbox();
+    padding: 6rem 0;
+  }
+  @include desktop {
+    @include flexbox();
+    padding: 6rem 23.8rem;
+  }
+}
