@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { useGetNotice } from '@/apis/notice/useNoticeService';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import styles from '@/components/feature/CommonShopDescription/ShopDescriptionArticle.module.scss';
 import calcFormatDuratoin from '@/libs/utils/calcFormatDuratoin';
 import { ReactComponent as ClockSvg } from '@/public/svgs/clock-notice.svg';

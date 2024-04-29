@@ -7,7 +7,7 @@ import { GetNoticeListByShopIdRes } from '@/apis/notice/notice.type';
 import ShopService from '@/apis/shop/Shop.service';
 import { GetShopRes } from '@/apis/shop/shop.type';
 import UserService from '@/apis/user/User.service';
-import AsyncBoundary from '@/components/common/AsyncBoundary';
+import AsyncBoundary from '@/components/common/AsyncBoundary/AsyncBoundary';
 import { NoticeListArticle, ShopArticle } from '@/components/layout/shop/Article';
 import MainLayout from '@/layouts/MainLayout';
 import { defaultLimit, pageList } from '@/libs/constants/contants';

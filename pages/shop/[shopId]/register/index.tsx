@@ -10,7 +10,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { PostNoticePayload } from '@/apis/notice/notice.type';
 import { usePostNotice } from '@/apis/notice/useNoticeService';
 import UserService from '@/apis/user/User.service';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import DateTimeForm from '@/components/common/Input/DateTimeForm/DateTimeForm';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
 import Modal from '@/components/feature/Modal/Modal';

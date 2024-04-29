@@ -1,0 +1,33 @@
+@import '@/styles/globals.scss';
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-gray-5;
+  justify-content: center;
+  padding: 4rem 2rem 8rem 2rem;
+  .wrapper {
+    display: flex;
+    margin: 0 auto;
+    padding: 60px 0;
+    flex-direction: column;
+    .header {
+      display: flex;
+      margin-bottom: 100px;
+      justify-content: space-between;
+
+      >h1 {
+        @include sopoqa-20-700;
+        color: $color-black;
+      }
+      >button {
+        @include sopoqa-20-700;
+      }
+    }
+  }
+}
+
+.submitButton {
+  @include button-medium;
+  @include sopoqa-16-700;
+}

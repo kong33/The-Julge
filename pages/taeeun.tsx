@@ -1,5 +1,5 @@
 import EmployerNotice from '@/components/Employer/EmployerNotice/EmployerNotice';
-import AsyncBoundary from '@/components/common/AsyncBoundary';
+import AsyncBoundary from '@/components/common/AsyncBoundary/AsyncBoundary';
 import ShopDescriptionArticle from '@/components/feature/CommonShopDescription/ShopDescriptionArticle';
 
 function TaeEun() {

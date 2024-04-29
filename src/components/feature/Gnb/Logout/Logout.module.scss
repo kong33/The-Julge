@@ -10,8 +10,6 @@
 
 @include pc-first-mobile {
   .logout {
-    @include sopoqa-14-400;
-    font-weight: 700;
-    height: 1.7rem;
+    @include sopoqa-14-700;
   }
 }
