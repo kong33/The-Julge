@@ -1,4 +1,5 @@
 // import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { startTransition, useEffect, useState } from 'react';
 
 import { useGetApplicationListByNoticeId } from '@/apis/application/useApplicationService';
@@ -9,7 +10,7 @@ import StatusButton from '@/components/feature/Notice/StatusButton/StatusButton'
 import StatusChip from '@/components/feature/Notice/StatusChip/StatusChip';
 
 function EmployerNotice() {
-  // const router = useRouter();
+  const router = useRouter();
   const [pageNum, setPageNum] = useState<number>(1);
   const onPageChange = (page: number) => {
     startTransition(() => {
@@ -17,16 +18,12 @@ function EmployerNotice() {
     });
   };
 
-  // const { shopId, noticeId } = router.query;
+  const { shopId, noticeId } = router.query;
 
-  const { data } = useGetApplicationListByNoticeId(
-    '4490151c-5217-4157-b072-9c37b05bed47',
-    '99996477-82db-4bda-aae1-4044f11d9a8b',
-    {
-      offset: (pageNum - 1) * 5,
-      limit: 5
-    }
-  );
+  const { data } = useGetApplicationListByNoticeId(shopId as string, noticeId as string, {
+    offset: (pageNum - 1) * 5,
+    limit: 5
+  });
 
   const [applicantList, setApplicantList] = useState<EmployerNotices[]>();
 
