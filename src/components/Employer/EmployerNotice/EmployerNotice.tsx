@@ -63,7 +63,7 @@ function EmployerNotice() {
   }, [data]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
         <h1 className={styles.title}>신청자 목록</h1>
       </div>

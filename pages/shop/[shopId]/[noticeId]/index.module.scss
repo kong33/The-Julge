@@ -1,4 +1,10 @@
 .top {
+  padding: 4rem 1.2rem;
+
+  @include tablet {
+    @include flexbox();
+    padding: 6rem 0;
+  }
   @include desktop {
     @include flexbox();
     padding: 6rem 23.8rem;
@@ -6,6 +12,14 @@
 }
 
 .bottom {
-  @include flexbox();
-  padding: 6rem 23.8rem;
+  padding: 4rem 1.2rem;
+
+  @include tablet {
+    @include flexbox();
+    padding: 6rem 0;
+  }
+  @include desktop {
+    @include flexbox();
+    padding: 6rem 23.8rem;
+  }
 }
