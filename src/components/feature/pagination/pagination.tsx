@@ -1,7 +1,6 @@
+import styles from '@/components/feature/pagination/pagination.module.scss';
 import { ReactComponent as Left } from '@/public/svgs/leftChevron.svg';
 import { ReactComponent as Right } from '@/public/svgs/rightChevron.svg';
-
-import styles from './pagination.module.scss';
 
 type PaginationType = {
   currentPage: number;
