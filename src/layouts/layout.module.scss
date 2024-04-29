@@ -3,3 +3,10 @@
 .mainStyle {
   @include main;
 }
+
+.stickyFooter {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
