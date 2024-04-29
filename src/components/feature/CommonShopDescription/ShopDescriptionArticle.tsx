@@ -5,11 +5,10 @@ import { useRouter } from 'next/router';
 import { useGetNotice } from '@/apis/notice/useNoticeService';
 import Button from '@/components/common/Button/Button';
 import styles from '@/components/feature/CommonShopDescription/ShopDescriptionArticle.module.scss';
+import PostTagNotice from '@/components/feature/Post/PostTag/PostTagNotice';
 import calcFormatDuratoin from '@/libs/utils/calcFormatDuratoin';
 import { ReactComponent as ClockSvg } from '@/public/svgs/clock-notice.svg';
 import { ReactComponent as LocationSvg } from '@/public/svgs/clock.svg';
-
-import PostTagNotice from '../Post/PostTag/PostTagNotice';
 
 function ShopDescriptionArticle() {
   const router = useRouter();
@@ -34,7 +33,7 @@ function ShopDescriptionArticle() {
   const isPreviousNotice = startsAtDate < now;
 
   const handleEditNotice = () => {
-    router.push(`/shops/${shopId}/${noticeId}/edit`);
+    router.push(`/shop/${shopId}/edit`);
   };
 
   const noticeImgClosedClasses = classNames(
