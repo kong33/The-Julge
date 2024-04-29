@@ -19,11 +19,13 @@ const queryOptions = {
   }),
   postApplication: (shopId: string, noticeId: string) => ({
     mutationKey: queryKeys.postApplication(shopId, noticeId),
-    mutationFn: () => ApplicationService.postApplication(shopId, noticeId)
+    mutationFn: (postShopId: string, postNoticeId: string) =>
+      ApplicationService.postApplication(postShopId, postNoticeId)
   }),
   putApplication: (shopId: string, noticeId: string, applicationId: string, payload: PutApplicationPayload) => ({
     mutationKey: queryKeys.putApplication(shopId, noticeId, applicationId, payload),
-    mutationFn: () => ApplicationService.putApplication(shopId, noticeId, applicationId, payload)
+    mutationFn: (putPayload: PutApplicationPayload) =>
+      ApplicationService.putApplication(shopId, noticeId, applicationId, putPayload)
   }),
   getApplicationListByUserId: (userId: string, params: BaseQuery) => ({
     queryKey: queryKeys.getApplicationListByUserId(userId, params),

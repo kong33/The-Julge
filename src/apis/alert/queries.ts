@@ -13,7 +13,7 @@ const queryOptions = {
   }),
   putAlert: (userId: string, alertId: string) => ({
     mutationKey: queryKeys.putAlert(userId, alertId),
-    mutationFn: () => AlertService.putAlert(userId, alertId)
+    mutationFn: (putUserId: string, putAlertId: string) => AlertService.putAlert(putUserId, putAlertId)
   })
 };
 
