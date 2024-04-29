@@ -21,8 +21,9 @@ export default function NotiButton({ NotiStatus, onClick }: NotiButtonProps) {
       <Image
         src={NotiStatus ? '/svgs/notification-active.svg' : '/svgs/notification-inactive.svg'}
         alt="알림"
-        width={20}
-        height={20}
+        className="imageResponsive"
+        width={500}
+        height={300}
       />
     </button>
   );
