@@ -18,7 +18,7 @@ const queryOptions = {
   }),
   putUser: (userId: string, payload: PutUserPayload) => ({
     mutationKey: queryKeys.putUser(userId, payload),
-    mutationFn: (putUserId: string, putPayload: PutUserPayload) => UserService.putUser(putUserId, putPayload)
+    mutationFn: (putPayload: PutUserPayload) => UserService.putUser(userId, putPayload)
   })
 };
 
