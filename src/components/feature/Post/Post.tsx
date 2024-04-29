@@ -55,9 +55,9 @@ export default function Post({
             <span className={styles.closedText}>마감 공고</span>
           </div>
         )}
-        {isPastAnnouncement && !closed && (
-          <div className={styles.pastAnnouncementLayer}>
-            <span className={styles.pastAnnouncementText}>지난 공고</span>
+        {isPastAnnouncement && (
+          <div className={styles.closedLayer}>
+            <span className={styles.closedText}>지난 공고</span>
           </div>
         )}
       </div>
