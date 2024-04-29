@@ -16,7 +16,11 @@ const nextConfig = {
       issuer: /\.[jt]sx?$/,
       use: ['@svgr/webpack', 'url-loader']
     });
-
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack', 'url-loader']
+    });
     return config;
   },
   reactStrictMode: true,

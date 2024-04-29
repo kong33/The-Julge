@@ -1,0 +1,61 @@
+@import '@/styles/colors.scss';
+@import '@/styles/fonts.scss';
+@import '@/styles/mixin.scss';
+
+.img {
+  display: block;
+  object-fit: cover;
+}
+
+.TagWrapper {
+  display: flex;
+  align-items: center;
+  height: 3.6rem;
+  padding: 1.2rem;
+  border-radius: 2rem;
+  @include pc-first-mobile {
+    padding: 0.4rem 0.8rem;
+    height: 2.4rem;
+  }
+
+  &.red {
+    background: #ff4040;
+  }
+
+  &.orange {
+    background: #ff8d72;
+  }
+
+  &.undefined {
+    .imgContainer {
+      display: none;
+    }
+  }
+
+  &.closed {
+    display: none;
+  }
+
+  .TagText {
+    @include sopoqa-14-700;
+    color: $color-white;
+    text-align: center;
+    margin-right: 0.2rem;
+
+    @include pc-first-mobile {
+      @include sopoqa-12-400;
+    }
+
+    &.changeRateFlag {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .imgContainer {
+    width: 2rem;
+    height: 2rem;
+  }
+}

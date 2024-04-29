@@ -13,6 +13,7 @@ type NotificationModalProps = {
     createdAt: string;
     startsAt: string;
     workhour: number;
+    id: string;
   }[];
   isModalShow: boolean;
   filterRef?: RefObject<HTMLDivElement>;
@@ -38,6 +39,7 @@ export default function NotificationModal({ alertCount, alertList, isModalShow, 
             createdAt={item.createdAt}
             startsAt={item.startsAt}
             workhour={item.workhour}
+            id={item.id}
           />
         ))}
       </section>

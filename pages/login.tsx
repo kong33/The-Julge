@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import LoginForm from '@/components/feature/LoginForm/LoginFom';
+import LoginForm from '@/components/feature/LoginForm/LoginForm';
 import EmptyLayout from '@/layouts/EmptyLayout';
 
 export default function login() {

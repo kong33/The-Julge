@@ -19,7 +19,7 @@ const queryOptions = {
   }),
   postApplication: (shopId: string, noticeId: string) => ({
     mutationKey: queryKeys.postApplication(shopId, noticeId),
-    mutationFn: (postShopId: string, postNoticeId: string) =>
+    mutationFn: ({ postShopId, postNoticeId }: { postShopId: string; postNoticeId: string }) =>
       ApplicationService.postApplication(postShopId, postNoticeId)
   }),
   putApplication: (shopId: string, noticeId: string, applicationId: string, payload: PutApplicationPayload) => ({

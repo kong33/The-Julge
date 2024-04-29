@@ -64,6 +64,7 @@ export const pageList = {
   userNoticeDetail: (shopId: string, noticeId: string) => `/notice/${shopId}/${noticeId}`,
   user: () => `/user`,
   userEdit: () => `/user/edit`,
+  userRegister: () => `/user/register`,
   page404: () => `/404`,
   search: () => '/search'
 };

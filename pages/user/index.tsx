@@ -1,16 +1,18 @@
+import { jwtDecode } from 'jwt-decode';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import React from 'react';
 
-import UserService from '@/apis/user/User.service';
+import { GetApplicationListRes } from '@/apis/application/application.type';
+import { useGetApplicationListByUserId } from '@/apis/application/useApplicationService';
+import { useGetUser } from '@/apis/user/useUserService';
 import ApplyDetail from '@/components/layout/UserPage/ApplyDetail';
 import ProfileCard from '@/components/layout/UserPage/ProfileCard';
 import { pageList } from '@/libs/constants/contants';
-
-import styles from './index.module.scss';
+import styles from '@/pages/user/index.module.scss';
 
 type UserData = {
   item: {
+    id: string;
     name: string;
     phone: string;
     address: string;
@@ -18,23 +20,27 @@ type UserData = {
   };
 };
 
-type Applications = {
-  id: string;
-  title: string;
-  description: string;
-  createdAt: string;
-};
-
 type Props = {
   userId: string;
   userData: UserData;
-  ApplicationData: Applications[];
+  applicationData: GetApplicationListRes;
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req } = context;
   const { cookies } = req;
-  const { userId } = cookies;
+  const { token } = cookies;
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: pageList.home(),
+        permanent: false
+      }
+    };
+  }
+
+  const userId = jwtDecode<{ userId: string }>(token).userId ?? '';
 
   if (!userId) {
     return {
@@ -44,34 +50,20 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
       }
     };
   }
-
-  const { data: userData } = await UserService.getUser(userId);
-  if (!userData) {
-    return {
-      notFound: true
-    };
-  }
-  const ApplicationData = [
-    {
-      id: 'qwer',
-      title: 'Application Title',
-      description: 'Description of the application',
-      createdAt: '2024-04-25T09:00:00'
-    }
-  ];
-
-  return { props: { userId, userData, ApplicationData } };
+  return { props: { userId } };
 };
 
-export default function UserDetailPage({ userId, userData, ApplicationData }: Props) {
+export default function UserDetailPage({ userId }: Props) {
+  const { data: userData } = useGetUser(userId);
+  const { data: applicationData } = useGetApplicationListByUserId(userData?.item.id, { offset: 0, limit: 5 });
+
   const router = useRouter();
   const onClickList = () => {
     router.push(pageList.home());
   };
-  console.log('유저아이디', userId);
-  console.log('유저 공고', userData.item);
+  const isRegisterd = !!(userData?.item && userData?.item.name);
 
-  const isRegisterd = !!(userData.item && userData.item.name);
+  if (!userData || !applicationData) return null;
 
   return (
     <div className={styles.container}>
@@ -83,7 +75,7 @@ export default function UserDetailPage({ userId, userData, ApplicationData }: Pr
         {isRegisterd && (
           <section className={styles.listSection}>
             <h1>신청 내역</h1>
-            <ApplyDetail ApplicationData={ApplicationData} onClickList={onClickList} />
+            <ApplyDetail applicationData={applicationData} onClickList={onClickList} />
           </section>
         )}
       </div>

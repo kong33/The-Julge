@@ -10,6 +10,7 @@ import { PostAuthenticationPayload, PostAuthenticationRes } from '@/apis/authent
 import { usePostAuthentication } from '@/apis/authentication/useAuthenticationService';
 import Button from '@/components/common/Button/Button';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
+import styles from '@/components/feature/LoginForm/LoginForm.module.scss';
 import {
   IFormInput,
   defaultLoginFormValues,
@@ -57,10 +58,11 @@ export default function LoginForm() {
   const handleLoginSuccess = (userdata: PostAuthenticationRes) => {
     const { data } = userdata;
     if (data.item) {
-      const { token, user } = data.item;
-      const { id } = user.item;
+      const { token } = data.item;
+      // const { id } = user.item;
       Cookies.set('token', token, { expires: 1, path: '/' });
-      Cookies.set('userId', id, { expires: 1, path: '/' });
+      // Cookies.set('userId', id, { expires: 1, path: '/' });
+      // const userId = jwtDecode<{userId:string}>(token).userId?? ''로 사용하세요!
       setUserInfoAtom(userdata);
       router.push(status.login.redirectPath);
     } else {
@@ -75,6 +77,7 @@ export default function LoginForm() {
       setAlertMessage(data.message);
       modalOpen();
     } else {
+      console.log('error');
       console.error(e);
     }
   };
@@ -91,9 +94,11 @@ export default function LoginForm() {
   }, [isValid]);
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Logo width="248" height="44" />
-        <div>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
+        <Link href="/">
+          <Logo width="248" height="44" />
+        </Link>
+        <div className={styles.inputWrapper}>
           <InputForm
             label="이메일"
             errorMessage={errors.email?.message}
@@ -108,11 +113,11 @@ export default function LoginForm() {
             {...registerList.password}
             name="password"
           />
-          <Button size="large" solid submit active={isButtonActive}>
+          <Button size="large" solid submit active={isButtonActive} className={styles.loginButton}>
             {status.login.buttonText}
           </Button>
         </div>
-        <div>
+        <div className={styles.textWrapper}>
           <p>{status.login.footerText}</p>
           <Link href={status.login.footerLink}>{status.login.footerLinkText}</Link>
         </div>
