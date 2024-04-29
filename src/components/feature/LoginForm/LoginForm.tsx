@@ -57,11 +57,10 @@ export default function LoginForm() {
   const handleLoginSuccess = (userdata: PostAuthenticationRes) => {
     const { data } = userdata;
     if (data.item) {
-      const { token } = data.item;
-      // const { id } = user.item;
+      const { token, user } = data.item;
+      const { id } = user.item;
       Cookies.set('token', token, { expires: 1, path: '/' });
-      // Cookies.set('userId', id, { expires: 1, path: '/' });
-      // const userId = jwtDecode<{userId:string}>(token).userId?? 로 사용하세요!
+      Cookies.set('userId', id, { expires: 1, path: '/' });
       setUserInfoAtom(userdata);
       router.push(status.login.redirectPath);
     } else {
