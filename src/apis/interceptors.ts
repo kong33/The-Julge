@@ -10,12 +10,10 @@ const requestInterceptor = (config: InternalAxiosRequestConfig): InternalAxiosRe
   if (typeof window === 'undefined') return config;
 
   const modefiedConfig = config;
-  // const token = localStorage.getItem('token') ?? '';
   const token = Cookies.get('token');
 
   if (token) {
     modefiedConfig.headers.Authorization = `Bearer ${token}`;
-    console.log('토큰전송');
   }
 
   return modefiedConfig;

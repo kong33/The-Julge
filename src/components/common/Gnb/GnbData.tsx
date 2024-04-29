@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 import { useEffect, useState } from 'react';
 
 import AlertService from '@/apis/alert/Alert.service';
@@ -18,8 +19,11 @@ function GnbData() {
   });
   useEffect(() => {
     const fetchData = async () => {
-      const userId = Cookies.get('userId');
-
+      const token = Cookies.get('token');
+      let userId = '';
+      if (token) {
+        userId = jwtDecode<{ userId: string }>(token).userId ?? '';
+      }
       if (!userId) {
         setUserType('guest');
         return;

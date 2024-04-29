@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-//import styles from '@/components/feature/SignupForm/'
+import styles from '@/components/feature/SignupForm/SignupForm.module.scss';
 
 import Button from '@/components/common/Button/Button';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
@@ -63,13 +63,8 @@ export default function SignupForm() {
   });
 
   //회원가입 성공시 실행
-  const handleSignupSuccess = (userdata: PostUserRes) => {
-    const { id } = userdata.item;
-    console.log(id);
-    setUserIdAtom(id);
-    Cookies.set('signupData', id, { expires: 1, path: '/' });
+  const handleSignupSuccess = () => {
     router.push(status.signup.redirectPath);
-    console.log('성공', userdata.item);
   };
 
   //회원가입 실패시 실행
@@ -121,9 +116,11 @@ export default function SignupForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Logo width="248" height="44" />
-        <div>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
+        <Link href="/">
+          <Logo width="248" height="44" />
+        </Link>
+        <div className={styles.inputWrapper}>
           <InputForm
             label="이메일"
             errorMessage={errors.email?.message}
@@ -146,11 +143,11 @@ export default function SignupForm() {
           />
           <RadioInputForm labels={['사장님', '알바생']} {...registerList.type} />
 
-          <Button size="large" solid submit active={isButtonActive}>
+          <Button size="large" solid submit active={isButtonActive} className={styles.sitnupButton}>
             {status.signup.buttonText}
           </Button>
         </div>
-        <div>
+        <div className={styles.textWrapper}>
           <p>{status.signup.footerText}</p>
           <Link href={status.signup.footerLink}>{status.signup.footerLinkText}</Link>
         </div>

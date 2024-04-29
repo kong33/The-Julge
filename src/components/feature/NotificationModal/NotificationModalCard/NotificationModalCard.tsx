@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import Link from 'next/link';
 
-import { usePutAlert } from '@/apis/alert/useAlertService';
 import styles from '@/components/feature/NotificationModal/NotificationModalCard/NotificationModal.module.scss';
 import calculateMinutesAgo from '@/libs/utils/calculateMinutesAgo';
 import calculateWorkhour from '@/libs/utils/calculateWorkhour';
@@ -33,13 +32,13 @@ export default function NotificationModalCard(data: dataProps) {
   const cn = classNames.bind(styles);
   const elipseCN = cn(result, 'elipse');
   const { formattedDate, fromToHour } = calculateWorkhour(startsAt, workhour);
-  const { mutate: putAlertMutate } = usePutAlert('', '');
+  // const { mutate: putAlertMutate } = usePutAlert('', '');
 
   const handleClick = () => {
-    putAlertMutate(userId, id);
+    // putAlertMutate({ userId, id });
     console.log(userId, id);
   };
-
+  // 해당 공고 페이지로 링크 걸어주기
   return (
     <Link href="/">
       <article className={cn('container')} onClick={handleClick} aria-hidden="true">
