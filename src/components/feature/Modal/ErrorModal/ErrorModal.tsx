@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import styles from '@/components/feature/Modal/ErrorModal/ErrorModal.module.scss';
 import { defaultProps } from '@/components/feature/Modal/Modal.type';
 import { useModal } from '@/components/feature/Modal/ModalGroup';

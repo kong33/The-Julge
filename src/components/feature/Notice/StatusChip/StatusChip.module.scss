@@ -1,0 +1,38 @@
+@import '@/styles/fonts.scss';
+@import '@/styles/colors.scss';
+
+.pending {
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 20px;
+  @include sopoqa-14-700;
+  background-color: $color-green-10;
+  color: $color-green-20;
+}
+
+.accepted {
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 20px;
+  @include sopoqa-14-700;
+  background-color: $color-blue-10;
+  color: $color-blue-20;
+}
+
+.rejected {
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 20px;
+  @include sopoqa-14-700;
+  background-color: $color-red-10;
+  color: $color-red-20;
+}
+
+.canceled {
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 20px;
+  @include sopoqa-14-700;
+  background-color: $color-gray-10;
+  color: $color-gray-20;
+}

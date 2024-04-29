@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 
-import styles from '@/components/common/Button.module.scss';
+import styles from '@/components/common/Button/Button.module.scss';
 
 interface ButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;

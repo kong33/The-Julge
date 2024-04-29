@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import AsyncBoundary from '@/components/common/AsyncBoundary';
+import AsyncBoundary from '@/components/common/AsyncBoundary/AsyncBoundary';
 import CustomList from '@/components/layout/Main/CustomList';
 import PostSearch from '@/components/layout/Main/PostSearch';
 import OnlytagLayout from '@/layouts/OnlytageLayout';

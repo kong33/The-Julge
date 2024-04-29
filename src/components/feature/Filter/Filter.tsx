@@ -3,7 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 
 import { Address as AddressType } from '@/apis/common.type';
 import Badge from '@/components/common/Badge/Badge';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import DateTimeForm from '@/components/common/Input/DateTimeForm/DateTimeForm';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
 import styles from '@/components/feature/Filter/Filter.module.scss';

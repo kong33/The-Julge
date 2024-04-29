@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 
-import Gnb from '@/components/common/Gnb';
+import GnbData from '@/components/common/Gnb/GnbData';
 
 function HeadLayout() {
   return (
@@ -9,7 +9,7 @@ function HeadLayout() {
       <Head>
         <title>The-Julge</title>
       </Head>
-      <Gnb userType="employee" NotiStatus />
+      <GnbData />
     </>
   );
 }

@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-import { Sort } from '@/apis/common.type';
 import { Item } from '@/apis/notice/notice.type';
 import { useGetNoticeList } from '@/apis/notice/useNoticeService';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import SelectForm from '@/components/common/Input/SelectForm/SelectForm';
 import Filter from '@/components/feature/Filter/Filter';
 import { useFilter } from '@/components/feature/Filter/FilterContext';
@@ -18,7 +17,7 @@ const ITEMS_PER_PAGE = 6; // 페이지 당 아이템 수
 
 // selectForm option
 type IFormInput = {
-  filter: string | { value: string; label: string };
+  filter: { value: string; label: string };
 };
 const optionList = ['마감임박순', '시급많은순', '시간적은순', '가나다순'];
 const defaultFormValues = {
@@ -29,26 +28,33 @@ type PostSearchProps = {
   search?: string;
 };
 function PostSearch({ search = '' }: PostSearchProps) {
-  // const { currentPage, totalPages, onPageChange, currentItems } = useSortedPostData(ITEMS_PER_PAGE, {
-  //   keyword: search
-  // });
+  // selectForm option
+  const {
+    control, // react-hook-form의 Controller에 연결됩니다.
+    formState: { errors }, // 폼 상태 객체입니다. errors['form'].message에 validate의 에러 메세지가 저장됩니다.
+    watch
+  } = useForm<IFormInput>({
+    defaultValues: defaultFormValues, // 폼 기본값
+    mode: 'onBlur' // onBlur 시 검증
+  });
+  // useState
   const [apiParamData, setApiParamData] = useState({
     currentPage: 1, // 현재 페이지 위치
     offsetNum: 0,
     keyword: undefined,
     address: undefined,
     startsAtGte: undefined,
-    hourlyPayGte: undefined,
-    sort: 'time' as Sort
+    hourlyPayGte: undefined
   });
   const { data } = useGetNoticeList({
     limit: ITEMS_PER_PAGE,
     offset: apiParamData.offsetNum,
     keyword: apiParamData.keyword,
-    startsAtGte: apiParamData.startsAtGte,
-    sort: apiParamData.sort
+    startsAtGte: apiParamData.startsAtGte
   });
 
+  const sort = watch('filter').value;
+  console.log(sort);
   const totalItem = data.count;
   const totalPages: number = Math.ceil(totalItem / ITEMS_PER_PAGE);
   useEffect(() => {
@@ -68,15 +74,6 @@ function PostSearch({ search = '' }: PostSearchProps) {
   const dataList = data.items.map((item: Item) => {
     return item.item;
   });
-  // selectForm option
-  const {
-    control, // react-hook-form의 Controller에 연결됩니다.
-    formState: { errors }, // 폼 상태 객체입니다. errors['form'].message에 validate의 에러 메세지가 저장됩니다.
-    watch
-  } = useForm<IFormInput>({
-    defaultValues: defaultFormValues, // 폼 기본값
-    mode: 'onBlur' // onBlur 시 검증
-  });
 
   let pageTitle = <h2>전체 공고</h2>;
 
@@ -87,10 +84,7 @@ function PostSearch({ search = '' }: PostSearchProps) {
       </h2>
     );
   }
-  // select 데이터
-  const watchSelect = watch('filter');
-  const selectedValue = typeof watchSelect === 'string' ? watchSelect : watchSelect?.value;
-  console.log(selectedValue);
+
   // if (selectedValue === '마감임박순') {
   //   setApiParamData({
   //     ...apiParamData,

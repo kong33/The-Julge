@@ -1,4 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import axios, { AxiosError } from 'axios';
+import { jwtDecode } from 'jwt-decode';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -10,15 +12,16 @@ import { PostImageRes } from '@/apis/image/image.type';
 import { usePostImage, usePutImage } from '@/apis/image/useImageService';
 import { PostShopPayload } from '@/apis/shop/shop.type';
 import { usePostShop } from '@/apis/shop/useShopService';
+import UserService from '@/apis/user/User.service';
 import { removeQueryParams } from '@/apis/utils';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import FileInputForm from '@/components/common/Input/FileInputForm/FileInputForm';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
 import SelectForm from '@/components/common/Input/SelectForm/SelectForm';
 import Modal from '@/components/feature/Modal/Modal';
 import ModalGroup, { useModal } from '@/components/feature/Modal/ModalGroup';
 import MainLayout from '@/layouts/MainLayout';
-import { addressList, categoryList, pageList } from '@/libs/constants/contants';
+import { MAX_HOURLY_PAY, MIN_HOURLY_PAY, addressList, categoryList, pageList } from '@/libs/constants/contants';
 import { formatNumber, removeCommasNumber } from '@/libs/utils/formatter';
 import styles from '@/pages/shop/register/index.module.scss';
 import { ReactComponent as CloseSvg } from '@/public/svgs/close-shop-page.svg';
@@ -42,10 +45,6 @@ const defaultValueList = {
   imageUrl: [],
   description: ''
 };
-
-// 최소 및 최대 시급 설정
-const minHourlyPay = 10000; // 최소 시급
-const maxHourlyPay = 1000000000; // 최대 시급
 
 const formList = {
   name: {
@@ -81,7 +80,7 @@ const formList = {
           if (!value) return '기본 시급을 입력해 주세요.';
           const numValue = removeCommasNumber(value); // 쉼표 제거 후 숫자 변환
           return (
-            (numValue >= minHourlyPay && numValue <= maxHourlyPay) ||
+            (numValue >= MIN_HOURLY_PAY && numValue <= MAX_HOURLY_PAY) ||
             '시급은 최저시급 이상이어야 하고, 1,000,000,000원을 넘을 수 없습니다.'
           );
         }
@@ -120,30 +119,30 @@ export const getServerSideProps: GetServerSideProps = async () => {
     };
   }
 
-  // const userId = jwtDecode<{ userId: string }>(token).userId ?? '';
-  // const { data: shopData } = await UserService.getUser(userId);
-  // const shopId = shopData?.item?.shop?.item?.id ?? '';
-  // const userType = shopData?.item?.type ?? '';
+  const userId = jwtDecode<{ userId: string }>(token).userId ?? '';
+  const { data: userData } = await UserService.getUser(userId);
+  const shopId = userData?.item?.shop?.item?.id ?? '';
+  const userType = userData?.item?.type ?? '';
 
-  // // shopId가 있으면 /shop/[shopId] 페이지로 리다이렉트
-  // if (shopId) {
-  //   return {
-  //     redirect: {
-  //       destination: pageList.shopDetail(shopId),
-  //       permanent: false
-  //     }
-  //   };
-  // }
+  // shopId가 있으면 /shop/[shopId] 페이지로 리다이렉트
+  if (shopId) {
+    return {
+      redirect: {
+        destination: pageList.shopDetail(shopId),
+        permanent: false
+      }
+    };
+  }
 
-  // // employer가 아니면 홈페이지로 리다이렉트
-  // if (userType !== 'employer') {
-  //   return {
-  //     redirect: {
-  //       destination: pageList.home(),
-  //       permanent: false
-  //     }
-  //   };
-  // }
+  // employer가 아니면 홈페이지로 리다이렉트
+  if (userType !== 'employer') {
+    return {
+      redirect: {
+        destination: pageList.home(),
+        permanent: false
+      }
+    };
+  }
 
   return {
     props: {}
@@ -197,7 +196,8 @@ export default function ShopRegisterPage() {
     }
   };
   const modalList = {
-    onError: <Modal.Error onClick={handleClickCloseModal.onError}>{postShopData?.message}</Modal.Error>,
+    // eslint-disable-next-line react/no-unstable-nested-components
+    onError: (message: string) => <Modal.Error onClick={handleClickCloseModal.onError}>{message}</Modal.Error>,
     onSuccess: <Modal.Check onClick={handleClickCloseModal.onSubmit}>등록이 완료되었습니다.</Modal.Check>
   };
 
@@ -211,9 +211,23 @@ export default function ShopRegisterPage() {
     description: register('description')
   };
 
+  const onSuccess = () => {
+    setOpenModal(modalList.onSuccess);
+    toggle();
+  };
+
+  const onError = (e: AxiosError) => {
+    if (axios.isAxiosError(e) && e.response) {
+      const { message } = e.response.data as { message: string };
+      console.log('message', message);
+      setOpenModal(modalList.onError(message));
+      toggle();
+    }
+  };
+
   const onSubmit = () => {
     // 폼 데이터 업로드
-    postShop(postShopPayload);
+    postShop(postShopPayload, { onSuccess, onError });
   };
 
   // presignedUrlData 생성
@@ -229,21 +243,6 @@ export default function ShopRegisterPage() {
       putImageS3({ putFile: watchImageFile, putPresignedUrl: presignedUrlData?.item.url });
     }
   }, [presignedUrlData]);
-
-  // 폼 제출
-  useEffect(() => {
-    // 에러 메세지 모달 렌더링
-    if (postShopData?.message) {
-      setOpenModal(modalList.onError);
-      toggle();
-    }
-
-    // 폼 제출 성공 시 리다이렉션
-    if (postShopData?.item) {
-      setOpenModal(modalList.onSuccess);
-      toggle();
-    }
-  }, [postShopData]);
 
   return (
     <>

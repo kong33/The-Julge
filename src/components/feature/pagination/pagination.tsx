@@ -16,6 +16,9 @@ type PaginationType = {
  */
 function Pagination({ currentPage, totalPages, onPageChange }: PaginationType) {
   // 페이지 그룹 계산
+  const handleClick = (page: number) => {
+    onPageChange(page);
+  };
   const groupStart = Math.floor((currentPage - 1) / 7) * 7 + 1;
   const groupEnd = Math.min(groupStart + 6, totalPages);
 
@@ -35,7 +38,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationType) {
         {/* 배열 길이  groupEnd - groupStart + 1 */}
         {Array.from({ length: groupEnd - groupStart + 1 }, (_, i) => i + groupStart).map((page) => (
           <li key={page}>
-            <button type="button" id={currentPage === page ? styles.select : ''} onClick={() => onPageChange(page)}>
+            <button type="button" id={currentPage === page ? styles.select : ''} onClick={() => handleClick(page)}>
               {page}
             </button>
           </li>

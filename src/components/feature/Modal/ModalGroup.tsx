@@ -20,7 +20,7 @@ function ModalProvider({ children }: defaultProps) {
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <ModalContext.Provider value={{ isOpen, close, toggle, open }}>{children}</ModalContext.Provider>
+    <ModalContext.Provider value={{ isOpen, close, open, toggle }}>{children}</ModalContext.Provider>
   );
 }
 

@@ -1,3 +1,4 @@
+import { jwtDecode } from 'jwt-decode';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import React from 'react';
 
@@ -5,7 +6,8 @@ import NoticeService from '@/apis/notice/Notice.service';
 import { GetNoticeListByShopIdRes } from '@/apis/notice/notice.type';
 import ShopService from '@/apis/shop/Shop.service';
 import { GetShopRes } from '@/apis/shop/shop.type';
-import AsyncBoundary from '@/components/common/AsyncBoundary';
+import UserService from '@/apis/user/User.service';
+import AsyncBoundary from '@/components/common/AsyncBoundary/AsyncBoundary';
 import { NoticeListArticle, ShopArticle } from '@/components/layout/shop/Article';
 import MainLayout from '@/layouts/MainLayout';
 import { defaultLimit, pageList } from '@/libs/constants/contants';
@@ -29,13 +31,28 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
   }
 
   const { query } = context;
-  const { shopId }: { shopId?: string } = query;
+  const { shopId: currentShopId }: { shopId?: string } = query;
 
-  // shopId가 없으면 가게 상세 페이지로 리다이렉트
-  if (!shopId) {
+  const userId = jwtDecode<{ userId: string }>(token).userId ?? '';
+  const { data: userData } = await UserService.getUser(userId);
+  const shopId = userData?.item?.shop?.item?.id ?? '';
+  const userType = userData?.item?.type ?? '';
+
+  // shopId와 currentShopId가 다르면 /shop 페이지로 리다이렉트
+  if (shopId !== currentShopId) {
     return {
       redirect: {
         destination: pageList.shop(),
+        permanent: false
+      }
+    };
+  }
+
+  // employer가 아니면 홈페이지로 리다이렉트
+  if (userType !== 'employer') {
+    return {
+      redirect: {
+        destination: pageList.home(),
         permanent: false
       }
     };
