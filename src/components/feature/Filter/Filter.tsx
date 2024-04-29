@@ -30,8 +30,12 @@ type FilterProps = {
   handleMenuClick: MouseEventHandler;
   clickedAddress: AddressType[] | undefined;
   handleResetBtnClick: MouseEventHandler;
-  handleApplyBtnClick?: MouseEventHandler;
+  handleApplyBtnClick: MouseEventHandler;
+  // eslint-disable-next-line no-empty-pattern, @typescript-eslint/no-explicit-any
+  setApiParamData: any;
   filterRef: RefObject<HTMLDivElement>;
+  // eslint-disable-next-line no-empty-pattern, @typescript-eslint/no-explicit-any
+  apiData: any;
   // handleInputChange : SubmitEvent;
 };
 
@@ -41,7 +45,7 @@ type FilterProps = {
  * @param handleMenuClick 메뉴를 클릭했을 때의 핸들러 . required ; MouseEventHanler
  * @param clickedAddress 클릭된 address들을 모아둔 List. required ; string[]
  * @param handleResetBtnClick 초기화 버튼 클릭시 핸들러. clickedAddress를 초기화해주고 input값도 초기화해줌. required; MouseEventHandler
- * @param handleApplyBtnClick 적용하기 버튼 클릭 시 동작할 handler ; MouseEventHandler
+ * @param setApiParamData 적용하기 버튼 클릭 시 동작할 handler ; MouseEventHandler
  * @param filterRe 필터에 걸어둔 ref
  */
 
@@ -50,8 +54,10 @@ export default function Filter({
   handleMenuClick,
   clickedAddress,
   handleResetBtnClick,
-  // handleApplyBtnClick,
+  handleApplyBtnClick,
   filterRef
+  // setApiParamData,
+  // apiData
 }: FilterProps) {
   const filterContext = useContext(FilterContext);
 
@@ -78,6 +84,9 @@ export default function Filter({
     const hourlyPay = removeCommasNumber(getValues('hourlyPay').toString());
     const startsAt = new Date(getValues('startsAt')).toISOString();
     console.log(hourlyPay, startsAt);
+    // eslint-disable-next-line no-unused-expressions
+    handleApplyBtnClick;
+    // setApiParamData({ ...apiData, startsAtGte: startsAt, hourlyPayGte: hourlyPay });
   };
 
   return (

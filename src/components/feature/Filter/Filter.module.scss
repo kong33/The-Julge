@@ -15,6 +15,7 @@
   overflow: scroll;
 
   @include tablet {
+    height: 84rem;
     width: 39rem;
     overflow: inherit;
     position: absolute;

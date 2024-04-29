@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
+import { Sort } from '@/apis/common.type';
 import { Item } from '@/apis/notice/notice.type';
 import { useGetNoticeList } from '@/apis/notice/useNoticeService';
 import Button from '@/components/common/Button/Button';
@@ -14,7 +15,19 @@ import useManageFilter from '@/libs/hooks/useManageFilter';
 import styles from '@/pages/index.module.scss';
 // pagination option
 const ITEMS_PER_PAGE = 6; // 페이지 당 아이템 수
-
+const changeSortString = (sortdata: string) => {
+  let sortValue;
+  if (sortdata === '마감임박순') {
+    sortValue = 'time';
+  } else if (sortdata === '시급많은순') {
+    sortValue = 'pay';
+  } else if (sortdata === '시간적은순') {
+    sortValue = 'hour';
+  } else if (sortdata === '가나다순') {
+    sortValue = 'shop';
+  }
+  return sortValue;
+};
 // selectForm option
 type IFormInput = {
   filter: { value: string; label: string };
@@ -27,6 +40,15 @@ const defaultFormValues = {
 type PostSearchProps = {
   search?: string;
 };
+export type ApiParamData = {
+  currentPage: number;
+  offsetNum: number;
+  keyword: string;
+  address?: string;
+  startsAtGte?: number;
+  hourlyPayGte?: number;
+};
+
 function PostSearch({ search = '' }: PostSearchProps) {
   // selectForm option
   const {
@@ -41,20 +63,23 @@ function PostSearch({ search = '' }: PostSearchProps) {
   const [apiParamData, setApiParamData] = useState({
     currentPage: 1, // 현재 페이지 위치
     offsetNum: 0,
-    keyword: undefined,
+    keyword: search,
     address: undefined,
     startsAtGte: undefined,
     hourlyPayGte: undefined
   });
+  const sort = watch('filter').value;
+  const sortData = changeSortString(sort);
+
   const { data } = useGetNoticeList({
     limit: ITEMS_PER_PAGE,
     offset: apiParamData.offsetNum,
     keyword: apiParamData.keyword,
-    startsAtGte: apiParamData.startsAtGte
+    startsAtGte: apiParamData.startsAtGte,
+    sort: sortData as Sort,
+    hourlyPayGte: apiParamData.hourlyPayGte
   });
 
-  const sort = watch('filter').value;
-  console.log(sort);
   const totalItem = data.count;
   const totalPages: number = Math.ceil(totalItem / ITEMS_PER_PAGE);
   useEffect(() => {
@@ -85,28 +110,6 @@ function PostSearch({ search = '' }: PostSearchProps) {
     );
   }
 
-  // if (selectedValue === '마감임박순') {
-  //   setApiParamData({
-  //     ...apiParamData,
-  //     sort: 'time' as Sort
-  //   });
-  // } else if (selectedValue === '시급많은순') {
-  //   setApiParamData({
-  //     ...apiParamData,
-  //     sort: 'pay' as Sort
-  //   });
-  // } else if (selectedValue === '시간적은순') {
-  //   setApiParamData({
-  //     ...apiParamData,
-  //     sort: 'hour' as Sort
-  //   });
-  // } else if (selectedValue === '가나다순') {
-  //   setApiParamData({
-  //     ...apiParamData,
-  //     sort: 'shop' as Sort
-  //   });
-  // }
-
   // filter
   const { isOpen, open, close } = useFilter();
   const { filterRef, handleMenuClick, filterData, handleResetBtnClick, handleApplyBtnClick } = useManageFilter();
@@ -117,6 +120,7 @@ function PostSearch({ search = '' }: PostSearchProps) {
       open();
     }
   };
+
   return (
     <section className={styles.noticeContainer}>
       <article className={styles.noticeList}>
@@ -149,7 +153,9 @@ function PostSearch({ search = '' }: PostSearchProps) {
                   clickedAddress={filterData.address}
                   handleResetBtnClick={handleResetBtnClick}
                   handleApplyBtnClick={handleApplyBtnClick}
+                  setApiParamData={setApiParamData}
                   filterRef={filterRef}
+                  apiData={apiParamData}
                 />
               )}
             </div>
