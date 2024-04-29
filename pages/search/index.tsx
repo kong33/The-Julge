@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import AsyncBoundary from '@/components/common/AsyncBoundary';
+import AsyncBoundary from '@/components/common/AsyncBoundary/AsyncBoundary';
 import PostSearch from '@/components/layout/Main/PostSearch';
 
 function SearchPage() {

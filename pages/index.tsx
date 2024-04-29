@@ -12,7 +12,6 @@ function Home() {
       <section className={styles.customContainer}>
         <article className={styles.customContent}>
           <h2>맞춤 공고</h2>
-          {/* 임시 데이터 사용 */}
           <CustomList />
         </article>
       </section>

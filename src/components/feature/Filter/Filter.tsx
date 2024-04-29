@@ -30,7 +30,7 @@ type FilterProps = {
   handleMenuClick: MouseEventHandler;
   clickedAddress: AddressType[] | undefined;
   handleResetBtnClick: MouseEventHandler;
-  handleApplyBtnClick: MouseEventHandler;
+  handleApplyBtnClick: () => void;
   // eslint-disable-next-line no-empty-pattern, @typescript-eslint/no-explicit-any
   setApiParamData: any;
   filterRef: RefObject<HTMLDivElement>;
@@ -55,9 +55,9 @@ export default function Filter({
   clickedAddress,
   handleResetBtnClick,
   handleApplyBtnClick,
-  filterRef
-  // setApiParamData,
-  // apiData
+  filterRef,
+  setApiParamData,
+  apiData
 }: FilterProps) {
   const filterContext = useContext(FilterContext);
 
@@ -85,8 +85,8 @@ export default function Filter({
     const startsAt = new Date(getValues('startsAt')).toISOString();
     console.log(hourlyPay, startsAt);
     // eslint-disable-next-line no-unused-expressions
-    handleApplyBtnClick;
-    // setApiParamData({ ...apiData, startsAtGte: startsAt, hourlyPayGte: hourlyPay });
+    handleApplyBtnClick();
+    setApiParamData({ ...apiData, startsAtGte: startsAt, hourlyPayGte: hourlyPay });
   };
 
   return (

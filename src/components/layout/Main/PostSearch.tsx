@@ -44,7 +44,7 @@ export type ApiParamData = {
   currentPage: number;
   offsetNum: number;
   keyword: string;
-  address?: string;
+  address?: Array<string>;
   startsAtGte?: number;
   hourlyPayGte?: number;
 };
@@ -59,6 +59,7 @@ function PostSearch({ search = '' }: PostSearchProps) {
     defaultValues: defaultFormValues, // 폼 기본값
     mode: 'onBlur' // onBlur 시 검증
   });
+
   // useState
   const [apiParamData, setApiParamData] = useState({
     currentPage: 1, // 현재 페이지 위치
@@ -70,14 +71,25 @@ function PostSearch({ search = '' }: PostSearchProps) {
   });
   const sort = watch('filter').value;
   const sortData = changeSortString(sort);
+  // filter
+  const { isOpen, toggle } = useFilter();
+  const { filterRef, handleMenuClick, filterData, handleResetBtnClick, handleApplyBtnClick } = useManageFilter(
+    setApiParamData,
+    apiParamData
+  );
+  const handlefilterClick = () => {
+    toggle();
+  };
 
+  // data 받아오기
   const { data } = useGetNoticeList({
     limit: ITEMS_PER_PAGE,
     offset: apiParamData.offsetNum,
     keyword: apiParamData.keyword,
     startsAtGte: apiParamData.startsAtGte,
     sort: sortData as Sort,
-    hourlyPayGte: apiParamData.hourlyPayGte
+    hourlyPayGte: apiParamData.hourlyPayGte,
+    address: apiParamData.address
   });
 
   const totalItem = data.count;
@@ -87,6 +99,7 @@ function PostSearch({ search = '' }: PostSearchProps) {
       ...apiParamData,
       offsetNum: (apiParamData.currentPage - 1) * ITEMS_PER_PAGE
     });
+    console.log(`address = ${apiParamData.address}`);
   }, [apiParamData.currentPage, data.items, ITEMS_PER_PAGE]);
 
   // 페이지 위치 변경
@@ -109,17 +122,6 @@ function PostSearch({ search = '' }: PostSearchProps) {
       </h2>
     );
   }
-
-  // filter
-  const { isOpen, open, close } = useFilter();
-  const { filterRef, handleMenuClick, filterData, handleResetBtnClick, handleApplyBtnClick } = useManageFilter();
-  const handlefilterClick = () => {
-    if (isOpen) {
-      close();
-    } else {
-      open();
-    }
-  };
 
   return (
     <section className={styles.noticeContainer}>

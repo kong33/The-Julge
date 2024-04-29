@@ -50,7 +50,7 @@ function CustomList() {
       className="swiper"
     >
       {posts.map(
-        (post: React.JSX.IntrinsicAttributes & PostProps) =>
+        (post: PostProps) =>
           !post.closed && (
             <SwiperSlide key={post.id}>
               <Post key={post.id} {...post} />
