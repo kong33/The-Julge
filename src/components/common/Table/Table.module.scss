@@ -15,7 +15,6 @@
   -webkit-overflow-scrolling: touch;
   max-width: 96.4rem;
   @include sopoqa-12-400;
-
   overflow-x: auto; /* 가로 스크롤바 표시 여부에 따라 조정 */
   -webkit-overflow-scrolling: touch;
   overflow-y: hidden; /* 세로 스크롤바 숨김 */
@@ -25,6 +24,7 @@
   }
 
   @include tablet {
+    max-width: 100%;
     width: 100%;
   }
 }
@@ -33,7 +33,10 @@
   max-width: 96.4rem;
   border-spacing: 0;
   word-break: normal;
-
+  @include tablet {
+    max-width: 100%;
+    width: 100%;
+  }
   th {
     padding: 1.2rem 0.8rem;
     background-color: $color-red-10;
@@ -41,6 +44,7 @@
     line-height: 1.6rem;
 
     @include tablet {
+      max-width: 100%;
       padding: 1.4rem 1.2rem;
       font-size: 1.4rem;
       line-height: 2.2rem;
@@ -55,6 +59,7 @@
     background-color: $color-white;
 
     @include tablet {
+      max-width: 100%;
       padding: 2rem 1.2rem;
       font-size: 1.6rem;
       line-height: 2.6rem;
@@ -103,6 +108,7 @@
   background-color: $color-white;
 
   @include tablet {
+    max-width: 100%;
     padding: 0.8rem 1.2rem;
     width: 100%;
   }

@@ -1,0 +1,214 @@
+.noticeTitleContainer {
+  @include flexbox($direction: column, $align: flex-start);
+  gap: 0.8rem;
+}
+
+.noticeTitle {
+  @include sopoqa-14-700;
+  color: $color-primary;
+
+  @include tablet {
+    @include sopoqa-16-700;
+  }
+}
+
+.noticeTitleText {
+  @include sopoqa-20-700;
+
+  @include tablet {
+    @include sopoqa-28-700;
+  }
+}
+
+.articleContainer {
+  @include flexbox($direction: column, $align: flex-start);
+  min-width: 35.1rem;
+  gap: 1.2rem;
+
+  @include tablet {
+    width: 68rem;
+  }
+
+  @include desktop {
+    width: 96.4rem;
+  }
+}
+
+.noticeContainer {
+  @include flexbox($direction: column, $align: left);
+  width: 100%;
+  margin: 0;
+  padding: 2rem;
+  gap: 1.2rem;
+  border-radius: 1.2rem;
+  border: 0.1rem solid $color-gray-20;
+  background: $color-white;
+
+  @include tablet {
+    padding: 2.4rem;
+    gap: 2.4rem;
+  }
+
+  @include desktop {
+    @include flexbox();
+  }
+}
+
+.noticeDetailContainer {
+  @include flexbox($direction: column, $align: left);
+  align-self: stretch;
+  gap: 2.4rem;
+
+  @include tablet {
+    gap: 4rem;
+  }
+
+  @include desktop {
+    gap: auto;
+  }
+}
+
+.noticeInfo {
+  @include flexbox($direction: column, $align: flex-start);
+  gap: 0.8rem;
+  align-self: stretch;
+
+  @include tablet {
+    gap: 1.2rem;
+  }
+}
+
+.noticeHourlyPayBox {
+  @include flexbox($direction: column, $align: left);
+  gap: 0.8rem;
+}
+
+.noticeHourlyPayCategory {
+  @include sopoqa-14-700;
+  color: $color-primary;
+
+  @include tablet {
+    @include sopoqa-16-700;
+  }
+}
+
+.noticeHourly {
+  @include sopoqa-24-700;
+
+  @include tablet {
+    @include sopoqa-28-700;
+  }
+}
+
+.noticeInfoContainer {
+  @include flexbox($align: center, $justify: flex-start);
+  gap: 6px;
+}
+
+.noticeInfoIcon {
+  width: 1.6rem;
+  height: 1.6rem;
+  @include tablet {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.noticeInfoText {
+  color: $color-gray-50;
+  @include sopoqa-14-400;
+
+  @include tablet {
+    @include sopoqa-16-400;
+  }
+}
+
+.noticeDescription {
+  @include sopoqa-14-400;
+
+  @include tablet {
+    @include sopoqa-16-400;
+  }
+}
+
+.noticeButtonContainer {
+  @include flexbox($align: center, $justify: center);
+  gap: 0.8rem;
+  flex: 1 0 0;
+}
+
+.noticeImg {
+  @include flexbox($align: center, $justify: center);
+  min-width: 31.1rem;
+  position: relative;
+  border-radius: 1.2rem;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+
+  @include tablet {
+    max-width: 63.2rem;
+  }
+
+  @include desktop {
+    width: 53.9rem;
+  }
+
+  .noticeImgClosed {
+    @include sopoqa-20-700;
+    @include flexbox($align: center, $justify: center);
+    position: absolute;
+    background: rgba($color: #000000, $alpha: 0.7);
+    width: 100%;
+    height: 100%;
+    color: $color-gray-30;
+    @include tablet {
+      @include sopoqa-28-700;
+    }
+  }
+
+  .noticeImgOpened {
+    display: none;
+  }
+}
+
+.noticeButton {
+  width: 63.2rem;
+
+  @include desktop {
+    width: 34.6rem;
+  }
+}
+
+.defaultButton {
+  @include tablet {
+    @include button-large;
+  }
+}
+
+.noticeDescriptionContainer {
+  width: 100%;
+  min-width: 31.1rem;
+  padding: 2rem;
+  border-radius: 1.2rem;
+  background: $color-gray-10;
+
+  @include tablet {
+    padding: 3.2rem;
+  }
+
+  .noticeDescription {
+    @include sopoqa-14-700;
+    margin-bottom: 0.8rem;
+    @include tablet {
+      @include sopoqa-16-700;
+      margin-bottom: 1.2rem;
+    }
+  }
+
+  .noticeDescriptionText {
+    @include sopoqa-14-400;
+    @include tablet {
+      @include sopoqa-16-400;
+    }
+  }
+}

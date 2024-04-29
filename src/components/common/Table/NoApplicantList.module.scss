@@ -1,0 +1,7 @@
+.noTableContainer {
+  @include flexbox($direction: column);
+  width: 100%;
+  height: 40rem;
+  color: $color-gray-50;
+  font-size: 2rem;
+}
