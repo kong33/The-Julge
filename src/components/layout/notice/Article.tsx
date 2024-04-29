@@ -14,10 +14,11 @@ import {
 import { BaseQuery, Status } from '@/apis/common.type';
 import { GetNoticeRes } from '@/apis/notice/notice.type';
 import { GetUserRes } from '@/apis/user/user.type';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
 import Toast from '@/components/common/Toast/Toast';
 import Modal from '@/components/feature/Modal/Modal';
 import ModalGroup, { useModal } from '@/components/feature/Modal/ModalGroup';
+import RecentPostList from '@/components/feature/Post/PostList/RecentPostList';
 import PostTagNotice from '@/components/feature/Post/PostTag/PostTagNotice';
 import styles from '@/components/layout/notice/Article.module.scss';
 import { pageList } from '@/libs/constants/contants';
@@ -221,7 +222,7 @@ export default function NoticeArticle({ noticeData, userData }: { noticeData: Ge
           setOpenModal(modalList.onError(''));
           toggle();
         } else {
-          postApplication(shopId, noticeId); // 공고 지원
+          postApplication({ shopId, noticeId }); // 공고 지원
           setGetApplicationParams({ offset: 0, limit: DEFAULT_LIMIT });
         }
       }
@@ -264,9 +265,9 @@ export default function NoticeArticle({ noticeData, userData }: { noticeData: Ge
 
   // 2단계: applicatoinData에서 지원한 유저 id, status 검색
   useEffect(() => {
-    const { items } = applicationData;
+    const items = applicationData?.items;
 
-    if (items.length > 0) {
+    if (items?.length > 0) {
       const application = items.find((item: any) => {
         return (
           item.item.notice.item.id === noticeId &&
@@ -381,139 +382,29 @@ export default function NoticeArticle({ noticeData, userData }: { noticeData: Ge
   );
 }
 
-// NoticeListArticle
-// export function RecentNoticeListArticle({
-//   shopData,
-//   noticeListData
-// }: {
-//   shopData: GetShopRes;
-//   noticeListData: GetNoticeListByShopIdRes;
-// }) {
-//   const router = useRouter();
+export function RecentNoticeListArticle() {
+  const [noticeList, setNoticeList] = useState<Array<any>>([]);
 
-//   console.log('shopData', shopData);
+  useEffect(() => {
+    if (localStorage.getItem('visitedData')) {
+      const localVisitedData = JSON.parse(localStorage.getItem('visitedData') as string);
+      setNoticeList(localVisitedData);
+    }
+  }, []);
 
-//   const { item: shopItem } = shopData;
-//   const { items: noticeListItem } = noticeListData;
+  // 공고가 없을 때
+  if (!noticeList.length) {
+    return (
+      <article className={styles.articleNoticeListEmpty}>
+        <p className={styles.description}>최근에 본 공고가 없습니다.</p>
+      </article>
+    );
+  }
 
-//   // 무한 스크롤
-//   const [queryParams, setQueryParams] = useState({ offset: defaultLimit, limit: defaultLimit });
-//   const { data: moreNoticeListItems } = useGetNoticeListByShopId(shopItem.id, {
-//     offset: queryParams.offset,
-//     limit: queryParams.limit
-//   });
-//   const noticeMaxCount = moreNoticeListItems?.count;
-//   const moreNoticeListItem = moreNoticeListItems?.items;
-
-//   // `noticeListItem`을 `postListDatas` 구조로 매핑
-//   const postListDatas = noticeListItem.map((notice) => {
-//     const noticeItem = notice.item;
-//     return {
-//       id: noticeItem.id,
-//       hourlyPay: noticeItem.hourlyPay,
-//       startsAt: noticeItem.startsAt,
-//       workhour: noticeItem.workhour,
-//       description: noticeItem.description,
-//       closed: noticeItem.closed,
-//       shop: {
-//         item: {
-//           id: shopItem.id,
-//           name: shopItem.name,
-//           category: shopItem.category,
-//           address1: shopItem.address1,
-//           address2: shopItem.address2,
-//           description: shopItem.description,
-//           imageUrl: shopItem.imageUrl,
-//           originalHourlyPay: shopItem.originalHourlyPay
-//         },
-//         href: ''
-//       }
-//     };
-//   });
-
-//   const loadMoreNoticeList = useCallback(() => {
-//     startTransition(() => {
-//       setQueryParams((prev) => {
-//         return { offset: prev.offset + prev.limit, limit: prev.limit };
-//       });
-//     });
-//   }, []);
-
-//   const observationTargetRef = useIntersectionObserver({ callbackIn: loadMoreNoticeList });
-
-//   // 데이터 저장할 배열
-//   const [loadedNoticeList, setLoadedNoticeList] = useState(postListDatas);
-
-//   const handleClick = {
-//     toShopNoticeRegisterPage: () => router.push(pageList.shopNoticeRegister(shopItem.id))
-//   };
-
-//   // 추가 데이터를 loadedNoticeList에 추가
-//   useEffect(() => {
-//     // 기존에 추가된 데이터인지 확인
-//     if (moreNoticeListItem) {
-//       const isExist = () => loadedNoticeList.find((item) => item.id === moreNoticeListItem[0]?.item?.id);
-
-//       // 추가된 적이 없으면 moreNoticeListItem을 loadedNoticeList에 추가
-//       if (!isExist()) {
-//         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//         const morePostListDatas = moreNoticeListItem.map((notice: any) => {
-//           const noticeItem = notice.item;
-//           return {
-//             id: noticeItem.id,
-//             hourlyPay: noticeItem.hourlyPay,
-//             startsAt: noticeItem.startsAt,
-//             workhour: noticeItem.workhour,
-//             description: noticeItem.description,
-//             closed: noticeItem.closed,
-//             shop: {
-//               item: {
-//                 id: shopItem.id,
-//                 name: shopItem.name,
-//                 category: shopItem.category,
-//                 address1: shopItem.address1,
-//                 address2: shopItem.address2,
-//                 description: shopItem.description,
-//                 imageUrl: shopItem.imageUrl,
-//                 originalHourlyPay: shopItem.originalHourlyPay
-//               },
-//               href: ''
-//             }
-//           };
-//         });
-//         setLoadedNoticeList([...loadedNoticeList, ...morePostListDatas]);
-//       }
-//     }
-
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [moreNoticeListItems]);
-
-//   // 공고가 없을 때
-//   if (!noticeListItem?.length) {
-//     return (
-//       <article className={styles.articleNoticeListEmpty}>
-//         <p className={styles.description}>공고를 등록해 보세요.</p>
-//         <Button
-//           className={styles.defaultButton}
-//           onClick={handleClick.toShopNoticeRegisterPage}
-//           size="medium"
-//           active
-//           solid
-//         >
-//           공고 등록하기
-//         </Button>
-//       </article>
-//     );
-//   }
-
-//   // 공고가 있을 때
-//   return (
-//     <article className={styles.articleNoticeList}>
-//       <PostList datas={loadedNoticeList} />
-//       {/* 옵저버에 등록될 엔트리 */}
-//       {noticeMaxCount > queryParams.offset + queryParams.limit && (
-//         <div style={{ height: `0.01rem` }} ref={observationTargetRef} />
-//       )}
-//     </article>
-//   );
-// }
+  // 공고가 있을 때
+  return (
+    <article className={styles.articleNoticeList}>
+      <RecentPostList noticeList={noticeList} />
+    </article>
+  );
+}
