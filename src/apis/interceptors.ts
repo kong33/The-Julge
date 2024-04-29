@@ -15,6 +15,7 @@ const requestInterceptor = (config: InternalAxiosRequestConfig): InternalAxiosRe
 
   if (token) {
     modefiedConfig.headers.Authorization = `Bearer ${token}`;
+    console.log('토큰전송');
   }
 
   return modefiedConfig;

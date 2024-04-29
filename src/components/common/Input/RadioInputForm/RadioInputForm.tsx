@@ -34,6 +34,7 @@ const RadioInputForm = forwardRef<HTMLInputElement, RadioInputFormProps>(
               className={classes.inputComponent}
               {...restProps}
               id="radioInput"
+              value="employer"
               required
             />
             {labels[0]}
@@ -49,6 +50,7 @@ const RadioInputForm = forwardRef<HTMLInputElement, RadioInputFormProps>(
               className={classes.inputComponent}
               {...restProps}
               id="radionInput"
+              value="employee"
             />
             {labels[1]}
           </label>
