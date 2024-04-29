@@ -21,6 +21,7 @@ type AlertFormat = {
   createdAt: string;
   startsAt: string;
   workhour: number;
+  id: string;
 };
 
 function Gnb({ userType, alertList }: Props) {
@@ -54,7 +55,8 @@ function Gnb({ userType, alertList }: Props) {
         result: alert.item.result,
         createdAt: alert.item.createdAt,
         startsAt: alert.item.notice.item.startsAt,
-        workhour: alert.item.notice.item.workhour
+        workhour: alert.item.notice.item.workhour,
+        id: alert.item.id
       }));
       setFormattedAlertList(formatAlertList);
     }

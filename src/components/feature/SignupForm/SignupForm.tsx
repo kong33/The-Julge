@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import styles from '@/components/feature/SignupForm/SignupForm.module.scss';
 
 import Button from '@/components/common/Button/Button';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
@@ -22,7 +23,7 @@ import { userIdAtom } from '../../../libs/contexts/AuthAtom';
 import Modal from '../Modal/Modal';
 import ModalGroup, { useModal } from '../Modal/ModalGroup';
 import { usePostUser } from '@/apis/user/useUserService';
-import { PostInputType } from '@/apis/user/user.type';
+import { PostInputType, PostUserRes } from '@/apis/user/user.type';
 import RadioInputForm from '@/components/common/Input/RadioInputForm/RadioInputForm';
 
 export default function SignupForm() {
@@ -55,7 +56,7 @@ export default function SignupForm() {
   const router = useRouter();
 
   // 회원가입 Post 보내기
-  const { mutate: signupMutate, data: signupData } = usePostUser({
+  const { mutate: signupMutate } = usePostUser({
     email: '',
     password: '',
     type: 'employee'
@@ -63,9 +64,6 @@ export default function SignupForm() {
 
   //회원가입 성공시 실행
   const handleSignupSuccess = () => {
-    const { id } = signupData.item;
-    setUserIdAtom(id);
-    Cookies.set('signupData', id, { expires: 1, path: '/' });
     router.push(status.signup.redirectPath);
   };
 
@@ -74,16 +72,16 @@ export default function SignupForm() {
     if (axios.isAxiosError(e) && e.response) {
       const data = e.response.data as SignupErrorMessage;
       setAlertMessage(data.message);
-      console.log('모달');
       modalOpen();
     } else {
       console.log(e);
     }
   };
+
   const onSubmit = (payload: PostInputType) => {
     // eslint-disable-next-line no-unused-vars
     const { passwordConfirm, ...dataToSubmit } = payload;
-    setIsButtonActive(true);
+    console.log('보내는', dataToSubmit);
     signupMutate(dataToSubmit, { onSuccess: handleSignupSuccess, onError: handleSignupError });
   };
   //회원가입시 비밀번호 확인 validating을 위한 watch
@@ -118,9 +116,11 @@ export default function SignupForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Logo width="248" height="44" />
-        <div>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
+        <Link href="/">
+          <Logo width="248" height="44" />
+        </Link>
+        <div className={styles.inputWrapper}>
           <InputForm
             label="이메일"
             errorMessage={errors.email?.message}
@@ -141,13 +141,13 @@ export default function SignupForm() {
             type="password"
             {...passwordConfirmRegister}
           />
-          <RadioInputForm labels={['사장님', '알바생']} value="employer" {...registerList.type} />
+          <RadioInputForm labels={['사장님', '알바생']} {...registerList.type} />
 
-          <Button size="large" solid submit active={isButtonActive}>
+          <Button size="large" solid submit active={isButtonActive} className={styles.sitnupButton}>
             {status.signup.buttonText}
           </Button>
         </div>
-        <div>
+        <div className={styles.textWrapper}>
           <p>{status.signup.footerText}</p>
           <Link href={status.signup.footerLink}>{status.signup.footerLinkText}</Link>
         </div>

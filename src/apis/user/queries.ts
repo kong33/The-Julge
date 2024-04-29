@@ -10,7 +10,7 @@ const queryKeys = {
 const queryOptions = {
   postUser: (payload: PostUserPayload) => ({
     mutationKey: queryKeys.postUser(payload),
-    mutationFn: (postPayload: PostUserPayload) => UserService.postUser(postPayload)
+    mutationFn: (postData: PostUserPayload) => UserService.postUser(postData)
   }),
   getUser: (userId: string) => ({
     queryKey: queryKeys.getUser(userId),
