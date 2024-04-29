@@ -35,7 +35,7 @@ export const validate = {
   },
   password: {
     pattern: {
-      // value: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/,
+      value: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/,
       message: '최소 한 개 이상의 특수문자를 포함해주세요.'
     },
     minLength: {
