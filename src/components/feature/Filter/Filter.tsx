@@ -12,8 +12,6 @@ import ScrollMenu from '@/components/feature/Filter/ScrollMenu/ScrollMenu';
 import { formatNumber, removeCommasNumber } from '@/libs/utils/formatter';
 import { ReactComponent as CloseButton } from '@/public/svgs/closeButton.svg';
 
-import { FilterContext } from './FilterContext';
-
 // 폼 타입입니다.
 type IFormInput = {
   hourlyPay: number;
