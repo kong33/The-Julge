@@ -61,6 +61,9 @@ export default function LoginForm() {
       const { token } = data.item;
       // const { id } = user.item;
       Cookies.set('token', token, { expires: 1, path: '/' });
+      console.log('token', token);
+      const newToken = Cookies.get('token');
+      console.log('newToken', newToken);
       // Cookies.set('userId', id, { expires: 1, path: '/' });
       // const userId = jwtDecode<{userId:string}>(token).userId?? ''로 사용하세요!
       setUserInfoAtom(userdata);

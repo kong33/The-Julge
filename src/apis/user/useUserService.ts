@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import queryOptions from '@/apis/user/queries';
 import { GetUserRes, PostUserPayload, PostUserRes, PutUserPayload, PutUserRes } from '@/apis/user/user.type';
@@ -35,7 +35,7 @@ export function usePostUser(payload: PostUserPayload) {
  */
 
 export function useGetUser(userId: string) {
-  const res = useQuery({ ...queryOptions.getUser(userId), enabled: !!userId });
+  const res = useSuspenseQuery(queryOptions.getUser(userId));
   return selectData<GetUserRes>(res);
 }
 

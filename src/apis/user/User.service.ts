@@ -8,6 +8,7 @@ class UserService {
   }
 
   getUser(userId: string) {
+    console.log('userId', userId);
     return apiRequestor.get(`/users/${userId}`);
   }
 
