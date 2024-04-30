@@ -1,5 +1,7 @@
 import styles from '@/components/feature/pagination/pagination.module.scss';
+
 import PaginationButton from '@/components/feature/pagination/paginationButton';
+
 
 type PaginationType = {
   currentPage: number;

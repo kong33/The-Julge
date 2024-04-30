@@ -7,6 +7,7 @@ import Button from '@/components/common/Button/Button';
 import DateTimeForm from '@/components/common/Input/DateTimeForm/DateTimeForm';
 import InputForm from '@/components/common/Input/InputForm/InputForm';
 import styles from '@/components/feature/Filter/Filter.module.scss';
+import { FilterContext } from '@/components/feature/Filter/FilterContext';
 import ScrollMenu from '@/components/feature/Filter/ScrollMenu/ScrollMenu';
 import { formatNumber, removeCommasNumber } from '@/libs/utils/formatter';
 import { ReactComponent as CloseButton } from '@/public/svgs/closeButton.svg';
