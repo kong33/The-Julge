@@ -24,9 +24,21 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
 
   const { cookies } = req;
   const { token } = cookies;
-
-  const userId = jwtDecode<{ userId: string }>(token || '').userId ?? '';
-  const { data: userData } = await UserService.getUser(userId);
+  // let userId;const userId = jwtDecode<{ userId: string }>(token || '').userId ?? '';
+  let userId = '';
+  let userData = null;
+  if (token) {
+    try {
+      userId = jwtDecode<{ userId: string }>(token).userId;
+      if (userId) {
+        const response = await UserService.getUser(userId);
+        userData = response.data;
+      }
+    } catch (error) {
+      console.error('Error decoding token:', error);
+      // Optionally handle the error, e.g., by logging or redirecting
+    }
+  }
 
   // shopId나 noticeId가 없으면 홈페이지로 리다이렉트
   if (!shopId || !noticeId) {

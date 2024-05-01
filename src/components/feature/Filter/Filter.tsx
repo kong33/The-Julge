@@ -10,6 +10,7 @@ import styles from '@/components/feature/Filter/Filter.module.scss';
 import { FilterContext } from '@/components/feature/Filter/FilterContext';
 import ScrollMenu from '@/components/feature/Filter/ScrollMenu/ScrollMenu';
 import { formatNumber, removeCommasNumber } from '@/libs/utils/formatter';
+import roundUpToNextHour from '@/libs/utils/roundUpToNextHour';
 import { ReactComponent as CloseButton } from '@/public/svgs/closeButton.svg';
 
 // 폼 타입입니다.
@@ -21,7 +22,7 @@ type IFormInput = {
 // 폼 기본값입니다.
 const defaultFormValues = {
   hourlyPay: 0,
-  startsAt: new Date().toISOString() // api에서 날짜의 기본 포맷은 ISO8601입니다.
+  startsAt: roundUpToNextHour(new Date().toISOString()).toISOString() // api에서 날짜의 기본 포맷은 ISO8601입니다.
 };
 
 type FilterProps = {

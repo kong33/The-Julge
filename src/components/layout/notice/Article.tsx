@@ -48,10 +48,17 @@ export function NoticeArticleNoLogin({ noticeData }: { noticeData: GetNoticeRes 
   const now = new Date().getTime();
   const startsAtDate = new Date(startsAt).getTime();
   const isPreviousNotice = startsAtDate < now;
-
+  const handleModalClick = () => {
+    return {
+      redirect: {
+        destination: pageList.login(),
+        permanent: false
+      }
+    };
+  };
   const buttonState = {
-    label: '신청 불가',
-    active: false,
+    label: '신청 하기',
+    active: true,
     onClick: () => {}
   };
 
@@ -86,14 +93,17 @@ export function NoticeArticleNoLogin({ noticeData }: { noticeData: GetNoticeRes 
             <p className={styles.noticeDescription}>{shopDescription}</p>
           </div>
           <div className={styles.noticeButtonContainer}>
-            <Button
-              className={styles.noticeButton}
-              size="medium"
-              active={buttonState.active}
-              onClick={buttonState.onClick}
-            >
-              {buttonState.label}
-            </Button>
+            <ModalGroup.Trigger>
+              <Button
+                solid
+                className={styles.noticeButton}
+                size="medium"
+                active={buttonState.active}
+                onClick={buttonState.onClick}
+              >
+                {buttonState.label}
+              </Button>
+            </ModalGroup.Trigger>
           </div>
         </div>
       </article>
@@ -101,6 +111,9 @@ export function NoticeArticleNoLogin({ noticeData }: { noticeData: GetNoticeRes 
         <p className={styles.noticeCommentTitle}>공고 설명</p>
         <p className={styles.noticeComment}>{noticeDescription}</p>
       </div>
+      <ModalGroup.Content>
+        <Modal.Error onClick={handleModalClick}>로그인이 필요합니다.</Modal.Error>
+      </ModalGroup.Content>
     </>
   );
 }
