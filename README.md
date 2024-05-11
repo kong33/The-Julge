@@ -2,9 +2,9 @@
 
 코드잇 스프린트 : 프론트엔드 4기
 
-프로젝트명 : Synergy(The Julge)
+## 프로젝트명 : Synergy(The Julge)
 
-프로젝트 소개 : 급하게 일손이 필요한 자리에 더 많은 시급을 제공해서 아르바이트생을 구할 수 있는 서비스
+#### 프로젝트 소개 : 급하게 일손이 필요한 자리에 더 많은 시급을 제공해서 아르바이트생을 구할 수 있는 서비스
 
 [[The Julge]("https://the-julge-tau.vercel.app/")](https://the-julge-tau.vercel.app/)
 
