@@ -1,6 +1,10 @@
 # The Julge
 
-### 알바 구인구직 포털사이트
+코드잇 스프린트 : 프론트엔드 4기
+
+프로젝트명 : Synergy(The Julge)
+
+프로젝트 소개 : 급하게 일손이 필요한 자리에 더 많은 시급을 제공해서 아르바이트생을 구할 수 있는 서비스
 
 ### 팀원 구성
 
@@ -10,4 +14,8 @@
 
 ## 프로젝트 기간: 2024.04.15 ~ 2024.05.01
 
-<img src="https://img.shields.io/badge/Next-black?style=for-the-badge&amp;logo=next.js&amp;logoColor=white"/>
+
+
+💡 기술 스택
+
+<img width="741" alt="스크린샷 2024-05-11 오후 11 57 00" src="https://github.com/kong33/The-Julge/assets/96658105/72ed6f01-e0f8-4342-bf07-ecaf8ef83beb">
