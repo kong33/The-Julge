@@ -17,7 +17,12 @@
 ## 프로젝트 기간: 2024.04.15 ~ 2024.05.01
 
 
+## 랜딩 페이지 
+<img width="1280" alt="스크린샷 2024-05-12 오전 12 07 03" src="https://github.com/kong33/The-Julge/assets/96658105/dd710961-16fc-41b3-8d31-4e7f26aaec99">
 
-💡 기술 스택
+<img width="1268" alt="스크린샷 2024-05-12 오전 12 08 40" src="https://github.com/kong33/The-Julge/assets/96658105/7437168a-e40b-4b35-9595-92f79a43b9c5">
 
-<img width="741" alt="스크린샷 2024-05-11 오후 11 57 00" src="https://github.com/kong33/The-Julge/assets/96658105/72ed6f01-e0f8-4342-bf07-ecaf8ef83beb">
+<img width="1263" alt="스크린샷 2024-05-12 오전 12 08 56" src="https://github.com/kong33/The-Julge/assets/96658105/b456d502-c8d4-4702-9710-079beeda9997">
+
+<img width="1263" alt="스크린샷 2024-05-12 오전 12 09 10" src="https://github.com/kong33/The-Julge/assets/96658105/9d8b33a8-749d-4fe2-badc-eadd6f479aad">
+
