@@ -6,7 +6,7 @@
 
 프로젝트 소개 : 급하게 일손이 필요한 자리에 더 많은 시급을 제공해서 아르바이트생을 구할 수 있는 서비스
 
-[The Julge]('https://the-julge-tau.vercel.app/')
+[[The Julge]("https://the-julge-tau.vercel.app/")](https://the-julge-tau.vercel.app/)
 
 ### 팀원 구성
 
